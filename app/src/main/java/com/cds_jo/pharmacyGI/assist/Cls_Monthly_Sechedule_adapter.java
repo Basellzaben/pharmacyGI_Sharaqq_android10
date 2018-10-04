@@ -43,7 +43,7 @@ public class Cls_Monthly_Sechedule_adapter extends BaseAdapter {
 
         return cls_search_pos.get(position);
     }
-
+//gdf
     @Override
     public long getItemId(int position) {
 
