@@ -1,0 +1,11 @@
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/item_0"
+        android:title="@string/Exist"
+        android:icon="@drawable/add_custmer"
+        android:showAsAction="withText|collapseActionView"
+        android:checkable="false"></item>
+</menu>

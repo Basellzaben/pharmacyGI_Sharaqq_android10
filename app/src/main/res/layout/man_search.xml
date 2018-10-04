@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:id="@+id/RR1"
+        android:background="#fff"
+        android:layout_height="60dp">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layoutDirection="rtl">
+
+            <Methdes.MyTextView
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/tv_no"
+                android:layout_weight="0.8"
+                android:paddingLeft="5dp"
+                android:layout_marginRight="10dp"
+                android:textColor="#000"
+                android:gravity="center"
+                android:text="TT"
+                android:textSize="22sp"
+                android:layout_width="0dp" />
+
+            <Methdes.MyTextView
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/tv_nm"
+                android:layout_weight="1.2"
+                android:textColor="#000"
+                android:text="TT"
+                android:textSize="22sp"
+                android:layout_width="0dp"
+                android:paddingRight="10dp"
+                android:gravity="center" />
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

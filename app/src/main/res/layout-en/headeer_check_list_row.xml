@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:layoutDirection="rtl">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="false">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layoutDirection="rtl"
+            android:background="@color/Gray1">
+
+            <Methdes.MyTextView
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+
+                android:id="@+id/textView146"
+                android:background="#17181c" />
+
+            <Methdes.MyTextView
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/Amt"
+                android:id="@+id/tv_Amnt"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:background="#17181c"
+                android:textColor="#fff"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginRight="0.5dp"
+                android:layout_marginLeft="0.5dp" />
+
+            <Methdes.MyTextView
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/BankNm"
+                android:id="@+id/tv_BankNm"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:background="#17181c"
+                android:textColor="#fff"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginLeft="0.5dp"
+                android:layout_marginRight="0.5dp" />
+
+            <Methdes.MyTextView
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/date"
+                android:id="@+id/tv_CheckDate"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:background="#17181c"
+                android:textColor="#fff"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginLeft="0.5dp"
+                android:layout_marginRight="0.5dp" />
+
+            <Methdes.MyTextView
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/CheckNo"
+                android:id="@+id/tv_Checkno"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:background="#17181c"
+                android:textColor="#fff"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginLeft="0.5dp"
+                android:layout_marginRight="0.5dp" />
+
+            <Methdes.MyTextView
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/Serial_Number"
+                android:id="@+id/ser"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:background="#17181c"
+                android:textColor="#fff"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginLeft="0.5dp"
+                android:layout_marginRight="0.5dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:background="@color/Footer_Menu"
+            android:gravity="right|center"
+            android:paddingRight="20dp"
+            android:layout_height="60dp">
+
+            <Methdes.MyTextView
+                android:text="@string/LocationSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView253"
+                android:textColor="#fff"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:padding="10dp"
+            android:layout_height="70dp">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/btn_cir_white_fill_black"
+                android:padding="5dp">
+
+                <ImageView
+                    android:id="@+id/brn_seachAcc"
+                    android:src="@mipmap/ic_search"
+                    android:padding="10dp"
+                    android:onClick="btn_filter"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp" />
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/et_Search_filter"
+                    android:layout_weight="1"
+                    android:background="#fff" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:id="@+id/RR1"
+                android:background="@color/Gray1"
+                android:layout_height="60dp">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <Methdes.MyTextView
+                        android:layout_height="match_parent"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:id="@+id/tv_no"
+                        android:layout_weight="0.8"
+                        android:paddingLeft="5dp"
+                        android:layout_marginRight="10dp"
+                        android:textColor="#000"
+                        android:gravity="center"
+                        android:text="@string/LocationNo"
+                        android:textSize="22sp"
+                        android:layout_width="0dp" />
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/Gray1"></LinearLayout>
+
+                    <Methdes.MyTextView
+                        android:layout_height="match_parent"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:id="@+id/tv_nm"
+                        android:layout_weight="1.2"
+                        android:gravity="center"
+                        android:textColor="#000"
+                        android:text="@string/LocationNm"
+                        android:textSize="22sp"
+                        android:layout_width="0dp"
+                        android:paddingRight="10dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <ListView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/listView2"
+                    style="@style/TextAppearance.AppCompat.Inverse"
+                    android:paddingLeft="10dp"
+                    android:background="@color/Gray1"
+                    android:divider="#00000000" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

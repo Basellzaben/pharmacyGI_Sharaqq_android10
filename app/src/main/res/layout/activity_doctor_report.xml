@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/Main_Gray">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentTop="true"
+        android:paddingRight="20dp"
+        android:layout_weight="1"
+        android:id="@+id/Content">
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:background="#d7d4d4">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="   "
+                android:id="@+id/textView4"
+                android:textAlignment="center"
+                android:textSize="30dp" />
+
+            <Methdes.MyTextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/view2"
+                android:text="  تقرير الاطباء"
+                android:textColor="#000"
+                android:textSize="30dp"
+                android:gravity="center" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:layout_gravity="right"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/spiner_cust_style"
+                android:gravity="center_vertical">
+
+                <Methdes.MyTextView
+                    android:layout_width="110dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/view"
+                    android:text="رقم الزيارة :"
+                    android:textColor="@color/Gray1"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp" />
+
+                <EditText
+                    android:layout_width="130dp"
+                    android:layout_height="30dp"
+                    android:inputType="number"
+                    android:ems="10"
+                    android:id="@+id/et_No"
+                    android:textAlignment="center"
+                    android:textColor="@color/Main_Gray"
+                    android:enabled="false"
+                    android:background="#fff" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/imageView3"
+                    android:src="@drawable/btn_search"
+                    android:onClick="btn_search_Recv"
+                    android:nestedScrollingEnabled="false"
+                    android:scaleType="fitXY"
+                    android:layout_marginLeft="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/spiner_cust_style"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:gravity="center_vertical|center_horizontal">
+
+                <Methdes.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/view4"
+                    android:text="التاريخ والوقت :"
+                    android:textColor="@color/Gray1"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp" />
+
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="30dp"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:id="@+id/et_Date"
+                    android:textColor="#000"
+                    android:gravity="center"
+                    android:background="#fff" />
+
+                <TextView
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:id="@+id/tv_Time"
+                    android:textColor="#000"
+                    android:gravity="center"
+                    android:background="#fff" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/spiner_cust_style"
+                android:layout_weight="1"
+                android:gravity="center_vertical">
+
+                <Methdes.MyTextView
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/view5"
+                    android:text="نوع الزيارة:"
+                    android:textColor="@color/Gray1"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp" />
+
+                <Spinner
+                    android:layout_width="150dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/sp_VisitType"
+                    android:gravity="center_horizontal"
+                    android:textAlignment="center"
+                    android:textSize="35sp"
+                    android:layout_gravity="center"
+                    android:spinnerMode="dropdown"
+                    android:background="#fff" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/imageView14"
+                    android:src="@drawable/sp"
+                    android:background="#fff" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/spiner_cust_style"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="20dp">
+
+                <Methdes.MyTextView
+                    android:layout_width="110dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/tv_CustNm"
+                    android:text="اسم الطبيب:"
+                    android:textColor="@color/Gray1"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp" />
+
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="30dp"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:id="@+id/tv_acc"
+                    android:focusableInTouchMode="false"
+                    android:gravity="center"
+                    android:textColor="#000"
+                    android:textSize="20dp"
+                    android:background="#fff" />
+
+                <ImageButton
+                    android:layout_width="40dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/btn_Cust_Search"
+                    android:src="@drawable/btn_search"
+                    android:onClick="btn_SearchCust"
+                    android:scaleType="fitXY"
+                    android:contentDescription=""
+                    android:background="#fff"
+                    android:layout_marginLeft="20dp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:id="@+id/tv_cusnm"
+                    android:gravity="right"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:textSize="15dp"
+                    android:textColor="#000"
+                    android:background="#fff"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:background="@drawable/spiner_cust_style"
+                android:gravity="center_vertical">
+
+                <Methdes.MyTextView
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/view3"
+                    android:text="المنطقة :"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/Gray1"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp" />
+
+                <Spinner
+                    android:layout_width="150dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/sp_Location"
+                    android:gravity="center_horizontal"
+                    android:textAlignment="center"
+                    android:textSize="35sp"
+                    android:layout_gravity="center"
+                    android:spinnerMode="dropdown"
+                    android:background="#fff" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/imageView15"
+                    android:src="@drawable/sp"
+                    android:background="#fff" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/spiner_cust_style"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="70dp"
+                android:layout_marginBottom="5dp">
+
+                <Methdes.MyTextView
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/view6"
+                    android:text="SPI"
+                    android:textColor="@color/Gray1"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:gravity="right"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp" />
+
+                <Methdes.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/view9"
+                    android:text=":"
+                    android:textColor="@color/Gray1"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:ems="10"
+                    android:id="@+id/et_spi"
+                    android:gravity="right"
+                    android:background="#fff"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:inputType="text|textMultiLine" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="70dp"
+                android:layout_weight="0"
+                android:layout_gravity="right"
+                android:layout_marginBottom="5dp">
+
+                <Methdes.MyTextView
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/view7"
+                    android:text="نوع العينة"
+                    android:textColor="@color/Gray1"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp" />
+
+                <Methdes.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/view10"
+                    android:text=":"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/Gray1" />
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:inputType="text|textMultiLine"
+                    android:ems="10"
+                    android:id="@+id/et_SampleType"
+                    android:textColor="#000"
+                    android:gravity="right"
+                    android:background="#fff"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:selectAllOnFocus="true"
+                    android:nestedScrollingEnabled="true"
+                    android:allowUndo="true" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginBottom="0dp">
+
+                <Methdes.MyTextView
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/view8"
+                    android:text="ملاحظات الزيارة"
+                    android:textColor="@color/Gray1"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp" />
+
+                <Methdes.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/view11"
+                    android:text=":"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/Gray1" />
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:inputType="text"
+                    android:ems="10"
+                    android:id="@+id/et_VNotes"
+                    android:gravity="right"
+                    android:background="#fff"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp" />
+
+                <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:id="@+id/textView109"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp">
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="30dp"
+                    android:ems="10"
+                    android:id="@+id/et_SNotes"
+                    android:gravity="right"
+                    android:background="#fff"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:visibility="invisible" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal"
+        android:background="#d7d4d4"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+        <ImageButton
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@+id/imageButton8"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:onClick="btn_new"
+            android:src="@drawable/btnnew"
+            android:scaleType="fitXY"
+            android:background="@android:color/transparent" />
+
+        <ImageButton
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@+id/imageButton3"
+            android:src="@drawable/btnsave"
+            android:onClick="btn_save_po"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp" />
+
+        <ImageButton
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@+id/imageButton6"
+            android:src="@drawable/btndelete"
+            android:paddingLeft="0dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:onClick="btn_delete"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY" />
+
+        <ImageButton
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@+id/imageButton2"
+            android:src="@drawable/btnprint"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp" />
+
+        <ImageButton
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@+id/imageButton7"
+            android:src="@drawable/btnback"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:onClick="btn_back"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY" />
+
+        <ImageButton
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@+id/imageButton9"
+            android:src="@drawable/btnshare"
+            android:onClick="btn_share"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

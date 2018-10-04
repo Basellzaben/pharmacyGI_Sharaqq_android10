@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+ <color name="colorPrimary">#c5007c</color>
+ <color name="colorPrimaryDark">#292d31</color>
+ <color name="colorAccent">#FF4081</color>
+
+    <color name="ColorPrimary">#ff8888</color>
+    <color name="ColorPrimaryDark">#F33</color>
+    <color name="tabsScrollColor">#F00</color>
+
+    <color name="Main_Gray">#292d31</color>
+    <color name="Main_Gray_Blure">#08090a</color>
+    <color name="Main_Gray_Non_Blure">#282b30</color>
+    <color name="Black11">#17181c</color>
+    <color name="White">#ffffff</color>
+    <color name="Gray1">#a6a8a8</color>
+    <color name="Gray2">#ebebeb</color>
+    <color name="Gray3">#b7b7b7</color>
+    <color name="Gray4">#7d7d7d</color>
+    <color name="Gray5">#e1e1e1</color>
+    <color name="Pink">#c5007c</color>
+    <color name="Green">#89bd46</color>
+    <color name="Blue">#4198ac</color>
+    <color name="Footer_Menu">#3bb3c1</color>
+
+
+</resources>

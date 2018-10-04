@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+    android:layout_marginLeft="0.5dp"
+    android:layout_marginRight="0.5dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@color/Gray1"
+            android:gravity="center">
+
+            <Methdes.MyTextView
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/textView146"
+                android:background="#fff"
+                android:layout_marginLeft="0.5dp"
+                android:layout_marginRight="0.5dp" />
+
+            <Methdes.MyTextView
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Small Text"
+                android:id="@+id/tv_Amnt"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textColor="#060606"
+                android:layout_gravity="center_vertical|center"
+                android:gravity="center"
+                android:background="#fff"
+                android:layout_marginLeft="0.5dp"
+                android:layout_marginRight="0.5dp" />
+
+            <Methdes.MyTextView
+                android:id="@+id/tv_CheckDate"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginLeft="0.5dp"
+                android:layout_marginRight="0.5dp"
+                android:layout_weight="1"
+                android:background="#fff"
+                android:gravity="center"
+                android:text="Small Text"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#060606" />
+
+            <Methdes.MyTextView
+                android:id="@+id/tv_BankNm"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginLeft="0.5dp"
+                android:layout_marginRight="0.5dp"
+                android:layout_weight="1"
+                android:background="#fff"
+                android:gravity="center"
+                android:text="Small Text"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#060606" />
+
+            <Methdes.MyTextView
+                android:id="@+id/tv_Checkno"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#fff"
+                android:gravity="center"
+                android:text="Small Text"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#060606" />
+
+            <Methdes.MyTextView
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Small Text"
+                android:id="@+id/ser"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textColor="#060606"
+                android:layout_gravity="center_vertical|center"
+                android:background="#fff"
+                android:gravity="center"
+                android:layout_marginLeft="0.5dp"
+                android:layout_marginRight="0.5dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

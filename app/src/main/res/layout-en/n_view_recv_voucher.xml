@@ -1,0 +1,866 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GalaxyMainActivity"
+    android:background="#282b30"
+    android:id="@+id/R_Back"
+    android:layoutDirection="locale"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentEnd="false"
+    android:layout_alignParentRight="false"
+    android:layout_alignParentBottom="false"
+    android:layout_alignParentTop="false"
+    android:layout_alignParentLeft="true">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="5"
+        android:layoutDirection="rtl"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/Blue"
+            android:weightSum="4"
+            android:layout_height="50dp">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/Frag1"></FrameLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:background="#fff"
+            android:layout_height="50dp"
+            android:gravity="left">
+
+            <RelativeLayout
+                android:layout_height="match_parent"
+                android:layout_marginEnd="215dp"
+                android:layout_width="250dp"
+                android:background="@mipmap/row2en"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:gravity="center">
+
+                <Methdes.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/Catch_Receipt"
+                    android:textColor="#fff" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:background="@mipmap/row1en"
+                android:gravity="center"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true">
+
+                <Methdes.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/Main_Page"
+                    android:id="@+id/textView4"
+                    android:textColor="#fff" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:background="@color/Gray2"
+                android:weightSum="3"
+                android:layout_height="120dp">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:weightSum="3"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_marginRight="25dp"
+                        android:paddingLeft="10dp">
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_height="35dp"
+                            android:layout_weight="1.3"
+                            android:gravity="center"
+                            android:layout_width="0dp"
+                            android:background="@drawable/btn_cir_white_fill_black"
+                            android:padding="3dp"
+                            android:layout_marginRight="8dp">
+
+                            <ImageView
+                                android:id="@+id/imageView24"
+                                android:src="@mipmap/d2"
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
+                                android:layout_marginLeft="10dp" />
+
+                            <Spinner
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:id="@+id/sp_VouchType"
+                                android:textAlignment="center"
+                                android:backgroundTint="#fff"
+                                android:layout_weight="1"
+                                android:background="#fff" />
+
+                        </LinearLayout>
+
+
+                        <Methdes.MyTextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="@string/cash_type"
+                            android:textSize="15dp"
+                            android:layout_weight="0.7"
+                            android:gravity="center"
+                            android:textColor="#000" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_marginRight="25dp">
+
+                        <TextView
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:background="@drawable/btn_cir_white_fill_black"
+                            android:gravity="center"
+                            android:layout_marginRight="8dp"
+                            android:textSize="12sp"
+                            android:layout_weight="1.5"
+                            android:layout_width="0dp"
+                            android:layout_height="35dp"
+                            android:inputType="none"
+                            android:id="@+id/et_Amt"
+                            android:textColor="#000" />
+
+                        <Methdes.MyTextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="@string/Total"
+                            android:textSize="15dp"
+                            android:layout_weight="0.5"
+                            android:gravity="center"
+                            android:textColor="#000" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_marginLeft="25dp">
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="0dp"
+                            android:background="@drawable/btn_cir_white_fill_black"
+                            android:layout_weight="1"
+                            android:layout_height="35dp">
+
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:weightSum="2"
+                                android:background="@drawable/btn_cir_white_fill_black"
+                                android:padding="3dp">
+
+                                <EditText
+                                    android:orientation="horizontal"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1.6"
+                                    android:textSize="12sp"
+                                    android:gravity="center"
+                                    android:id="@+id/et_OrdeNo"
+                                    android:textColor="#000"
+                                    android:background="#fff">
+
+                                </EditText>
+
+
+                                <LinearLayout
+                                    android:orientation="horizontal"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.4"
+                                    android:gravity="center"
+                                    android:padding="2dp"
+                                    android:id="@+id/imageView3">
+
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:src="@mipmap/ic_search"
+                                        android:onClick="btn_search_Recv"/>
+                                </LinearLayout>
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:layout_weight="0.5">
+
+                            <Methdes.MyTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="@string/OrderNo"
+                                android:gravity="center"
+                                android:textSize="15dp"
+                                android:textColor="#000" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:weightSum="3"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_marginRight="25dp"
+                        android:paddingLeft="10dp">
+
+                        <TextView
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:background="@drawable/btn_cir_white_fill_black"
+                            android:gravity="center"
+                            android:layout_marginRight="8dp"
+                            android:textSize="15sp"
+                            android:layout_weight="1.3"
+                            android:layout_width="0dp"
+                            android:layout_height="35dp"
+                            android:inputType="none"
+                            android:id="@+id/tv_acc"
+                            android:textColor="#000" />
+
+                        <Methdes.MyTextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="@string/Account_Num"
+                            android:textSize="15dp"
+                            android:layout_weight="0.7"
+                            android:gravity="center"
+                            android:textColor="#000" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_marginRight="25dp">
+
+                        <EditText
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:background="@drawable/btn_cir_white_fill_black"
+                            android:gravity="center"
+                            android:layout_marginRight="8dp"
+                            android:textSize="12sp"
+                            android:layout_weight="1.5"
+                            android:layout_width="0dp"
+                            android:layout_height="35dp"
+                            android:id="@+id/et_Cash"
+                            android:textColor="#000"
+                            android:inputType="number" />
+
+                        <Methdes.MyTextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="@string/cash_amount"
+                            android:textSize="15dp"
+                            android:layout_weight="0.5"
+                            android:gravity="center"
+                            android:textColor="#000" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_marginLeft="25dp">
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="0dp"
+                            android:background="@drawable/btn_cir_white_fill_black"
+                            android:layout_weight="1"
+                            android:layout_height="35dp">
+
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:weightSum="2"
+                                android:background="@drawable/btn_cir_white_fill_black"
+                                >
+
+                                <TextView
+                                    android:orientation="horizontal"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1.6"
+                                    android:gravity="center"
+                                    android:id="@+id/tv_cusnm"
+                                    android:textSize="12sp"
+                                    android:textColor="#000">
+
+                                </TextView>
+
+
+                                <LinearLayout
+                                    android:orientation="horizontal"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.4"
+                                    android:gravity="center"
+                                    android:padding="5dp">
+
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:layout_weight="0.5">
+
+                            <Methdes.MyTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="@string/account_name"
+                                android:gravity="center"
+                                android:textSize="15dp"
+                                android:textColor="#000" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:weightSum="3"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:paddingRight="25dp"
+                        android:paddingLeft="10dp">
+
+                        <TextView
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:background="@drawable/btn_cir_white_fill_black"
+                            android:gravity="center"
+                            android:layout_marginRight="8dp"
+                            android:textSize="15sp"
+                            android:layout_weight="1.3"
+                            android:layout_width="0dp"
+                            android:layout_height="35dp"
+                            android:inputType="none"
+                            android:id="@+id/tv_CheckAmt"
+                            android:textColor="#000" />
+
+                        <Methdes.MyTextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="@string/checks_amount"
+                            android:textSize="15dp"
+                            android:layout_weight="0.7"
+                            android:gravity="center"
+                            android:textColor="#000" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center">
+
+                        <EditText
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:background="@drawable/btn_cir_white_fill_black"
+                            android:gravity="center"
+                            android:layout_marginRight="33dp"
+                            android:textSize="12sp"
+                            android:layout_weight="1.5"
+                            android:layout_width="0dp"
+                            android:layout_height="35dp"
+                            android:inputType="none"
+                            android:id="@+id/et_notes"
+                            android:textColor="#000"
+                            android:layout_marginLeft="41dp" />
+
+                        <Methdes.MyTextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="@string/notes"
+                            android:textSize="15dp"
+                            android:layout_weight="0.25"
+                            android:gravity="center"
+                            android:textColor="#000" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_weight="0"
+                android:background="@color/Gray3"
+                android:weightSum="4"
+                android:paddingLeft="20dp"
+                android:layout_height="40dp">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.20"
+                    android:gravity="center"
+                    android:layout_marginRight="25dp">
+
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_height="35dp"
+                        android:layout_weight="1.3"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:background="@drawable/btn_cir_white_fill_black"
+                        android:padding="3dp"
+                        android:layout_marginRight="8dp">
+
+                        <ImageView
+                            android:src="@mipmap/d2"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_marginLeft="10dp" />
+
+                        <Spinner
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:id="@+id/sp_cur"
+                            android:textAlignment="center"
+                            android:backgroundTint="#fff"
+                            android:layout_weight="1"
+                            android:background="#fff" />
+
+                    </LinearLayout>
+                    <Methdes.MyTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/coin_type"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:textColor="#000" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_marginRight="25dp">
+
+                    <Methdes.MyTextView
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:background="@drawable/btn_cir_white_fill_black"
+                        android:gravity="center"
+                        android:layout_marginRight="8dp"
+                        android:textSize="16sp"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:id="@+id/et_Date"
+                        android:textColor="#000" />
+
+                    <Methdes.MyTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/date"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:textColor="#000" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.77"
+                    android:gravity="center"
+                    android:layout_marginRight="25dp">
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="right|center"
+                    android:layout_marginRight="25dp">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:gravity="center|right"
+                        android:onClick="btn_ShowPopAddCheck"
+                        android:padding="5dp">
+
+                        <Methdes.MyTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="@string/addCheck"
+                            android:layout_marginRight="15dp"
+                            android:textColor="#000" />
+
+                        <ImageView
+                            android:layout_width  ="wrap_content"
+                            android:layout_height ="match_parent"
+                            android:id="@+id/imageButton5"
+                            android:layout_gravity="right"
+                            android:src="@drawable/sm"
+                            tools:src="@drawable/sm" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="2">
+
+                <RelativeLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:padding="10dp"
+                    android:background="@color/Main_Gray"
+                    android:weightSum="1"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.75"
+                    android:gravity="center">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:id="@+id/hideShow">
+
+                        <ImageView
+                            android:src="@drawable/thumbnail_sm1"
+                            android:id="@+id/add_pic"
+                            android:visibility="visible"
+                            android:layout_height="180dp"
+                            android:layout_width="170dp" />
+
+                        <TextView
+                            android:text="@string/add_recv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16dp"
+                            android:textColor="@color/White"
+                            android:id="@+id/textView242" />
+                    </LinearLayout>
+
+                    <ListView
+                        android:layout_width="match_parent"
+                        android:id="@+id/lstCheck"
+                        android:smoothScrollbar="true"
+                        android:stackFromBottom="false"
+                        android:scrollingCache="false"
+                        android:listSelector="@null"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4.78"
+                        android:visibility="visible"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentStart="true" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.25"
+                    android:weightSum="6"
+                    android:background="@color/Gray3">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/Footer_Menu"
+                        android:layout_marginRight="0.5dp"
+                        android:gravity="center"
+                        android:onClick="btn_back"
+                        android:id="@+id/imageButton7">
+
+                        <Methdes.MyTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="@string/Home"
+                            android:id="@+id/textView238"
+                            android:textSize="18sp"
+                            android:textColor="#fff"
+                            android:layout_marginRight="12dp" />
+
+                        <ImageView
+                            android:id="@+id/imageView20"
+                            android:src="@mipmap/ic_home"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/Footer_Menu"
+                        android:layout_marginLeft="0.5dp"
+                        android:layout_marginRight="0.5dp"
+                        android:gravity="center"
+                        android:onClick="btn_share"
+                        android:id="@+id/imageButton9">
+
+                        <Methdes.MyTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="@string/Post"
+                            android:textSize="18sp"
+                            android:textColor="#fff"
+                            android:layout_marginRight="12dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/Footer_Menu"
+                        android:layout_marginLeft="0.5dp"
+                        android:layout_marginRight="0.5dp"
+                        android:gravity="center"
+                        android:onClick="btn_print"
+                        android:id="@+id/imageButton2">
+
+                        <Methdes.MyTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="@string/Print"
+                            android:textSize="18sp"
+                            android:textColor="#fff"
+                            android:layout_marginRight="12dp" />
+
+                        <ImageView
+                            android:src="@mipmap/ic_print"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/Footer_Menu"
+                        android:layout_marginLeft="0.5dp"
+                        android:layout_marginRight="0.5dp"
+                        android:gravity="center"
+                        android:onClick="btn_delete"
+                        android:id="@+id/imageButton6">
+
+                        <ImageView
+                            android:src="@mipmap/ic_post"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_weight="1" />
+
+                        <Methdes.MyTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textSize="18sp"
+                            android:textColor="#fff"
+                            android:text="@string/Delete"
+                            android:layout_marginRight="12dp" />
+
+                        <ImageView
+                            android:src="@mipmap/ic_delete"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/Footer_Menu"
+                        android:layout_marginLeft="0.5dp"
+                        android:layout_marginRight="0.5dp"
+                        android:gravity="center"
+                        android:onClick="btn_save_po"
+                        android:id="@+id/imageButton3">
+
+                        <Methdes.MyTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="@string/Save"
+                            android:textSize="18sp"
+                            android:textColor="#fff"
+                            android:layout_marginRight="12dp" />
+
+                        <ImageView
+                            android:src="@mipmap/ic_save"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/Footer_Menu"
+                        android:layout_marginLeft="0.5dp"
+                        android:gravity="center"
+                        android:onClick="btn_new"
+                        android:id="@+id/imageButton8">
+
+                        <Methdes.MyTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="@string/New"
+                            android:textSize="18sp"
+                            android:textColor="#fff"
+                            android:layout_marginRight="12dp" />
+
+                        <ImageView
+                            android:src="@mipmap/ic_new"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>
+

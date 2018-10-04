@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:soundEffectsEnabled="false"
+        android:background="@color/Gray2"
+        android:weightSum="4"
+        android:paddingLeft="5dp">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:weightSum="2">
+
+            <Methdes.MyTextView
+                android:text="TextView"
+                android:layout_width="wrap_content"
+                android:id="@+id/textView252"
+                android:layout_weight="1.5"
+                android:background="@drawable/btn_cir_white_fill_black"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp" />
+
+            <Methdes.MyTextView
+                android:text="@string/Net_Total"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:id="@+id/textView251"
+                android:layout_weight="0.5"
+                android:gravity="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:weightSum="2">
+
+            <Methdes.MyTextView
+                android:text="TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/textView250"
+                android:layout_weight="1.5"
+                android:background="@drawable/btn_cir_white_fill_black"
+                android:gravity="center"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp" />
+
+            <Methdes.MyTextView
+                android:text="@string/Total_Tax"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:id="@+id/textView249"
+                android:layout_weight="0.5"
+                android:gravity="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:weightSum="2">
+
+            <Methdes.MyTextView
+                android:text="TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/textView248"
+                android:layout_weight="1.5"
+                android:background="@drawable/btn_cir_white_fill_black"
+                android:gravity="center"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp" />
+
+            <Methdes.MyTextView
+                android:text="@string/Dics"
+                android:layout_width="wrap_content"
+                android:id="@+id/textView245"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:layout_height="45dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:weightSum="2">
+
+            <Methdes.MyTextView
+                android:text="TextView"
+                android:layout_width="wrap_content"
+                android:id="@+id/textView244"
+                android:layout_weight="1.5"
+                android:background="@drawable/btn_cir_white_fill_black"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_height="match_parent" />
+
+            <Methdes.MyTextView
+                android:text="@string/Total"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:id="@+id/textView243"
+                android:layout_weight="0.5"
+                android:gravity="center" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

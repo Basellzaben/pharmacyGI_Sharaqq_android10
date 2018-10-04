@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><!--This is an auto generated document. Changes to this document may cause incorrect behavior.--><wap-provisioningdoc>
+  <characteristic type="ProfileInfo">
+    <parm name="created_wizard_version" value="4.0.6"/>
+  </characteristic>
+  <characteristic type="Profile">
+    <parm name="ProfileName" value="profile1"/>
+    <parm name="ModifiedDate" value="2016-04-19 22:45:57"/>
+    <parm name="TargetSystemVersion" value="4.2"/>
+    <characteristic type="Keystroke" version="0.1">
+      <parm name="emdk_name" value=""/>
+      <parm name="ime_output_enabled" value="Default"/>
+      <parm name="keystroke_action_char" value="Default"/>
+      <characteristic type="BasicDataFormatting">
+        <parm name="bdf_enabled" value="true"/>
+        <parm name="bdf_prefix" value=""/>
+        <parm name="bdf_suffix" value=""/>
+        <parm name="bdf_send_data" value="Default"/>
+        <parm name="bdf_send_hex" value="Default"/>
+        <parm name="bdf_send_tab" value="Default"/>
+        <parm name="bdf_send_enter" value="Default"/>
+      </characteristic>
+    </characteristic>
+  </characteristic>
+</wap-provisioningdoc>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/Gray1"
+        android:layoutDirection="ltr">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layoutDirection="ltr">
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/textView146"
+                android:background="#17181c" />
+
+            <Methdes.MyTextView
+                android:id="@+id/tv_Amnt"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginLeft="0.5dp"
+                android:layout_marginRight="0.5dp"
+                android:layout_weight="1"
+                android:background="#17181c"
+                android:gravity="center"
+                android:text="المبلغ"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#fff"
+                android:textSize="16sp" />
+
+            <Methdes.MyTextView
+                android:id="@+id/tv_CheckDate"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginLeft="0.5dp"
+                android:layout_marginRight="0.5dp"
+                android:layout_weight="1"
+                android:background="#17181c"
+                android:gravity="center"
+                android:text="تاريخ الشيك"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#fff"
+                android:textSize="16sp" />
+
+            <Methdes.MyTextView
+                android:id="@+id/tv_BankNm"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginLeft="0.5dp"
+                android:layout_marginRight="0.5dp"
+                android:layout_weight="1"
+                android:background="#17181c"
+                android:gravity="center"
+                android:text="اسم البنك"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#fff"
+                android:textSize="16sp" />
+
+            <Methdes.MyTextView
+                android:id="@+id/tv_Checkno"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginLeft="0.5dp"
+                android:layout_marginRight="0.5dp"
+                android:layout_weight="1"
+                android:background="#17181c"
+                android:gravity="center"
+                android:text="رقم الشيك"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#fff"
+                android:textSize="16sp" />
+
+            <Methdes.MyTextView
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="التسلسل"
+                android:id="@+id/ser"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textColor="#fff"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="#17181c"
+                android:textSize="16sp"
+                android:layout_marginLeft="0.5dp"
+                android:layout_marginRight="0.5dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

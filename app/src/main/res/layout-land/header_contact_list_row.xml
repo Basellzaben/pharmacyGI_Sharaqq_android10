@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="fill_parent"
+    android:orientation="horizontal"
+    android:background="@color/Gray1"
+    android:layout_height="wrap_content"
+    >
+
+    <ImageButton
+        android:id="@+id/imageButton14"
+        android:layout_width="45dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginRight="0.5dp"
+        android:background="#000"
+        android:scaleType="fitXY" />
+
+    <Methdes.MyTextView
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/Total"
+        android:id="@+id/tv_Total"
+        android:layout_weight="1"
+        android:textColor="#fff"
+        android:layout_gravity="center"
+        android:digits="#.000"
+        android:gravity="center"
+        android:background="#17181c"
+        android:layout_marginRight="0.5dp"
+        android:layout_marginLeft="0.5dp"
+        android:textSize="16sp" />
+
+    <Methdes.MyTextView
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:id="@+id/tv_Disc_Amt"
+        android:layout_gravity="center"
+        android:textColor="#fff"
+        android:text="Disc_Amt"
+        android:gravity="center"
+        android:visibility="invisible"
+        android:background="#fff"
+        android:textSize="16sp" />
+
+    <Methdes.MyTextView
+        android:id="@+id/tv_Disc_Per"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="0.5dp"
+        android:layout_marginRight="0.5dp"
+        android:layout_weight="1"
+        android:background="#17181c"
+        android:gravity="center"
+        android:text="@string/Dics"
+        android:textColor="#fff"
+        android:textIsSelectable="false"
+        android:textSize="16sp" />
+
+    <Methdes.MyTextView
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:id="@+id/tv_Bounce"
+        android:textColor="#fff"
+        android:text="@string/Bounes"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:background="#17181c"
+        android:layout_marginRight="0.5dp"
+        android:layout_marginLeft="0.5dp"
+        android:textSize="16sp" />
+
+    <Methdes.MyTextView
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/T_Tax"
+        android:id="@+id/tv_Tax_Amt"
+        android:layout_gravity="center"
+        android:textColor="#fff"
+        android:gravity="center"
+        android:background="#17181c"
+        android:textSize="16sp"
+        android:visibility="invisible" />
+
+    <Methdes.MyTextView
+        android:id="@+id/tv_tax"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:text="@string/Tax"
+        android:textColor="#fff"
+        android:textIsSelectable="false"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="#17181c"
+        android:textSize="16sp"
+        android:width="0dp"
+        android:visibility="invisible" />
+
+    <Methdes.MyTextView
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/Unit"
+        android:id="@+id/tv_Unit"
+        android:textAlignment="center"
+        android:textColor="#fff"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="#17181c"
+        android:layout_marginRight="0.5dp"
+        android:layout_marginLeft="0.5dp"
+        android:textSize="16sp" />
+
+    <Methdes.MyTextView
+        android:id="@+id/tv_Qty"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:text="@string/Quentity"
+        android:textColor="#fff"
+        android:textIsSelectable="false"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="#17181c"
+        android:layout_marginRight="0.5dp"
+        android:layout_marginLeft="0.5dp"
+        android:textSize="16sp" />
+
+    <Methdes.MyTextView
+        android:id="@+id/tv_Price"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:text="@string/Price"
+        android:textColor="#fff"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="#17181c"
+        android:layout_marginRight="0.5dp"
+        android:layout_marginLeft="0.5dp"
+        android:textSize="16sp" />
+
+    <Methdes.MyTextView
+        android:id="@+id/tv_name"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="0.5dp"
+        android:layout_marginRight="0.5dp"
+        android:background="#17181c"
+        android:gravity="center"
+        android:text="@string/Item_Name"
+        android:textColor="#fff"
+        android:textIsSelectable="false"
+        android:textSize="16sp" />
+
+    <Methdes.MyTextView
+        android:id="@+id/tv_no"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:text="@string/item_no"
+        android:textColor="#fff"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="#17181c"
+        android:layout_marginLeft="0.5dp"
+        android:textSize="16sp" />
+
+
+</LinearLayout>

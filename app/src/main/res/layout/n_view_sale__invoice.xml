@@ -1,0 +1,749 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GalaxyMainActivity"
+    android:background="#282b30"
+    android:id="@+id/R_Back"
+    android:layoutDirection="ltr">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/Blue"
+        android:weightSum="4"
+        android:layout_height="50dp"
+        android:id="@+id/LL2">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/Frag1"></FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="5"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/LL2">
+
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.4"
+            android:background="#fff"
+            android:gravity="right">
+
+            <RelativeLayout
+                android:layout_height="match_parent"
+                android:layout_width="250dp"
+                android:background="@mipmap/row2"
+                android:gravity="center"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="215dp">
+
+                <Methdes.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/Sale_invoice"
+                    android:textColor="#fff" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:background="@mipmap/row1"
+                android:gravity="center"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true">
+
+                <Methdes.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/Main_Page"
+                    android:id="@+id/textView4"
+                    android:textColor="#fff" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4.2"
+            android:weightSum="3">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.4"
+                android:background="@color/Gray2"
+                android:weightSum="3">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.9"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="120dp"
+                        android:layout_height="40dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="123456789"
+                        android:id="@+id/tv_acc"
+                        android:maxLength="9"
+                        android:gravity="center"
+                        android:background="@drawable/btn_cir_white_fill_black"
+                        android:layout_marginRight="5dp"
+                        android:textSize="15sp" />
+
+                    <Methdes.MyTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/Client_ID"
+                        android:id="@+id/textView241"
+                        android:textSize="15dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.9"
+                    android:gravity="center">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="150dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/btn_cir_white_fill_black">
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:weightSum="2"
+                            android:background="@drawable/btn_cir_white_fill_black">
+
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.3"
+                                android:gravity="center">
+
+                                <EditText
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"
+                                    android:text="1234567"
+                                    android:textSize="15sp"
+                                    android:id="@+id/et_OrdeNo"
+                                    android:background="#fff" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.7"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:id="@+id/imageButton">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:src="@mipmap/ic_search"
+                                    android:onClick="btn_Search_Orders"
+                                     />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_weight="1">
+
+                        <Methdes.MyTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="@string/Order_ID"
+                            android:id="@+id/textView240"
+                            android:gravity="center"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.2"
+                    android:gravity="center">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_height="40dp"
+                        android:background="@drawable/btn_cir_white_fill_black"
+                        android:layout_width="250dp"
+                        android:layout_marginRight="15dp">
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:weightSum="2"
+                            android:background="@drawable/btn_cir_white_fill_black">
+
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.6"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"
+                                    android:text="1234567"
+                                    android:id="@+id/tv_cusnm"
+                                    android:textSize="15sp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.4"
+                                android:gravity="center"
+                                android:padding="5dp">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:id="@+id/imageButton4"
+                                    android:src="@mipmap/ic_search"
+                                    android:onClick="btn_Search_Orders" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <Methdes.MyTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/Clint_Nane"
+                        android:id="@+id/textView239"
+                        android:textSize="15dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.3"
+                android:background="@color/Gray3"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
+                    android:gravity="center_vertical|left"
+                    android:paddingLeft="25dp"
+                    android:weightSum="1">
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="السعر شامل الضريبة"
+                        android:id="@+id/chk_Tax_Include"
+                        android:checked="false"
+                        android:textColor="#000"
+                        android:textSize="18sp" />
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="40dp"
+                        android:layout_height="match_parent"></LinearLayout>
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="نقدي "
+                        android:id="@+id/chk_Type"
+                        android:checked="false"
+                        android:textColor="#000"
+                        android:textSize="18sp" />
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="40dp"
+                        android:layout_height="match_parent"></LinearLayout>
+
+                    <Methdes.MyTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="نوع الفاتورة"
+                        android:id="@+id/textView_Tax_type"
+                        android:checked="false"
+                        android:textColor="#000"
+                        android:textSize="18sp" />
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.07"
+                        android:layout_width="40dp"></LinearLayout>
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="طباعة ضريبة المبيعات"
+                        android:id="@+id/chk_showTax"
+                        android:checked="false"
+                        android:textColor="#000"
+                        android:gravity="center_vertical|center"
+                        android:textSize="18sp" />
+
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="الخصم النهائي"
+                        android:id="@+id/textView99"
+                        android:textColor="#000"
+                        android:visibility="invisible" />
+
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:ems="10"
+                        android:id="@+id/et_hdr_Disc"
+                        android:gravity="center"
+                        android:text="0"
+                        android:visibility="invisible" />
+
+                    <CheckBox
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="نسبة"
+                        android:id="@+id/chk_hdr_disc"
+                        android:checked="false"
+                        android:visibility="invisible" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:paddingRight="25dp"
+                    android:gravity="center|right"
+                    android:onClick="btn_show_Pop">
+
+                    <Methdes.MyTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/Add_item"
+                        android:layout_marginRight="15dp"
+                        android:textColor="#000" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/imageButton5"
+                        android:layout_gravity="right"
+                        android:src="@mipmap/ic_items"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2.3"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1.7"
+                    android:layout_height="0dp"
+                    android:padding="10dp"
+                    android:background="@color/Main_Gray">
+
+                    <ListView
+                        android:layout_width="match_parent"
+                        android:id="@+id/LstvItems"
+                        android:smoothScrollbar="true"
+                        android:stackFromBottom="false"
+                        android:scrollingCache="false"
+                        android:listSelector="@null"
+                        android:layout_weight="1.7"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.3">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:soundEffectsEnabled="false"
+                        android:background="@color/Gray2"
+                        android:weightSum="4"
+                        android:paddingLeft="5dp">
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:weightSum="2"
+                           >
+
+                            <Methdes.MyTextView_Digital
+                                android:text="0.0"
+                                android:layout_width="0dp"
+                                android:id="@+id/tv_NetTotal"
+                                android:layout_weight="1.5"
+                                android:background="@drawable/btn_cir_white_fill_black"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:layout_marginBottom="5dp"
+                                android:layout_marginTop="5dp"
+                                android:password="false"
+                                android:textSize="22sp"
+                                android:textColor="#000" />
+
+                            <Methdes.MyTextView
+                                android:text="@string/Net_Total"
+                                android:layout_width="wrap_content"
+                                android:layout_height="45dp"
+                                android:id="@+id/textView251"
+                                android:layout_weight="0.5"
+                                android:gravity="center"
+                                android:textColor="#000"
+                                android:textSize="18sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:weightSum="2">
+
+                            <Methdes.MyTextView_Digital
+                                android:text="0.0"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:id="@+id/et_TotalTax"
+                                android:layout_weight="1.5"
+                                android:background="@drawable/btn_cir_white_fill_black"
+                                android:gravity="center"
+                                android:layout_marginBottom="5dp"
+                                android:layout_marginTop="5dp"
+                                android:textSize="22sp"
+                                android:textColor="#000" />
+
+                            <Methdes.MyTextView
+                                android:text="@string/Total_Tax"
+                                android:layout_width="wrap_content"
+                                android:layout_height="45dp"
+                                android:id="@+id/textView249"
+                                android:layout_weight="0.5"
+                                android:gravity="center"
+                                android:textSize="18sp"
+                                android:textColor="#000" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:weightSum="2">
+
+                            <Methdes.MyTextView_Digital
+                                android:text="0.0"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:id="@+id/et_dis"
+                                android:layout_weight="1.5"
+                                android:background="@drawable/btn_cir_white_fill_black"
+                                android:gravity="center"
+                                android:layout_marginBottom="5dp"
+                                android:layout_marginTop="5dp"
+                                android:textSize="22sp"
+                                android:textColor="#000" />
+
+                            <Methdes.MyTextView
+                                android:text="@string/Dics"
+                                android:layout_width="wrap_content"
+                                android:id="@+id/textView245"
+                                android:layout_weight="0.5"
+                                android:gravity="center"
+                                android:layout_height="45dp"
+                                android:textColor="#000"
+                                android:textSize="18sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:weightSum="2">
+
+                            <Methdes.MyTextView_Digital
+                                android:text="0.0"
+                                android:layout_width="0dp"
+                                android:id="@+id/et_Total"
+                                android:layout_weight="1.5"
+                                android:background="@drawable/btn_cir_white_fill_black"
+                                android:gravity="center"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:layout_height="match_parent"
+                                android:textSize="22sp"
+                                android:textColor="#000" />
+
+                            <Methdes.MyTextView
+                                android:text="@string/Total"
+                                android:layout_width="wrap_content"
+                                android:layout_height="45dp"
+                                android:id="@+id/textView243"
+                                android:layout_weight="0.5"
+                                android:gravity="center"
+                                android:textColor="#000"
+                                android:textSize="18sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.4"
+            android:weightSum="6"
+            android:background="@color/Gray3">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/Footer_Menu"
+                android:layout_marginRight="0.5dp"
+                android:gravity="center"
+                android:onClick="btn_back"
+                android:id="@+id/imageButton7">
+
+                <Methdes.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/Home"
+                    android:id="@+id/textView238"
+                    android:textSize="18sp"
+                    android:textColor="#fff"
+                    android:layout_marginRight="12dp" />
+
+                <ImageView
+                    android:id="@+id/imageView20"
+                    android:src="@mipmap/ic_home"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/Footer_Menu"
+                android:layout_marginLeft="0.5dp"
+                android:layout_marginRight="0.5dp"
+                android:gravity="center"
+                android:onClick="btn_share"
+                android:id="@+id/imageButton9">
+
+                <Methdes.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/Post"
+                    android:id="@+id/textView237"
+                    android:textSize="18sp"
+                    android:textColor="#fff"
+                    android:layout_marginRight="12dp" />
+
+                <ImageView
+                    android:id="@+id/imageView19"
+                    android:src="@mipmap/ic_post"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/Footer_Menu"
+                android:layout_marginLeft="0.5dp"
+                android:layout_marginRight="0.5dp"
+                android:gravity="center"
+                android:onClick="btn_print"
+               >
+
+                <Methdes.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/Print"
+                    android:id="@+id/textView236"
+                    android:textSize="18sp"
+                    android:textColor="#fff"
+                    android:layout_marginRight="12dp" />
+
+                <ImageView
+                    android:id="@+id/imageView18"
+                    android:src="@mipmap/ic_print"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/Footer_Menu"
+                android:layout_marginLeft="0.5dp"
+                android:layout_marginRight="0.5dp"
+                android:gravity="center"
+                android:onClick="btn_delete">
+
+                <Methdes.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/textView233"
+                    android:textSize="18sp"
+                    android:textColor="#fff"
+                    android:text="@string/Delete"
+                    android:layout_marginRight="12dp" />
+
+                <ImageView
+                    android:id="@+id/imageView17"
+                    android:src="@mipmap/ic_delete"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/Footer_Menu"
+                android:layout_marginLeft="0.5dp"
+                android:layout_marginRight="0.5dp"
+                android:gravity="center"
+                android:onClick="btn_save_po">
+
+                <Methdes.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/Save"
+                    android:id="@+id/textView231"
+                    android:textSize="18sp"
+                    android:textColor="#fff"
+                    android:layout_marginRight="12dp" />
+
+                <ImageView
+                    android:id="@+id/imageView16"
+                    android:src="@mipmap/ic_save"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/Footer_Menu"
+                android:layout_marginLeft="0.5dp"
+                android:gravity="center"
+                android:onClick="btn_new">
+
+                <Methdes.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/New"
+                    android:id="@+id/textView230"
+                    android:textSize="18sp"
+                    android:textColor="#fff"
+                    android:layout_marginRight="12dp" />
+
+                <ImageView
+                    android:id="@+id/imageView13"
+                    android:src="@mipmap/ic_new"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>
+

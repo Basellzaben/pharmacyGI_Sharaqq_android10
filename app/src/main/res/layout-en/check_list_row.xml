@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:layoutDirection="ltr">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:gravity="left"
+            android:layout_height="45dp">
+
+            <Methdes.MyTextView
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Small Text"
+                android:id="@+id/ser"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:layout_gravity="center"
+                android:background="#fff"
+                android:gravity="center"
+                android:layout_marginRight="0.5dp"
+                android:layout_marginLeft="0.5dp" />
+
+            <Methdes.MyTextView
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Small Text"
+                android:id="@+id/tv_Checkno"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:layout_gravity="center"
+                android:background="#fff"
+                android:gravity="center"
+                android:layout_marginLeft="0.5dp"
+                android:layout_marginRight="0.5dp" />
+
+            <Methdes.MyTextView
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Small Text"
+                android:id="@+id/tv_CheckDate"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:layout_gravity="center"
+                android:background="#fff"
+                android:gravity="center"
+                android:layout_marginLeft="0.5dp"
+                android:layout_marginRight="0.5dp" />
+
+            <Methdes.MyTextView
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Small Text"
+                android:id="@+id/tv_BankNm"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:layout_gravity="center"
+                android:background="#fff"
+                android:gravity="center"
+                android:layout_marginLeft="0.5dp"
+                android:layout_marginRight="0.5dp" />
+
+            <Methdes.MyTextView
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Small Text"
+                android:id="@+id/tv_Amnt"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:layout_gravity="center"
+                android:background="#fff"
+                android:gravity="center"
+                android:layout_marginLeft="0.5dp"
+                android:layout_marginRight="0.5dp" />
+
+            <Methdes.MyTextView
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/textView146" />
+
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

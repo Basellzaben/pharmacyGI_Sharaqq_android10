@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="7"
+        android:minHeight="50dp"
+        android:background="@color/Gray5">
+
+        <Methdes.MyTextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:id="@+id/tv_cost"
+            android:layout_weight="0.9"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textColor="#000"
+            android:background="#fff"
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp" />
+
+        <Methdes.MyTextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:id="@+id/tv_unitcost"
+            android:layout_weight="0.9"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textColor="#000"
+            android:background="#fff"
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp" />
+
+        <Methdes.MyTextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:id="@+id/tv_qty"
+            android:layout_weight="0.9"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textColor="#000"
+            android:background="#fff"
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp" />
+
+        <Methdes.MyTextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:id="@+id/tv_UnitName"
+            android:layout_weight="0.9"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textColor="#000"
+            android:background="#fff"
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp" />
+
+        <Methdes.MyTextView
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:id="@+id/tv_venname"
+            android:layout_weight="1.6"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textColor="#000"
+            android:background="#fff"
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_width="0dp" />
+
+        <Methdes.MyTextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:id="@+id/tv_bill_date"
+            android:layout_weight="0.9"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textColor="#000"
+            android:background="#fff"
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp" />
+
+        <Methdes.MyTextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:id="@+id/tv_bill_no"
+            android:layout_weight="0.9"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textColor="#000"
+            android:background="#fff"
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

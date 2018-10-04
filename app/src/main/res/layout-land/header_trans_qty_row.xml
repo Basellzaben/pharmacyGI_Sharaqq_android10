@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="7"
+        android:minHeight="50dp"
+        android:background="@color/Gray5">
+
+        <Methdes.MyTextView
+            android:layout_width="0dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:id="@+id/tv_Date"
+            android:textColor="#000"
+            android:visibility="invisible"
+            android:layout_weight="0"
+            android:layout_margin="0dp"
+            android:padding="0dp"
+            android:layout_height="50dp" />
+
+        <Methdes.MyTextView
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:id="@+id/tv_DocNo"
+            android:textColor="#fff"
+            android:visibility="visible"
+            android:layout_weight="0.9"
+            android:layout_width="0dp"
+            android:layout_margin="0dp"
+            android:layout_marginRight="1dp"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:background="@color/Black11" />
+
+        <Methdes.MyTextView
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:id="@+id/tv_Item_No"
+            android:layout_marginRight="1dp"
+            android:textColor="#fff"
+            android:layout_weight="0.9"
+            android:layout_width="0dp"
+            android:padding="0dp"
+            android:layout_marginLeft="1dp"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:background="@color/Black11" />
+
+        <Methdes.MyTextView
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:id="@+id/tv_ItemNm"
+            android:textColor="#fff"
+            android:layout_weight="1.6"
+            android:layout_width="0dp"
+            android:padding="0dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginLeft="1dp"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:background="@color/Black11" />
+
+        <Methdes.MyTextView
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:id="@+id/tv_UnitName"
+            android:textColor="#fff"
+            android:layout_weight="0.9"
+            android:layout_width="0dp"
+            android:layout_margin="0dp"
+            android:padding="0dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginLeft="1dp"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:background="@color/Black11" />
+
+        <Methdes.MyTextView
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:id="@+id/tv_Qty"
+            android:textColor="#fff"
+            android:layout_weight="0.9"
+            android:layout_width="0dp"
+            android:padding="0dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginLeft="1dp"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:background="@color/Black11" />
+
+        <Methdes.MyTextView
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:id="@+id/tv_StroeNo"
+            android:textColor="#fff"
+            android:layout_weight="0.9"
+            android:layout_width="0dp"
+            android:padding="0dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginLeft="1dp"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:background="@color/Black11" />
+
+        <Methdes.MyTextView
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:id="@+id/tv_Notes"
+            android:textColor="#fff"
+            android:layout_weight="0.9"
+            android:layout_width="0dp"
+            android:padding="0dp"
+            android:layout_marginLeft="1dp"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:background="@color/Black11" />
+
+    </LinearLayout>
+
+</LinearLayout>

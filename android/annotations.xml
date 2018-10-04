@@ -1,0 +1,5 @@
+<root>
+  <item name='android.Manifest.permission READ_EXTERNAL_STORAGE'>
+    <annotation name='java.lang.annotation.Deprecated' />
+  </item>
+</root>

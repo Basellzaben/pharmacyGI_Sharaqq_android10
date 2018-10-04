@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GalaxyMainActivity"
+    android:background="#282b30"
+    android:id="@+id/R_Back">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/Blue"
+        android:weightSum="4"
+        android:layout_height="50dp"
+        android:id="@+id/LL2"
+        android:layoutDirection="ltr"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/Frag1"></FrameLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/RR2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/LL2"
+        android:layout_weight="1"
+        android:background="#fff"
+
+        android:layoutDirection="rtl"
+
+
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="215dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="215dp"
+
+            android:background="@mipmap/row2"
+            android:gravity="center">
+
+            <Methdes.MyTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/update_info"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#fff" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@mipmap/row1"
+            android:orientation="horizontal">
+
+            <Methdes.MyTextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/Main_Page"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#fff" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="6"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/RR2"
+        android:layoutDirection="ltr"
+        android:layout_marginBottom="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="5"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:layout_width="502dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:listSelector="@null"
+                    android:orientation="vertical"
+                    android:scrollingCache="false"
+                    android:smoothScrollbar="true"
+                    android:stackFromBottom="false"
+                    android:weightSum="3">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:background="@color/Pink">
+
+                        <TextView
+                            android:id="@+id/process"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+
+                            android:text="المعالجة"
+                            android:textColor="@color/White"
+                            android:textSize="20sp" />
+
+                    </RelativeLayout>
+
+                    <ListView
+                        android:id="@+id/LvResult"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="10dp"
+                        android:background="@color/White"
+                        android:listSelector="@null"
+                        android:scrollingCache="false"
+                        android:smoothScrollbar="true"
+                        android:stackFromBottom="false" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:weightSum="2.6">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="2.6"
+                        android:background="#fff"
+                        android:orientation="vertical"
+                        android:weightSum="6">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="44dp"
+                            android:background="@color/Pink"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <TextView
+                                android:id="@+id/getdata"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="false"
+                                android:layout_centerVertical="false"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:text="سحب البيانات من السيرفر"
+                                android:textColor="@color/White"
+                                android:textSize="20sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:weightSum="3">
+
+                            <CheckBox
+                                android:id="@+id/Chk_Unites"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:button="@drawable/custom_checkbox"
+
+                                android:buttonTint="@color/Blue"
+                                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+                                android:text="الوحدة"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:theme="@style/WhiteCheck" />
+
+                            <CheckBox
+                                android:id="@+id/Chk_Custs"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:button="@null"
+                                android:buttonTint="@color/Blue"
+                                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+                                android:text="العملاء"
+
+                                android:textSize="18sp"
+                                android:theme="@style/WhiteCheck" />
+
+
+                            <CheckBox
+                                android:id="@+id/Chk_Doctors"
+                                android:layout_width="0dp"
+
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_weight="1"
+                                android:button="@drawable/custom_checkbox"
+                                android:buttonTint="@color/Blue"
+                                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+                                android:text="الاطباء"
+                                android:textSize="18sp"
+                                android:theme="@style/WhiteCheck" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:weightSum="3">
+
+                            <CheckBox
+                                android:id="@+id/chk_Spec"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:button="@null"
+                                android:buttonTint="@color/Blue"
+
+                                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+                                android:text="الاختصاص"
+
+                                android:textSize="18sp"
+                                android:theme="@style/WhiteCheck" />
+
+                            <CheckBox
+                                android:id="@+id/Chk_Items"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+
+                                android:button="@null"
+                                android:buttonTint="@color/Blue"
+                                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+                                android:text="المواد"
+
+                                android:textSize="18sp"
+                                android:theme="@style/WhiteCheck" />
+
+                            <CheckBox
+                                android:id="@+id/Chk_Items_Unites"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+
+                                android:button="@null"
+                                android:buttonTint="@color/Blue"
+                                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+                                android:text="معامل التحويل"
+                                android:textSize="18sp"
+                                android:theme="@style/WhiteCheck" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:weightSum="3">
+
+                            <CheckBox
+                                android:id="@+id/Chk_Locat"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:button="@null"
+
+                                android:buttonTint="@color/Blue"
+                                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+                                android:text="المناطق"
+                                android:textSize="18sp"
+                                android:theme="@style/WhiteCheck" />
+
+                            <CheckBox
+                                android:id="@+id/Chk_Users"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:button="@null"
+
+                                android:buttonTint="@color/Blue"
+                                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+                                android:text="المستخدمين"
+                                android:textSize="18sp"
+                                android:theme="@style/WhiteCheck" />
+
+                            <CheckBox
+                                android:id="@+id/Chk_deptf"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_weight="1"
+                                android:button="@drawable/custom_checkbox"
+                                android:buttonTint="@color/Blue"
+                                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+                                android:text="اصناف المواد"
+                                android:textSize="18sp"
+                                android:theme="@style/WhiteCheck" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:orientation="horizontal"
+                            android:weightSum="2">
+
+                            <CheckBox
+                                android:id="@+id/chkSerial"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_weight="1"
+                                android:button="@drawable/custom_checkbox"
+                                android:buttonTint="@color/Blue"
+                                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+                                android:text="التسلسلات"
+                                android:textSize="18sp"
+                                android:theme="@style/WhiteCheck" />
+
+                            <CheckBox
+                                android:id="@+id/chkCompany"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_weight="1"
+                                android:button="@drawable/custom_checkbox"
+                                android:buttonTint="@color/Blue"
+                                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+                                android:text="معلومات المؤسسة"
+                                android:textSize="18sp"
+                                android:theme="@style/WhiteCheck" />
+
+                            <CheckBox
+                                android:id="@+id/Chk_TransQty"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:button="@null"
+
+                                android:buttonTint="@color/Blue"
+                                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+                                android:text="تحديث  مستودع العينات"
+
+                                android:textSize="18sp"
+                                android:theme="@style/WhiteCheck" />
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0"
+                        android:background="#fff"
+                        android:orientation="vertical"
+                        android:visibility="invisible"
+                        android:weightSum="3">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:background="@color/Pink"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <TextView
+                                android:id="@+id/moves"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="false"
+                                android:layout_centerVertical="false"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:text="اعتماد الحركات"
+                                android:textColor="@color/White"
+                                android:textSize="18sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:weightSum="3">
+
+                            <CheckBox
+                                android:id="@+id/chk_po_post"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:button="@null"
+                                android:buttonTint="@color/Blue"
+
+                                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+                                android:text="طلبات البيع"
+
+                                android:textSize="18sp"
+                                android:theme="@style/WhiteCheck" />
+
+                            <CheckBox
+                                android:id="@+id/Chk_Post_Payments"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+
+                                android:button="@null"
+                                android:buttonTint="@color/Blue"
+                                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+                                android:text="سندات فبض"
+                                android:textSize="18sp"
+                                android:theme="@style/WhiteCheck" />
+
+                            <CheckBox
+                                android:id="@+id/Chk_Post_Inv"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_weight="1"
+
+                                android:button="@drawable/custom_checkbox"
+                                android:buttonTint="@color/Blue"
+                                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+                                android:text="فواتير المبيعات"
+                                android:textSize="18sp"
+                                android:theme="@style/WhiteCheck" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/phLayout2"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:weightSum="3">
+
+                            <CheckBox
+                                android:id="@+id/checkBox3"
+                                android:layout_width="0dp"
+
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:button="@null"
+                                android:buttonTint="@color/Blue"
+                                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+                                android:text="اخرى"
+
+                                android:textSize="18sp"
+                                android:theme="@style/WhiteCheck" />
+
+                            <CheckBox
+                                android:id="@+id/chk_Doctor_Visit_post"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+
+                                android:layout_weight="1"
+                                android:button="@drawable/custom_checkbox"
+                                android:buttonTint="@color/Blue"
+                                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+                                android:text="زيارات الاطباء"
+                                android:textSize="18sp"
+                                android:theme="@style/WhiteCheck" />
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:onClick="btn_Post_Trans"
+                android:paddingRight="5dp"
+                android:visibility="invisible">
+
+                <TextView
+                    android:id="@+id/textView263"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:background="@color/Blue"
+                    android:gravity="center"
+                    android:onClick="btn_Post_Trans"
+                    android:text="اعتماد الحركة"
+                    android:textColor="@color/White"
+                    android:textSize="20sp" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingRight="5dp">
+
+                <TextView
+                    android:id="@+id/updatetext"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="false"
+                    android:layout_centerVertical="false"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="3dp"
+                    android:background="@color/Green"
+                    android:gravity="center"
+                    android:onClick="btn_Transfer_Data"
+                    android:text="تحديث البيانات"
+                    android:textColor="@color/White"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
+

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="50dp"
+        android:weightSum="9"
+        android:background="@color/Gray5">
+
+        <Methdes.MyTextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:id="@+id/tv_CustNo"
+            android:textColor="#000"
+            android:layout_weight="0.85"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:background="#fff"
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp" />
+
+        <Methdes.MyTextView
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:id="@+id/tv_CustNm"
+            android:textColor="#000"
+            android:gravity="center"
+            android:layout_weight="2.2"
+            android:layout_width="0dp"
+            android:textSize="18sp"
+            android:background="#fff"
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp" />
+
+        <Methdes.MyTextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="tv_CusType"
+        android:id="@+id/tv_CusType"
+        android:textColor="#000"
+        android:gravity="center"
+        android:layout_weight="0.85"
+        android:textSize="18sp"
+            android:background="#fff"
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="1dp" />
+
+        <Methdes.MyTextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:id="@+id/tv_CustMobile"
+            android:gravity="center"
+            android:textColor="#000"
+            android:layout_weight="0.85"
+            android:textSize="18sp"
+            android:background="#fff"
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp" />
+
+        <Methdes.MyTextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:id="@+id/tv_CustAddress"
+            android:gravity="center"
+            android:textColor="#000"
+            android:layout_weight="0.85"
+            android:textSize="18sp"
+            android:background="#fff"
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp" />
+
+        <Methdes.MyTextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:id="@+id/tv_tt"
+            android:textColor="#000"
+            android:gravity="center"
+            android:layout_weight="0.85"
+            android:textSize="18sp"
+            android:background="#fff"
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp" />
+
+        <Methdes.MyTextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:id="@+id/tv_tf"
+            android:textColor="#000"
+            android:gravity="center"
+            android:layout_weight="0.85"
+            android:textSize="18sp"
+            android:background="#fff"
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp" />
+
+        <Methdes.MyTextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:id="@+id/tv_Notes"
+            android:gravity="center"
+            android:textColor="#000"
+            android:layout_weight="0.85"
+            android:textSize="18sp"
+            android:background="#fff"
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp" />
+
+        <Methdes.MyTextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:id="@+id/tv_Flq"
+            android:gravity="center"
+            android:textColor="#000"
+            android:layout_weight="0.85"
+            android:textSize="18sp"
+            android:background="#fff"
+            android:layout_marginBottom="1dp"
+            android:layout_marginRight="1dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

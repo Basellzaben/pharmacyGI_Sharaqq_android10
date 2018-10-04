@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/Gray2">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="2"
+            android:gravity="center"
+            android:layout_marginBottom="20dp">
+
+            <Methdes.MyTextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/tv_OrderNo"
+                android:layout_weight="0.8"
+                android:gravity="right|center"
+                android:textColor="#000"
+                android:layout_width="match_parent"
+                android:text="@string/Order_ID"
+                android:padding="5dp"
+                android:textSize="20sp" />
+
+            <Methdes.MyTextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="من مستودع"
+                android:id="@+id/tv_From"
+                android:gravity="right|center"
+                android:textColor="#a31232"
+                android:textAlignment="gravity"
+                android:layout_weight="1.2"
+                android:padding="5dp"
+                android:textSize="20sp" />
+
+            <Methdes.MyTextView
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="إلى مستودع"
+                android:textColor="#a31232"
+                android:id="@+id/tv_To"
+                android:layout_weight="0.8"
+                android:gravity="right|center"
+
+                android:layout_width="match_parent"
+                android:padding="5dp"
+                android:textSize="20sp" />
+
+            <Methdes.MyTextView
+                android:text="TextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/vDate"
+                android:layout_weight="0.8"
+                android:textColor="#000"
+                android:gravity="right|center"
+                android:padding="5dp"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

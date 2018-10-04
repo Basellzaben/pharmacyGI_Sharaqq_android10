@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="3"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layoutDirection="rtl">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:background="@color/Blue"
+            android:gravity="right|center"
+            android:paddingRight="15dp"
+            android:layout_height="50dp">
+
+            <Methdes.MyTextView
+                android:text="@string/Add_Item1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView254"
+                android:textColor="#fff"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:background="@color/Gray4"
+            android:layout_height="50dp">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:id="@+id/imageView22"
+                        android:src="@mipmap/d1" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.7"
+                    android:layout_width="0dp">
+
+                    <Spinner
+                        android:layout_width="fill_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/sp_item_cat"
+                        android:spinnerMode="dropdown"
+                        android:backgroundTint="@color/Gray4"
+                        android:gravity="center|start" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="right"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:id="@+id/tv_qty_perc"
+                            android:gravity="center"
+                            android:padding="5dp"
+                            android:textColor="#fff" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:id="@+id/tv_StoreQty"
+                            android:gravity="center"
+                            android:padding="5dp"
+                            android:textColor="#fff" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:weightSum="3"
+            android:background="#fff"
+            android:layout_weight="3">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.8"
+                android:background="#fff">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:weightSum="2"
+                    android:layout_height="250dp">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.3"
+                        android:weightSum="2">
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:weightSum="2">
+
+                            <EditText
+                                android:layout_width="0dp"
+                                android:ems="10"
+                                android:id="@+id/et_qty"
+                                android:layout_weight="1.5"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/btn_cir_white_fill_black"
+                                android:layout_margin="20dp"
+                                android:gravity="center_vertical|center"
+                                android:inputType="number" />
+
+                            <Methdes.MyTextView
+                                android:text="@string/Quentity"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:id="@+id/textView258"
+                                android:layout_weight="0.5"
+                                android:gravity="center"
+                                android:textSize="18sp"
+                                android:textColor="#000" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:weightSum="2">
+
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.5"
+                                android:gravity="center"
+                                android:layout_width="0dp"
+                                android:background="@drawable/btn_cir_white_fill_black"
+                                android:padding="3dp"
+                                android:layout_margin="20dp">
+
+                                <ImageView
+                                    android:id="@+id/imageView24"
+                                    android:src="@mipmap/d2"
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
+                                    android:layout_marginLeft="20dp" />
+
+                                <Spinner
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:id="@+id/sp_units"
+                                    android:textAlignment="center"
+                                    android:backgroundTint="#fff"
+                                    android:layout_weight="1"
+                                    android:background="#fff"
+                                    android:gravity="center_vertical|center|start" />
+
+                            </LinearLayout>
+                            <Methdes.MyTextView
+                                android:layout_width="0dp"
+                                android:text="@string/Unit"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.5"
+                                android:gravity="center"
+                                android:textSize="18sp"
+                                android:textColor="#000" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.7">
+                        <ImageButton
+                            android:id="@+id/btn_OpenCal"
+                            android:scaleType="fitXY"
+                            android:background="@mipmap/icon_cal"
+                            android:layout_width="45dp"
+                            android:layout_height="55dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginLeft="29dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:weightSum="2"
+                        android:padding="7dp">
+
+                        <Button
+                            android:layout_height="match_parent"
+                            android:id="@+id/btn_cancel_item"
+                            android:onClick="ggg"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:background="@color/Pink"
+
+                            android:text="@string/Cancle"
+                            android:textColor="#fff"
+                            android:textSize="18sp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginLeft="10dp" />
+
+                        <Button
+                            android:layout_height="match_parent"
+                            android:id="@+id/btn_add_item"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:background="@color/Green"
+                            android:text="@string/Add"
+                            android:onClick="ggg"
+                            android:textColor="#fff"
+                            android:textSize="18sp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.2"
+                android:weightSum="2"
+                android:background="@color/Gray5">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:padding="7dp"
+                    android:layout_height="60dp"
+                    android:background="@color/Gray5">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.2"
+                        android:background="@drawable/btn_cir_white_fill_black"
+                        android:weightSum="2">
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.7"
+                            android:padding="5dp">
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:id="@+id/et_Search_filter"
+                                android:inputType="text"
+                                android:background="#fff"
+                                android:gravity="center_vertical|center" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.3"
+                            android:padding="6dp">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:id="@+id/imageView23"
+                                android:src="@mipmap/ic_search" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <ListView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:id="@+id/listView2"
+                    style="@style/TextAppearance.AppCompat.Inverse"
+                    android:background="@color/Gray5"
+                    android:layout_weight="2"
+                    android:dividerHeight="2dp"
+                    android:divider="@color/Gray3" />
+            </LinearLayout>
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/et_price"
+                android:textAlignment="center"
+                android:visibility="invisible"
+                android:layout_weight="0" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

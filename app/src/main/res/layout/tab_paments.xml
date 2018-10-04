@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layoutDirection="locale">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:weightSum="7"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
+
+            <Methdes.MyTextView
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/textView217"
+                android:textColor="#fff"
+                android:text="@string/OrderNo"
+                android:gravity="center"
+                android:background="@color/Black11"
+                android:layout_weight="0.8"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="1dp"
+                android:textSize="20dp" />
+
+            <Methdes.MyTextView
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/Client_ID"
+                android:id="@+id/textView218"
+                android:textColor="#fff"
+                android:gravity="center"
+                android:background="@color/Black11"
+                android:layout_marginRight="1dp"
+                android:layout_weight="0.8"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="1dp"
+                android:textSize="20dp" />
+
+            <Methdes.MyTextView
+                android:layout_height="match_parent"
+                android:text="@string/Clint_Nane"
+                android:id="@+id/textView219"
+                android:textColor="#fff"
+                android:textAlignment="gravity"
+                android:gravity="center"
+                android:background="@color/Black11"
+                android:layout_marginRight="1dp"
+                android:layout_weight="2.2"
+                android:layout_width="0dp"
+                android:layout_marginLeft="1dp"
+                android:textSize="20dp" />
+
+            <Methdes.MyTextView
+                android:id="@+id/textView220"
+                android:textColor="#fff"
+                android:text="@string/cash_type"
+                android:gravity="center"
+                android:background="@color/Black11"
+                android:paddingRight="10dp"
+                android:layout_marginRight="1dp"
+                android:layout_weight="0.8"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="1dp"
+                android:textSize="20dp" />
+
+            <Methdes.MyTextView
+                android:id="@+id/textView221"
+                android:textColor="#fff"
+                android:text="@string/cash_amount"
+                android:gravity="center"
+                android:background="@color/Black11"
+                android:paddingRight="5dp"
+                android:layout_marginRight="1dp"
+                android:layout_weight="0.8"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="1dp"
+                android:textSize="20dp" />
+
+            <Methdes.MyTextView
+                android:id="@+id/textView222"
+                android:textColor="#fff"
+                android:text="@string/CheckTotal"
+                android:gravity="center"
+                android:background="@color/Black11"
+                android:paddingRight="5dp"
+                android:layout_marginRight="1dp"
+                android:layout_weight="0.8"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="1dp"
+                android:textSize="20dp" />
+
+            <Methdes.MyTextView
+                android:id="@+id/textView223"
+                android:textColor="#fff"
+                android:text="@string/Amt"
+                android:gravity="center"
+                android:background="@color/Black11"
+                android:paddingRight="5dp"
+                android:layout_weight="0.8"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="1dp"
+                android:textSize="20dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingTop="5dp" >
+
+            <ListView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/PaymentSummery"
+                android:layout_weight="1"
+                android:layout_marginRight="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:weightSum="3"
+            android:background="@color/Gray5">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <Methdes.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/Count"
+                    android:id="@+id/textView224"
+                    android:layout_marginLeft="10dp" />
+
+                <TextView
+                    android:layout_width="170dp"
+                    android:layout_height="40dp"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:id="@+id/tv_count"
+                    android:text="0"
+                    android:background="@drawable/btn_cir_white_fill_black"
+                    android:gravity="center" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:id="@+id/textView226"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_marginRight="20dp">
+
+                <Methdes.MyTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/Amt"
+                    android:id="@+id/textView227"
+
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:layout_marginLeft="20dp" />
+
+                <TextView
+                    android:layout_height="40dp"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:id="@+id/tv_Summatin"
+                    android:text="0"
+                    android:background="@drawable/btn_cir_white_fill_black"
+                    android:layout_width="170dp"
+                    android:gravity="center" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <Methdes.MyTextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/textView260"
+            android:background="@color/Green"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:gravity="center" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:padding="5dp"
+        android:weightSum="1">
+
+        <EditText
+            android:layout_height="match_parent"
+            android:inputType="numberDecimal"
+            android:id="@+id/ed_qty"
+            android:enabled="false"
+            android:background="@drawable/btn_cir_white_fill_black"
+            android:layout_width="200dp"
+            android:textColor="#000"
+            android:gravity="center_vertical|center" />
+
+        <Methdes.MyTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/textView172"
+            android:textSize="18sp"
+            android:layout_marginLeft="10dp"
+            android:text="كمية المستودع" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:padding="5dp"
+        android:weightSum="1">
+
+        <EditText
+            android:layout_height="match_parent"
+            android:inputType="numberDecimal"
+            android:id="@+id/et_Act_qty"
+            android:background="@drawable/btn_cir_white_fill_black"
+            android:layout_width="200dp"
+            android:textColor="#000"
+            android:gravity="center_vertical|center" />
+
+        <Methdes.MyTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text=" الكمية الفعلية"
+            android:id="@+id/textView173"
+            android:textSize="18sp"
+            android:layout_marginLeft="10dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:padding="5dp"
+        android:weightSum="1">
+
+        <EditText
+            android:layout_height="match_parent"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/ed_diff"
+            android:enabled="false"
+            android:background="@drawable/btn_cir_white_fill_black"
+            android:layout_width="200dp"
+            android:textColor="#000"
+            android:gravity="center_vertical|center" />
+
+        <Methdes.MyTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="الفرق"
+            android:id="@+id/textView174"
+            android:textSize="18sp"
+            android:layout_marginLeft="10dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="5dp">
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="مـــوافــــق"
+            android:id="@+id/btnSave"
+            android:background="@color/Blue"
+            android:textSize="18sp"
+            android:textColor="#fff" />
+    </LinearLayout>
+
+</LinearLayout>

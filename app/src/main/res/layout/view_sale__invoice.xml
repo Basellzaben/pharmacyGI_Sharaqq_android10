@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="#ffffff">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:background="@drawable/listview_border" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="فاتورة مبيعات"
+                android:id="@+id/textView37" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/sale_header">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="اسم العميل :"
+                        android:id="@+id/textView30"
+                        android:textColor="#000"
+                        android:paddingRight="10dp"
+                        android:paddingLeft="10dp" />
+
+                    <ImageButton
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:id="@+id/imageButton4"
+                        android:src="@drawable/add_custmer"
+                        android:onClick="btn_searchCustomer"
+                        android:layout_gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="match_parent"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:id="@+id/tv_cusnm"
+                        android:gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:textColor="#000" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="رقم الطلب"
+                        android:id="@+id/textView38"
+                        android:textColor="#000" />
+
+                    <ImageButton
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:id="@+id/imageButton"
+                        android:src="@drawable/search"
+                        android:paddingTop="10dp"
+                        android:layout_marginTop="10dp"
+                        android:onClick="btn_Search_Orders" />
+
+                    <EditText
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:ems="10"
+                        android:id="@+id/et_OrdeNo"
+                        android:gravity="center_horizontal"
+                        android:scrollIndicators="top"
+                        android:enabled="false"
+                        android:textColor="#000" />
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:id="@+id/textView85"
+                        android:layout_weight="1"
+                        android:textColor="#000" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="رقم العميل"
+                        android:id="@+id/textView3"
+                        android:paddingLeft="20dp"
+                        android:gravity="left"
+                        android:textColor="#000" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:id="@+id/tv_acc"
+                        android:gravity="right"
+                        android:textColor="#000"
+                        android:paddingLeft="10dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageButton
+                        android:layout_width="80dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/imageButton5"
+                        android:src="@drawable/sal_add_items"
+                        android:onClick="btn_show_Pop"
+                        android:scaleType="fitXY"
+                        android:background="@android:color/transparent"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="10dp" />
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:id="@+id/textView56"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="الخصم النهائي"
+                        android:id="@+id/textView99"
+                        android:textColor="#000"
+                        android:visibility="invisible" />
+
+                    <EditText
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:ems="10"
+                        android:id="@+id/et_hdr_Disc"
+                        android:gravity="center"
+                        android:text="0"
+                        android:visibility="invisible" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="نسبة"
+                        android:id="@+id/chk_hdr_disc"
+                        android:checked="false"
+                        android:visibility="invisible" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="طباعة ضريبة المبيعات"
+                        android:id="@+id/chk_showTax"
+                        android:checked="false"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="نوع الفاتورة"
+                        android:id="@+id/textView82"
+                        android:gravity="left"
+                        android:textColor="#000" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="نقدي"
+                        android:id="@+id/chk_Type"
+                        android:checked="false" />
+
+                    <TextView
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:id="@+id/textView41" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="السعر شامل الضريبة"
+                        android:id="@+id/chk_Tax_Include"
+                        android:checked="false"
+                        android:paddingLeft="10dp" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/listview_border" >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="رقم المادة"
+                android:id="@+id/textView5"
+                android:textColor="#000"
+                android:gravity="center_horizontal"
+                android:layout_weight="1"
+                android:layout_gravity="center" />
+
+            <TextView
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="اسم المادة"
+                android:id="@+id/textView7"
+                android:gravity="center_horizontal"
+                android:layout_weight="0"
+                android:layout_gravity="center"
+                android:textColor="#000" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="السعر"
+                android:id="@+id/textView8"
+                android:gravity="center_horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:textColor="#000" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="الكمية"
+                android:id="@+id/textView9"
+                android:gravity="center_horizontal"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:textColor="#000" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="الوحدة"
+                android:id="@+id/textView42"
+                android:gravity="center_horizontal"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:textColor="#000" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="الضريبة"
+                android:id="@+id/textView10"
+                android:gravity="center_horizontal"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:textColor="#000" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="قيمة الضريبة"
+                android:id="@+id/textView79"
+                android:layout_gravity="center"
+                android:textColor="#000" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="البونص"
+                android:id="@+id/textView73"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:layout_gravity="center"
+                android:textColor="#000" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="الخصم %"
+                android:id="@+id/textView77"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:textColor="#000"
+                android:gravity="center" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="المجموع"
+                android:id="@+id/textView75"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:layout_gravity="center"
+                android:textColor="#000" />
+
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/imageButton15"
+                android:src="@android:drawable/ic_delete"
+                android:layout_gravity="center" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1">
+
+            <ListView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/LstvItems"
+                android:smoothScrollbar="true"
+                android:stackFromBottom="false"
+                android:scrollingCache="false"
+                android:background="@drawable/sale_invoiceborder"
+                android:paddingRight="10dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/listview_border">
+
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="المجموع  :"
+                android:id="@+id/textView11"
+                android:layout_marginRight="20dp"
+                android:textColor="#000"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/et_Total"
+                android:layout_weight="1"
+                android:text="0.0"
+                android:textSize="14dp"
+                android:textColor="#000"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="الخصم :"
+                android:id="@+id/textView80"
+                android:textColor="#000"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="0.0"
+                android:id="@+id/et_dis"
+                android:textColor="#000"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/textView84"
+                android:layout_weight="1"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp" />
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="مجموع الضريبة :"
+                android:id="@+id/textView12"
+                android:gravity="left"
+                android:layout_gravity="center"
+                android:textColor="#000"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/et_TotalTax"
+                android:layout_weight="1"
+                android:text="0.0"
+                android:textColor="#000"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="الاجمالي :"
+                android:id="@+id/textView81"
+                android:textColor="#000"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="0.0"
+                android:id="@+id/tv_NetTotal"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:textColor="#000"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center_vertical|center_horizontal"
+            android:background="@drawable/sale_header">
+
+            <Button
+                android:layout_width="2dp"
+                android:layout_height="2dp"
+                android:text="احتساب العروض"
+                android:id="@+id/button15"
+                android:onClick="btn_Calc_Promotion"
+                android:nestedScrollingEnabled="true"
+                android:visibility="invisible" />
+
+            <ImageButton
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:id="@+id/imageButton8"
+                android:src="@drawable/jelnew"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:onClick="btn_new"
+                android:scaleType="fitXY"
+                android:background="@android:color/transparent"
+                android:longClickable="true"
+                android:padding="0dp" />
+
+            <ImageButton
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:id="@+id/imageButton3"
+                android:src="@drawable/jelsave"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:onClick="btn_save_po"
+                android:scaleType="fitXY"
+                android:background="@android:color/transparent"
+                android:focusableInTouchMode="true"
+                android:nestedScrollingEnabled="false" />
+
+            <ImageButton
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:id="@+id/imageButton6"
+                android:src="@drawable/jeldalate"
+                android:paddingLeft="0dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:onClick="btn_delete"
+                android:background="@android:color/transparent"
+                android:scaleType="fitXY" />
+
+            <ImageButton
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:id="@+id/imageButton2"
+                android:src="@drawable/jelprint"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:onClick="btn_print"
+                android:background="@android:color/transparent"
+                android:scaleType="fitXY" />
+
+            <ImageButton
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:id="@+id/imageButton7"
+                android:src="@drawable/jelhome"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:onClick="btn_back"
+                android:background="@android:color/transparent"
+                android:scaleType="fitXY" />
+
+            <ImageButton
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:id="@+id/imageButton9"
+                android:src="@drawable/jelshaare"
+                android:onClick="btn_share"
+                android:background="@android:color/transparent"
+                android:scaleType="fitXY"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp" />
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:text="promotions"
+                android:id="@+id/button14"
+                android:onClick="btn_Calc_Promotion"
+                android:visibility="invisible" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

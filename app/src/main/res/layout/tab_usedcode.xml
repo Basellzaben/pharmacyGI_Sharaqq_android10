@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layoutDirection="locale">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:weightSum="7"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
+
+            <Methdes.MyTextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/Codes"
+                android:id="@+id/textView218"
+                android:textColor="#fff"
+                android:gravity="center"
+                android:background="@color/Black11"
+                android:textSize="20dp"
+                android:layout_weight="0.8"
+                android:layout_marginRight="1dp" />
+
+            <Methdes.MyTextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/Clint_Nane"
+                android:id="@+id/textView219"
+                android:textColor="#fff"
+                android:textAlignment="gravity"
+                android:gravity="center"
+                android:background="@color/Black11"
+                android:textSize="20dp"
+                android:layout_weight="1.4"
+                android:layout_marginRight="1dp"
+                android:layout_marginLeft="1dp" />
+
+            <Methdes.MyTextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/textView220"
+                android:textColor="#fff"
+                android:text="@string/Item_Name"
+                android:gravity="center"
+                android:background="@color/Black11"
+                android:textSize="20dp"
+                android:layout_weight="1.4"
+                android:layout_marginRight="1dp"
+                android:layout_marginLeft="1dp" />
+
+            <Methdes.MyTextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/textView221"
+                android:textColor="#fff"
+                android:text="@string/InvoiceNo"
+                android:gravity="center"
+                android:background="@color/Black11"
+                android:textSize="20dp"
+                android:layout_weight="0.9"
+                android:layout_marginRight="1dp"
+                android:layout_marginLeft="1dp" />
+
+            <Methdes.MyTextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/textView222"
+                android:textColor="#fff"
+                android:text="@string/date"
+                android:gravity="center"
+                android:background="@color/Black11"
+                android:textSize="20dp"
+                android:layout_weight="0.9"
+                android:layout_marginRight="1dp"
+                android:layout_marginLeft="1dp" />
+
+            <Methdes.MyTextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/textView223"
+                android:textColor="#fff"
+                android:text="@string/time"
+                android:gravity="center"
+                android:background="@color/Black11"
+                android:textSize="20dp"
+                android:layout_weight="0.8"
+                android:layout_marginRight="1dp"
+                android:layout_marginLeft="1dp" />
+
+            <Methdes.MyTextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/textView229"
+                android:textColor="#fff"
+                android:text="@string/states"
+                android:gravity="center"
+                android:background="@color/Black11"
+                android:textSize="20dp"
+                android:layout_weight="0.8"
+                android:layout_marginLeft="1dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="5dp">
+
+            <ListView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/LstUsedCodes"
+                android:layout_weight="1"
+                android:layout_marginRight="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:weightSum="3"
+            android:layout_height="50dp"
+            android:background="@color/Gray5">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:gravity="center">
+
+                <Methdes.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/Count"
+                    android:id="@+id/textView224"
+                    android:gravity="center"
+                    android:layout_marginLeft="10dp" />
+
+                <TextView
+                    android:layout_width="170dp"
+                    android:layout_height="match_parent"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:id="@+id/tv_count"
+                    android:text="0"
+                    android:background="@drawable/btn_cir_white_fill_black"
+                    android:gravity="center" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_width="0dp">
+
+                <Methdes.MyTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:id="@+id/textView226"
+                    android:gravity="center" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:gravity="center">
+
+                <Methdes.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="  مجموع القبض"
+                    android:id="@+id/textView227"
+                    android:visibility="invisible"
+                    android:gravity="center"
+                    android:layout_marginLeft="10dp" />
+
+                <TextView
+                    android:layout_width="170dp"
+                    android:layout_height="match_parent"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:id="@+id/tv_Summatin"
+                    android:text="0"
+                    android:visibility="invisible"
+                    android:background="@drawable/btn_cir_white_fill_black"
+                    android:gravity="center" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

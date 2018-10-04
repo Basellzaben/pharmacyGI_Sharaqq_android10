@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/RR"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/Gray1"
+    android:orientation="horizontal">
+
+    <ImageButton
+        android:id="@+id/imageButton14"
+        android:layout_width="45dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginRight="0.5dp"
+        android:background="#000"
+        android:scaleType="fitXY" />
+
+    <Methdes.MyTextView
+        android:id="@+id/tv_doctNm"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="0.5dp"
+        android:layout_marginRight="0.5dp"
+        android:layout_weight="1"
+        android:background="#17181c"
+        android:gravity="center"
+        android:text="اسم الطبيب"
+        android:textAlignment="center"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#fff"
+        android:textSize="16sp" />
+
+    <Methdes.MyTextView
+        android:id="@+id/tv_doctNo"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="0.5dp"
+        android:layout_marginRight="0.5dp"
+        android:layout_weight="1"
+        android:background="#17181c"
+        android:gravity="center"
+        android:text="رقم الطبيب"
+        android:textAlignment="center"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#fff"
+        android:textSize="16sp" />
+
+    <Methdes.MyTextView
+        android:id="@+id/tv_Unit"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="0.5dp"
+        android:layout_marginRight="0.5dp"
+        android:layout_weight="1"
+        android:background="#17181c"
+        android:gravity="center"
+        android:text="@string/Unit"
+        android:textAlignment="center"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#fff"
+        android:textSize="16sp" />
+
+    <Methdes.MyTextView
+        android:id="@+id/tv_Qty"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="0.5dp"
+        android:layout_marginRight="0.5dp"
+        android:layout_weight="1"
+        android:background="#17181c"
+        android:gravity="center"
+        android:text="@string/Quentity"
+        android:textColor="#fff"
+        android:textIsSelectable="false"
+        android:textSize="16sp" />
+
+    <Methdes.MyTextView
+        android:id="@+id/tv_name"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="0.5dp"
+        android:layout_marginRight="0.5dp"
+        android:background="#17181c"
+        android:gravity="center"
+        android:text="@string/Item_Name"
+        android:textColor="#fff"
+        android:textIsSelectable="false"
+        android:textSize="16sp" />
+
+    <Methdes.MyTextView
+        android:id="@+id/tv_no"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="0.5dp"
+        android:layout_weight="1"
+        android:background="#17181c"
+        android:gravity="center"
+        android:text="@string/item_no"
+        android:textColor="#fff"
+        android:textSize="16sp" />
+
+
+</LinearLayout>
