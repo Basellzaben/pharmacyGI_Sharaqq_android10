@@ -13,6 +13,8 @@ import com.cds_jo.pharmacyGI.R;
 
 import java.util.ArrayList;
 
+import Methdes.MyTextView;
+
 import static com.cds_jo.pharmacyGI.R.id.RR1;
 
 /**
@@ -59,11 +61,11 @@ public class Customer_List extends BaseAdapter {
         }
 
         LinearLayout RR=(LinearLayout)convertView.findViewById(RR1);
-        TextView tvNm = (TextView) convertView.findViewById(R.id.tv_nm);
+        MyTextView tvNm = (MyTextView) convertView.findViewById(R.id.tv_nm);
         tvNm.setText(customersesobj.getNm());
 
-//        TextView tvAddress = (TextView) convertView.findViewById(R.id.tv_address);
-//        tvAddress.setText(customersesobj.getAddress());
+        MyTextView tv_Country = (MyTextView) convertView.findViewById(R.id.tv_Country);
+        tv_Country.setText(customersesobj.getCountryNm());
 //
 //        TextView tvMobile = (TextView) convertView.findViewById(R.id.tv_mobile);
 //        tvMobile.setText(customersesobj.getMobile());
@@ -72,7 +74,7 @@ public class Customer_List extends BaseAdapter {
 //        tvAcc.setText(customersesobj.getAcc());
 
 
-        TextView tvNo = (TextView) convertView.findViewById(R.id.tv_no);
+        MyTextView tvNo = (MyTextView) convertView.findViewById(R.id.tv_no);
         tvNo.setText(customersesobj.getNo());
 
         if(position%2==0)

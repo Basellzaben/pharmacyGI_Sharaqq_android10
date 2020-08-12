@@ -204,15 +204,17 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:orientation="horizontal"></LinearLayout>
+                                android:orientation="horizontal">
 
-                            <RadioButton
-                                android:id="@+id/rdoAr"
-                                android:layout_width="100dp"
-                                android:layout_height="wrap_content"
-                                android:checked="true"
-                                android:text="@string/Arabic"
-                                android:textColor="?android:attr/textColorTertiaryInverse" />
+                                <RadioButton
+                                    android:id="@+id/rdoAr"
+                                    android:layout_width="100dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:checked="true"
+                                    android:text="@string/Arabic"
+                                    android:textColor="?android:attr/textColorTertiaryInverse" />
+                            </LinearLayout>
 
                         </RadioGroup>
                     </LinearLayout>

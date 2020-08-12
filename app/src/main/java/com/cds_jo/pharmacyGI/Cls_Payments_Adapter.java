@@ -73,7 +73,7 @@ public class Cls_Payments_Adapter extends BaseAdapter {
 
         MyTextView tv_type = (MyTextView) convertView.findViewById(R.id.tv_type);
 
-        if(ComInfo.Lan.equalsIgnoreCase("ar")) {
+
                 if (cls_searchRecVou.getType().equals("1")) {
                     tv_type.setText("نقدي");
                 } else if (cls_searchRecVou.getType().equals("2")) {
@@ -81,23 +81,7 @@ public class Cls_Payments_Adapter extends BaseAdapter {
                 } else {
                     tv_type.setText("نقدي + شيكات");
                 }
-        }else {
 
-            if(cls_searchRecVou.getType().equals("1")){
-                tv_type.setText("Cash");
-            }
-            else if(cls_searchRecVou.getType().equals("2"))
-            {
-                tv_type.setText("Checks");
-            }
-            else
-            {
-                tv_type.setText("Cash And Checks");
-            }
-
-
-
-        }
 
         if(position%2==0)
         {

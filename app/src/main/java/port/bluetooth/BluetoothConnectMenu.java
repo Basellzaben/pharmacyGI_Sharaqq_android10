@@ -611,6 +611,7 @@ private  void ShowRecord(){
 						JSONArray js_RetSales = js.getJSONArray("RetSales");
 						JSONArray js_PostDely = js.getJSONArray("PostDely");
 						JSONArray js_Visits = js.getJSONArray("Visits");
+						JSONArray js_SampleItems = js.getJSONArray("SampleItems");
 
 						q = "Delete from OrdersSitting";
 						sqlHandler.executeQuery(q);
@@ -619,7 +620,7 @@ private  void ShowRecord(){
 						sqlHandler.executeQuery(q);
 
 
-						q = "INSERT INTO OrdersSitting(Sales, Payment , SalesOrder , PrepareQty , RetSales, PostDely , Visits  ) values ('"
+						q = "INSERT INTO OrdersSitting(Sales, Payment , SalesOrder , PrepareQty , RetSales, PostDely , Visits,SampleItems  ) values ('"
 								+ js_Sales.get(0).toString()
 								+ "','" + js_Payment.get(0).toString()
 								+ "','" + js_SalesOrder.get(0).toString()
@@ -627,6 +628,7 @@ private  void ShowRecord(){
 								+ "','" + js_RetSales.get(0).toString()
 								+ "','" + js_PostDely.get(0).toString()
 								+ "','" + js_Visits.get(0).toString()
+								+ "','" + js_SampleItems.get(0).toString()
 								+ "')";
 						sqlHandler.executeQuery(q);
 
@@ -700,7 +702,7 @@ private  void ShowRecord(){
 		sqlHandler.executeQuery(q);
 
 
-		q = "INSERT INTO OrdersSitting(  SalesOrder   Visits  ) values ('"
+		q = "INSERT INTO OrdersSitting(  SalesOrder ,  Visits   ) values ('"
 				 + "','" +  et_m4.getText().toString().trim()
 				+ "','" + et_VisitSerial.getText().toString().trim()
 				+ "')";

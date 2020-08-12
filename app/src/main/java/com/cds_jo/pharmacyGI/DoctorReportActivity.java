@@ -21,6 +21,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cds_jo.pharmacyGI.assist.CallWebServices;
 import com.cds_jo.pharmacyGI.assist.Cls_Cur;
@@ -51,64 +52,63 @@ public class DoctorReportActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.n_activity_doctor_report_new);
+        try {
+            setContentView(R.layout.n_activity_doctor_report_new);
 
-        Fragment frag=new Header_Frag();
-        android.support.v4.app.FragmentManager fragmentManager=getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.Frag1,frag).commit();
+            Fragment frag = new Header_Frag();
+            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.Frag1, frag).commit();
 
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.ENGLISH);
-        String currentDateandTime = sdf.format(new Date());
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.ENGLISH);
+            String currentDateandTime = sdf.format(new Date());
 
-        SimpleDateFormat StartTime = new SimpleDateFormat("HH:mm:ss", Locale.ENGLISH);
-        String StringTime = StartTime.format(new Date());
+            SimpleDateFormat StartTime = new SimpleDateFormat("HH:mm:ss", Locale.ENGLISH);
+            String StringTime = StartTime.format(new Date());
 
      /*   TrDate = (TextView) findViewById(R.id.et_Date);
         tv_Time = (TextView) findViewById(R.id.tv_Time);
         TrDate.setText(currentDateandTime);
         tv_Time.setText(StringTime);*/
 
-        tv_No = (EditText) findViewById(R.id.et_No);
-        spi = (EditText) findViewById(R.id.et_spi);
-        SampleType = (EditText) findViewById(R.id.et_SampleType);
-        VNotes = (EditText) findViewById(R.id.et_VNotes);
-        SNotes = (EditText) findViewById(R.id.et_SNotes);
-        SampleType = (EditText) findViewById(R.id.et_SampleType);
-        SampleType = (EditText) findViewById(R.id.et_SampleType);
-        CustSearch = (ImageButton) findViewById(R.id.btn_Cust_Search);
-        VisitType = (Spinner) findViewById(R.id.sp_VisitType);
-        Location = (Spinner) findViewById(R.id.sp_Location);
-        CustNm = (TextView) findViewById(R.id.tv_cusnm);
-        CustNo = (TextView) findViewById(R.id.tv_acc);
-        tv_CustNm = (MyTextView) findViewById(R.id.tv_CustNm);
-        GetMaxRecNo();
-        FillVisitType();
-        FillLocation();
-        IsNew = true;
+            tv_No = (EditText) findViewById(R.id.et_No);
+            spi = (EditText) findViewById(R.id.et_spi);
+            SampleType = (EditText) findViewById(R.id.et_SampleType);
+            VNotes = (EditText) findViewById(R.id.et_VNotes);
+            SNotes = (EditText) findViewById(R.id.et_SNotes);
+            SampleType = (EditText) findViewById(R.id.et_SampleType);
+            SampleType = (EditText) findViewById(R.id.et_SampleType);
+            CustSearch = (ImageButton) findViewById(R.id.btn_Cust_Search);
+            VisitType = (Spinner) findViewById(R.id.sp_VisitType);
+            Location = (Spinner) findViewById(R.id.sp_Location);
+            CustNm = (TextView) findViewById(R.id.tv_cusnm);
+            CustNo = (TextView) findViewById(R.id.tv_acc);
+            tv_CustNm = (MyTextView) findViewById(R.id.tv_CustNm);
+            GetMaxRecNo();
+            FillVisitType();
+            FillLocation();
+            IsNew = true;
 
-        VisitType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-        {
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-            {
-                String selectedItem = parent.getItemAtPosition(position).toString();
+            VisitType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    String selectedItem = parent.getItemAtPosition(position).toString();
 
-                if (position==0)
-                {
-                    PrvVisitType=1;
-                    tv_CustNm.setText("اسم الطبيب :");
+                    if (position == 0) {
+                        PrvVisitType = 1;
+                        tv_CustNm.setText("اسم الطبيب :");
+                    } else {
+                        PrvVisitType = 2;
+                        tv_CustNm.setText("اسم الصيدلية :");
+                    }
+                } // to close the onItemSelected
+
+                public void onNothingSelected(AdapterView<?> parent) {
+
                 }
-                else
-                {
-                    PrvVisitType=2;
-                    tv_CustNm.setText("اسم الصيدلية :");
-                }
-            } // to close the onItemSelected
-            public void onNothingSelected(AdapterView<?> parent)
-            {
-
-            }
-        });
+            });
+        }catch ( Exception ex){
+            Toast.makeText(this,ex.getMessage()+"",Toast.LENGTH_LONG).show();
+        }
 // DoctorReport  "( ID ,VType ,No,CustNo ,LocatNo , Sp1 , SampleType  , VNotes ,SNotes  ,Tr_Date , Tr_Time   ,UserNo , Posted
     }
     public void btn_back(View view) {

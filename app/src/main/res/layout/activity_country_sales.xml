@@ -122,13 +122,13 @@
                                 android:layout_weight="0.5">
 
                                 <Methdes.MyTextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textAppearance="?android:attr/textAppearanceMedium"
-                                    android:text="@string/ManNm"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
                                     android:gravity="center"
-                                    android:textSize="15dp"
-                                    android:textColor="#000" />
+                                    android:text="نوع التقرير"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"
+                                    android:textColor="#000"
+                                    android:textSize="15dp" />
                             </LinearLayout>
 
                             <LinearLayout
@@ -137,49 +137,43 @@
                                 android:background="@drawable/btn_cir_white_fill_black"
                                 android:layout_weight="1"
                                 android:layout_height="35dp">
-
-                                <LinearLayout
-                                    android:orientation="horizontal"
+                                <RadioGroup
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
+                                    android:id="@+id/Gd1"
                                     android:weightSum="2"
-                                    android:background="@drawable/btn_cir_white_fill_black"
-                                    android:onClick="btn_searchMan"
-                                    android:id="@+id/country">
+                                    android:orientation="horizontal"
+                                    android:layoutMode="opticalBounds"
+                                    android:layout_gravity="center_vertical">
 
-                                    <LinearLayout
-                                        android:orientation="horizontal"
-                                        android:layout_width="0dp"
+                                    <RadioButton
+                                        android:id="@+id/rdoSales"
+                                        android:layout_width="wrap_content"
                                         android:layout_height="match_parent"
-                                        android:layout_weight="0.4"
-                                        android:gravity="center"
-                                        android:padding="5dp">
+                                        android:layout_margin="3dp"
+                                        android:layout_weight="1"
+                                        android:onClick="btn_GetData"
+                                        android:text="المبيعات" />
 
-                                        <ImageView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:src="@mipmap/ic_search"
-                                           />
-                                    </LinearLayout>
-
-                                    <LinearLayout
-                                        android:orientation="horizontal"
-                                        android:layout_width="0dp"
+                                    <RadioButton
+                                        android:id="@+id/rdoReturn"
+                                        android:layout_width="wrap_content"
                                         android:layout_height="match_parent"
-                                        android:layout_weight="1.6"
-                                        android:gravity="center">
+                                        android:layout_margin="3dp"
+                                        android:layout_weight="1"
+                                        android:onClick="btn_GetData"
+                                        android:text="المرتجعات" />
 
-                                        <Methdes.MyTextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:textAppearance="?android:attr/textAppearanceMedium"
-                                            android:textSize="15sp"
-                                            android:id="@+id/tv_ManNm"
-                                            android:textColor="#000" />
-                                    </LinearLayout>
 
-                                </LinearLayout>
-
+                                    <RadioButton
+                                        android:id="@+id/rdoCompare"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_margin="3dp"
+                                        android:layout_weight="1"
+                                        android:onClick="btn_GetData"
+                                        android:text="مقارنة" />
+                                </RadioGroup>
                             </LinearLayout>
 
                         </LinearLayout>
@@ -203,20 +197,20 @@
                                 android:textColor="#000" />
 
                             <Methdes.MyTextView
-                                android:textAppearance="?android:attr/textAppearanceMedium"
-                                android:background="@drawable/btn_cir_white_fill_black"
-                                android:gravity="center"
-                                android:layout_marginRight="8dp"
-                                android:textSize="15sp"
-                                android:layout_weight="1.5"
+                                android:id="@+id/ed_FromDate"
                                 android:layout_width="0dp"
                                 android:layout_height="35dp"
-                                android:id="@+id/ed_FromDate"
-                                android:text="01/01/2017"
-                                android:inputType="date"
+                                android:layout_marginRight="8dp"
+                                android:layout_weight="1.5"
+                                android:background="@drawable/btn_cir_white_fill_black"
                                 android:focusable="false"
                                 android:focusableInTouchMode="false"
-                                android:textColor="#000" />
+                                android:gravity="center"
+                                android:inputType="date"
+                                android:text="01/01/2019"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:textColor="#000"
+                                android:textSize="15sp" />
 
                         </LinearLayout>
 
@@ -326,20 +320,20 @@
                                 android:textColor="#000" />
 
                             <Methdes.MyTextView
-                                android:textAppearance="?android:attr/textAppearanceMedium"
                                 android:id="@+id/ed_ToDate"
-                                android:background="@drawable/btn_cir_white_fill_black"
-                                android:gravity="center"
-                                android:layout_marginRight="8dp"
-                                android:textSize="15sp"
-                                android:layout_weight="1.5"
                                 android:layout_width="0dp"
                                 android:layout_height="35dp"
-                                android:text="31/12/2017"
-                                android:inputType="date"
-                                android:focusableInTouchMode="false"
+                                android:layout_marginRight="8dp"
+                                android:layout_weight="1.5"
+                                android:background="@drawable/btn_cir_white_fill_black"
                                 android:focusable="false"
-                                android:textColor="#000" />
+                                android:focusableInTouchMode="false"
+                                android:gravity="center"
+                                android:inputType="date"
+                                android:text="31/12/2019"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:textColor="#000"
+                                android:textSize="15sp" />
 
                         </LinearLayout>
 
@@ -400,16 +394,16 @@
                         android:layout_margin="3dp">
 
                         <Button
-                            style="?android:attr/buttonStyleSmall"
-                            android:layout_height="wrap_content"
-                            android:text="      استرجاع المعلومات   "
                             android:id="@+id/button17"
-                            android:background="@color/Blue"
-                            android:textColor="#fff"
-                            android:onClick="btn_GetData"
-                            android:textSize="16sp"
+                            style="?android:attr/buttonStyleSmall"
                             android:layout_width="180dp"
-                            android:layout_weight="1" />
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@color/Blue"
+                            android:onClick="btn_GetData"
+                            android:text="      استرجاع المعلومات   "
+                            android:textColor="#fff"
+                            android:textSize="16sp" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -417,70 +411,17 @@
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_weight="0"
-                android:background="@color/Gray3"
-                android:weightSum="4"
-                android:paddingLeft="20dp"
-                android:layout_height="40dp">
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:layout_marginRight="25dp">
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:layout_marginRight="25dp">
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:layout_marginRight="25dp">
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="right|center"
-                    android:layout_marginRight="25dp">
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-            <LinearLayout
+                android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:weightSum="2">
 
                 <LinearLayout
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="10dp"
-                    android:background="@color/Main_Gray">
+                    android:layout_height="0dp"
+                    android:layout_weight="1.8"
+                    android:background="@color/Main_Gray"
+                    android:orientation="vertical">
 
                     <ListView
                         android:id="@+id/lst_acc"
@@ -490,6 +431,108 @@
                         android:scrollingCache="false"
                         android:smoothScrollbar="true"
                         android:stackFromBottom="false" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/RR"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.2"
+                    android:background="#fff"
+                    android:gravity="center_vertical"
+                    android:layoutDirection="locale"
+                    android:minHeight="60dp"
+                    android:orientation="horizontal"
+                    android:paddingBottom="3dp"
+                    android:paddingTop="3dp"
+                    android:weightSum="7">
+
+                    <Methdes.MyTextView
+                        android:id="@+id/tv_Date"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="0.5dp"
+                        android:layout_marginRight="0.5dp"
+                        android:layout_weight="3.6"
+                        android:background="@color/Main_Gray_Non_Blure"
+                        android:gravity="center"
+                        android:text="المجموع"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="#fff"
+                        android:textSize="18sp" />
+
+                    <Methdes.MyTextView
+                        android:id="@+id/tv_TotalQty"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="0.5dp"
+                        android:layout_marginRight="0.5dp"
+                        android:layout_weight="0.8"
+                        android:background="@color/Main_Gray_Non_Blure"
+                        android:elevation="1dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="#fff"
+                        android:textSize="18sp" />
+
+                    <Methdes.MyTextView
+                        android:id="@+id/tv_TotalPrice"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="0.5dp"
+                        android:layout_marginRight="0.5dp"
+                        android:layout_weight="0.8"
+                        android:background="@color/Main_Gray_Non_Blure"
+                        android:gravity="center"
+                        android:text="0.000"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="#fff"
+                        android:textSize="18sp" />
+
+                    <Methdes.MyTextView
+                        android:id="@+id/tv_Total"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="0.5dp"
+                        android:layout_marginRight="0.5dp"
+                        android:layout_weight="1"
+                        android:background="@color/Main_Gray_Non_Blure"
+                        android:gravity="center"
+                        android:text="0.000"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="#fff"
+                        android:textSize="18sp" />
+
+
+                    <LinearLayout
+                        android:id="@+id/imageButton7"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="0.5dp"
+                        android:layout_weight="1"
+                        android:background="@color/Footer_Menu"
+                        android:gravity="center"
+                        android:onClick="btn_back"
+                        android:orientation="horizontal">
+
+                        <Methdes.MyTextView
+                            android:id="@+id/textView238"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="12dp"
+                            android:text="@string/Home"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="#fff"
+                            android:textSize="18sp" />
+
+                        <ImageView
+                            android:id="@+id/imageView20"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@mipmap/ic_home" />
+                    </LinearLayout>
+
                 </LinearLayout>
 
             </LinearLayout>

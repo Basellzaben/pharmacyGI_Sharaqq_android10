@@ -132,16 +132,16 @@
                     </RelativeLayout>
 
                     <ListView
-                        android:layout_width="match_parent"
                         android:id="@+id/LvResult"
-                        android:smoothScrollbar="true"
-                        android:stackFromBottom="false"
-                        android:scrollingCache="false"
-                        android:listSelector="@null"
-                        android:layout_alignParentStart="true"
-                        android:background="@color/White"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginBottom="10dp" />
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="10dp"
+                        android:background="@color/White"
+                        android:listSelector="@null"
+                        android:scrollingCache="false"
+                        android:smoothScrollbar="true"
+                        android:stackFromBottom="false" />
 
 
                 </LinearLayout>
@@ -161,138 +161,144 @@
                     android:weightSum="2.6">
 
                     <LinearLayout
-                        android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:weightSum="6"
-                        android:layout_weight="1.9"
-                        android:background="#fff">
+                        android:layout_weight="1.7"
+                        android:background="#fff"
+                        android:orientation="vertical"
+                        android:weightSum="5">
 
                         <LinearLayout
-                            android:orientation="horizontal"
-                            android:background="@color/Pink"
                             android:layout_width="match_parent"
-                            android:weightSum="1"
-                            android:layout_height="44dp">
+                            android:layout_height="44dp"
+                            android:background="@color/Pink"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
 
                             <TextView
-                                android:text="سحب البيانات من السيرفر"
+                                android:id="@+id/getdata"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/getdata"
-                                android:textSize="20sp"
+                                android:layout_centerHorizontal="false"
+                                android:layout_centerVertical="false"
                                 android:layout_gravity="center"
                                 android:gravity="center"
+                                android:text="سحب البيانات من السيرفر"
                                 android:textColor="@color/White"
-                                android:layout_centerVertical="false"
-                                android:layout_centerHorizontal="false" />
+                                android:textSize="20sp" />
 
                         </LinearLayout>
 
                         <LinearLayout
-                            android:orientation="horizontal"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
-                            android:weightSum="3"
-                            android:gravity="center">
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:weightSum="3">
+
                             <CheckBox
-                                android:text="العملاء"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
                                 android:id="@+id/Chk_Custs"
-                                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
-                                android:button="@null"
-                                android:buttonTint="@color/Blue"
-                                android:theme="@style/WhiteCheck"
-
-                                android:layout_weight="1"
-                                android:textSize="18sp" />
-                            <CheckBox
-                                android:text="الوحدة"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:buttonTint="@color/Blue"
-                                android:theme="@style/WhiteCheck"
-
-                                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
-                                android:button="@drawable/custom_checkbox"
                                 android:layout_weight="1"
-                                android:id="@+id/Chk_Unites"
+                                android:button="@null"
+                                android:buttonTint="@color/Blue"
+                                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+                                android:text="العملاء"
+
                                 android:textSize="18sp"
-                                android:textStyle="bold" />
+                                android:theme="@style/WhiteCheck" />
 
                             <CheckBox
-                                android:text="البنوك"
+                                android:id="@+id/Chk_Doctors"
                                 android:layout_width="0dp"
+
                                 android:layout_height="wrap_content"
-                                android:id="@+id/Chk_Banks"
-                                android:buttonTint="@color/Blue"
-                                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
-                                android:button="@drawable/checkviewheader"
                                 android:layout_alignParentEnd="true"
-                                android:theme="@style/WhiteCheck"
                                 android:layout_weight="1"
-                                android:textSize="18sp" />
-
-
-                        </LinearLayout>
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:weightSum="3"
-                            android:gravity="center">
-                            <CheckBox
-                                android:text="المواد"
-                                android:layout_width="0dp"
-                                android:buttonTint="@color/Blue"
-                                android:theme="@style/WhiteCheck"
-
-                                android:layout_height="wrap_content"
-                                android:id="@+id/Chk_Items"
-                                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
-                                android:button="@null"
-
-                                android:layout_weight="1"
-                                android:textSize="18sp" />
-                            <CheckBox
-                                android:text="معامل التحويل"
-                                android:layout_width="0dp"
-                                android:buttonTint="@color/Blue"
-                                android:theme="@style/WhiteCheck"
-
-                                android:id="@+id/Chk_Items_Unites"
-                                android:layout_height="wrap_content"
-                                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
-                                android:button="@null"
-                                android:layout_weight="1"
-                                android:textSize="18sp" />
-
-                            <CheckBox
-                                android:text="العملات"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/Chk_Curf"
-                                android:buttonTint="@color/Blue"
-                                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
                                 android:button="@drawable/custom_checkbox"
+                                android:buttonTint="@color/Blue"
+                                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+                                android:text="الخطة الشهرية"
+                                android:textSize="18sp"
+                                android:theme="@style/WhiteCheck" />
+
+
+                            <CheckBox
+                                android:id="@+id/Chk_Banks"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
-                                android:theme="@style/WhiteCheck"
                                 android:layout_weight="1"
-                                android:textSize="18sp" />
+                                android:button="@drawable/checkviewheader"
+                                android:buttonTint="@color/Blue"
+                                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+                                android:text="البنوك"
+                                android:textSize="18sp"
+                                android:theme="@style/WhiteCheck" />
 
 
                         </LinearLayout>
 
                         <LinearLayout
-                            android:orientation="horizontal"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
-                            android:weightSum="3"
-                            android:gravity="center">
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:weightSum="3">
+
+                            <CheckBox
+                                android:id="@+id/Chk_Items"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+
+                                android:button="@null"
+                                android:buttonTint="@color/Blue"
+                                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+                                android:text="المواد"
+
+                                android:textSize="18sp"
+                                android:theme="@style/WhiteCheck" />
+
+                            <CheckBox
+                                android:id="@+id/Chk_Items_Unites"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+
+                                android:button="@null"
+                                android:buttonTint="@color/Blue"
+                                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+                                android:text="معامل التحويل"
+                                android:textSize="18sp"
+                                android:theme="@style/WhiteCheck" />
+
+                            <CheckBox
+                                android:id="@+id/Chk_Curf"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_weight="1"
+                                android:button="@drawable/custom_checkbox"
+                                android:buttonTint="@color/Blue"
+                                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+                                android:text="العملات"
+                                android:textSize="18sp"
+                                android:theme="@style/WhiteCheck" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:weightSum="3">
 
                             <CheckBox
                                 android:id="@+id/Chk_TransQty"
@@ -307,107 +313,123 @@
 
                                 android:textSize="18sp"
                                 android:theme="@style/WhiteCheck" />
+
                             <CheckBox
-                                android:text="المستخدمين"
-                                android:layout_width="0dp"
                                 android:id="@+id/Chk_Users"
-                                android:buttonTint="@color/Blue"
-                                android:theme="@style/WhiteCheck"
-
-                                android:layout_height="wrap_content"
-                                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
-                                android:button="@null"
-                                android:layout_weight="1"
-                                android:textSize="18sp" />
-                            <CheckBox
-                                android:text="اصناف المواد"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:button="@null"
+
+                                android:buttonTint="@color/Blue"
+                                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+                                android:text="المستخدمين"
+                                android:textSize="18sp"
+                                android:theme="@style/WhiteCheck" />
+
+                            <CheckBox
                                 android:id="@+id/Chk_deptf"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_weight="1"
+                                android:button="@drawable/custom_checkbox"
                                 android:buttonTint="@color/Blue"
                                 android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
-                                android:button="@drawable/custom_checkbox"
-                                android:layout_alignParentEnd="true"
-                                android:theme="@style/WhiteCheck"
-                                android:layout_weight="1"
-                                android:textSize="18sp" />
-
-
+                                android:text="اصناف المواد"
+                                android:textSize="18sp"
+                                android:theme="@style/WhiteCheck" />
 
 
                         </LinearLayout>
 
                         <LinearLayout
-                            android:orientation="horizontal"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
-                            android:weightSum="3"
-                            android:gravity="center">
-                            <CheckBox
-                                android:text="العملاء النقديين"
-                                android:layout_width="0dp"
-                                android:buttonTint="@color/Blue"
-                                android:theme="@style/WhiteCheck"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:weightSum="3">
 
+                            <CheckBox
+
+
+                                android:id="@+id/Chk_Unites"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:button="@drawable/custom_checkbox"
+
+                                android:buttonTint="@color/Blue"
+                                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+                                android:text="الوحدة"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:theme="@style/WhiteCheck" />
+
+                            <CheckBox
                                 android:id="@+id/chkCashCust"
-                                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
-                                android:button="@null"
-
-                                android:layout_weight="1"
-                                android:textSize="18sp" />
-
-                            <CheckBox
-                                android:text="العروض"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+                                android:layout_weight="1"
+
                                 android:button="@null"
                                 android:buttonTint="@color/Blue"
+                                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+                                android:text="العملاء النقديين"
+
+                                android:textSize="18sp"
                                 android:theme="@style/WhiteCheck"
-
-                                android:id="@+id/chk_Pro"
-                                android:layout_weight="1"
-                                android:textSize="18sp" />
-
+                                android:visibility="gone" />
                             <CheckBox
-                                android:text="معلومات المؤسسة"
+                                android:id="@+id/Chk_Locat"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:button="@null"
+
+                                android:buttonTint="@color/Blue"
+                                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+                                android:text="المناطق"
+                                android:textSize="18sp"
+                                android:theme="@style/WhiteCheck" />
+
+                            <CheckBox
                                 android:id="@+id/chkCompany"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_weight="1"
+                                android:button="@drawable/custom_checkbox"
                                 android:buttonTint="@color/Blue"
                                 android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
-                                android:button="@drawable/custom_checkbox"
-                                android:layout_alignParentEnd="true"
-                                android:theme="@style/WhiteCheck"
-                                android:layout_weight="1"
-                                android:textSize="18sp" />
-
-
+                                android:text="معلومات المؤسسة"
+                                android:textSize="18sp"
+                                android:theme="@style/WhiteCheck" />
 
 
                         </LinearLayout>
 
                         <LinearLayout
-                            android:orientation="horizontal"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
-                            android:weightSum="3"
-                            android:gravity="center">
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:weightSum="3">
+
                             <CheckBox
-                                android:text="رمز التحقق"
+                                android:id="@+id/chk_ServerDateTime"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/Chk_Code"
-                                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+                                android:layout_weight="1"
                                 android:button="@null"
                                 android:buttonTint="@color/Blue"
-                                android:theme="@style/WhiteCheck"
+                                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+                                android:text="التاريخ"
 
-                                android:layout_weight="1"
-                                android:textSize="18sp" />
+                                android:textSize="18sp"
+                                android:theme="@style/WhiteCheck" />
 
                             <CheckBox
                                 android:id="@+id/chk_LastPrice"
@@ -421,72 +443,47 @@
 
                                 android:textSize="18sp"
                                 android:theme="@style/WhiteCheck" />
+
                             <CheckBox
-                                android:text="فئات الاسعار"
+                                android:id="@+id/chk_Item_cat"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/chk_Item_cat"
+                                android:layout_alignParentEnd="true"
+                                android:layout_weight="1"
+                                android:button="@drawable/custom_checkbox"
                                 android:buttonTint="@color/Blue"
                                 android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
-                                android:button="@drawable/custom_checkbox"
-                                android:layout_alignParentEnd="true"
-                                android:theme="@style/WhiteCheck"
-                                android:layout_weight="1"
-                                android:textSize="18sp" />
-
-
+                                android:text="فئات الاسعار"
+                                android:textSize="18sp"
+                                android:theme="@style/WhiteCheck" />
 
 
                         </LinearLayout>
 
                         <LinearLayout
-                            android:orientation="horizontal"
+                            android:id="@+id/phLayout1"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
-                            android:weightSum="3"
-                            android:id="@+id/phLayout1"
-                            android:gravity="center">
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:visibility="gone"
+                            android:weightSum="3">
+
                             <CheckBox
-                                android:text="الاختصاص"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
                                 android:id="@+id/chk_Spec"
-                                android:buttonTint="@color/Blue"
-                                android:theme="@style/WhiteCheck"
-
-                                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
-                                android:button="@null"
-
-                                android:layout_weight="1"
-                                android:textSize="18sp" />
-                            <CheckBox
-                                android:text="المناطق"
                                 android:layout_width="0dp"
-                                android:id="@+id/Chk_Locat"
-                                android:buttonTint="@color/Blue"
-                                android:theme="@style/WhiteCheck"
-
                                 android:layout_height="wrap_content"
-                                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+                                android:layout_weight="1"
                                 android:button="@null"
-                                android:layout_weight="1"
-                                android:textSize="18sp" />
-                            <CheckBox
-                                android:text="الاطباء"
-                                android:layout_width="0dp"
-
-                                android:layout_height="wrap_content"
-                                android:id="@+id/Chk_Doctors"
                                 android:buttonTint="@color/Blue"
+
                                 android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
-                                android:button="@drawable/custom_checkbox"
-                                android:layout_alignParentEnd="true"
+                                android:text="الاختصاص"
+
+                                android:textSize="18sp"
                                 android:theme="@style/WhiteCheck"
-                                android:layout_weight="1"
-                                android:textSize="18sp" />
-
-
+                                android:visibility="invisible" />
 
 
                         </LinearLayout>
@@ -494,34 +491,34 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:weightSum="3"
-                        android:layout_weight="0.7"
-                        android:background="#fff"
+                        android:layout_marginBottom="10dp"
                         android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp">
+                        android:layout_weight="0.9"
+                        android:background="#fff"
+                        android:orientation="vertical"
+                        android:weightSum="3">
 
                         <LinearLayout
-                            android:orientation="horizontal"
-                            android:background="@color/Pink"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:weightSum="1"
-                            android:layout_weight="1">
+                            android:layout_weight="1"
+                            android:background="@color/Pink"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
 
                             <TextView
-                                android:text="اعتماد الحركات"
+                                android:id="@+id/moves"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/moves"
-                                android:textSize="18sp"
+                                android:layout_centerHorizontal="false"
+                                android:layout_centerVertical="false"
                                 android:layout_gravity="center"
                                 android:gravity="center"
+                                android:text="اعتماد الحركات"
                                 android:textColor="@color/White"
-                                android:layout_centerVertical="false"
-                                android:layout_centerHorizontal="false" />
+                                android:textSize="18sp" />
 
                         </LinearLayout>
 
@@ -644,38 +641,60 @@
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.6"
-            android:weightSum="2">
+            android:orientation="horizontal"
+            android:weightSum="3">
 
             <RelativeLayout
-                android:layout_alignParentBottom="true"
-                android:onClick="btn_Post_Trans"
-                android:layout_alignParentStart="true"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_width="502dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true"
+                android:layout_weight="1.2"
+                android:onClick="btn_Post_Trans"
                 android:paddingRight="5dp">
 
                 <TextView
-                    android:text="اعتماد الحركة"
+                    android:id="@+id/textView263"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/textView263"
-                    android:textSize="20sp"
-                    android:onClick="btn_Post_Trans"
-                    android:textColor="@color/White"
-                    android:layout_centerVertical="true"
-                    android:layout_centerHorizontal="true"
+                    android:layout_centerInParent="true"
                     android:background="@color/Blue"
-                    android:gravity="center" />
+                    android:gravity="center"
+                    android:onClick="btn_Post_Trans"
+                    android:text="اعتماد الحركة"
+                    android:textColor="@color/White"
+                    android:textSize="20sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true"
+                android:layout_weight="0.6"
+                android:onClick="btn_Back"
+                android:paddingRight="5dp">
+
+                <Methdes.MyTextView
+                    android:id="@+id/textVifew263"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:background="@color/ColorPrimaryDark"
+                    android:gravity="center"
+                    android:text="القائمة الرئيسية"
+                    android:textColor="@color/White"
+                    android:textSize="20sp" />
             </RelativeLayout>
 
             <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_weight="1.2"
+                android:orientation="vertical"
                 android:paddingRight="5dp">
 
                 <TextView
@@ -697,6 +716,8 @@
 
         </LinearLayout>
     </LinearLayout>
+
+
 
 </RelativeLayout>
 

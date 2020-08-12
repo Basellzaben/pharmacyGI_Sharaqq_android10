@@ -9,6 +9,16 @@ public class Customers {
     String Mobile;
     String Acc;
     String No;
+
+    public String getCountryNm() {
+        return countryNm;
+    }
+
+    public void setCountryNm(String countryNm) {
+        this.countryNm = countryNm;
+    }
+
+    String countryNm;
     public String getNo() {
         return No;
     }

@@ -1,7 +1,9 @@
 package com.cds_jo.pharmacyGI.PostTransActions;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.preference.PreferenceManager;
 
 
 import com.cds_jo.pharmacyGI.SqlHandler;
@@ -66,9 +68,10 @@ public class PostMonthlyScedule {
         String query = "";
         PoList = new ArrayList<Cls_Post_Monthly_Schedule>();
         PoList.clear();
-
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+      String  UserID = sharedPreferences.getString("UserID", "");
         query = "  Select  Distinct Today_Date  , Period_No  ,Area_No  ,User_No   ,Posted ,TrYear,TrMonth from Monthly_Schedule" +
-                "      Where TrYear ='"+Yrar+"' and TrMonth='"+Month+"'" ;
+                "      Where TrYear ='"+Yrar+"' and TrMonth='"+Month+"'  and User_No='"+UserID+"'" ;
         Cursor c1 = sqlHandler.selectQuery(query);
         if (c1 != null && c1.getCount() != 0) {
             if (c1.moveToFirst()) {

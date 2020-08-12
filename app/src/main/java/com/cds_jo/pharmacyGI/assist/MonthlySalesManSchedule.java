@@ -27,6 +27,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cds_jo.pharmacyGI.DB;
 import com.cds_jo.pharmacyGI.GalaxyMainActivity;
 
 import com.cds_jo.pharmacyGI.Pop_Update_Month;
@@ -58,7 +59,7 @@ public class MonthlySalesManSchedule extends FragmentActivity {
     ArrayList<Cls_Country> CountryOfDay;
     ArrayList<Cls_Country> AllCountry;
     long PostResult = 0;
-    TextView tv;
+    TextView tv,tv_Status;
     SharedPreferences sharedPreferences;
     Drawable greenProgressbar;
     RelativeLayout.LayoutParams lp;
@@ -70,6 +71,7 @@ public class MonthlySalesManSchedule extends FragmentActivity {
     Cls_Monthly_Schedule SelectedDate;
     Methdes.MyTextView tv_Month, ed_Year;
     public ProgressDialog loadingdialog;
+    String PostedPlan;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,6 +102,7 @@ public class MonthlySalesManSchedule extends FragmentActivity {
         chk_Enter_all = (CheckBox) findViewById(R.id.chk_Enter_all);
         chk_Enter = (CheckBox) findViewById(R.id.chk_Enter);
         chk_Not_Enter = (CheckBox) findViewById(R.id.chk_Not_Enter);
+        tv_Status = (TextView) findViewById(R.id.tv_Status);
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         UserID = sharedPreferences.getString("UserID", "");
@@ -298,6 +301,7 @@ public class MonthlySalesManSchedule extends FragmentActivity {
         FillAllCountryOfDay();
         FillAllCountry();
         month_Dates();
+
     }
 
     private void month_Dates() {
@@ -332,7 +336,7 @@ public class MonthlySalesManSchedule extends FragmentActivity {
             @Override
             public void run() {
                 CallWebServices ws = new CallWebServices(MonthlySalesManSchedule.this);
-                ws.GetMonth_Dates("1", tv_Month.getText().toString(), ed_Year.getText().toString());
+                ws.GetMonth_Dates(UserID, tv_Month.getText().toString(), ed_Year.getText().toString());
                 try {
                     Integer i;
                     String q = "";
@@ -347,6 +351,8 @@ public class MonthlySalesManSchedule extends FragmentActivity {
                     JSONArray js_CurrentMonth = js.getJSONArray("CurrentMonth");
                     JSONArray js_CurrentYear = js.getJSONArray("CurrentYear");
                     JSONArray js_Day_No_Sort = js.getJSONArray("Day_No_Sort");
+                    JSONArray js_AreaNo = js.getJSONArray("AreaNo");
+                    JSONArray js_Posted = js.getJSONArray("Posted");
 
                     q = "Delete from Month_Dates";
                     sqlHandler.executeQuery(q);
@@ -354,7 +360,7 @@ public class MonthlySalesManSchedule extends FragmentActivity {
                     sqlHandler.executeQuery(q);
 
                     for (i = 0; i < js_TodayDate.length(); i++) {
-                        q = "INSERT INTO Month_Dates (  TodayDate,Day_Nm_En,Day_No,Day_Nm_Ar,PeriodNo,PeriodDesc,Week_No,CurrentMonth,CurrentYear,Day_No_Sort) values ('"
+                        q = "INSERT INTO Month_Dates (  TodayDate,Day_Nm_En,Day_No,Day_Nm_Ar,PeriodNo,PeriodDesc,Week_No,CurrentMonth,CurrentYear,Day_No_Sort,AreaNo,Posted ) values ('"
                                 + js_TodayDate.get(i).toString()
                                 + "','" + js_Day_Nm_En.get(i).toString()
                                 + "','" + js_Day_No.get(i).toString()
@@ -365,6 +371,8 @@ public class MonthlySalesManSchedule extends FragmentActivity {
                                 + "','" + js_CurrentMonth.get(i).toString()
                                 + "','" + js_CurrentYear.get(i).toString()
                                 + "','" + js_Day_No_Sort.get(i).toString()
+                                + "','" + js_AreaNo.get(i).toString()
+                                + "','" + js_Posted.get(i).toString()
                                 + "' )";
                         sqlHandler.executeQuery(q);
 
@@ -491,16 +499,31 @@ public class MonthlySalesManSchedule extends FragmentActivity {
     }
 
     private void FillAllDays() {
-        /*  SelectedDate=null;*/
+
         Lst_Country_Day.setAdapter(null);
         AddDays.clear();
-        q = " Select distinct TodayDate,Day_Nm_En,Day_No,Day_Nm_Ar,PeriodNo,PeriodDesc,Week_No,CurrentMonth,CurrentYear,Day_No_Sort  from  Month_Dates  " +
-                " left  join Monthly_Schedule on Monthly_Schedule.Today_Date= Month_Dates.TodayDate and Monthly_Schedule.Period_No = Month_Dates.PeriodNo " +
-                " Where ('" + WeekNo + "'='-1' or Week_No='" + WeekNo + "') " +
-                "  And ('" + DayNo + "'='-1' or Day_No='" + DayNo + "') " +
-                "  And ('" + PeriodNo + "'='-1' or PeriodNo='" + PeriodNo + "') " +
-                "  And ('" + Enter_Status + "'='-1' or ('" + Enter_Status + "'='1'  and Monthly_Schedule.Area_No is not null )       or ('" + Enter_Status + "'='2'  and Monthly_Schedule.Area_No is null )  ) ";
-        Cursor c1 = sqlHandler.selectQuery(q);
+
+        PostedPlan = DB.GetValue(this,"Month_Dates","Posted","CurrentMonth='"+ tv_Month.getText() + "' and CurrentYear='" +ed_Year.getText()+"'");
+        tv_Status.setText("غير معتمدة");
+       if(PostedPlan.toString().equalsIgnoreCase("1")){
+            sqlHandler.executeQuery( " delete from Monthly_Schedule where TrMonth ='"+tv_Month.getText().toString()+"' and TrYear='"+ed_Year.getText().toString()+"'");
+           q = " Insert into Monthly_Schedule (  Today_Date, Period_No, Area_No,  User_No,   TrYear,  TrMonth,Posted) " +
+                   " SELECT  TodayDate, PeriodNo,AreaNo,"+ UserID+",CurrentYear,CurrentMonth,'1' from Month_Dates ";
+
+           sqlHandler.executeQuery(q);
+           tv_Status.setText("تم الإعتماد");
+       }
+
+           q = " Select distinct TodayDate,Day_Nm_En,Day_No,Day_Nm_Ar,PeriodNo,PeriodDesc,Week_No,CurrentMonth" +
+                   " ,CurrentYear,Day_No_Sort  from  Month_Dates  " +
+                   " left  join Monthly_Schedule on Monthly_Schedule.Today_Date= Month_Dates.TodayDate and Monthly_Schedule.Period_No = Month_Dates.PeriodNo " +
+                   " Where ('" + WeekNo + "'='-1' or Week_No='" + WeekNo + "') " +
+                   "  And ('" + DayNo + "'='-1' or Day_No='" + DayNo + "') " +
+                   "  And ('" + PeriodNo + "'='-1' or PeriodNo='" + PeriodNo + "') " +
+                   "  And ('" + Enter_Status + "'='-1' or ('" + Enter_Status + "'='1'  and Monthly_Schedule.Area_No is not null )       or ('" + Enter_Status + "'='2'  and Monthly_Schedule.Area_No is null )  ) ";
+
+
+       Cursor c1 = sqlHandler.selectQuery(q);
         if (c1 != null && c1.getCount() != 0) {
             if (c1.moveToFirst()) {
                 do {
@@ -524,63 +547,6 @@ public class MonthlySalesManSchedule extends FragmentActivity {
 
 
 
-      /*  Cls_Monthly_Schedule obj = new Cls_Monthly_Schedule();
-        obj.setDayNum("1");
-        obj.setDayNum("الاحد");
-        obj.setDate("28/05/2018");
-        obj.setCountryId("1");
-        obj.setCountryNm("الشميساني/عبدون");
-        obj.setPeriodNo("1");
-        obj.setPeriodDesc("الفترة الصباحية");
-        AddDays.add(obj);
-
-
-
-        obj = new Cls_Monthly_Schedule();
-        obj.setDayNum("2");
-        obj.setDayNum("الاثنين");
-        obj.setDate("29/05/2018");
-        obj.setCountryId("1");
-        obj.setCountryNm("تلاع العلي");
-        obj.setPeriodNo("1");
-        obj.setPeriodDesc("الفترة الصباحية");
-        AddDays.add(obj);
-
-
-
-
-        obj = new Cls_Monthly_Schedule();
-        obj.setDayNum("2");
-        obj.setDayNum("الثلاثاء");
-        obj.setDate("30/05/2018");
-        obj.setCountryId("1");
-        obj.setCountryNm("اربد");
-        obj.setPeriodNo("1");
-        obj.setPeriodDesc("الفترة الصباحية");
-        AddDays.add(obj);
-
-
-        obj = new Cls_Monthly_Schedule();
-        obj.setDayNum("2");
-        obj.setDayNum("الثلاثاء");
-        obj.setDate("30/05/2018");
-        obj.setCountryId("1");
-        obj.setCountryNm("اربد");
-        obj.setPeriodNo("1");
-        obj.setPeriodDesc("الفترة المسائية");
-        AddDays.add(obj);
-
-
-
-        obj = new Cls_Monthly_Schedule();
-        obj.setDayNum("2");
-        obj.setDayNum("الاربعاء");
-        obj.setDate("1/06/2018");
-        obj.setCountryId("1");
-        obj.setCountryNm("السلط");
-        obj.setPeriodNo("1");
-        obj.setPeriodDesc("الفترة الصباحية");
-        AddDays.add(obj);*/
 
         Cls_Monthly_Sechedule_adapter cls_monthly_sechedule_adapter = new Cls_Monthly_Sechedule_adapter(
                 this, AddDays);
@@ -742,6 +708,15 @@ public class MonthlySalesManSchedule extends FragmentActivity {
 
     public int btn_Insert_City(View view) {
 
+
+
+
+        if(PostedPlan.equalsIgnoreCase("1")){
+            Toast.makeText(this,"تم اعتماد الخطة ،لا يمكن الإضافة",Toast.LENGTH_SHORT).show();
+            return -1;
+        }
+
+
         position = Lst_Country_All.getPositionForView(view);
         if (SelectedDate.getDate().equalsIgnoreCase("")) {
             Toast.makeText(this, "الرجاء تحديد التاريخ", Toast.LENGTH_SHORT).show();
@@ -777,6 +752,10 @@ public class MonthlySalesManSchedule extends FragmentActivity {
     public void btn_Delete_Area(View view) {
         position = Lst_Country_Day.getPositionForView(view);
 
+        if(PostedPlan.equalsIgnoreCase("1")){
+         Toast.makeText(this,"تم اعتماد الخطة ، لا يمكن الحذف",Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
         alertDialog.setTitle("الخطة الشهرية");
@@ -805,6 +784,19 @@ public class MonthlySalesManSchedule extends FragmentActivity {
     }
 
     public void btn_Collections(View view) {
+
+        boolean Exist = true;
+        Exist = CheckArea(SelectedDate.getDate().toString(), SelectedDate.getPeriodNo().toString(),"-1");
+        if (Exist == false) {
+            return  ;
+        }
+
+        if(PostedPlan.equalsIgnoreCase("1")){
+            Toast.makeText(this,"تم اعتماد الخطة ،لا يمكن الإضافة",Toast.LENGTH_SHORT).show();
+            return ;
+        }
+
+
         if (SelectedDate.getDate().equalsIgnoreCase("")) {
             Toast.makeText(this, "الرجاء تحديد التاريخ", Toast.LENGTH_SHORT).show();
         } else {
@@ -828,6 +820,19 @@ public class MonthlySalesManSchedule extends FragmentActivity {
     }
 
     public void btn_Others(View view) {
+
+        boolean Exist = true;
+        Exist = CheckArea(SelectedDate.getDate().toString(), SelectedDate.getPeriodNo().toString(),"-2");
+        if (Exist == false) {
+            return  ;
+        }
+
+        if(PostedPlan.equalsIgnoreCase("1")){
+            Toast.makeText(this,"تم اعتماد الخطة ،لا يمكن الإضافة",Toast.LENGTH_SHORT).show();
+            return ;
+        }
+
+
         if (SelectedDate.getDate().equalsIgnoreCase("")) {
             Toast.makeText(this, "الرجاء تحديد التاريخ", Toast.LENGTH_SHORT).show();
         } else {
@@ -853,6 +858,13 @@ public class MonthlySalesManSchedule extends FragmentActivity {
     public int btn_Holiday(View view) {
 
         boolean Exist = true;
+
+        if(PostedPlan.equalsIgnoreCase("1")){
+            Toast.makeText(this,"تم اعتماد الخطة ،لا يمكن الإضافة",Toast.LENGTH_SHORT).show();
+            return -1;
+        }
+
+
         Exist = CheckArea(SelectedDate.getDate().toString(), SelectedDate.getPeriodNo().toString(), "-4");
         if (Exist == false) {
             return 0;
@@ -884,6 +896,13 @@ public class MonthlySalesManSchedule extends FragmentActivity {
 
     public int btn_Vacations(View view) {
 
+
+        if(PostedPlan.equalsIgnoreCase("1")){
+            Toast.makeText(this,"تم اعتماد الخطة ،لا يمكن الإضافة",Toast.LENGTH_SHORT).show();
+            return -1;
+        }
+
+
         boolean Exist = true;
         Exist = CheckArea(SelectedDate.getDate().toString(), SelectedDate.getPeriodNo().toString(), "-3");
         if (Exist == false) {
@@ -913,9 +932,9 @@ public class MonthlySalesManSchedule extends FragmentActivity {
         }
         return 0;
     }
-
     private boolean CheckArea(String Date, String Period, String AreaNo) {
         boolean f = true;
+
 
         if (AreaNo.equalsIgnoreCase("-3") || AreaNo.equalsIgnoreCase("-4")) {
             q = " Select * from  Monthly_Schedule where Today_Date='" + Date + "'   and Period_No ='" + Period + "' and User_No='" + UserID + "'";
@@ -976,20 +995,16 @@ public class MonthlySalesManSchedule extends FragmentActivity {
         }
         return f;
     }
-
-
     public void btn_back(View view) {
         Intent k = new Intent(this, GalaxyMainActivity.class);
         startActivity(k);
     }
-
     @Override
     public void onBackPressed() {
         Intent k;
         k = new Intent(this, GalaxyMainActivity.class);
         startActivity(k);
     }
-
     public void btn_SelectMonth(View view) {
         Bundle bundle = new Bundle();
         bundle.putString("Scr", "SalesOrder");
@@ -1005,7 +1020,6 @@ public class MonthlySalesManSchedule extends FragmentActivity {
         tv_Month.setText(m);
         month_Dates();
     }
-
     public void btn_SelectYear(View view) {
         Bundle bundle = new Bundle();
         bundle.putString("Scr", "SalesOrder");
@@ -1020,11 +1034,10 @@ public class MonthlySalesManSchedule extends FragmentActivity {
         ed_Year.setText(y);
         month_Dates();
     }
-
     public void btn_share(View view) {
 
 
-        loadingdialog = ProgressDialog.show(MonthlySalesManSchedule.this, "الرجاء الانتظار ...", "العمل جاري على اعتماد طلب البيع", true);
+        loadingdialog = ProgressDialog.show(MonthlySalesManSchedule.this, "الرجاء الانتظار ...", "العمل جاري على اعتماد الخطة الشهرية", true);
         loadingdialog.setCancelable(false);
         loadingdialog.setCanceledOnTouchOutside(false);
         loadingdialog.show();
@@ -1067,39 +1080,23 @@ public class MonthlySalesManSchedule extends FragmentActivity {
                             public void run() {
                                 AlertDialog alertDialog = new AlertDialog.Builder(
                                         MonthlySalesManSchedule.this).create();
-                                alertDialog.setTitle("فشل في عملية الاعتماد  " + "   " + We_Result.ID + "");
-                                alertDialog.setMessage(We_Result.Msg.toString());
+                                alertDialog.setTitle("عملية الاعتماد لم تتم بنجاح ");
+                                alertDialog.setMessage("تم اعتماد الخطة من قبل المشرف");
                                 alertDialog.setIcon(R.drawable.delete);
-                                alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+                                alertDialog.setButton("رجـــوع", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                     }
                                 });
                                 alertDialog.show();
 
                                 alertDialog.setIcon(R.drawable.delete);
-                                alertDialog.setMessage(We_Result.Msg);
+
                             }
                         });
 
 
-                        loadingdialog.dismiss();
-                        _handler.post(new Runnable() {
-                            public void run() {
-                                AlertDialog alertDialog = new AlertDialog.Builder(
-                                        MonthlySalesManSchedule.this).create();
-                                alertDialog.setTitle("فشل في عملية الاعتماد  " + "   " + We_Result.ID + "");
-                                alertDialog.setMessage(We_Result.Msg.toString());
-                                alertDialog.setIcon(R.drawable.delete);
-                                alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-                                    }
-                                });
-                                alertDialog.show();
 
-                                alertDialog.setIcon(R.drawable.delete);
-                                alertDialog.setMessage("عملية الاعتماد لم تتم بنجاح" + "    ");
-                            }
-                        });
+
                     } else {
                         _handler.post(new Runnable() {
                             public void run() {
@@ -1121,6 +1118,7 @@ public class MonthlySalesManSchedule extends FragmentActivity {
                     loadingdialog.dismiss();
                     _handler.post(new Runnable() {
                         public void run() {
+                            loadingdialog.dismiss();
                             AlertDialog alertDialog = new AlertDialog.Builder(
                                     MonthlySalesManSchedule.this).create();
                             alertDialog.setTitle("فشل في عمليه الاتصال");

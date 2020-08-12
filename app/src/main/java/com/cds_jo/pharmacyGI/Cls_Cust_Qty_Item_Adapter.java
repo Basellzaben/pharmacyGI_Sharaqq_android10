@@ -62,6 +62,17 @@ public class Cls_Cust_Qty_Item_Adapter extends BaseAdapter {
         Unit.setText(contactListItems.getUniteNm());
 
 
+
+
+        TextView Exp = (TextView) convertView.findViewById(R.id.tv_ExpDate);
+        Exp.setText(contactListItems.getExpDate());
+
+
+
+
+        TextView Batch = (TextView) convertView.findViewById(R.id.tv_Batch);
+        Batch.setText(contactListItems.getBatch());
+
         return convertView;
     }
 

@@ -100,7 +100,9 @@ public class DoctorVisitNew extends AppCompatActivity {
     Boolean IsChange, BalanceQtyTrans;
     String UserID = "";
     public ProgressDialog loadingdialog;
-
+    TextView tv;
+    Drawable greenProgressbar;
+    RelativeLayout.LayoutParams lp;
 
     EditText Tv_Notes;
 
@@ -151,9 +153,14 @@ public class DoctorVisitNew extends AppCompatActivity {
             max = c1.getString(c1.getColumnIndex("no"));
             c1.close();
         }
-
         String max1 = "0";
-        max1 = sharedPreferences.getString("m6", "");
+       try {
+
+           max1 = DB.GetValue(DoctorVisitNew.this, "OrdersSitting", "ifnull(SampleItems,0)", "1=1");
+       }catch (Exception ex){
+           Toast.makeText(this,ex.getMessage().toString(),Toast.LENGTH_SHORT).show();
+       }
+
         if (max1 == "") {
             max1 = "0";
         }
@@ -257,8 +264,8 @@ public class DoctorVisitNew extends AppCompatActivity {
         IsNew = true;
         IsChange = false;
 
-
-        GetMaxPONo();
+        GetSerial();
+         GetMaxPONo();
         TextView CustNm = (TextView) findViewById(R.id.tv_cusnm);
 
         TextView accno = (TextView) findViewById(R.id.tv_acc);
@@ -270,6 +277,7 @@ public class DoctorVisitNew extends AppCompatActivity {
       /* tv_serialNo.setText(DB.GetValue(this,"manf","SampleSerial","man ='" +UserID+"'" ));
          tv_serialDesc.setText(DB.GetValue(this,"manf","Serial_name","man ='" +UserID+"'" ));*/
          UpdateStore();
+
     }
     private void UpdateStore() {
 
@@ -386,7 +394,98 @@ public class DoctorVisitNew extends AppCompatActivity {
 
 
     }
+    private void GetSerial() {
 
+
+        tv = new TextView(getApplicationContext());
+        lp = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
+        tv.setLayoutParams(lp);
+        tv.setLayoutParams(lp);
+        tv.setPadding(10, 15, 10, 15);
+        tv.setGravity(Gravity.CENTER);
+        tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
+        tv.setTextColor(Color.WHITE);
+        tv.setBackgroundColor(Color.BLUE);
+        tv.setTypeface(tv.getTypeface(), Typeface.BOLD);
+
+
+        final Handler _handler = new Handler();
+
+        final ProgressDialog custDialog = new ProgressDialog(DoctorVisitNew.this);
+        custDialog.setProgressStyle(custDialog.STYLE_HORIZONTAL);
+        custDialog.setCanceledOnTouchOutside(false);
+        //custDialog.setProgress(0);
+        //custDialog.setMax(100);
+        custDialog.setMessage("  الرجاء الانتظار ..." + "  العمل جاري على نسخ البيانات  ");
+        tv.setText("التسلسلات");
+        custDialog.setCustomTitle(tv);
+        custDialog.setProgressDrawable(greenProgressbar);
+        custDialog.show();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                CallWebServices ws = new CallWebServices(DoctorVisitNew.this);
+                ws.GetOrdersSerials(UserID);
+                try {
+                    Integer i;
+                    String q = "";
+                    JSONObject js = new JSONObject(We_Result.Msg);
+                    JSONArray js_Sales = js.getJSONArray("Sales");
+                    JSONArray js_Payment = js.getJSONArray("Payment");
+                    JSONArray js_SalesOrder = js.getJSONArray("SalesOrder");
+                    JSONArray js_PrepareQty = js.getJSONArray("PrepareQty");
+                    JSONArray js_RetSales = js.getJSONArray("RetSales");
+                    JSONArray js_PostDely = js.getJSONArray("PostDely");
+                    JSONArray js_Visits = js.getJSONArray("Visits");
+                    JSONArray js_SampleItems = js.getJSONArray("SampleItems");
+
+                    q = "Delete from OrdersSitting";
+                    sqlHandler.executeQuery(q);
+
+                    q = " delete from sqlite_sequence where name='OrdersSitting'";
+                    sqlHandler.executeQuery(q);
+
+
+                    q = "INSERT INTO OrdersSitting(Sales, Payment , SalesOrder , PrepareQty , RetSales, PostDely , Visits ,SampleItems ) values ('"
+                            + js_Sales.get(0).toString()
+                            + "','" + js_Payment.get(0).toString()
+                            + "','" + js_SalesOrder.get(0).toString()
+                            + "','" + js_PrepareQty.get(0).toString()
+                            + "','" + js_RetSales.get(0).toString()
+                            + "','" + js_PostDely.get(0).toString()
+                            + "','" + js_Visits.get(0).toString()
+                            + "','" + js_SampleItems.get(0).toString()
+                            + "')";
+                    sqlHandler.executeQuery(q);
+
+
+                    _handler.post(new Runnable() {
+
+                        public void run() {
+
+                            custDialog.dismiss();
+                            GetMaxPONo();
+
+                        }
+                    });
+
+                } catch (final Exception e) {
+                    custDialog.dismiss();
+                    _handler.post(new Runnable() {
+
+                        public void run() {
+
+                            custDialog.dismiss();
+
+                        }
+                    });
+                }
+            }
+        }).start();
+
+    }
     private void showList() {
 
         lvCustomList.setAdapter(null);

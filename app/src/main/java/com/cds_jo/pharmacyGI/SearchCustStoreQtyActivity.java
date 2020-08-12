@@ -27,6 +27,20 @@ public class SearchCustStoreQtyActivity extends DialogFragment implements View.O
     ListView items_Lsit;
     EditText Search;
   //  TextView itemnm;
+  @Override
+  public void onStart() {
+      super.onStart();
+
+      // safety check
+      if (getDialog() == null)
+          return;
+
+      int dialogWidth = WindowManager.LayoutParams.WRAP_CONTENT;//340; // specify a value here
+      int dialogHeight = WindowManager.LayoutParams.MATCH_PARENT;//400; // specify a value here
+
+      getDialog().getWindow().setLayout(dialogWidth, dialogHeight);
+
+  }
     @Override
     public View onCreateView( final LayoutInflater inflater   , ViewGroup container  ,Bundle savestate){
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);

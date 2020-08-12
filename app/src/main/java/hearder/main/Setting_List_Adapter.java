@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.cds_jo.pharmacyGI.ComInfo;
 import com.cds_jo.pharmacyGI.CountrySales;
+import com.cds_jo.pharmacyGI.CustLocations.CustomerLocation;
 import com.cds_jo.pharmacyGI.CustomerQty;
 import com.cds_jo.pharmacyGI.DoctorReportActivity;
 import com.cds_jo.pharmacyGI.EditeTransActivity;
@@ -41,6 +42,7 @@ import com.cds_jo.pharmacyGI.UpdateDataToMobileActivity2;
 import com.cds_jo.pharmacyGI.assist.Acc_ReportActivity;
 import com.cds_jo.pharmacyGI.assist.DoctorVisitNew;
 import com.cds_jo.pharmacyGI.assist.MonthlySalesManSchedule;
+import com.cds_jo.pharmacyGI.assist.OrderDetailsReports;
 import com.cds_jo.pharmacyGI.assist.OrdersItems;
 import com.cds_jo.pharmacyGI.assist.Sale_InvoiceActivity;
 
@@ -95,27 +97,30 @@ public class Setting_List_Adapter extends BaseAdapter {
                 @Override
                 public void onClick(View v) {
 
-                    //Toast.makeText(context,position+"",Toast.LENGTH_LONG).show();
+
                     GetPermession obj = new GetPermession();
 
 
                     if (position == 0) {
+                        Intent intent = new Intent(context.getApplicationContext(), CustomerLocation.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        context.startActivity(intent);
+                        ((Activity) context).finish();
+
+                    }
+                    if (position == 1) {
                         Intent intent = new Intent(context.getApplicationContext(), Acc_ReportActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         context.startActivity(intent);
                         ((Activity) context).finish();
 
-
-                    } else if (position == 1) {
-
-
+                    } else if (position == 2) {
                         Intent intent = new Intent(context.getApplicationContext(), MainActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         context.startActivity(intent);
                         ((Activity) context).finish();
 
-
-                    } else if (position == 2) {
+                    } else if (position == 3) {
 
 
                         Intent intent = new Intent(context.getApplicationContext(), ItemGalleryActivity.class);
@@ -125,16 +130,8 @@ public class Setting_List_Adapter extends BaseAdapter {
 
 
                     }
-                    /*else if (position == 3) {
 
-                        Intent intent = new Intent(context.getApplicationContext(), Sale_InvoiceActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        context.startActivity(intent);
-                        ((Activity) context).finish();
-
-
-                    }*/
-                    else if (position ==3) {
+                    else if (position ==4) {
 
 
                         Intent intent = new Intent(context.getApplicationContext(), OrdersItems.class);
@@ -143,7 +140,7 @@ public class Setting_List_Adapter extends BaseAdapter {
                         ((Activity) context).finish();
 
 
-                    } else if (position == 4) {
+                    } else if (position == 5) {
 
 
                         Intent intent = new Intent(context.getApplicationContext(), TransQtyReportActivity.class);
@@ -152,13 +149,13 @@ public class Setting_List_Adapter extends BaseAdapter {
                         ((Activity) context).finish();
 
 
-                    } else if (position == 5) {
+                    } else if (position == 6) {
                         Intent intent = new Intent(context.getApplicationContext(), UpdateDataToMobileActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         context.startActivity(intent);
                         ((Activity) context).finish();
 
-                    } else if (position ==6) {
+                    } else if (position ==7) {
 
                         Intent intent = new Intent(context.getApplicationContext(), ScheduleManActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -166,7 +163,7 @@ public class Setting_List_Adapter extends BaseAdapter {
                         ((Activity) context).finish();
 
 
-                    } else if (position == 7) {
+                    } else if (position == 8) {
 
 
                         Intent intent = new Intent(context.getApplicationContext(), CustomerQty.class);
@@ -175,15 +172,7 @@ public class Setting_List_Adapter extends BaseAdapter {
                         ((Activity) context).finish();
 
 
-                    } else if (position == 100) {
-
-                        Intent intent = new Intent(context.getApplicationContext(), NotificationActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        context.startActivity(intent);
-                        ((Activity) context).finish();
-
-
-                    } else if (position == 8) {
+                    } else if (position == 9) {
 
                         Intent intent = new Intent(context.getApplicationContext(), QuestneerActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -191,27 +180,11 @@ public class Setting_List_Adapter extends BaseAdapter {
                         ((Activity) context).finish();
 
 
-                /*    } else if (position == 10) {
-
-
-                        Intent intent = new Intent(context.getApplicationContext(), BluetoothConnectMenu.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        context.startActivity(intent);
-                        ((Activity) context).finish();*/
-
 
                     }
-                   /* else if (position == 9) {
-
-                        Intent intent = new Intent(context.getApplicationContext(), EditeTransActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        context.startActivity(intent);
-                        ((Activity) context).finish();
 
 
-                    } */
-
-                    else if (position == 9) {
+                    else if (position == 10) {
 
                         Intent intent = new Intent(context.getApplicationContext(), CountrySales.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -219,7 +192,7 @@ public class Setting_List_Adapter extends BaseAdapter {
                         ((Activity) context).finish();
 
 
-                    } else if (position == 10) {
+                    } else if (position == 11) {
 
 
                         Intent intent = new Intent(context.getApplicationContext(), ManSummeryActivity.class);
@@ -229,36 +202,25 @@ public class Setting_List_Adapter extends BaseAdapter {
 
 
                     }
-                   /* else if (position == 11) {
 
-                        Intent intent = new Intent(context.getApplicationContext(), CountrySales.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        context.startActivity(intent);
-                        ((Activity) context).finish();
-
-
-                    } */
-                    else if (position == 11) {
+                    else if (position == 12) {
                         Intent intent = new Intent(context.getApplicationContext(), ManVisitReport.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         context.startActivity(intent);
                         ((Activity) context).finish();
 
-                    }    else if (position == 12) {
+                    }else if (position == 13) {
                             Intent intent = new Intent(context.getApplicationContext(), MonthlySalesManSchedule.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             context.startActivity(intent);
-                            ((Activity) context).finish();
-                    /*} else if (position == 16) {
-                        Intent intent = new Intent(context.getApplicationContext(), DoctorReportActivity.class);
-                        //Intent intent = new Intent(context.getApplicationContext(), MPChartActivity.class);
 
+                    }else if (position == 14) {
+                        Intent intent = new Intent(context.getApplicationContext(), OrderDetailsReports.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         context.startActivity(intent);
-                        ((Activity) context).finish();*/
+                        ((Activity) context).finish();
 
-
-                    } else if (position == 13) {
+                    } else if (position == 15) {
 
                         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(v.getContext());
                         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -269,7 +231,6 @@ public class Setting_List_Adapter extends BaseAdapter {
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         context.startActivity(intent);
                         ((Activity) context).finish();
-
 
                     }
 
@@ -290,28 +251,28 @@ public class Setting_List_Adapter extends BaseAdapter {
 
                     if (position == 0) {
                         // Intent intent = new Intent(context.getApplicationContext(), DoctorReportActivity.class);
-                        Intent intent = new Intent(context.getApplicationContext(), DoctorVisitNew.class);
+                        Intent intent = new Intent(context.getApplicationContext(), DoctorReportActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         context.startActivity(intent);
                         ((Activity) context).finish();
 
                     }
 
-                  /*  if (position == 1) {
-                        Intent intent = new Intent(context.getApplicationContext(), DoctorReportActivity.class);
+                  else if (position == 1) {
+                        Intent intent = new Intent(context.getApplicationContext(),DoctorVisitNew.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         context.startActivity(intent);
                         ((Activity) context).finish();
 
-                    }*/
+                    }
 
-                     else  if (position ==1) {
+                     else  if (position ==2) {
                         Intent intent = new Intent(context.getApplicationContext(), UpdateDataToMobileActivity2.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         context.startActivity(intent);
                         ((Activity) context).finish();
 
-                    } else if (position ==2) {
+                    } else if (position ==3) {
 
                         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(v.getContext());
                         SharedPreferences.Editor editor = sharedPreferences.edit();

@@ -28,7 +28,7 @@ public class ManSummeryActivity extends FragmentActivity {
         fragmentManager=getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.Frag1,frag).commit();
 
-        frag=new Tab_SalesSummery();
+        frag=new Tab_Visits_Summery();
         fragmentManager=getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.Frag11,frag).commit();
     }
@@ -52,7 +52,7 @@ public class ManSummeryActivity extends FragmentActivity {
                 T5.setBackground(getResources().getDrawable(R.drawable.blue_fill_white));
                 T5.setTextColor(getResources().getColor(R.color.Blue));
 
-                frag=new Tab_SalesSummery();
+                frag=new Tab_Visits_Summery();
                 fragmentManager=getSupportFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.Frag11,frag).commit();
             }

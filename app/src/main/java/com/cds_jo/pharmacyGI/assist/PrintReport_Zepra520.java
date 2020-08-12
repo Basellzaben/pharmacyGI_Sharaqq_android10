@@ -30,7 +30,7 @@ import java.io.FileOutputStream;
 public class PrintReport_Zepra520 {
     Context context;
     Activity Activity;
-    String BPrinter_MAC_ID;
+
     View ReportView;
     float ImageCountFactor;
 
@@ -39,24 +39,19 @@ public class PrintReport_Zepra520 {
         context = _context;
         Activity = _Activity;
 
-        BPrinter_MAC_ID = "00:12:6F:36:7C:B8";
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(_context);
-        BPrinter_MAC_ID =sharedPreferences.getString("AddressBT", "");
+
         ReportView = _ReportView;
-        //PageWidth = _PageWidth;
+
         ImageCountFactor = _ImageCountFactor;
     }
 
     public  void DoPrint(){
         StoreImage();
-        Bitmap myBitmap = null;
-        myBitmap= BitmapFactory.decodeFile("//sdcard//z1.jpg");
-        PrintImage(myBitmap);
 
 
     }
 
-    private  void StoreImage(){
+    public  void StoreImage(){
        // LinearLayout lay = (LinearLayout) findViewById(R.id.Mainlayout);
 
         Bitmap b = loadBitmapFromView(ReportView);
@@ -88,32 +83,9 @@ public class PrintReport_Zepra520 {
         v.draw(c);
         return b;
     }
-    private void PrintImage(final Bitmap bitmap) {
 
 
 
-        new Thread(new Runnable() {
-            public void run() {
-                try {
-                    Looper.prepare();
-                    String BPrinter_MAC_ID ;
-                    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-                    BPrinter_MAC_ID =sharedPreferences.getString("AddressBT", "");
-                    Connection connection =  new BluetoothConnection(BPrinter_MAC_ID);
-                    connection.open();
-                    ZebraPrinter printer = ZebraPrinterFactory.getInstance(PrinterLanguage.CPCL, connection);
-                    connection.write("! U1 JOURNAL\r\n! U1 SETFF 20 2\r\n".getBytes());
-                    printer.printImage(new ZebraImageAndroid(bitmap), 20, 0, 790, bitmap.getHeight(), false);
-                    connection.close();
 
-                } catch (ConnectionException e) {
-                    e.printStackTrace();
-                } finally {
-                    Looper.myLooper().quit();
-                }
-            }
-        }).start();
-
-    }
 
 }

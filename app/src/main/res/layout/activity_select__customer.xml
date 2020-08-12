@@ -13,100 +13,98 @@
         android:layout_alignParentStart="true">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:background="@color/Footer_Menu"
-            android:gravity="right|center"
-            android:paddingRight="20dp"
-            android:layout_height="60dp">
-
-            <Methdes.MyTextView
-                android:text="@string/Search_Customer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView253"
-                android:textColor="#fff"
-                android:textSize="20sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:padding="10dp"
-            android:layout_height="70dp">
+            android:layout_height="40dp"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/btn_cir_white_fill_black"
+                android:orientation="horizontal"
                 android:padding="5dp">
 
-                <ImageView
-                    android:id="@+id/brn_seachAcc"
-                    android:src="@mipmap/ic_search"
-                    android:padding="10dp"
-                    android:onClick="btn_filter"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp" />
-
                 <EditText
+                    android:id="@+id/et_Search_filter"
                     android:layout_width="fill_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/et_Search_filter"
                     android:layout_weight="1"
-                    android:background="#fff" />
+                    android:background="#fff"
+                    android:gravity="center"
+                    android:hint="ادخل هنا للبحث" />
 
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="60dp"
+            android:background="@color/Footer_Menu"
+            android:gravity="right|center"
+            android:orientation="vertical"
+            android:paddingRight="20dp"
+            android:visibility="gone">
+
+            <Methdes.MyTextView
+                android:id="@+id/textView253"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Search_Customer"
+                android:textColor="#fff"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
                 android:id="@+id/RR1"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
                 android:background="@color/Gray1"
-                android:layout_height="60dp">
+                android:orientation="vertical">
 
                 <LinearLayout
-                    android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
 
                     <Methdes.MyTextView
                         android:id="@+id/tv_no"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_marginRight="10dp"
-                        android:layout_weight="0.8"
+                        android:layout_weight="0.7"
                         android:gravity="center"
-                        android:paddingLeft="5dp"
-                        android:text="@string/Account_Num"
+                        android:text="الرقم"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:textColor="#000"
-                        android:textSize="22sp" />
-
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/Gray1"></LinearLayout>
+                        android:textSize="18sp" />
 
                     <Methdes.MyTextView
                         android:id="@+id/tv_nm"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1.2"
+                        android:layout_weight="1.15"
                         android:gravity="center"
-                        android:paddingRight="10dp"
-                        android:text="@string/Clint_Nane"
+                        android:text="الاسم"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:textColor="#000"
-                        android:textSize="22sp" />
+                        android:textSize="18sp" />
+
+                    <Methdes.MyTextView
+                        android:id="@+id/tv_Area"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.15"
+                        android:gravity="center"
+                        android:text="المنطقة"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="#000"
+                        android:textSize="18sp" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -124,13 +122,13 @@
                 android:layout_height="match_parent">
 
                 <ListView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
                     android:id="@+id/listView2"
                     style="@style/TextAppearance.AppCompat.Inverse"
-                    android:paddingLeft="10dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
                     android:background="@color/Gray1"
-                    android:divider="#00000000" />
+                    android:divider="#00000000"
+                    android:paddingLeft="10dp" />
             </LinearLayout>
 
         </LinearLayout>

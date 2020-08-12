@@ -31,6 +31,20 @@ public class SearchPoActivity extends DialogFragment implements View.OnClickList
     EditText et_Search ;
   ArrayList<cls_Search_po> cls_search_pos_list;
     @Override
+    public void onStart() {
+        super.onStart();
+
+        // safety check
+        if (getDialog() == null)
+            return;
+
+        int dialogWidth = WindowManager.LayoutParams.WRAP_CONTENT;//340; // specify a value here
+        int dialogHeight = WindowManager.LayoutParams.MATCH_PARENT;//400; // specify a value here
+
+        getDialog().getWindow().setLayout(dialogWidth, dialogHeight);
+
+    }
+    @Override
     public View onCreateView( final LayoutInflater inflater   , ViewGroup container  ,Bundle savestate){
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);

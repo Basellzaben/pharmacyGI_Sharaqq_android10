@@ -88,6 +88,20 @@
 
 
         <Methdes.MyTextView
+            android:id="@+id/tv_Total"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="0.5dp"
+            android:layout_marginRight="0.5dp"
+            android:layout_weight="1"
+            android:background="#fff"
+            android:gravity="center"
+            android:text="Small Text"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#000"
+            android:textSize="18sp" />
+
+        <Methdes.MyTextView
             android:layout_width="0dp"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Small Text"
@@ -95,20 +109,6 @@
             android:gravity="center"
             android:textColor="#000"
             android:layout_weight="0.8"
-            android:textSize="18sp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="0.5dp"
-            android:layout_marginRight="0.5dp"
-            android:background="#fff" />
-
-        <Methdes.MyTextView
-            android:layout_width="0dp"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Small Text"
-            android:id="@+id/tv_ManNm"
-            android:gravity="center"
-            android:textColor="#000"
-            android:layout_weight="1"
             android:textSize="18sp"
             android:layout_height="match_parent"
             android:layout_marginLeft="0.5dp"

@@ -21,33 +21,61 @@
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/Gray1"
+            android:orientation="horizontal"
+            android:weightSum="3">
 
             <Button
-                android:id="@+id/button1"
-                android:layout_width="fill_parent"
+                android:id="@+id/btn_Print"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="طبــاعــــة "
-                android:nestedScrollingEnabled="false"
-                android:onClick="btn_convert"
                 android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_weight="1" />
+                android:layout_centerHorizontal="true"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@color/Pink"
+                android:nestedScrollingEnabled="false"
+                android:onClick="Send_Email"
+                android:text="ايميل"
+                android:textColor="#fff"
+                android:visibility="visible" />
 
             <Button
-                android:id="@+id/button21"
-                android:layout_width="fill_parent"
+                android:id="@+id/snedto"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="رجـــــــــــوع "
+
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@color/Green"
+                android:nestedScrollingEnabled="false"
+                android:onClick="btn_share"
+                android:text="واتس اب"
+                android:textColor="#fff"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/button38"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/btn_Print"
+                android:layout_alignEnd="@+id/f_view"
+
+                android:layout_alignRight="@+id/f_view"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@color/Blue"
                 android:nestedScrollingEnabled="false"
                 android:onClick="btn_back"
-                android:layout_alignTop="@+id/button1"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_weight="1" />
+                android:text="رجـــــوع"
+                android:textColor="#fff"
+                android:textSize="20sp" />
         </LinearLayout>
     </LinearLayout>
 

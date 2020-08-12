@@ -72,20 +72,9 @@ public class cls_Tab__Order_Sales_adapter extends BaseAdapter {
         MyTextView tv_tot = (MyTextView) convertView.findViewById(R.id.tv_tot);
         tv_tot.setText(cls_search_po.getTot());
 
-/*
-        /*TextView tv_invoType = (TextView) convertView.findViewById(R.id.tv_invoType);
-         if (cls_search_po.getType().equals("-3")){
-             tv_invoType.setText("نوع الفاتورة");
-         }
-       else if(cls_search_po.getType().equals("0")) {
-           tv_invoType.setText("نقدية");
-       }
-       else {
-           tv_invoType.setText("ذمــم");
-       }
-*/
+
         MyTextView tv_notes = (MyTextView) convertView.findViewById(R.id.tv_notes);
-    //   if(ComInfo.Lan.equalsIgnoreCase("en")) {
+
            if (cls_search_po.getNotes().equals("-3")) {
                tv_notes.setText("حالة الفاتورة");
            } else if (cls_search_po.getNotes().equals("-1")) {

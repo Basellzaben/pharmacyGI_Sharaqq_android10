@@ -225,10 +225,10 @@
                             android:id="@+id/et_m6"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_marginBottom="10dp"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
                             android:layout_marginTop="5dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
                             android:layout_weight="1.1"
                             android:background="@drawable/btn_cir_white_fill_black"
                             android:ems="10"
@@ -526,7 +526,6 @@
                     android:layout_marginRight="5dp"
                     android:layout_marginTop="20dp"
                     android:layout_weight="1"
-                    android:background="@color/common_signin_btn_default_background"
                     android:onClick="DeletePostedPo">
 
                     <Methdes.MyTextView

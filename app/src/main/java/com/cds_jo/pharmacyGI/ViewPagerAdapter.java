@@ -26,7 +26,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
         if(position == 0) // if the position is 0 we are returning the First tab
         {
-            Tab_SalesSummery tab1 = new Tab_SalesSummery();
+            Tab_Visits_Summery tab1 = new Tab_Visits_Summery();
             return tab1;
         }
         else if(position == 1) // if the position is 0 we are returning the First tab

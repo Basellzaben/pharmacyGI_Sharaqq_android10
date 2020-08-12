@@ -10,7 +10,10 @@ import android.widget.LinearLayout;
 
 import com.cds_jo.pharmacyGI.assist.Cls_Acc_Report;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import Methdes.MyTextView;
 
@@ -64,7 +67,7 @@ public class Cls_CountrySales_Report_Adapter extends BaseAdapter {
         MyTextView tv_Qty = (MyTextView) convertView.findViewById(R.id.tv_Qty);
         MyTextView tv_price = (MyTextView) convertView.findViewById(R.id.tv_price);
         MyTextView tv_Date = (MyTextView) convertView.findViewById(R.id.tv_Date);
-        MyTextView tv_ManNm = (MyTextView) convertView.findViewById(R.id.tv_ManNm);
+        MyTextView tv_Total = (MyTextView) convertView.findViewById(R.id.tv_Total);
 
 
 
@@ -74,8 +77,13 @@ public class Cls_CountrySales_Report_Adapter extends BaseAdapter {
         tv_Qty.setText(cls_acc_report.getQty());
         tv_price.setText(cls_acc_report.getPrice());
         tv_Date.setText(cls_acc_report.getDate());
-        tv_ManNm.setText(cls_acc_report.getManNm());
+        if(position==0){
+            tv_Total.setText(cls_acc_report.getManNm());
 
+        }else {
+            tv_Total.setText((SToD(cls_acc_report.getPrice()) * SToD(cls_acc_report.getQty())) + "");
+            tv_Total.setText(SToD(tv_Total.getText().toString()) + "");
+        }
         LinearLayout RR=(LinearLayout)convertView.findViewById(R.id.RR);
 
         tv_CusNm.setTextColor(Color.BLACK);
@@ -90,8 +98,8 @@ public class Cls_CountrySales_Report_Adapter extends BaseAdapter {
         tv_price.setBackgroundColor(Color.WHITE);
         tv_Date.setTextColor(Color.BLACK);
         tv_Date.setBackgroundColor(Color.WHITE);
-        tv_ManNm.setTextColor(Color.BLACK);
-        tv_ManNm.setBackgroundColor(Color.WHITE);
+        tv_Total.setTextColor(Color.BLACK);
+        tv_Total.setBackgroundColor(Color.WHITE);
 
 
         if(position==0)
@@ -110,8 +118,8 @@ public class Cls_CountrySales_Report_Adapter extends BaseAdapter {
             tv_price.setBackgroundColor(Color.parseColor("#17181c"));
             tv_Date.setTextColor(Color.WHITE);
             tv_Date.setBackgroundColor(Color.parseColor("#17181c"));
-            tv_ManNm.setTextColor(Color.WHITE);
-            tv_ManNm.setBackgroundColor(Color.parseColor("#17181c"));
+            tv_Total.setTextColor(Color.WHITE);
+            tv_Total.setBackgroundColor(Color.parseColor("#17181c"));
 
         }
         else if(position%2==0)
@@ -126,6 +134,29 @@ public class Cls_CountrySales_Report_Adapter extends BaseAdapter {
 
         return convertView;
     }
+    private Double SToD(String str) {
+        String f = "";
+        final NumberFormat nf = NumberFormat.getNumberInstance(Locale.US);
+        final DecimalFormat df = (DecimalFormat) nf;
+        str = str.replace(",", "");
+        Double d = 0.0;
+        if (str.length() == 0) {
+            str = "0";
+        }
+        if (str.length() > 0)
+            try {
+                d = Double.parseDouble(str);
+                str = df.format(d).replace(",", "");
 
+            } catch (Exception ex) {
+                str = "0";
+            }
+
+        df.setParseBigDecimal(true);
+
+        d = Double.valueOf(str.trim()).doubleValue();
+
+        return d;
+    }
 }
 

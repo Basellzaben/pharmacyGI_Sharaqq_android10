@@ -50,7 +50,7 @@ LinearLayout Row1 ;
     MyTextView ManNm;
     MyTextView tv_Area;
     double VisitedCountCount,CustInLoctCount,PrecentCount;
-
+    String CurrentYear;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +58,7 @@ LinearLayout Row1 ;
         VisitedCountCount =0 ;
         CustInLoctCount = 0 ;
         PrecentCount = 0 ;
-
+        CurrentYear= DB.GetValue(this,"SERVER_DATETIME","MYEAR","1=1");
           ManNm =(MyTextView)findViewById(R.id.tv_ManNm);
         tv_Area =(MyTextView)findViewById(R.id.tv_Area);
 
@@ -70,10 +70,10 @@ LinearLayout Row1 ;
         Row1 = (LinearLayout)findViewById(R.id.LinearRow1);
         Row2 = (RelativeLayout)findViewById(R.id.RaltiveRow2);
 
-        if(ComInfo.Lan.equalsIgnoreCase("ar")){
+
             Row1.setBackgroundResource(R.mipmap.row1);
             Row2.setBackgroundResource(R.mipmap.row2);
-        }
+
 
         FromDate = (MyTextView)findViewById(R.id.ed_FromDate);
         ToDate = (MyTextView)findViewById(R.id.ed_ToDate);
@@ -125,6 +125,14 @@ LinearLayout Row1 ;
         ManNm.setText( sharedPreferences.getString("UserName", ""));
         ManNm.setError(null);
 
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy", Locale.ENGLISH);
+        String currentYear = sdf.format(new Date());
+
+
+        FromDate.setText("01/01/"+currentYear);
+        ToDate.setText("31/12/"+currentYear);
+
     }
 
 
@@ -150,14 +158,22 @@ LinearLayout Row1 ;
     };
 
     private void showDate(int year, int month, int day) {
+        if(CurrentYear.equalsIgnoreCase("-1")){
+            CurrentYear=year+"";
+        }
         if (FlgDate == 1) {
-            FromDate.setText(new StringBuilder().append(intToString(Integer.valueOf(day), 2)).append("/")
-                    .append(intToString(Integer.valueOf(month), 2)).append("/").append(year));
+          /*  FromDate.setText(new StringBuilder().append(intToString(Integer.valueOf(day), 2)).append("/")
+                    .append(intToString(Integer.valueOf(month), 2)).append("/").append(year));*/
+
+           FromDate.setText(new StringBuilder().append(intToString(Integer.valueOf(day), 2)).append("/")
+                    .append(intToString(Integer.valueOf(month), 2)).append("/").append(CurrentYear));
+
+
         }
 
         if (FlgDate == 2) {
             ToDate.setText(new StringBuilder().append(intToString(Integer.valueOf(day), 2)).append("/")
-                    .append(intToString(Integer.valueOf(month), 2)).append("/").append(year));
+                    .append(intToString(Integer.valueOf(month), 2)).append("/").append(CurrentYear));
         }
     }
     public static String intToString(int num, int digits) {
@@ -521,5 +537,11 @@ LinearLayout Row1 ;
         FromDate.setText(sdf1.format( c1.getTime()) +"");
 
 
+    }
+    public void btn_back(View view) {
+        Intent intent = new Intent(getApplicationContext(), GalaxyMainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
     }
 }

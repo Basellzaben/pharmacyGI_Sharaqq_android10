@@ -26,13 +26,13 @@ import java.util.Locale;
  */
 public class Header_Frag extends Fragment {
 
-    private ImageView Option,Img_Setting;
+    private ImageView Option, Img_Setting;
     private SimpleSideDrawer mNav;
-    Methdes.MyTextView tv_CpmpanyName , tv_UserNm ;
+    Methdes.MyTextView tv_CpmpanyName, tv_UserNm;
     private ArrayList<Main_List_Itme> myList_Setting;
     private ListView listView;
-    String lan  = "en";
-    Locale locale ;
+
+    Locale locale;
 
  /*   @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,30 +45,21 @@ public class Header_Frag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.getContext());
-          lan =  Locale.getDefault().getDisplayLanguage();
-          lan=  sharedPreferences.getString("Lan", "");
-        lan ="ar";
-        View view=inflater.inflate(R.layout.header_frag,container, false);
+
+        View view = inflater.inflate(R.layout.header_frag, container, false);
         Initi(view);
 
 
-
-
         mNav = new SimpleSideDrawer(getActivity());
-        if(lan.equalsIgnoreCase("en")) {
-            mNav.setLeftBehindContentView(R.layout.setting_list);
-        }else{
-
-            mNav.setRightBehindContentView(R.layout.setting_list);
-
-        }
 
 
+        mNav.setRightBehindContentView(R.layout.setting_list);
 
-  if ( ComInfo.UserType ==1){
-      FillData_Setting();
-        }else{
-      FillData_Setting2();
+
+        if (ComInfo.UserType == 1) {
+            FillData_Setting();
+        } else {
+            FillData_Setting2();
         }
 
         Option.setOnClickListener(new View.OnClickListener() {
@@ -77,34 +68,21 @@ public class Header_Frag extends Fragment {
                 ShwoPop(v);
             }
         });
-        tv_CpmpanyName = (Methdes.MyTextView)view.findViewById(R.id.tv_CpmpanyName);
-        tv_UserNm = (Methdes.MyTextView)view.findViewById(R.id.tv_UserNm);
+        tv_CpmpanyName = (Methdes.MyTextView) view.findViewById(R.id.tv_CpmpanyName);
+        tv_UserNm = (Methdes.MyTextView) view.findViewById(R.id.tv_UserNm);
 
-        tv_UserNm.setText( sharedPreferences.getString("UserName", "") + " / " + sharedPreferences.getString("TypeDesc", "") );
+        tv_UserNm.setText(sharedPreferences.getString("UserName", "") + " / " + sharedPreferences.getString("TypeDesc", ""));
 
-        tv_CpmpanyName.setText( DB.GetValue(this.getContext(),"ComanyInfo","CompanyNm","1=1"));
-        if(lan.equalsIgnoreCase("en")){
+        tv_CpmpanyName.setText(DB.GetValue(this.getContext(), "ComanyInfo", "CompanyNm", "1=1"));
+
         Img_Setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-
-
-                mNav.toggleLeftDrawer();
+                mNav.toggleRightDrawer();
                 NotificationFun();
             }
         });
-        }   else
-        {
-            Img_Setting.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-
-                    mNav.toggleRightDrawer();
-                    NotificationFun();
-                }
-            });
-        }
 
 
         return view;
@@ -112,19 +90,18 @@ public class Header_Frag extends Fragment {
 
     private void Initi_ar(View view) {
 
-        Option=(ImageView)view.findViewById(R.id.imageView5);
-        Img_Setting=(ImageView)view.findViewById(R.id.imageView6);
+        Option = (ImageView) view.findViewById(R.id.imageView5);
+        Img_Setting = (ImageView) view.findViewById(R.id.imageView6);
         mNav = new SimpleSideDrawer(getActivity());
         mNav.setRightBehindContentView(R.layout.setting_list);
 
 
-
     }
+
     private void Initi(View view) {
 
-        Option=(ImageView)view.findViewById(R.id.imageView5);
-        Img_Setting=(ImageView)view.findViewById(R.id.imageView6);
-
+        Option = (ImageView) view.findViewById(R.id.imageView5);
+        Img_Setting = (ImageView) view.findViewById(R.id.imageView6);
 
 
     }
@@ -155,104 +132,77 @@ public class Header_Frag extends Fragment {
     ////////////////////////////////////////////////////////////////////////////////////////////////////
 
     private void NotificationFun() {
-        listView=(ListView)mNav.findViewById(R.id.listView11);
-        listView.setAdapter(new Setting_List_Adapter(getActivity(),myList_Setting));
+        listView = (ListView) mNav.findViewById(R.id.listView11);
+        listView.setAdapter(new Setting_List_Adapter(getActivity(), myList_Setting));
 
     }
 
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////
     private void FillData_Setting() {
-        String []arr=getResources().getStringArray(R.array.Main_Item);
-        myList_Setting=new ArrayList<>();
-        Main_List_Itme itme=new Main_List_Itme();
+        String[] arr = getResources().getStringArray(R.array.Main_Item);
+        myList_Setting = new ArrayList<>();
+        Main_List_Itme itme = new Main_List_Itme();
         itme.setTitle(arr[0]);
-        itme.setImg(R.mipmap.see0);
-        myList_Setting.add(itme);
-
-
-        itme=new Main_List_Itme();
-        itme.setTitle(arr[1]);
         itme.setImg(R.mipmap.see1);
         myList_Setting.add(itme);
 
-        itme=new Main_List_Itme();
-        itme.setTitle(arr[2]);
-        itme.setImg(R.mipmap.see2);
-        myList_Setting.add(itme);
-
-        /*  itme=new Main_List_Itme();
-        itme.setTitle(arr[3]);
-        itme.setImg(R.mipmap.see3);
-        myList_Setting.add(itme);
-
-      itme=new Main_List_Itme();
-        itme.setTitle(arr[4]);
-        itme.setImg(R.mipmap.see4);
-        myList_Setting.add(itme);*/
-
-        itme=new Main_List_Itme();
-        itme.setTitle(arr[5]);
-        itme.setImg(R.mipmap.see5);
-        myList_Setting.add(itme);
-
-        itme=new Main_List_Itme();
-        itme.setTitle(arr[6]);
-        itme.setImg(R.mipmap.see6);
-        myList_Setting.add(itme);
-
-        itme=new Main_List_Itme();
-        itme.setTitle(arr[7]);
-        itme.setImg(R.mipmap.see7);
-        myList_Setting.add(itme);
-
-     /*   itme=new Main_List_Itme();
-        itme.setTitle(arr[8]);
-        itme.setImg(R.mipmap.see8);
-        myList_Setting.add(itme);
-*/
-        itme=new Main_List_Itme();
-        itme.setTitle(arr[9]);
-        itme.setImg(R.mipmap.see9);
-        myList_Setting.add(itme);
-
-        itme=new Main_List_Itme();
-        itme.setTitle(arr[10]);
-        itme.setImg(R.mipmap.see10);
-        myList_Setting.add(itme);
-
-        itme=new Main_List_Itme();
-        itme.setTitle(arr[11]);
+        itme = new Main_List_Itme();
+        itme.setTitle(arr[1]);
         itme.setImg(R.mipmap.see11);
         myList_Setting.add(itme);
 
-       /* itme=new Main_List_Itme();
-        itme.setTitle(arr[12]);
-        itme.setImg(R.mipmap.see12);
-        myList_Setting.add(itme);*/
-/*
-        itme=new Main_List_Itme();
-        itme.setTitle(arr[13]);
-        itme.setImg(R.mipmap.see13);
+
+        itme = new Main_List_Itme();
+        itme.setTitle(arr[2]);
+        itme.setImg(R.mipmap.see11);
         myList_Setting.add(itme);
 
-       itme=new Main_List_Itme();
-        itme.setTitle(arr[14]);
-        itme.setImg(R.mipmap.see14);
-        myList_Setting.add(itme);*/
-
-     /*   itme=new Main_List_Itme();
-        itme.setTitle(arr[15]);
-        itme.setImg(R.mipmap.see15);
+        itme = new Main_List_Itme();
+        itme.setTitle(arr[3]);
+        itme.setImg(R.mipmap.see2);
         myList_Setting.add(itme);
-*/
-        itme=new Main_List_Itme();
-        itme.setTitle(arr[16]);
+
+
+        itme = new Main_List_Itme();
+        itme.setTitle(arr[4]);
+        itme.setImg(R.mipmap.see5);
+        myList_Setting.add(itme);
+
+        itme = new Main_List_Itme();
+        itme.setTitle(arr[5]);
+        itme.setImg(R.mipmap.see6);
+        myList_Setting.add(itme);
+
+        itme = new Main_List_Itme();
+        itme.setTitle(arr[6]);
+        itme.setImg(R.mipmap.see7);
+        myList_Setting.add(itme);
+
+
+        itme = new Main_List_Itme();
+        itme.setTitle(arr[7]);
+        itme.setImg(R.mipmap.see9);
+        myList_Setting.add(itme);
+
+        itme = new Main_List_Itme();
+        itme.setTitle(arr[8]);
+        itme.setImg(R.mipmap.see10);
+        myList_Setting.add(itme);
+
+        itme = new Main_List_Itme();
+        itme.setTitle(arr[9]);
+        itme.setImg(R.mipmap.see11);
+        myList_Setting.add(itme);
+
+
+        itme = new Main_List_Itme();
+        itme.setTitle(arr[10]);
         itme.setImg(R.mipmap.see16);
         myList_Setting.add(itme);
 
-        itme=new Main_List_Itme();
-        itme.setTitle(arr[17]);
+        itme = new Main_List_Itme();
+        itme.setTitle(arr[11]);
         itme.setImg(R.mipmap.see17);
         myList_Setting.add(itme);
 
@@ -262,51 +212,54 @@ public class Header_Frag extends Fragment {
         itme.setImg(R.mipmap.see0);
         myList_Setting.add(itme);*/
 
-        itme=new Main_List_Itme();
-        itme.setTitle(arr[19]);
+        itme = new Main_List_Itme();
+        itme.setTitle(arr[12]);
         itme.setImg(R.mipmap.see9);
         myList_Setting.add(itme);
 
-         itme=new Main_List_Itme();
-        itme.setTitle(arr[20]);
+        itme = new Main_List_Itme();
+        itme.setTitle(arr[13]);
         itme.setImg(R.mipmap.see3);
         myList_Setting.add(itme);
 
-        itme=new Main_List_Itme();
-        itme.setTitle(arr[21]);
+
+        itme = new Main_List_Itme();
+        itme.setTitle(arr[14]);
+        itme.setImg(R.mipmap.see3);
+        myList_Setting.add(itme);
+
+
+        itme = new Main_List_Itme();
+        itme.setTitle(arr[15]);
         itme.setImg(R.mipmap.see18);
         myList_Setting.add(itme);
 
     }
-    private void FillData_Setting2() {
-        String []arr=getResources().getStringArray(R.array.Main_Item2);
-        myList_Setting=new ArrayList<>();
 
-        Main_List_Itme itme=new Main_List_Itme();
+    private void FillData_Setting2() {
+        String[] arr = getResources().getStringArray(R.array.Main_Item2);
+        myList_Setting = new ArrayList<>();
+
+        Main_List_Itme itme = new Main_List_Itme();
         itme.setTitle(arr[0]);
         itme.setImg(R.mipmap.see3);
         myList_Setting.add(itme);
 
-
-        /*itme=new Main_List_Itme();
+        itme = new Main_List_Itme();
         itme.setTitle(arr[1]);
-        itme.setImg(R.mipmap.see11);
+        itme.setImg(R.mipmap.see3);
         myList_Setting.add(itme);
-*/
 
-        itme=new Main_List_Itme();
-        itme.setTitle(arr[1]);
+
+        itme = new Main_List_Itme();
+        itme.setTitle(arr[2]);
         itme.setImg(R.mipmap.see17);
         myList_Setting.add(itme);
 
 
-     /*   itme=new Main_List_Itme();
-        itme.setTitle(arr[2]);
-        itme.setImg(R.mipmap.see13);
-        myList_Setting.add(itme);*/
 
-        itme=new Main_List_Itme();
-        itme.setTitle(arr[2]);
+        itme = new Main_List_Itme();
+        itme.setTitle(arr[3]);
         itme.setImg(R.mipmap.see18);
         myList_Setting.add(itme);
 

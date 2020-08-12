@@ -74,20 +74,12 @@ public class cls_Search_Inv_Sale_adapter extends BaseAdapter {
         TextView tv_invoType = (TextView) convertView.findViewById(R.id.tv_invoType);
 
        if(cls_search_po.getType().equals("0")) {
-           if(ComInfo.Lan.equalsIgnoreCase("ar")) {
                tv_invoType.setText("نقدي");
-           }else    {
-               tv_invoType.setText("Cash");
-           }
        }
        else {
 
-           if(ComInfo.Lan.equalsIgnoreCase("ar")) {
                tv_invoType.setText("ذمم");
-           }else
-           {
-               tv_invoType.setText("Receivables");
-           }
+
        }
 
 

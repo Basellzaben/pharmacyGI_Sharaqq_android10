@@ -74,11 +74,9 @@ public class cls_Tab_Sales_adapter extends BaseAdapter {
 
         MyTextView tv_invoType = (MyTextView) convertView.findViewById(R.id.tv_invoType);
          if (cls_search_po.getType().equals("-3")){
-             if(ComInfo.Lan.equalsIgnoreCase("ar")) {
+
                  tv_invoType.setText("نوع الفاتورة");
-             }else {
-                 tv_invoType.setText("Invoice Type");
-             }
+
 
 
          }
@@ -86,18 +84,14 @@ public class cls_Tab_Sales_adapter extends BaseAdapter {
 
 
        else if(cls_search_po.getType().equals("0")) {
-             if(ComInfo.Lan.equalsIgnoreCase("ar")) {
+
                  tv_invoType.setText("نقدية");
-             }else {
-                 tv_invoType.setText("Cash");
-             }
+
        }
        else {
-             if(ComInfo.Lan.equalsIgnoreCase("ar")) {
+
                  tv_invoType.setText("ذمــم");
-             }else {
-                 tv_invoType.setText("Receivables");
-             }
+
        }
 
 
@@ -106,34 +100,25 @@ public class cls_Tab_Sales_adapter extends BaseAdapter {
         MyTextView tv_notes = (MyTextView) convertView.findViewById(R.id.tv_notes);
         if (cls_search_po.getNotes().equals("-3")){
 
-            if(ComInfo.Lan.equalsIgnoreCase("ar")) {
+
                 tv_notes.setText("حالة الفاتورة");
 
-            }else {
-                tv_notes.setText("Invoice status");
 
-            }
 
         }
         else if(cls_search_po.getNotes().equals("-1")) {
 
 
-            if(ComInfo.Lan.equalsIgnoreCase("ar")) {
-                tv_notes.setText("غير مرحلة");
-            }else {
-                tv_notes.setText("Unposted");
 
-            }
+                tv_notes.setText("غير مرحلة");
+
         }
         else {
             tv_notes.setText("مرحلة");
 
-            if(ComInfo.Lan.equalsIgnoreCase("ar")) {
-                tv_notes.setText("مرحلة");
-            }else {
-                tv_notes.setText("Posted");
 
-            }
+                tv_notes.setText("مرحلة");
+
         }
 
         if(position%2==0)

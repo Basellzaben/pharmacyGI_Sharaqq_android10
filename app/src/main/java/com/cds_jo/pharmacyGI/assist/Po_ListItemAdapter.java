@@ -35,6 +35,8 @@ public class Po_ListItemAdapter extends RecyclerView.Adapter<PoListViewHolder>  
         holder.ItemNm.setText(spacecrafts.get(position).getItem_Name());
         holder.tv_Qty.setText(spacecrafts.get(position).getQty());
         holder.tv_BoQty.setText(spacecrafts.get(position).getBounce());
+        holder.ItemPrice.setText(spacecrafts.get(position).getPrice());
+        holder.CustQty.setText(spacecrafts.get(position).getCustQty());
     }
 
     @Override

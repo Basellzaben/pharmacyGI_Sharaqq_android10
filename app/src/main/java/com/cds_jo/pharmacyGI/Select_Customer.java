@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cds_jo.pharmacyGI.CustLocations.CustomerLocation;
 import com.cds_jo.pharmacyGI.assist.Acc_ReportActivity;
 import com.cds_jo.pharmacyGI.assist.CustomerReturnQtyActivity;
 import com.cds_jo.pharmacyGI.assist.Customer_List;
@@ -27,8 +29,11 @@ import com.cds_jo.pharmacyGI.assist.Customers;
 import com.cds_jo.pharmacyGI.assist.OrdersItems;
 import com.cds_jo.pharmacyGI.assist.Sale_InvoiceActivity;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 
 public class Select_Customer extends DialogFragment implements View.OnClickListener  {
@@ -38,14 +43,14 @@ public class Select_Customer extends DialogFragment implements View.OnClickListe
     TextView itemnm;
     private SearchView mSearchView;
     EditText filter   ;
-    ImageView btn_filter_search ;
+
     @Override
     public View onCreateView( final LayoutInflater inflater   , ViewGroup container  ,Bundle savestate) {
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         form = inflater.inflate(R.layout.activity_select__customer, container, false);
         // Get the SearchView and set the searchable configuration
-        btn_filter_search =(ImageView) form.findViewById(R.id.brn_seachAcc);
+
         filter =    (EditText) form.findViewById(R.id.et_Search_filter);
         filter.addTextChangedListener(new TextWatcher() {
             @Override
@@ -67,15 +72,7 @@ public class Select_Customer extends DialogFragment implements View.OnClickListe
         });
         onProgressUpdate("");
 
-        btn_filter_search.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-
-
-                onProgressUpdate(filter.getText().toString());
-            }
-        });
         /*Intent intent =getActivity().getIntent();
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
@@ -170,6 +167,9 @@ public class Select_Customer extends DialogFragment implements View.OnClickListe
                 else if (getArguments().getString("Scr") == "RetnQty") {
                     ((CustomerReturnQtyActivity) getActivity()).Set_Cust(customers.getAcc(), customers.getNm());
 
+                }  else if (getArguments().getString("Scr") == "CusfCard") {
+                    ((CustomerLocation) getActivity()).Set_Cust(customers.getAcc(), customers.getNm());
+
                 }
                 else if (getArguments().getString("Scr") == "DoctorReprot") {
                     ((DoctorReportActivity) getActivity()).Set_Cust(customers.getAcc(), customers.getNm());
@@ -183,6 +183,12 @@ public class Select_Customer extends DialogFragment implements View.OnClickListe
 
 
         });
+
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.gravity = Gravity.TOP | Gravity.CENTER;
+        lp.x = 0;
+        lp.y = 0;
+        this.getDialog().getWindow().setAttributes(lp);
         this.getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         return  form;
     }
@@ -210,13 +216,30 @@ public class Select_Customer extends DialogFragment implements View.OnClickListe
         if (getArguments().getString("Scr") == "DoctorReprot") {
             Cust_type= getArguments().getString("PrvVisitType");
         }
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+        String currentDateandTime = sdf.format(new Date());
 
-        if (t.toString().equals("")){
-              query = "Select  distinct no,name  from Customers  ";//   Customers.Cust_type='"+Cust_type+"'";
-        }
-        else {
-            query = "Select distinct no,name from Customers where name like '%" + t + "%' or  no like '%" + t + "%'";//  And Customers.Cust_type='"+Cust_type+"'";
-        }
+
+            if (getArguments().getString("Scr") == "Gps") {
+
+                if (t.toString().equals("")){
+                    query = "Select  distinct no,name ,countryNm from Customers  ";//  where countryNo in ( select AreaNo from Month_Dates where Posted='1'  and TodayDate   ='"+currentDateandTime+"')";//   Customers.Cust_type='"+Cust_type+"'";
+                }
+                else {
+                    query = "Select distinct no,name ,countryNm from Customers where   no like '%"+t+"%' or name like '%"+t+"%'  ";// and    countryNo in ( select AreaNo from Month_Dates where  Posted='1'  and TodayDate   ='"+currentDateandTime+"')";//
+                }
+            }else {
+
+                if (t.toString().equals("")){
+                    query = " Select  distinct no,name ,countryNm from Customers  ";//   Customers.Cust_type='"+Cust_type+"'";
+                }
+                else {
+                    query = " Select distinct no,name ,countryNm from Customers where   no like '%"+t+"%' or name like '%"+t+"%' ";
+                }
+            }
+
+   //   query = "Select distinct no,name ,countryNm from Customers ";
+
         Cursor c = sqlHandler.selectQuery(query);
         ArrayList<Customers> customersesList = new ArrayList<Customers>();
         customersesList.clear();
@@ -224,37 +247,17 @@ public class Select_Customer extends DialogFragment implements View.OnClickListe
             if(c.moveToFirst()){
              do{
                  Customers     customers = new Customers();
-
                  customers.setNo(c.getString(c.getColumnIndex("no")));
                  customers.setAcc(c.getString(c.getColumnIndex("no")));
                  customers.setNm(c.getString(c.getColumnIndex("name")));
-
+                 customers.setCountryNm(c.getString(c.getColumnIndex("countryNm")));
                  customersesList.add(customers);
 
              }while (c.moveToNext());
             }
             c.close();
         }
-    /*    try {
-            JSONObject js = new JSONObject(text[0]);
-            JSONArray js_no= js.getJSONArray("no");
-            JSONArray js_name= js.getJSONArray("name");
 
-            ArrayList<Customers> customersesList = new ArrayList<Customers>();
-
-
-
-            for(int i =0 ; i< js_no.length(); i++) {
-                Customers     customers = new Customers();
-
-                customers.setNo(js_no.get(i).toString());
-                customers.setAcc(js_no.get(i).toString());
-                customers.setNm(js_name.get(i).toString());
-
-                customersesList.add(customers);
-            }
-
-*/
 
 
 
@@ -263,45 +266,14 @@ public class Select_Customer extends DialogFragment implements View.OnClickListe
 
             items_Lsit.setAdapter(Customer_List_adapter);
 
-/*
-             TextView tdept = (TextView)findViewById(R.id.tv_t_dept);
-             TextView tcred = (TextView)findViewById(R.id.tv_t_cred);
-             TextView tbb = (TextView)findViewById(R.id.tv_t_bb);
-             tdept.setText(String.valueOf(t_dept));
-             tcred.setText(String.valueOf(t_cred));
-             tbb.setText(String.valueOf(t_bb));
-             trate.setText(String.valueOf(t_rate));
-             tt_tot.setText(String.valueOf(tot));
-*/
 
-        /*}
-        catch (    Exception ex)
-        {
-
-        }*/
     }
 
        public void Exist_Pop ()
        {
            this.dismiss();
        }
-    /*public  void btn_filter()
-    {
-        Thread rant = new Thread() {
-            public void run() {
-                CallWebServices ws = new CallWebServices();
-                ws.GetAccNo(filter.getText().toString(), "s");
-            }
-        };
-        rant.start();
-        try {
-            rant.join();
-            onProgressUpdate(We_Result.Msg);
 
-        } catch (Exception ex) {
-
-        }
-    }*/
     @Override
     public void onClick(View v) {
         Button bu = (Button) v ;
@@ -311,7 +283,7 @@ public class Select_Customer extends DialogFragment implements View.OnClickListe
         else  if (bu.getText().toString().equals("Add")){
             Toast.makeText(getActivity(),
                     "Your Message", Toast.LENGTH_SHORT).show();
-         //   ((OrdersItems)getActivity()).Save_Method("maen");
+
 
 
         }

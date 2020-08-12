@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="60dp"
+    android:layout_height="90dp"
     android:layout_margin="1dp"
     android:orientation="horizontal"
     card_view:cardCornerRadius="10dp"
@@ -10,133 +11,166 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="90dp"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:weightSum="2">
+            android:weightSum="3">
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1.4"
                 android:orientation="vertical"
                 android:weightSum="2">
 
-                <Methdes.MyTextView
-                    android:id="@+id/tv_ItemNm"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:text="TextView"
-                    android:textColor="#000"
-                    android:textSize="16sp" />
+                    android:layout_weight="1.4"
+                    android:background="@drawable/dotted"
+                    android:orientation="horizontal">
 
-                <Methdes.MyTextView
-                    android:id="@+id/tv_ItemNo"
+                    <Methdes.MyTextView
+                        android:id="@+id/tv_ItemNm"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="TextView"
+                        android:textColor="#000"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
                     android:layout_marginBottom="8dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="1"
-                    android:text="Name"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                    android:layout_weight="0.6"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="0dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/dotted_right"
+                        android:orientation="horizontal"
+                        android:padding="0dp"
+                        android:paddingStart="20dp"
+                        android:weightSum="2">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.5"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textView273"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="No:"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="0dp"
+                            android:layout_weight="1.5"
+                            android:gravity="left"
+                            android:orientation="horizontal"
+                            android:padding="0dp">
+
+                            <Methdes.MyTextView
+                                android:id="@+id/tv_ItemNo"
+                                android:layout_width="139dp"
+                                android:layout_height="match_parent"
+                                android:layout_alignParentStart="false"
+                                android:layout_alignParentTop="false"
+                                android:layout_marginStart="5dp"
+                                android:layout_weight="1"
+                                android:gravity="top|left"
+                                android:text="Name"
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textView277"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical"
+                                android:text="Price :" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <Methdes.MyTextView
+                                android:id="@+id/tv_ItemPrice"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentTop="true"
+                                android:layout_marginStart="5dp"
+                                android:layout_weight="1"
+                                android:gravity="left|center_vertical"
+                                android:text="Name"
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="8dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+                android:layout_gravity="center"
+                android:layout_weight="1.3"
+                android:orientation="vertical"
+                android:weightSum="4">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginEnd="2dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="horizontal"
-                        android:paddingBottom="3dp"
-                        android:paddingTop="3dp">
-
-                        <ImageButton
-                            android:id="@+id/btn_QtyDec"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="@drawable/pink_fill_white"
-                            android:padding="10dp"
-                            android:scaleType="fitXY"
-                            android:src="@mipmap/decrement" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="horizontal"
-                        android:paddingBottom="3dp"
-                        android:paddingTop="3dp">
-
-                        <EditText
-                            android:id="@+id/tv_Qty"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:background="@drawable/btn_cir_white_fill_black"
-                            android:ems="10"
-                            android:gravity="center"
-                            android:inputType="number"
-                             />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="horizontal"
-                        android:paddingBottom="3dp"
-                        android:paddingTop="3dp">
-
-                        <ImageButton
-                            android:id="@+id/btn_QtyInc"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="@drawable/pink_fill_white"
-
-                            android:padding="10dp"
-                            android:scaleType="fitXY"
-                            android:src="@mipmap/increment" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginStart="2dp"
-                    android:layout_weight="1"
+                    android:layout_height="0dp"
+                    android:layout_weight="2.5"
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
+                        android:layout_marginEnd="5dp"
                         android:layout_weight="1"
                         android:orientation="horizontal"
                         android:weightSum="3">
@@ -146,18 +180,21 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:orientation="horizontal"
-                            android:paddingBottom="3dp"
-                            android:paddingTop="3dp">
+                            android:paddingTop="3dp"
+                            android:paddingBottom="0dp">
 
                             <ImageButton
-                                android:id="@+id/btn_BoDec"
+                                android:id="@+id/btn_QtyDec"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:background="@drawable/pink_fill_white"
-                                android:padding="10dp"
+                                android:paddingLeft="3dp"
+                                android:paddingTop="8dp"
+                                android:paddingRight="3dp"
+                                android:paddingBottom="8dp"
                                 android:scaleType="fitXY"
-                                android:src="@mipmap/decrement" />
+                                android:src="@mipmap/dec" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -165,18 +202,19 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:orientation="horizontal"
-                            android:paddingBottom="3dp"
-                            android:paddingTop="3dp">
+                            android:paddingTop="3dp"
+                            android:paddingBottom="0dp">
 
                             <EditText
-                                android:id="@+id/tv_BoQty"
+                                android:id="@+id/tv_Qty"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_height="56dp"
                                 android:layout_weight="1"
                                 android:background="@drawable/btn_cir_white_fill_black"
                                 android:ems="10"
                                 android:gravity="center"
-                                android:inputType="number" />
+                                android:inputType="number"
+                                android:selectAllOnFocus="true" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -184,23 +222,205 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:orientation="horizontal"
-                            android:paddingBottom="3dp"
-                            android:paddingTop="3dp">
+                            android:paddingTop="3dp"
+                            android:paddingBottom="0dp">
 
                             <ImageButton
-                                android:id="@+id/btn_BoInc"
+                                android:id="@+id/btn_QtyInc"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:background="@drawable/pink_fill_white"
-                                android:padding="10dp"
+
+                                android:paddingLeft="3dp"
+                                android:paddingTop="8dp"
+                                android:paddingRight="3dp"
+                                android:paddingBottom="8dp"
                                 android:scaleType="fitXY"
-                                android:src="@mipmap/increment" />
+                                android:src="@mipmap/inc" />
                         </LinearLayout>
                     </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:weightSum="3">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:paddingTop="3dp"
+                                android:paddingBottom="0dp">
+
+                                <ImageButton
+                                    android:id="@+id/btn_BoDec"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/pink_fill_white"
+                                    android:paddingLeft="3dp"
+                                    android:paddingTop="8dp"
+                                    android:paddingRight="3dp"
+                                    android:paddingBottom="8dp"
+                                    android:scaleType="fitXY"
+                                    android:src="@mipmap/dec" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:paddingTop="3dp"
+                                android:paddingBottom="0dp">
+
+                                <EditText
+                                    android:id="@+id/tv_BoQty"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/btn_cir_white_fill_black"
+                                    android:digits="0123456789"
+                                    android:ems="10"
+                                    android:gravity="center"
+
+                                    android:inputType="number"
+                                    android:selectAllOnFocus="true" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:paddingTop="3dp"
+                                android:paddingBottom="0dp">
+
+                                <ImageButton
+                                    android:id="@+id/btn_BoInc"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/pink_fill_white"
+                                    android:paddingLeft="3dp"
+                                    android:paddingTop="8dp"
+                                    android:paddingRight="3dp"
+                                    android:paddingBottom="8dp"
+                                    android:scaleType="fitXY"
+                                    android:src="@mipmap/inc" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.4"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="2dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/blue_fill_white"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <TextView
+                            android:id="@+id/textView283"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="2dp"
+                            android:layout_weight="1.2"
+                            android:gravity="center"
+                            android:text="Customer qty"
+                            android:textColor="#000" />
+
+                        <EditText
+                            android:id="@+id/tv_CustQty"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.8"
+                            android:background="@drawable/pink_fill_white"
+                            android:gravity="center"
+                            android:text="Cust Qty"
+                            android:textColor="@android:color/holo_red_dark"
+                            android:textStyle="bold"
+                            android:inputType="number"
+                            android:selectAllOnFocus="true" />
+
+                    </LinearLayout>
+
                 </LinearLayout>
 
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"
+                android:orientation="vertical"
+                android:padding="2dp"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:paddingBottom="2dp">
+
+                    <ImageButton
+                        android:id="@+id/btn_CustQtyInc"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/pink_fill_white"
+
+                        android:paddingLeft="3dp"
+                        android:paddingTop="8dp"
+                        android:paddingRight="3dp"
+                        android:paddingBottom="8dp"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/inc" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/btn_CustQtyDec"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/pink_fill_white"
+                        android:paddingLeft="3dp"
+                        android:paddingTop="8dp"
+                        android:paddingRight="3dp"
+                        android:paddingBottom="8dp"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/dec" />
+                </LinearLayout>
+            </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>

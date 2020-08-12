@@ -1,6 +1,7 @@
 package com.cds_jo.pharmacyGI;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -32,12 +34,12 @@ public class GalaxyLoginActivity extends AppCompatActivity {
     private Context context;
     private EditText UserName, Password;
     private ImageView Login_Img;
-    int PHRLASTUPDATE =17;
-    private GoogleApiClient client;
-    String Lan  ="";
+    int PHRLASTUPDATE =18;
+
+
     Locale locale ;
     String q ;
-    SharedPreferences.Editor editor_EN;
+
     SqlHandler  sqlHandler ;
 
     @Override
@@ -72,21 +74,11 @@ public class GalaxyLoginActivity extends AppCompatActivity {
         }
         RadioButton rdoAr = (RadioButton)findViewById(R.id.rdoAr);
         RadioButton rdoEn = (RadioButton)findViewById(R.id.rdoEn);
-       /* if(sharedPreferences.getString("Lan", "").equalsIgnoreCase("ar"))
-        {
-            rdoAr.setChecked(true);
 
-
-        }else
-        {
-            rdoEn.setChecked(true);
-
-        }
-        rdoAr.setChecked(true);*/
         rdoAr.setChecked(true);
         UserName.setText(sharedPreferences.getString("man", ""));
         Password.setText(sharedPreferences.getString("password", ""));
-        editor_EN    = sharedPreferences.edit();
+
 
 
 
@@ -98,9 +90,8 @@ public class GalaxyLoginActivity extends AppCompatActivity {
                 RadioButton rdoEn = (RadioButton)findViewById(R.id.rdoEn);
                 SharedPreferences.Editor editor    = sharedPreferences.edit();
 
-                Lan="ar";
-                editor_EN.putString("Lan",Lan);
-                editor_EN.commit();
+
+
 
 
                   if(UserName.getText().toString().equals("admin") && Password.getText().toString().equalsIgnoreCase("12589")) {
@@ -168,7 +159,10 @@ public class GalaxyLoginActivity extends AppCompatActivity {
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
 
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+
+        getWindow().setSoftInputMode(
+                WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
+        );
     }
     private void  DataBaseChanges(){
 
@@ -335,7 +329,9 @@ public class GalaxyLoginActivity extends AppCompatActivity {
             sqlHandler.executeQuery("Alter Table OrdersSitting  Add  COLUMN  Visits  text null" );
         }catch ( SQLException e){ }
 
-
+        try{
+            sqlHandler.executeQuery("CREATE TABLE IF NOT EXISTS  ORDER_STUTES ( no integer primary key autoincrement,OrderNo text null, Posted text null , AB_SalesOrder text null ,AB_SalesBill text null ,Notes text null ,PrintOrder text null) ");
+        }catch ( SQLException e){ }
 
     }
     private void Initi() {

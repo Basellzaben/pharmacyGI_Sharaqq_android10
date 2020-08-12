@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+      android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layoutDirection="ltr">
-
+    android:layoutDirection="ltr"
+    android:fillViewport="true">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,25 +13,8 @@
         android:weightSum="3">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/Blue"
-            android:gravity="right|center"
-            android:orientation="vertical"
-            android:paddingRight="15dp">
-
-            <Methdes.MyTextView
-                android:id="@+id/textView254"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/Add_Item1"
-                android:textColor="#fff"
-                android:textSize="20sp" />
-        </LinearLayout>
-
-        <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:background="@color/Gray4"
             android:orientation="horizontal">
 
@@ -131,8 +112,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="3"
+            android:layout_height="450dp"
             android:background="#fff"
             android:orientation="horizontal"
             android:weightSum="3">
@@ -142,62 +122,134 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1.8"
                 android:background="#fff"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:weightSum="2">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="250dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.5"
                     android:orientation="vertical"
-                    android:weightSum="2">
+                    android:paddingLeft="10dp"
+                    android:weightSum="1">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1.3"
                         android:orientation="vertical"
-                        android:weightSum="2">
+                        android:weightSum="4">
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:orientation="horizontal"
-                            android:weightSum="2">
-
-                            <EditText
-                                android:id="@+id/et_qty"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_margin="20dp"
-                                android:layout_weight="1.5"
-                                android:background="@drawable/btn_cir_white_fill_black"
-                                android:ems="10"
-                                android:gravity="center_vertical|center"
-                                android:inputType="number" />
-
-                            <Methdes.MyTextView
-                                android:id="@+id/textView258"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="0.5"
-                                android:gravity="center"
-                                android:text="الكمية"
-                                android:textColor="#000"
-                                android:textSize="18sp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
+                            android:layout_height="60dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginTop="10dp"
                             android:orientation="horizontal"
                             android:weightSum="2">
 
                             <LinearLayout
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_margin="20dp"
-                                android:layout_weight="1.5"
+                                android:layout_weight="1.3"
+                                android:background="@drawable/btn_cir_white_fill_black"
+                                android:orientation="horizontal"
+                                android:weightSum="3">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="horizontal">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:orientation="horizontal">
+
+                                        <Button
+                                            android:id="@+id/btn_Dec"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:background="@mipmap/decrement"
+                                            android:textSize="30sp" />
+                                    </LinearLayout>
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="horizontal">
+
+                                    <EditText
+                                        android:id="@+id/et_qty"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginBottom="5dp"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/btn_cir_white_fill_black"
+                                        android:ems="10"
+                                        android:gravity="center_vertical|center"
+                                        android:inputType="number" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="horizontal">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:orientation="horizontal">
+
+                                        <Button
+                                            android:id="@+id/btn_Inc"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:background="@mipmap/increment"
+                                            android:textSize="30sp" />
+
+                                    </LinearLayout>
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.7"
+                                android:orientation="horizontal">
+
+                                <Methdes.MyTextView
+                                    android:id="@+id/textVifew258"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:text="الكمية"
+                                    android:textColor="#000"
+                                    android:textSize="18sp" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="horizontal"
+                            android:weightSum="2">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.3"
                                 android:background="@drawable/btn_cir_white_fill_black"
                                 android:gravity="center"
                                 android:orientation="horizontal"
@@ -225,34 +277,78 @@
                             <Methdes.MyTextView
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="0.5"
+                                android:layout_weight="0.7"
                                 android:gravity="center"
                                 android:text="الوحدة"
                                 android:textColor="#000"
                                 android:textSize="18sp" />
                         </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="horizontal"
+                            android:weightSum="2">
+
+                            <TextView
+                                android:id="@+id/et_Date"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_margin="0dp"
+                                android:layout_weight="1.3"
+                                android:background="@drawable/btn_cir_white_fill_black"
+                                android:ems="10"
+                                android:gravity="center_vertical|center"
+                                android:inputType="text" />
+
+                            <Methdes.MyTextView
+                                android:id="@+id/textVfifew258"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.7"
+                                android:gravity="center"
+                                android:text="تاريخ الصلاحية"
+                                android:textColor="#000"
+                                android:textSize="18sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="horizontal"
+                            android:weightSum="2">
+
+                            <EditText
+                                android:id="@+id/et_Batch"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_margin="0dp"
+                                android:layout_weight="1.3"
+                                android:background="@drawable/btn_cir_white_fill_black"
+                                android:ems="10"
+                                android:gravity="center_vertical|center"
+                                android:inputType="none|text" />
+
+                            <Methdes.MyTextView
+                                android:id="@+id/textView258"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.7"
+                                android:gravity="center"
+                                android:text="الباتش"
+                                android:textColor="#000"
+                                android:textSize="18sp" />
+                        </LinearLayout>
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="0.7"
-                        android:orientation="horizontal">
-
-                        <ImageButton
-                            android:id="@+id/btn_OpenCal"
-                            android:layout_width="45dp"
-                            android:layout_height="55dp"
-                            android:layout_marginLeft="29dp"
-                            android:layout_marginTop="20dp"
-                            android:background="@mipmap/icon_cal"
-                            android:scaleType="fitXY" />
-                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.5"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -272,7 +368,7 @@
 
                             android:background="@color/Pink"
                             android:onClick="ggg"
-                            android:text="@string/Cancle"
+                            android:text="رجـــوع"
                             android:textColor="#fff"
                             android:textSize="18sp" />
 
@@ -373,4 +469,4 @@
 
     </LinearLayout>
 
-</RelativeLayout>
+</ScrollView>

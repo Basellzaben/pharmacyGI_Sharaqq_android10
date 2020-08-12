@@ -11,8 +11,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.os.Bundle;
+ import android.content.pm.PackageManager;
+ import android.content.pm.ResolveInfo;
+ import android.database.Cursor;
+ import android.net.Uri;
+ import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
@@ -37,22 +40,34 @@ import com.cds_jo.pharmacyGI.assist.CheckAdapter;
 import com.cds_jo.pharmacyGI.assist.Cls_Check;
 import com.cds_jo.pharmacyGI.assist.Cls_Cur;
 import com.cds_jo.pharmacyGI.assist.Cls_Cur_Adapter;
+ import com.cds_jo.pharmacyGI.assist.Convert_RecVouch_To_Img;
  import com.cds_jo.pharmacyGI.assist.LoginActivity;
-import com.google.gson.Gson;
+ import com.cds_jo.pharmacyGI.assist.PopVoucherSing;
+ import com.google.gson.Gson;
+ import com.itextpdf.text.BadElementException;
+ import com.itextpdf.text.DocumentException;
+ import com.itextpdf.text.pdf.PdfWriter;
 
-import org.json.JSONException;
+ import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.DecimalFormat;
+ import java.io.File;
+ import java.io.FileNotFoundException;
+ import java.io.FileOutputStream;
+ import java.io.IOException;
+ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
+ import java.util.List;
+ import java.util.Locale;
 
 import Methdes.MethodToUse;
 import hearder.main.Header_Frag;
+
+ import static com.itextpdf.text.PageSize.A4;
 
 public class RecvVoucherActivity extends AppCompatActivity {
     ImageButton CustSearch;
@@ -81,47 +96,7 @@ public class RecvVoucherActivity extends AppCompatActivity {
        /* Toast.makeText(getApplicationContext(), "ca", Toast.LENGTH_SHORT)
                 .show();*/
     }
-    public static String getMonthName(int month){
-        switch(month+1){
-            case 1:
-                return "Jan";
 
-            case 2:
-                return "Feb";
-
-            case 3:
-                return "Mar";
-
-            case 4:
-                return "Apr";
-
-            case 5:
-                return "May";
-
-            case 6:
-                return "Jun";
-
-            case 7:
-                return "Jul";
-
-            case 8:
-                return "Aug";
-
-            case 9:
-                return "Sep";
-
-            case 10:
-                return "Oct";
-
-            case 11:
-                return "Nov";
-
-            case 12:
-                return "Dec";
-        }
-
-        return "";
-    }
     @Override
     protected Dialog onCreateDialog(int id) {
         // TODO Auto-generated method stub
@@ -460,16 +435,15 @@ public class RecvVoucherActivity extends AppCompatActivity {
     }
 
     public void btn_SearchCust(View v) {
-        ImageButton ib = (ImageButton) v;
 
-        if (ib == CustSearch) {
+
             Bundle bundle = new Bundle();
             bundle.putString("Scr", "RecVoch");
             FragmentManager Manager = getFragmentManager();
             Select_Customer obj = new Select_Customer();
             obj.setArguments(bundle);
-           // obj.show(Manager, null);
-        }
+           obj.show(Manager, null);
+
     }
 
     public void GetMaxRecNo() {
@@ -664,7 +638,7 @@ public class RecvVoucherActivity extends AppCompatActivity {
         // Setting OK Button
         alertDialog.setButton("نعم", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                btn_print(view);
+               // btn_print(view);
             }
         });
 
@@ -1385,7 +1359,7 @@ public class RecvVoucherActivity extends AppCompatActivity {
     }
     public void btn_print(View view) {
 
-       /* TextView DocNo = (TextView) findViewById(R.id.et_OrdeNo);
+        TextView DocNo = (TextView) findViewById(R.id.et_OrdeNo);
         String q = "Select distinct rc.DocNo  from RecVoucher rc   left join Customers c on c.no = rc.CustAcc  where rc.DocNo = '" + DocNo.getText().toString() + "'";
         SqlHandler sqlHandler = new SqlHandler(this);
 
@@ -1403,7 +1377,7 @@ public class RecvVoucherActivity extends AppCompatActivity {
         k.putExtra("Scr", "Sale_Inv");
         k.putExtra("OrderNo", OrdeNo.getText().toString());
         startActivity(k);
-        btn_new(view);*/
+        //btn_new(view);
 
     }
     public void btn_search_Recv(View view) {
@@ -1690,5 +1664,17 @@ public class RecvVoucherActivity extends AppCompatActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         finish();
+    }
+
+
+    public void Add_Sig(View view) {
+        TextView DocNo = (TextView) findViewById(R.id.et_OrdeNo);
+        Bundle bundle = new Bundle();
+        bundle.putString("Scr", "po");
+        bundle.putString("OrdeNo", DocNo.getText().toString());
+        FragmentManager Manager = getFragmentManager();
+        PopVoucherSing obj = new PopVoucherSing();
+        obj.setArguments(bundle);
+        obj.show(Manager, null);
     }
 }

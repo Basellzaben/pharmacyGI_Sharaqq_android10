@@ -9,7 +9,7 @@ public class StartUpActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_start_up);
+        setContentView(R.layout.start_up_layt);
 
             startActivity(new Intent(this,GalaxyLoginActivity.class));
 

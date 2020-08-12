@@ -7,7 +7,7 @@
  <color name="colorAccent">#FF4081</color>
 
     <color name="ColorPrimary">#ff8888</color>
-    <color name="ColorPrimaryDark">#F33</color>
+    <color name="ColorPrimaryDark">#FF3333</color>
     <color name="tabsScrollColor">#F00</color>
 
     <color name="Main_Gray">#292d31</color>
@@ -24,6 +24,8 @@
     <color name="Green">#89bd46</color>
     <color name="Blue">#4198ac</color>
     <color name="Footer_Menu">#3bb3c1</color>
+   <color name="RED">#C13B3B</color>
 
+   <color name="Red">#fa0307</color>
 
 </resources>

@@ -16,6 +16,25 @@ public class Cls_Invf {
     String  Place;
     String  dno;
 
+    public String getCustQty() {
+        return CustQty;
+    }
+
+    public void setCustQty(String custQty) {
+        CustQty = custQty;
+    }
+
+    String  CustQty;
+    public String getListIndex() {
+        return ListIndex;
+    }
+
+    public void setListIndex(String listIndex) {
+        ListIndex = listIndex;
+    }
+
+    String ListIndex;
+
     public int getRowNumber() {
         return RowNumber;
     }

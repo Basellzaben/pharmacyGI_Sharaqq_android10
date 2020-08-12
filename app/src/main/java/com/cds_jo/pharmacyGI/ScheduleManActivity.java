@@ -610,19 +610,7 @@ private  void checkCust(String BarCodeNo){
                      cls_daily_visitses.clear();
 
                     Cls_Daily_Visits clsDailyVisits = new Cls_Daily_Visits();
-if(ComInfo.Lan.equalsIgnoreCase("en")) {
-    clsDailyVisits.setCustNo("      " + "Customer No" + "        ");
-    clsDailyVisits.setCustNm("     " + " Customer Name" + "  ");
-    clsDailyVisits.setCustType("Customer Type ");
-    clsDailyVisits.setCustMobile("Net Total");
-    clsDailyVisits.setCustAddress("Net Total Previous Month");
-    clsDailyVisits.setNotes("Distance" + "(" + "M" + ")");
-    clsDailyVisits.setFlq("Visit States   ");
-    clsDailyVisits.setTf("Time Start   ");
-    clsDailyVisits.setTt("Time End   ");
-    clsDailyVisits.setSetColor("-2");
-    clsDailyVisits.setBarcode("Barcode");
-}else{
+
     clsDailyVisits.setCustNo(" " + " رقم العميل" + " ");
     clsDailyVisits.setCustNm("     " + "   اسم العميل" + "  ");
     clsDailyVisits.setCustType("  نوع العميل ");
@@ -635,7 +623,7 @@ if(ComInfo.Lan.equalsIgnoreCase("en")) {
     clsDailyVisits.setSetColor("-2");
     clsDailyVisits.setBarcode("الباركود");
 
-}
+
 
 
                      cls_daily_visitses.add(clsDailyVisits);
@@ -858,7 +846,7 @@ if(ComInfo.Lan.equalsIgnoreCase("en")) {
     }
     public  String GetDayName(Integer Day){
         String DayNm ="" ;
-        if(ComInfo.Lan.equalsIgnoreCase("ar")) {
+
             if (Day == 2) DayNm = "الاثنين";
             else if (Day == 3) DayNm = "الثلاثاء";
             else if (Day == 4) DayNm = "الاربعاء";
@@ -866,14 +854,8 @@ if(ComInfo.Lan.equalsIgnoreCase("en")) {
             else if (Day == 6) DayNm = "الجمعة";
             else if (Day == 7) DayNm = "السبت";
             else if (Day == 1) DayNm = "الاحد";
-        }else
-        {if (Day == 2) DayNm = "Monday";
-        else if (Day == 3) DayNm = "Tuesday";
-        else if (Day == 4) DayNm = "Wednesday";
-        else if (Day == 5) DayNm = "Thursday";
-        else if (Day == 6) DayNm = "Friday";
-        else if (Day == 7) DayNm = "Saturday";
-        else if (Day == 1) DayNm = "Sunday";}
+
+
         return  DayNm;
 
     }

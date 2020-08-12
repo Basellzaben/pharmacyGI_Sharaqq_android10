@@ -49,7 +49,7 @@ import hearder.main.Header_Frag;
 public class UpdateDataToMobileActivity2 extends AppCompatActivity {
 
     String str = "";
-    private static final int PHRLASTUPDATE =14;
+    private static final int PHRLASTUPDATE =16;
     private Handler progressBarHandler = new Handler();
     SqlHandler sqlHandler ;
 
@@ -216,6 +216,12 @@ public class UpdateDataToMobileActivity2 extends AppCompatActivity {
 
         try{
             sqlHandler.executeQuery("Alter Table SampleItem_Hdr  Add  COLUMN  ItemsCount  text null" );
+        }catch ( SQLException e){ }
+
+
+
+        try{
+            sqlHandler.executeQuery("Alter Table OrdersSitting  Add  COLUMN  SampleItems  text null" );
         }catch ( SQLException e){ }
 
 

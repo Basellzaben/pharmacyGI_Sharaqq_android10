@@ -1,95 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/LinearLayout1"
-    android:orientation="horizontal"
-    android:minHeight="40dp"
-    android:weightSum="5"
-    android:background="@color/Gray5"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/Gray5"
+    android:minHeight="40dp"
+    android:orientation="horizontal"
+    android:weightSum="7">
 
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="0.3"
-        android:background="#fff"
         android:layout_marginBottom="1dp"
         android:layout_marginRight="1dp"
-        android:padding="10dp">
+        android:layout_weight="0.5"
+        android:background="#fff"
+        android:orientation="horizontal"
+        android:padding="3dp">
 
         <ImageButton
-            android:layout_width="0dp"
             android:id="@+id/imageButton14"
-            android:layout_gravity="center"
-            android:onClick="btn_Delete_Item"
+            android:layout_width="0dp"
             android:layout_height="40dp"
+            android:layout_gravity="center"
             android:layout_weight="1"
-            android:background="@drawable/x" />
+            android:background="@drawable/x"
+            android:onClick="btn_Delete_Item" />
     </LinearLayout>
 
     <Methdes.MyTextView
-        android:id="@+id/tv_Qty"
+        android:id="@+id/tv_ExpDate"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginBottom="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_weight="0.9"
+        android:background="#fff"
+        android:gravity="center"
         android:text="Qty"
         android:textColor="#000"
-        android:gravity="center"
         android:textIsSelectable="false"
-        android:textSize="18sp"
-        android:layout_weight="1"
-        android:layout_gravity="center"
-        android:layout_height="match_parent"
-        android:layout_width="0dp"
-        android:background="#fff"
-        android:layout_marginBottom="1dp"
-        android:layout_marginLeft="1dp"
-        android:layout_marginRight="1dp" />
+        android:textSize="18sp" />
 
     <Methdes.MyTextView
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Unit"
-        android:id="@+id/tv_Unit"
-        android:textAlignment="center"
-        android:textColor="#000"
-        android:textSize="18sp"
-        android:layout_weight="1"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:layout_height="match_parent"
+        android:id="@+id/tv_Batch"
         android:layout_width="0dp"
-        android:background="#fff"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
         android:layout_marginBottom="1dp"
         android:layout_marginLeft="1dp"
-        android:layout_marginRight="1dp" />
+        android:layout_marginRight="1dp"
+        android:layout_weight="1.3"
+        android:background="#fff"
+        android:gravity="center"
+        android:text="Qty"
+        android:textColor="#000"
+        android:textIsSelectable="false"
+        android:textSize="18sp" />
+
+    <Methdes.MyTextView
+        android:id="@+id/tv_Qty"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginBottom="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_weight="0.8"
+        android:background="#fff"
+        android:gravity="center"
+        android:text="Qty"
+        android:textColor="#000"
+        android:textIsSelectable="false"
+        android:textSize="18sp" />
+
+    <Methdes.MyTextView
+        android:id="@+id/tv_Unit"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginBottom="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_weight="0.8"
+        android:background="#fff"
+        android:gravity="center"
+        android:text="Unit"
+        android:textAlignment="center"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#000"
+        android:textSize="18sp" />
 
     <Methdes.MyTextView
         android:id="@+id/tv_name"
-        android:text="TextView"
-        android:textColor="#000"
-        android:gravity="center"
-        android:textSize="18sp"
-        android:textIsSelectable="false"
-        android:layout_gravity="center"
-        android:layout_height="match_parent"
-        android:layout_weight="1.7"
         android:layout_width="0dp"
-        android:background="#fff"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
         android:layout_marginBottom="1dp"
         android:layout_marginLeft="1dp"
-        android:layout_marginRight="1dp" />
+        android:layout_marginRight="1dp"
+        android:layout_weight="1.7"
+        android:background="#fff"
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor="#000"
+        android:textIsSelectable="false"
+        android:textSize="18sp" />
 
     <Methdes.MyTextView
         android:id="@+id/tv_no"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginBottom="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_weight="1"
+        android:background="#fff"
+        android:gravity="center"
         android:text="no"
         android:textColor="#000"
-        android:gravity="center"
-        android:textSize="18sp"
-        android:layout_weight="1"
-        android:layout_gravity="center"
-        android:layout_height="match_parent"
-        android:layout_width="0dp"
-        android:background="#fff"
-        android:layout_marginBottom="1dp"
-        android:layout_marginLeft="1dp" />
+        android:textSize="18sp" />
 
 </LinearLayout>

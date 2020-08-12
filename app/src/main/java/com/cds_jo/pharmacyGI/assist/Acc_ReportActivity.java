@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.FragmentManager;
 import android.app.ProgressDialog;
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -26,6 +27,7 @@ import com.cds_jo.pharmacyGI.GalaxyMainActivity;
 import com.cds_jo.pharmacyGI.MainActivity;
 import com.cds_jo.pharmacyGI.R;
 import com.cds_jo.pharmacyGI.Select_Customer;
+import com.cds_jo.pharmacyGI.SqlHandler;
 import com.cds_jo.pharmacyGI.We_Result;
 
 import org.json.JSONArray;
@@ -56,9 +58,15 @@ public class Acc_ReportActivity extends FragmentActivity {
     public int FlgDate = 0;
     Methdes.MyTextView FromDate;
     Methdes.MyTextView ToDate ;
-
+    SqlHandler sqlHandler;
+    TextView acc;
+    TextView CustNm;
+    MyTextView CheqBal;
+    MyTextView Ball ;
+    MyTextView CusTop;
+    MyTextView NetBall;
     NumberFormat nf_out;
-
+    ArrayList<Cls_Acc_Report> cls_acc_reportsList;
     @Override
     protected Dialog onCreateDialog(int id) {
         // TODO Auto-generated method stub
@@ -104,10 +112,15 @@ public class Acc_ReportActivity extends FragmentActivity {
         android.support.v4.app.FragmentManager fragmentManager=getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.Frag1,frag).commit();
 
+         cls_acc_reportsList = new ArrayList<Cls_Acc_Report>();
+         CheqBal = (MyTextView)findViewById(R.id.tv_CheqBal);
+         Ball = (MyTextView)findViewById(R.id.tv_Ball);
+         CusTop = (MyTextView)findViewById(R.id.tv_CusTop);
+         NetBall = (MyTextView)findViewById(R.id.tv_NetBall);
 
          SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        final TextView CustNm =(TextView)findViewById(R.id.tv_cusnm);
-        TextView acc = (TextView)findViewById(R.id.tv_acc);
+         CustNm =(TextView)findViewById(R.id.tv_cusnm);
+         acc = (TextView)findViewById(R.id.tv_acc);
 
         Button Retrive=(Button)findViewById(R.id.button17);
         Retrive.setTypeface(MethodToUse.SetTFace(Acc_ReportActivity.this));
@@ -165,7 +178,72 @@ public class Acc_ReportActivity extends FragmentActivity {
         ToDate.setText("31/12/"+currentYear);
 
     }
+    public void btnPrint(View view) {
 
+//        TextView tv_acc = (TextView)findViewById(R.id.tv_acc);
+//        TextView tv_cusnm = (TextView)findViewById(R.id.tv_cusnm);
+//        EditText ed_ToDate = (EditText)findViewById(R.id.ed_ToDate);
+//        EditText ed_FromDate = (EditText)findViewById(R.id.ed_FromDate);
+
+
+
+        sqlHandler = new SqlHandler(this);
+
+        String q ="Delete from  ACC_REPORT where Cust_No ='"+ acc.getText().toString()+"'";
+        q ="Delete from  ACC_REPORT ";
+        sqlHandler.executeQuery(q);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd",Locale.ENGLISH);
+        String currentDateandTime = sdf.format(new Date());
+
+        Long i;
+        ContentValues cv =new ContentValues();
+        for (int x = 0; x < cls_acc_reportsList.size(); x++) {
+            Cls_Acc_Report contactListItems = new Cls_Acc_Report();
+            contactListItems = cls_acc_reportsList.get(x);
+
+
+            cv = new ContentValues();
+
+
+
+            cv.put("Cust_No", acc.getText().toString());
+            cv.put("Cust_Nm", CustNm.getText().toString());
+            cv.put("FDate",FromDate.getText().toString());
+            cv.put("TDate", ToDate.getText().toString());
+            cv.put("TrDate", currentDateandTime);
+            cv.put("Tot", contactListItems.getTot().toString().replace(",", ""));
+            cv.put("Rate", contactListItems.getRate().toString().replace(",", ""));
+            cv.put("Cred", contactListItems.getCred().toString().replace(",", ""));
+            cv.put("Dept", contactListItems.getDept().toString().replace(",", ""));
+            cv.put("Bb", contactListItems.getBb().toString().replace(",", ""));
+            cv.put("Des", contactListItems.getDes().toString().replace(",", ""));
+            cv.put("Date", contactListItems.getDate().toString()==null ?"" :  contactListItems.getDate().toString());
+            cv.put("Cur_no", contactListItems.getCur_no().toString().replace(",", ""));
+            cv.put("Doctype", contactListItems.getDoctype().toString().replace(",", ""));
+            cv.put("Doc_num", contactListItems.getDoc_num().toString().replace(",", ""));
+            cv.put("CheqBal", CheqBal.getText().toString());
+            cv.put("Ball",  Ball.getText().toString());
+            cv.put("CusTop",  CusTop.getText().toString());
+            cv.put("NetBall",  NetBall.getText().toString());
+            cv.put("Notes", "");
+            i = sqlHandler.Insert("ACC_REPORT", null, cv);
+        }
+
+        Intent k = new Intent(this, Convert_ccReportTo_ImgActivity.class);
+
+
+        k.putExtra("Scr", "po");
+        CustNm =(TextView)findViewById(R.id.tv_cusnm);
+
+        TextView   accno = (TextView)findViewById(R.id.tv_acc);
+        k.putExtra("cusnm", CustNm.getText().toString());
+        k.putExtra("OrderNo","");
+        k.putExtra("accno", accno.getText().toString());
+
+        startActivity(k);
+
+    }
      private  Double SToD(String str){
         String f = "";
         final NumberFormat nf = NumberFormat.getNumberInstance(Locale.US);
@@ -236,10 +314,7 @@ public class Acc_ReportActivity extends FragmentActivity {
         items_Lsit=(ListView)findViewById(R.id.lst_acc);
         items_Lsit.setAdapter(null);
 
-        final MyTextView CheqBal = (MyTextView)findViewById(R.id.tv_CheqBal);
-        final MyTextView Ball = (MyTextView)findViewById(R.id.tv_Ball);
-        final MyTextView CusTop = (MyTextView)findViewById(R.id.tv_CusTop);
-        final MyTextView NetBall = (MyTextView)findViewById(R.id.tv_NetBall);
+
 
         final   TextView acc = (TextView)findViewById(R.id.tv_acc);
 
@@ -347,7 +422,7 @@ public class Acc_ReportActivity extends FragmentActivity {
 
 
 
-                    final  ArrayList<Cls_Acc_Report> cls_acc_reportsList = new ArrayList<Cls_Acc_Report>();
+                    cls_acc_reportsList = new ArrayList<Cls_Acc_Report>();
 
                     Cls_Acc_Report cls_acc_report = new Cls_Acc_Report();
 
@@ -640,7 +715,19 @@ public class Acc_ReportActivity extends FragmentActivity {
     }
 
 
+    public void btn_searchCustomer_New(View view) {
+        TextView acc = (TextView)findViewById(R.id.tv_acc);
+        MyTextView tv_cusnm = (MyTextView)findViewById(R.id.tv_cusnm);
+        acc.setText("");
+        tv_cusnm.setText("");
 
+        Bundle bundle = new Bundle();
+        bundle.putString("Scr", "AccReport");
+        FragmentManager Manager =  getFragmentManager();
+        Select_Customer obj = new Select_Customer();
+        obj.setArguments(bundle);
+        obj.show(Manager, null);
+    }
 }
 
 

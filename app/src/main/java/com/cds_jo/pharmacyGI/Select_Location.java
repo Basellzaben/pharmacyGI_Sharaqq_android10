@@ -1,9 +1,11 @@
 package com.cds_jo.pharmacyGI;
 
 import android.app.DialogFragment;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -124,6 +126,10 @@ public class Select_Location extends DialogFragment implements View.OnClickListe
 
 
     public void onProgressUpdate(String t ){
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String u = sharedPreferences.getString("UserID", "");
+
         final List<String> items_ls = new ArrayList<String>();
         SqlHandler sqlHandler = new SqlHandler(getActivity());
         items_Lsit=(ListView) form.findViewById(R.id.listView2);
@@ -137,12 +143,29 @@ public class Select_Location extends DialogFragment implements View.OnClickListe
             Cust_type= getArguments().getString("PrvVisitType");
         }
 
-        if (t.toString().equals("")){
-              query = " Select   * from Area Where Cast( No as integer)>0 ";
+        if (getArguments().getString("Scr") == "CountrySales" || (getArguments().getString("Scr") == "ManVisitReport") ) {
+
+
+            if (t.toString().equals("")){
+                query = " Select   * from Area Where Cast( No as integer)>0 and ManNo='"+u+"'";
+            }
+            else {
+                query = "Select * from Area where Cast( No as integer)>0 and ManNo='"+u+"' And  (name like '%" + t + "%' or  no like '%" + t + "%')";
+            }
+
+        }else{
+
+            if (t.toString().equals("")){
+                query = " Select   * from Area Where Cast( No as integer)>0 ";
+            }
+            else {
+                query = "Select * from Area where Cast( No as integer)>0   And  (name like '%" + t + "%' or  no like '%" + t + "%')";
+            }
         }
-        else {
-            query = "Select * from Area where Cast( No as integer)>0 and name like '%" + t + "%' or  no like '%" + t + "%'";
-        }
+
+
+
+
         Cursor c = sqlHandler.selectQuery(query);
         ArrayList<Mans> customersesList = new ArrayList<Mans>();
         if (c!=null && c.getCount()!=0 ){

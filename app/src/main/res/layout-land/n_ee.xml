@@ -9,10 +9,10 @@
     android:layoutDirection="ltr">
 
     <LinearLayout
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:weightSum="5"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="5"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true">
 
@@ -94,101 +94,114 @@
                 android:layout_height="90dp">
 
                 <LinearLayout
-                    android:orientation="vertical"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.5"
+                    android:layout_weight="1"
                     android:gravity="center"
+                    android:orientation="horizontal"
                     android:weightSum="2">
 
                     <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="3dp"
+                        android:layout_weight="1"
                         android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1">
+                        android:weightSum="2">
 
-                        <RadioGroup
-                            android:layout_width="match_parent"
+                        <Button
+                            android:id="@+id/button18"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:id="@+id/G1"
-                            android:weightSum="2"
-                            android:orientation="horizontal"
-                            android:layoutMode="opticalBounds"
-                            android:layout_gravity="center_vertical">
+                            android:layout_marginRight="6dp"
+                            android:layout_weight="1"
+                            android:background="@color/custom_float_bg"
+                            android:onClick="btnPrint"
+                            android:text="طباعة "
+                            android:textColor="#000"
+                            android:textSize="13sp" />
 
-                            <RadioButton
-                                android:text="@string/yearfrom"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:id="@+id/rdoYearFrom"
-                                android:layout_weight="1"
-                                android:background="@color/Pink"
-                                android:layoutDirection="rtl"
-                                android:layout_margin="3dp"
-                                android:onClick="btn_fromYear" />
-
-                            <RadioButton
-                                android:text="@string/frommonth"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:id="@+id/rdoMonthFrom"
-                                android:layout_weight="1"
-                                android:background="@color/Green"
-                                android:layoutDirection="rtl"
-                                android:layout_margin="3dp"
-                                android:onClick="btn_fromMonth" />
-                        </RadioGroup>
+                        <Button
+                            android:id="@+id/button17"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@color/Pink"
+                            android:onClick="btn_GetData"
+                            android:text="   استرجاع المعلومات"
+                            android:textColor="#000"
+                            android:textSize="13sp" />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:layout_margin="3dp">
+                        android:orientation="horizontal">
 
-                        <Button
-                            style="?android:attr/buttonStyleSmall"
-                            android:layout_height="wrap_content"
-                            android:text="      استرجاع المعلومات   "
-                            android:id="@+id/button17"
-                            android:background="@color/Blue"
-                            android:textColor="#fff"
-                            android:onClick="btn_GetData"
-                            android:textSize="16sp"
-                            android:layout_width="180dp"
-                            android:layout_weight="1" />
+                        <RadioGroup
+                            android:id="@+id/G1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_vertical"
+                            android:layoutMode="opticalBounds"
+                            android:orientation="horizontal"
+                            android:weightSum="2">
+
+                            <RadioButton
+                                android:id="@+id/rdoYearFrom"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_margin="3dp"
+                                android:layout_weight="1"
+                                android:background="@color/Green"
+                                android:layoutDirection="rtl"
+                                android:onClick="btn_fromYear"
+                                android:text="@string/yearfrom" />
+
+                            <RadioButton
+                                android:id="@+id/rdoMonthFrom"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_margin="3dp"
+                                android:layout_weight="1"
+                                android:background="@color/error_stroke_color"
+                                android:layoutDirection="rtl"
+                                android:onClick="btn_fromMonth"
+                                android:text="@string/frommonth" />
+                        </RadioGroup>
                     </LinearLayout>
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:orientation="vertical"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1.5">
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
                     <LinearLayout
-                        android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:weightSum="2"
-                        android:layout_weight="1.5">
+                        android:layout_weight="1.5"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
 
                         <LinearLayout
-                            android:orientation="horizontal"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="0.8"
+                            android:layout_marginRight="1dp"
+                            android:layout_weight="0.7"
                             android:gravity="center"
-                            android:layout_marginRight="25dp">
+                            android:orientation="horizontal"
+                            android:weightSum="2">
 
                             <Methdes.MyTextView
                                 android:id="@+id/ed_FromDate"
                                 android:layout_width="0dp"
                                 android:layout_height="35dp"
-                                android:layout_marginRight="8dp"
-                                android:layout_weight="1.5"
+                                android:layout_marginRight="2dp"
+                                android:layout_weight="1"
                                 android:background="@drawable/btn_cir_white_fill_black"
                                 android:focusable="false"
                                 android:focusableInTouchMode="false"
@@ -202,112 +215,117 @@
                             <Methdes.MyTextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:textAppearance="?android:attr/textAppearanceMedium"
-                                android:text="@string/From_Date"
-                                android:textSize="15dp"
-                                android:layout_weight="0.5"
+                                android:layout_weight="1"
                                 android:gravity="center"
-                                android:textColor="#000" />
+                                android:text="@string/From_Date"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:textColor="#000"
+                                android:textSize="15dp" />
                         </LinearLayout>
 
                         <LinearLayout
-                            android:orientation="horizontal"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="1.2"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight="1.3"
                             android:gravity="center"
-                            android:layout_marginLeft="25dp">
+                            android:orientation="horizontal">
 
                             <LinearLayout
-                                android:orientation="horizontal"
                                 android:layout_width="0dp"
+                                android:layout_height="35dp"
+                                android:layout_weight="1.3"
                                 android:background="@drawable/btn_cir_white_fill_black"
-                                android:layout_weight="1"
-                                android:layout_height="35dp">
+                                android:orientation="horizontal">
 
                                 <LinearLayout
-                                    android:orientation="horizontal"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:weightSum="2"
-                                    android:background="@drawable/btn_cir_white_fill_black">
+                                    android:background="@drawable/btn_cir_white_fill_black"
+                                    android:orientation="horizontal"
+                                    android:weightSum="2">
 
                                     <LinearLayout
-                                        android:orientation="horizontal"
                                         android:layout_width="0dp"
                                         android:layout_height="match_parent"
-                                        android:layout_weight="1.6"
-                                        android:gravity="center">
-
-                                        <Methdes.MyTextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:textAppearance="?android:attr/textAppearanceMedium"
-                                            android:text="1234567"
-                                            android:textSize="15sp"
-                                            android:id="@+id/tv_cusnm"
-                                            android:textColor="#000" />
-                                    </LinearLayout>
-
-                                    <LinearLayout
-                                        android:orientation="horizontal"
-                                        android:layout_width="0dp"
-                                        android:layout_height="match_parent"
-                                        android:layout_weight="0.4"
+                                        android:layout_weight="0.2"
                                         android:gravity="center"
+                                        android:onClick="btn_searchCustomer_New"
+                                        android:orientation="horizontal"
                                         android:padding="5dp">
 
                                         <ImageView
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
-                                            android:src="@mipmap/ic_search"
-                                            android:onClick="btn_searchCustomer"/>
+                                            android:src="@mipmap/ic_search" />
                                     </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1.8"
+                                        android:gravity="center"
+                                        android:onClick="btn_searchCustomer"
+                                        android:orientation="horizontal">
+
+                                        <Methdes.MyTextView
+                                            android:id="@+id/tv_cusnm"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:text="1234567"
+                                            android:textAppearance="?android:attr/textAppearanceMedium"
+                                            android:textColor="#000"
+                                            android:textSize="15sp" />
+                                    </LinearLayout>
+
                                 </LinearLayout>
 
                             </LinearLayout>
 
                             <LinearLayout
-                                android:orientation="vertical"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
+                                android:layout_weight="0.2"
                                 android:gravity="center"
-                                android:layout_weight="0.5">
+                                android:orientation="vertical">
 
                                 <Methdes.MyTextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textAppearance="?android:attr/textAppearanceMedium"
-                                    android:text="@string/Clint_Nane"
                                     android:gravity="center"
-                                    android:textSize="15dp"
-                                    android:textColor="#000" />
+                                    android:text="الاسم"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"
+                                    android:textColor="#000"
+                                    android:textSize="15dp" />
                             </LinearLayout>
 
                         </LinearLayout>
 
                     </LinearLayout>
+
                     <LinearLayout
-                        android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:weightSum="2"
-                        android:layout_weight="1.5">
+                        android:layout_weight="1.5"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
 
                         <LinearLayout
-                            android:orientation="horizontal"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="0.8"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="0.7"
                             android:gravity="center"
-                            android:layout_marginRight="25dp">
+                            android:orientation="horizontal"
+                            android:weightSum="2">
 
                             <Methdes.MyTextView
                                 android:id="@+id/ed_ToDate"
                                 android:layout_width="0dp"
                                 android:layout_height="35dp"
-                                android:layout_marginRight="8dp"
-                                android:layout_weight="1.5"
+                                android:layout_marginRight="2dp"
+                                android:layout_weight="1"
                                 android:background="@drawable/btn_cir_white_fill_black"
                                 android:focusable="false"
                                 android:focusableInTouchMode="false"
@@ -319,57 +337,57 @@
                                 android:textSize="15sp" />
 
                             <Methdes.MyTextView
+                                android:id="@+id/textView239"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:textAppearance="?android:attr/textAppearanceMedium"
-                                android:text="@string/To_Date"
-                                android:id="@+id/textView239"
-                                android:textSize="15dp"
-                                android:layout_weight="0.5"
+                                android:layout_weight="1"
                                 android:gravity="center"
-                                android:textColor="#000" />
+                                android:text="@string/To_Date"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:textColor="#000"
+                                android:textSize="15dp" />
                         </LinearLayout>
 
                         <LinearLayout
-                            android:orientation="horizontal"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="1.2"
+                            android:layout_marginLeft="1dp"
+                            android:layout_weight="1.3"
                             android:gravity="center"
-                            android:layout_marginLeft="25dp">
+                            android:orientation="horizontal">
 
                             <LinearLayout
-                                android:orientation="horizontal"
                                 android:layout_width="0dp"
+                                android:layout_height="35dp"
+                                android:layout_weight="1.3"
                                 android:background="@drawable/btn_cir_white_fill_black"
-                                android:layout_weight="1"
-                                android:layout_height="35dp">
+                                android:orientation="horizontal">
 
                                 <LinearLayout
-                                    android:orientation="horizontal"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:weightSum="2"
-                                    android:background="@drawable/btn_cir_white_fill_black">
+                                    android:background="@drawable/btn_cir_white_fill_black"
+                                    android:orientation="horizontal"
+                                    android:weightSum="2">
 
                                     <LinearLayout
-                                        android:orientation="horizontal"
                                         android:layout_width="0dp"
                                         android:layout_height="match_parent"
                                         android:layout_weight="2"
                                         android:gravity="right|center"
+                                        android:orientation="horizontal"
                                         android:paddingLeft="10dp"
-                                        android:paddingRight="10dp"
-                                        >
+                                        android:paddingRight="10dp">
 
                                         <Methdes.MyTextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:textAppearance="?android:attr/textAppearanceMedium"
-                                            android:text="1234567"
                                             android:id="@+id/tv_acc"
-                                            android:textSize="20sp"
-                                            android:textColor="#000" />
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:text="1234567"
+                                            android:textAppearance="?android:attr/textAppearanceMedium"
+                                            android:textColor="#000"
+                                            android:textSize="20sp" />
                                     </LinearLayout>
 
                                 </LinearLayout>
@@ -377,21 +395,21 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:orientation="vertical"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
+                                android:layout_weight="0.2"
                                 android:gravity="center"
-                                android:layout_weight="0.5">
+                                android:orientation="vertical">
 
                                 <Methdes.MyTextView
+                                    android:id="@+id/textView240"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textAppearance="?android:attr/textAppearanceMedium"
-                                    android:text="@string/Account_Num"
-                                    android:id="@+id/textView240"
                                     android:gravity="center"
-                                    android:textSize="15dp"
-                                    android:textColor="#000" />
+                                    android:text="الرقم"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"
+                                    android:textColor="#000"
+                                    android:textSize="15dp" />
                             </LinearLayout>
 
                         </LinearLayout>

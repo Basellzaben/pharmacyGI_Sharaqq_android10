@@ -140,7 +140,17 @@ public class Cls_SaleManDailyRound {
         Tr_Data = tr_Data;
     }
 
-    String Closed ;
+    String Closed;
+
+    public String getCOMPUTERNAME() {
+        return COMPUTERNAME;
+    }
+
+    public void setCOMPUTERNAME(String COMPUTERNAME) {
+        this.COMPUTERNAME = COMPUTERNAME;
+    }
+
+    String COMPUTERNAME ;
         String Posted;
 
     public String getVisitType1() {

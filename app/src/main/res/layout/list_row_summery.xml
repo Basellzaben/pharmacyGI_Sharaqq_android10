@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RR"
+    android:layout_width="fill_parent"
+    android:layout_height="60dp"
+    android:layoutDirection="rtl"
+    android:orientation="horizontal"
+    android:weightSum="10">
+
+    <Methdes.MyTextView
+        android:id="@+id/tv_no"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="no"
+        android:textColor="#000"
+        android:textSize="16sp" />
+
+    <Methdes.MyTextView
+        android:id="@+id/tv_name"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor="#000"
+        android:textIsSelectable="false"
+        android:textSize="16sp" />
+
+    <Methdes.MyTextView
+        android:id="@+id/tv_Price"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor="#000"
+        android:textSize="16sp" />
+
+
+    <Methdes.MyTextView
+        android:id="@+id/tv_Qty"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Qty"
+        android:textColor="#000"
+        android:textIsSelectable="false"
+        android:textSize="16sp" />
+
+
+    <Methdes.MyTextView
+        android:id="@+id/tv_Unit"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Unit"
+        android:textAlignment="center"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#000"
+        android:textSize="16sp" />
+
+    <Methdes.MyTextView
+        android:id="@+id/tv_tax"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+
+        android:layout_weight="1"
+        android:gravity="center_horizontal|center"
+        android:text="Tax"
+        android:textColor="#000"
+        android:textIsSelectable="false"
+        android:textSize="16sp" />
+
+    <Methdes.MyTextView
+        android:id="@+id/tv_Bounce"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Bounce"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#000"
+        android:textSize="16sp" />
+
+    <Methdes.MyTextView
+        android:id="@+id/tv_Disc_Per"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="perdisc"
+        android:textColor="#000"
+        android:textIsSelectable="false"
+        android:textSize="16sp" />
+
+    <Methdes.MyTextView
+        android:id="@+id/tv_Total"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="center_horizontal|center"
+        android:text="Total"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#000"
+        android:textSize="16sp" />
+
+
+</LinearLayout>

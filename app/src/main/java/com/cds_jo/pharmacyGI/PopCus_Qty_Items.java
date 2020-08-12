@@ -1,6 +1,7 @@
 
 package com.cds_jo.pharmacyGI;
 
+import android.app.DatePickerDialog;
 import android.app.DialogFragment;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -12,12 +13,14 @@ import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -36,6 +39,7 @@ import com.cds_jo.pharmacyGI.assist.Cls_UnitItems_Adapter;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
@@ -45,20 +49,21 @@ import java.util.Locale;
 
 public class PopCus_Qty_Items extends DialogFragment implements View.OnClickListener  {
     View form ;
-    ImageButton OpenCal;
-    Button add,cancel;
+
+    Button btn_Inc, btn_Dec  ,add,cancel;
     ListView items_Lsit;
-    TextView itemnm;
+    TextView itemnm ,Exp_Date;
     public String ItemNo = "";
     SqlHandler sqlHandler;
     float min = 0 ;
-    EditText filter   ;
+    EditText filter    , Batch;
     ImageButton btn_filter_search ;
     String UnitNo ="";
     String UnitName ="";
     String str= "";
     RadioButton rad_Per ;
     RadioButton rad_Amt;
+
     List<ContactListItems> UpdateItem ;
     public static final String CALCULATOR_PACKAGE ="com.android.calculator2";
     public static final String CALCULATOR_CLASS ="com.android.calculator2.Calculator";
@@ -67,7 +72,45 @@ public class PopCus_Qty_Items extends DialogFragment implements View.OnClickList
         super.onCreate(savedInstanceState);
         setStyle(DialogFragment.STYLE_NORMAL, R.style.CustomDialog);
     }
+    public static String intToString(int num, int digits) {
+        String output = Integer.toString(num);
+        while (output.length() < digits) output = "0" + output;
+        return output;
+    }
+    Calendar myCalendar = Calendar.getInstance() ;//global
+    public void showDatePickerDialog(){
 
+        DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), date, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH));
+        datePickerDialog.show();
+    }
+    DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, monthOfYear);
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+            String M = intToString(Integer.valueOf(monthOfYear+1), 2);
+            String D = intToString(Integer.valueOf(dayOfMonth), 2);
+            Exp_Date.setText(year+"/"+M+"/"+D);
+        }
+
+    };
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // safety check
+        if (getDialog() == null)
+            return;
+
+        int dialogWidth = WindowManager.LayoutParams.WRAP_CONTENT;//340; // specify a value here
+        int dialogHeight = WindowManager.LayoutParams.MATCH_PARENT;//400; // specify a value here
+
+        getDialog().getWindow().setLayout(dialogWidth, dialogHeight);
+
+    }
     @Override
     public View onCreateView( LayoutInflater inflater   , ViewGroup container  ,Bundle savestate){
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
@@ -80,18 +123,53 @@ public class PopCus_Qty_Items extends DialogFragment implements View.OnClickList
         cancel=(Button) form.findViewById(R.id.btn_cancel_item);
         FillDeptf();
         cancel.setOnClickListener(this);
+        btn_Inc = (Button) form.findViewById(R.id.btn_Inc);
+        btn_Inc.setOnClickListener(this);
 
+
+        btn_Dec = (Button) form.findViewById(R.id.btn_Dec);
+        btn_Dec.setOnClickListener(this);
         items_Lsit=(ListView) form.findViewById(R.id.listView2);
+
+        items_Lsit.setOnTouchListener(new ListView.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int action = event.getAction();
+                switch (action) {
+                    case MotionEvent.ACTION_DOWN:
+                        // Disallow ScrollView to intercept touch events.
+                        v.getParent().requestDisallowInterceptTouchEvent(true);
+                        break;
+
+                    case MotionEvent.ACTION_UP:
+                        // Allow ScrollView to intercept touch events.
+                        v.getParent().requestDisallowInterceptTouchEvent(false);
+                        break;
+                }
+
+                // Handle ListView touch events.
+                v.onTouchEvent(event);
+                return true;
+            }
+        });
         final List<String> items_ls = new ArrayList<String>();
         final List<String> promotion_ls = new ArrayList<String>();
 
         EditText Price = (EditText)form.findViewById(R.id.et_price);
+        Exp_Date = (TextView) form.findViewById(R.id.et_Date);
+        Batch = (EditText)form.findViewById(R.id.et_Batch);
+
+        Exp_Date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePickerDialog();
+            }
+        });
         final EditText qty = (EditText)form.findViewById(R.id.et_qty);
 
         sqlHandler =  new SqlHandler(getActivity());
 
-        OpenCal=(ImageButton) form.findViewById(R.id.btn_OpenCal);
-        OpenCal.setOnClickListener(this);
+
         qty.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 
             public void onFocusChange(View v, boolean hasFocus) {
@@ -375,56 +453,71 @@ public class PopCus_Qty_Items extends DialogFragment implements View.OnClickList
 
         sp_unite.setAdapter(cls_unitItems_adapter);
     }
+    private Double SToD(String str) {
+        String f = "";
+        final NumberFormat nf = NumberFormat.getNumberInstance(Locale.US);
+        final DecimalFormat df = (DecimalFormat) nf;
+        str = str.replace(",", "");
+        Double d = 0.0;
+        if (str.length() == 0) {
+            str = "0";
+        }
+        if (str.length() > 0)
+            try {
+                d = Double.parseDouble(str);
+                str = df.format(d).replace(",", "");
+
+            } catch (Exception ex) {
+                str = "0";
+            }
+
+        df.setParseBigDecimal(true);
+
+        d = Double.valueOf(str.trim()).doubleValue();
+
+        return d;
+    }
     @Override
     public void onClick(View v) {
-
-        if (v == OpenCal) {
-            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-            final String MobileType = sharedPreferences.getString("MobileType", "-2") ;
-            //if  (MobileType.equals("2")) {
-            Intent intent = new Intent();
-            intent.setAction(Intent.ACTION_MAIN);
-            intent.addCategory(Intent.CATEGORY_LAUNCHER);
-            intent.setComponent(new ComponentName(
-                    CALCULATOR_PACKAGE,
-                    CALCULATOR_CLASS));
-            try {
-                startActivity(intent);
-            } catch (Exception noSuchActivity) {
-                Toast.makeText(getActivity(),"1  "+ noSuchActivity.getMessage().toString(), Toast.LENGTH_SHORT).show();
-
+        final EditText dis = (EditText)form.findViewById(R.id.et_disc_per);
+        EditText qty = (EditText) form.findViewById(R.id.et_qty);
+     if (v == btn_Inc) {
+            if(qty.getText().toString().equalsIgnoreCase("")){
+                qty.setText("0");
             }
-         /*}
+        qty.setText((Double.parseDouble(qty.getText().toString() ) + 1) + "");
 
-
-
-         if (MobileType.equals("1")){
-
-
-
-             Intent i = new Intent();
-             i.setAction(Intent.ACTION_MAIN);
-             i.addCategory(Intent.CATEGORY_APP_CALCULATOR);
-             try {
-
-                 startActivity(i);
-             } catch (Exception noSuchActivity) {
-                 Toast.makeText(getActivity(), "2  "+noSuchActivity.getMessage().toString(), Toast.LENGTH_SHORT).show();
-
-             }
-
-
-         }*/
+        if (Double.parseDouble(qty.getText().toString() ) > 1) {
+            btn_Dec.setVisibility(View.VISIBLE);
+        }
+        if (Double.parseDouble(qty.getText().toString() ) < 1) {
+            qty.setText(SToD(qty.getText().toString() ) + "");
         }
 
+         double d = Math.round(SToD(qty.getText().toString()));
+         long l = Math.round(d);
+         int i = (int)l;
+         qty.setText(i+"");
 
+     }
+        if (v == btn_Dec) {
+            if(qty.getText().toString().equalsIgnoreCase("")){
+                qty.setText("1");
+            }
+        qty.setText((Double.parseDouble(qty.getText().toString() ) - 1) + "");
+        if (Double.parseDouble(qty.getText().toString()  ) < 1) {
+            qty.setText("1");
+            btn_Dec.setVisibility(View.INVISIBLE);
+        }
 
+            double d = Math.round(SToD(qty.getText().toString()));
+            long l = Math.round(d);
+            int i = (int)l;
+            qty.setText(i+"");
+    }
 
-        final EditText dis = (EditText)form.findViewById(R.id.et_disc_per);
 
         if(v==add) {
-
-            EditText qty = (EditText) form.findViewById(R.id.et_qty);
 
             if (qty.getText().toString().length() == 0) {
                 qty.setError("الرجاء ادخال القيمة");
@@ -439,7 +532,7 @@ public class PopCus_Qty_Items extends DialogFragment implements View.OnClickList
 
             if (getArguments().getString("Scr") == "CustQty") {
 
-                ((CustomerQty) getActivity()).Save_List(ItemNo, qty.getText().toString(), UnitNo, str, UnitName);
+                ((CustomerQty) getActivity()).Save_List(ItemNo, qty.getText().toString(), UnitNo, str, UnitName , Exp_Date.getText().toString(),Batch.getText().toString());
                 qty.setText("");
             }
 
@@ -462,12 +555,12 @@ public class PopCus_Qty_Items extends DialogFragment implements View.OnClickList
 
             try {
                 min = 0;
-
                 qty.setText("");
+                Exp_Date.setText("");
+                Batch.setText("");
 
-
-                ItemNo = "";
-                UnitNo = "";
+               // ItemNo = "";
+                //UnitNo = "";
 
 
             } catch (Exception e) {

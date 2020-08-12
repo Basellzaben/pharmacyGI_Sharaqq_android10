@@ -25,6 +25,7 @@ import android.widget.TextView;
 
 import com.cds_jo.pharmacyGI.assist.CallWebServices;
 import com.cds_jo.pharmacyGI.assist.Convert_Layout_Img;
+import com.cds_jo.pharmacyGI.assist.OrdersItems;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -129,24 +130,12 @@ public class CustomerQty extends FragmentActivity {
     private void showList( Integer f  ) {
 
          lv_Items.setAdapter(null);
-        float Total = 0 ;
-        float Total_Tax = 0 ;
-        float  TTemp= 0 ;
-        float PTemp = 0 ;
-        float PQty = 0 ;
-        String query ="";
-        TextView     etTotal, et_Tottal_Tax ;
-        TextView ed_date ;
-        etTotal = (TextView) findViewById(R.id.et_Total);
-        et_Tottal_Tax = (TextView) findViewById(R.id.et_TotalTax);
-       // etTotal.setText(String.valueOf(Total));
-       // et_Tottal_Tax.setText(String.valueOf(Total_Tax));
-        ed_date=(TextView) findViewById(R.id.ed_date);
+
 
         Cls_Cust_Qty_Item_Adapter contactListAdapter = new Cls_Cust_Qty_Item_Adapter(
                 CustomerQty.this, contactList);
         lv_Items.setAdapter(contactListAdapter);
-        //  json = new Gson().toJson(contactList);
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -181,32 +170,10 @@ public class CustomerQty extends FragmentActivity {
         sqlHandler.executeQuery(query);
         showList(1);
     }
-    public void Save_List(String ItemNo   , String q ,  String   u ,  String   ItemNm , String UnitName ) {
+    public void Save_List(String ItemNo   , String q ,  String   u ,  String   ItemNm , String UnitName, String   ExpDate,String Batch ) {
 
 
-        for (int x = 0; x < contactList.size(); x++) {
-            ContactListItems contactListItems = new ContactListItems();
-            contactListItems = contactList.get(x);
 
-            if ( contactListItems.getNo().equals(ItemNo)) {
-                AlertDialog alertDialog = new AlertDialog.Builder(
-
-                        this).create();
-
-                alertDialog.setTitle("Galaxy");
-                alertDialog.setMessage("المادة موجودة");            // Setting Icon to Dialog
-                alertDialog.setIcon(R.drawable.tick);
-                alertDialog.setButton("موافق", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
-
-                alertDialog.show();
-                return;
-            }
-
-        }
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.ENGLISH);
         String currentDateandTime = sdf.format(new Date());
 
@@ -223,11 +190,10 @@ public class CustomerQty extends FragmentActivity {
         contactListItems.setCust_No(accno.getText().toString());
         contactListItems.setOrderNo(pono.getText().toString());
         contactListItems.setOrder_Date(currentDateandTime);
+        contactListItems.setBatch(Batch);
+        contactListItems.setExpDate(ExpDate);
         contactListItems.setUserID(UserID);
-
         contactList.add(contactListItems);
-
-
         showList(1);
 
 
@@ -270,7 +236,7 @@ public class CustomerQty extends FragmentActivity {
          c1.close();
     }
 
-        query = "  select pod.orderno, pod.Cust_No ,pod.Order_Date ,pod.UserID,     Unites.UnitName,  invf.Item_Name, pod.itemno,pod.price,pod.qty,pod.tax ,pod.unitNo ,pod.dis_Amt,pod.dis_per,pod.bounce_qty ,  pod.tax_Amt   , pod.total  " +
+        query = "  select  pod.Batch,pod.ExpDate   ,pod.orderno, pod.Cust_No ,pod.Order_Date ,pod.UserID,     Unites.UnitName,  invf.Item_Name, pod.itemno,pod.price,pod.qty,pod.tax ,pod.unitNo ,pod.dis_Amt,pod.dis_per,pod.bounce_qty ,  pod.tax_Amt   , pod.total  " +
                 "from CustStoreQtydetl pod left join invf on invf.Item_No =  pod.itemno " +
                 " left join Unites on Unites.Unitno=  pod.unitNo  " +
                 " Where pod.orderno='" + pono.getText().toString() + "'";
@@ -295,6 +261,8 @@ public class CustomerQty extends FragmentActivity {
                     contactListItems.setDis_Amt("0");
 
                     contactListItems.setDis_Amt("0");
+                    contactListItems.setBatch(c1.getString(c1.getColumnIndex("Batch")));
+                    contactListItems.setExpDate(c1.getString(c1.getColumnIndex("ExpDate")));
 
                     contactListItems.setUnite(c1.getString(c1
                             .getColumnIndex("unitNo")));
@@ -444,6 +412,8 @@ public class CustomerQty extends FragmentActivity {
                     cv.put("userid", UserID);
                     cv.put("tax_Amt", "0");
                     cv.put("total", "0");
+                    cv.put("Batch", contactListItems.getBatch().toString());
+                    cv.put("ExpDate", contactListItems.getExpDate().toString());
 
                     i = sqlHandler.Insert("CustStoreQtydetl", null, cv);
                 }
@@ -659,62 +629,11 @@ public class CustomerQty extends FragmentActivity {
 
         final  SqlHandler sql_Handler = new SqlHandler(this);
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-
-
-
-
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.ENGLISH);
-
         final  String str;
 
-
-
-
-    /*    String  query = "SELECT acc,  date ,Delv_day_count FROM CustStoreQtyhdr where orderno  ='" +pono.getText().toString()+"'";
-        Cursor c1 = sqlHandler.selectQuery(query);
-        String  Date,Cust_No,Delv_day_count;
-        Date=Cust_No=Delv_day_count="";
-
-        if (  c1!=null && c1.getCount() > 0 ){
-            c1.moveToFirst();
-            Cust_No=c1.getString(c1.getColumnIndex("acc"));
-
-            Date  =c1.getString(c1.getColumnIndex("date"));
-            c1.close();
-        }
-
-        JSONObject  jsonObject = new JSONObject();
-        try {
-            jsonObject.put("Cust_No", Cust_No.toString());
-            jsonObject.put("Order_Date",Date.toString());
-            jsonObject.put("UserNo", sharedPreferences.getString("UserID", ""));
-            jsonObject.put("OrderNo",pono.getText().toString());
-
-            //  jsonObject.put("Total",Total.getText().toString());
-            // jsonObject.put("Net_Total",NetTotal.getText().toString());
-            // jsonObject.put("Tax_Total",TotalTax.getText().toString());
-            //jsonObject.put("bounce_Total","0");
-
-            //    jsonObject.put("disc_Total",dis.getText().toString());
-
-
-
-//            if (Tax_Include.isChecked()){
-//                jsonObject.put("include_Tax","1");
-//            }
-//            else
-//            {
-//                jsonObject.put("include_Tax","0");
-//            }
-
-        }
-        catch ( JSONException ex){
-            ex.printStackTrace();
-        }*/
         String json = new Gson().toJson(contactList);
         str =  json;
-
-
         loadingdialog = ProgressDialog.show(CustomerQty.this, "الرجاء الانتظار ...", "العمل جاري على اعتماد المستند", true);
         loadingdialog.setCancelable(false);
         loadingdialog.setCanceledOnTouchOutside(false);
@@ -764,7 +683,26 @@ public class CustomerQty extends FragmentActivity {
 
                             }
                         });
-                    } else {
+                    }
+                    else if(We_Result.ID ==-777) {
+
+                        loadingdialog.dismiss();
+                        _handler.post(new Runnable() {
+                            public void run() {
+                                AlertDialog alertDialog = new AlertDialog.Builder(
+                                        CustomerQty.this).create();
+                                alertDialog.setTitle("جرد كميات العميل" );
+                                alertDialog.setMessage("فشل في عملية الاعتماد،تم اعتماد الجرد من قبل");
+                                alertDialog.setIcon(R.drawable.error_new);
+                                alertDialog.setButton("موافق", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                    }
+                                });
+                                alertDialog.show();
+
+                            }
+                        });
+                    }else {
 
                         loadingdialog.dismiss();
                         _handler.post(new Runnable() {
@@ -855,6 +793,14 @@ public class CustomerQty extends FragmentActivity {
     public void onBackPressed() {
         super.onBackPressed();
         Intent intent = new Intent(getApplicationContext(), GalaxyMainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+    }
+
+    public void btn_SalesOrders(View view) {
+        super.onBackPressed();
+        Intent intent = new Intent(getApplicationContext(), OrdersItems.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         finish();

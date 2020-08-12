@@ -259,9 +259,9 @@
     <string name="EditeTransactios">Edite Transactios</string>
     <string name="LocationNotfound">"الموقع غير متوفر"</string>
     <string name="StartVisitSucc">عملية بداية الجولة تمت بنجاح</string>
-    <string name="StartVisitNotSucc">عملية بداية الجولة لم تتم بنجاح</string>
+    <string name="StartVisitNotSucc">عملية بداية الدوام لم تتم بنجاح</string>
     <string name="EndVisitSucc">عملية نهاية الجولة تمت بنجاح</string>
-    <string name="EndVisitNotSucc"> عملية نهاية الجولة لم تتم ،الرجاء التاكد  من وجود جولة مفتوحة</string>
+    <string name="EndVisitNotSucc"> عملية نهاية الجولة لم تتم بنجاح ،الرجاء التاكد  من وجود جولة مفتوحة</string>
     <string name="DoYouWantToContinSave">هل تريد الاستمرار في عملية الحفظ</string>
     <string name="UpdateNotAllowed">لا يمكن التعديل على الملف</string>
     <string name="DoYouWantContinDelete">هل تريد الاستمرار في عملية الحذف</string>
@@ -320,35 +320,28 @@
     <string name="Active">فعالة</string>
     <string name="Prv"><![CDATA[<<]]></string>
     <array name="Main_Item">
+        <item>حفظ موقع الصيدلية</item>
         <item>كشف حساب</item>
         <item>فتح زيارة</item>
         <item>استعراض المواد</item>
-        <item>فاتورة مبيعات</item>
-        <item>سند قبض</item>
         <item>طلب بيع</item>
         <item>استعراض الكميات</item>
         <item>تحديث البيانات</item>
-        <item>كلف المواد</item>
         <item>جدول الزيارات</item>
         <item>جرد كميات العميل</item>
         <item>استبيان</item>
-        <item>ارجاع مواد</item>
-        <item>اعدادات عامة</item>
-        <item>طلب تجهيز</item>
-        <item>تعديل الحركات</item>
         <item>تقرير المبيعات</item>
         <item>الملخص اليومي</item>
-        <item>تقرير المبيعات</item>
         <item>تقرير الزيارات</item>
         <item>الخطة الشهرية</item>
+        <item>تقرير طلبات البيع</item>
         <item>خروج</item>
 
     </array>
     <array name="Main_Item2">
+        <item>العيادات الطبية</item>
         <item>طلب العينات</item>
-        <!--  <item>الدعاية الطبية</item>-->
         <item>تحديث البيانات</item>
-        <!--<item>اعدادات عامة</item>-->
         <item>خروج</item>
 
     </array>
@@ -362,6 +355,7 @@
         <item>خروج</item>
 
     </array>
+    <string name="title_activity_test">Map</string>
 
 
 </resources>

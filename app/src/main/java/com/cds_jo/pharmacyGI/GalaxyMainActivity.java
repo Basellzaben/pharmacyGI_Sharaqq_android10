@@ -36,7 +36,7 @@ public class GalaxyMainActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_galaxy_main);
-        ComInfo.Lan="ar";
+
         Initi();
         Cir1();
         Cir2();
@@ -142,17 +142,12 @@ public class GalaxyMainActivity extends FragmentActivity {
         ImageView itemIcon2 = new ImageView(this);
         ImageView itemIcon3 = new ImageView(this);
         ImageView itemIcon4 = new ImageView(this);
-        if(ComInfo.Lan.equalsIgnoreCase("en")) {
-            itemIcon.setImageResource(R.mipmap.aa1en);
-            itemIcon2.setImageResource(R.mipmap.aa2en);
-            itemIcon3.setImageResource(R.mipmap.aa3en);
-            itemIcon4.setImageResource(R.mipmap.aa4en);
-        }else{
+
             itemIcon.setImageResource(R.mipmap.aa1);
             itemIcon2.setImageResource(R.mipmap.aa2);
             itemIcon3.setImageResource(R.mipmap.aa3);
             itemIcon4.setImageResource(R.mipmap.aa4);
-        }
+
         SubActionButton button1 = itemBuilder.setContentView(itemIcon).build();
         SubActionButton button2 = itemBuilder.setContentView(itemIcon2).build();
         SubActionButton button3 = itemBuilder.setContentView(itemIcon3).build();
@@ -179,12 +174,9 @@ public class GalaxyMainActivity extends FragmentActivity {
                 .setStateChangeListener(new FloatingActionMenu.MenuStateChangeListener() {
                     @Override
                     public void onMenuOpened(FloatingActionMenu floatingActionMenu) {
-                        if(ComInfo.Lan.equalsIgnoreCase("ar")) {
-                            R_Content.setBackgroundResource(R.mipmap.homeback_blure2);
-                        }else{
-                            R_Content.setBackgroundResource(R.mipmap.homeback_blure2en);
 
-                        }
+                            R_Content.setBackgroundResource(R.mipmap.homeback_blure2);
+
                         R_Back.setBackgroundColor(getResources().getColor(R.color.Main_Gray_Blure));
                         RR2.setEnabled(false);
                         R_Update.setEnabled(false);
@@ -200,12 +192,9 @@ public class GalaxyMainActivity extends FragmentActivity {
 
                     @Override
                     public void onMenuClosed(FloatingActionMenu floatingActionMenu) {
-                        if(ComInfo.Lan.equalsIgnoreCase("ar")) {
-                            R_Content.setBackgroundResource(R.mipmap.homeback1);
-                        }else   {
-                            R_Content.setBackgroundResource(R.mipmap.homebacken);
 
-                        }
+                            R_Content.setBackgroundResource(R.mipmap.homeback1);
+
                         R_Back.setBackgroundColor(getResources().getColor(R.color.Main_Gray_Non_Blure));
                         RR2.setEnabled(true);
                         R_Update.setEnabled(true);

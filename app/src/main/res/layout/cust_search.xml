@@ -17,32 +17,46 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layoutDirection="rtl"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="3">
 
             <Methdes.MyTextView
                 android:id="@+id/tv_no"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginRight="10dp"
-                android:layout_weight="0.8"
+                android:layout_weight="0.7"
                 android:gravity="center"
                 android:paddingLeft="5dp"
                 android:text="TT"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="#000"
-                android:textSize="22sp" />
+                android:textSize="18sp" />
 
             <Methdes.MyTextView
                 android:id="@+id/tv_nm"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1.2"
+                android:layout_weight="1.15"
                 android:gravity="center"
                 android:paddingRight="10dp"
                 android:text="TT"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="#000"
-                android:textSize="22sp" />
+                android:textSize="18sp" />
+
+
+            <Methdes.MyTextView
+                android:id="@+id/tv_Country"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.15"
+                android:gravity="center"
+                android:paddingRight="10dp"
+                android:text="TT"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#000"
+                android:textSize="18sp" />
         </LinearLayout>
 
     </LinearLayout>

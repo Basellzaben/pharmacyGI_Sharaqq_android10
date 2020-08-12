@@ -340,6 +340,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:onClick="btn_SearchCust"
                         android:layout_marginLeft="25dp">
 
                         <LinearLayout
@@ -377,7 +378,12 @@
                                     android:layout_weight="0.4"
                                     android:gravity="center"
                                     android:padding="5dp">
-
+                                    <ImageView
+                                        android:id="@+id/imageView206"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:src="@mipmap/ic_search" />
 
                                 </LinearLayout>
                             </LinearLayout>
@@ -583,6 +589,15 @@
                     android:orientation="horizontal">
 
 
+                    <Button
+                        android:id="@+id/button47"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="0dp"
+                        android:layout_weight="1"
+                        android:onClick="Add_Sig"
+                        android:text="إضافة التوقيع"
+                        android:textSize="16sp" />
                 </LinearLayout>
 
 
