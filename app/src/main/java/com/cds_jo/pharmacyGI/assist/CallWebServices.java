@@ -35,12 +35,51 @@ public class CallWebServices  {
           IPAddress =sharedPreferences.getString("ServerIP", "");
           URL = "http://"+IPAddress+"/CV.asmx";//
           URL = "http://79.173.249.130:92/CV.asmx";// Sharaq
-         // URL = "http://192.168.8.100:3550/CV.asmx";// Sharaq
-        //  URL = "http://192.168.1.200:3755/CV.asmx";// Sharaq
+        //URL  = "http://192.168.8.102:3550/CV.asmx";// Sharaq
+          URL = "http://10.0.1.104:3550/CV.asmx";// Sharaq
     }
         //SOAP Action URI again Namespace + Web method w333
-    private  static String SOAP_ACTION = "http://tempuri.org/WithJson";
+        public void GET_ACC_Report_D(int bill , int doctype,int my) {
 
+            We_Result.Msg="";
+            We_Result.ID =-1;
+            SoapObject request = new SoapObject(NAMESPACE, "GET_ACC_Report_D");
+            PropertyInfo parm_UserNo = new PropertyInfo();
+            parm_UserNo.setName("bill");
+            parm_UserNo.setValue(bill);
+            parm_UserNo.setType(String.class);
+            PropertyInfo doc = new PropertyInfo();
+            doc.setName("doctype");
+            doc.setValue(doctype);
+            doc.setType(String.class);
+            request.addProperty(doc);
+            request.addProperty(parm_UserNo);
+
+
+            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
+                    SoapEnvelope.VER11);
+            envelope.dotNet=true;
+            // Set output SOAP object
+            envelope.setOutputSoapObject(request);
+            // Create HTTP call object
+            HttpTransportSE androidHttpTransport = new HttpTransportSE(URL);
+            Object  response =null;
+            try {
+                androidHttpTransport.call("http://tempuri.org/GET_ACC_Report_D", envelope);
+                SoapObject result  = (SoapObject) envelope.getResponse();
+                We_Result.Msg =  result.getProperty("Msg").toString();
+                We_Result.ID = Long.parseLong(result.getProperty("ID").toString());
+
+            } catch (Exception e) {
+                We_Result.Msg =  "عملية الاتصال بالسيرفر لم تتم بنجاح"  ;//+ e.getMessage().toString();
+                We_Result.ID = Long.parseLong("-404");
+                e.printStackTrace();
+
+            }
+
+
+        }
+private  static String SOAP_ACTION = "http://tempuri.org/WithJson";
     public String PostCustCardAndGetAcc(String CusName,String OrderNo, String Area , String CustType, String Mobile , String Acc
             , String Lat,String Lng,String GpsLocation  ,String UserID ,String COMPUTERNAME) {
 

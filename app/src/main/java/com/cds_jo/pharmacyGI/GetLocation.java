@@ -10,6 +10,7 @@ package com.cds_jo.pharmacyGI;
         import android.location.LocationListener;
         import android.location.LocationManager;
     import android.os.Handler;
+    import android.widget.Toast;
 
 public class GetLocation {
     Timer timer1;
@@ -138,10 +139,10 @@ public class GetLocation {
 
     public Location  CurrentLocation(Context context){
         //exceptions will be thrown if provider is not permitted.
-        float GPS_Accurecy = 50;
-        float NETWORK_Accurecy =50;
-        float PASSIVE_Accurecy = 50;
-        float pAcceptableAccurecy = 50;
+        float GPS_Accurecy = 15;
+        float NETWORK_Accurecy =15;
+        float PASSIVE_Accurecy = 15;
+        float pAcceptableAccurecy = 15;
         Location GPS_location = null;
         Location NETWORK_location = null;
         Location PASSIVE_location = null;
@@ -262,6 +263,51 @@ public class GetLocation {
                         return null;
                     }
                 }
+            }
+        }
+
+        return null;
+    }
+
+    public Location  CurrentDeviceLocation(Context context){
+
+
+        Location GPS_location = null;
+
+
+        LocationManager lm = (LocationManager)context.getSystemService(Context.LOCATION_SERVICE);
+
+        if (lm != null) {
+            if (ContextCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                    || ContextCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+            {
+
+
+                boolean GPS_enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
+                if (GPS_enabled)
+                {
+                    try
+                    {
+                        GPS_location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                        lm.removeUpdates(mLocationListenerGPS);
+
+                    }
+                    catch (Exception  ex)
+                    {
+                        Toast.makeText(context,"Device:''",Toast.LENGTH_SHORT).show();
+                        GPS_location = null;
+                    }
+                }
+
+
+
+                if (GPS_location != null  )
+                {
+                    Toast.makeText(context,"Device:" + GPS_location.getLongitude(),Toast.LENGTH_SHORT).show();
+                   return GPS_location;
+                }
+
+
             }
         }
 

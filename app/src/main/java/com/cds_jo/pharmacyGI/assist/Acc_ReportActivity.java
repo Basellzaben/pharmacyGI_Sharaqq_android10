@@ -17,6 +17,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ListView;
@@ -67,6 +68,7 @@ public class Acc_ReportActivity extends FragmentActivity {
     MyTextView NetBall;
     NumberFormat nf_out;
     ArrayList<Cls_Acc_Report> cls_acc_reportsList;
+    String Amt;
     @Override
     protected Dialog onCreateDialog(int id) {
         // TODO Auto-generated method stub
@@ -112,6 +114,7 @@ public class Acc_ReportActivity extends FragmentActivity {
         android.support.v4.app.FragmentManager fragmentManager=getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.Frag1,frag).commit();
 
+        items_Lsit=(ListView)findViewById(R.id.lst_acc);
          cls_acc_reportsList = new ArrayList<Cls_Acc_Report>();
          CheqBal = (MyTextView)findViewById(R.id.tv_CheqBal);
          Ball = (MyTextView)findViewById(R.id.tv_Ball);
@@ -177,6 +180,36 @@ public class Acc_ReportActivity extends FragmentActivity {
         FromDate.setText("01/01/"+currentYear);
         ToDate.setText("31/12/"+currentYear);
 
+
+        items_Lsit.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+                Cls_Acc_Report o = (Cls_Acc_Report) items_Lsit.getItemAtPosition(position);
+
+                if(o.getDoctype().equalsIgnoreCase("2")){
+                    Amt=o.getDept();
+                }else if (o.getDoctype().equalsIgnoreCase("3")){
+                    Amt=o.getCred();
+                }
+                showDtl(o.getDoc_num(),o.getDoctype(),Amt+"");
+            }
+        });
+
+    }
+    private  void showDtl(String DocNo , String DocType,String Amt){
+
+
+        if(DocType.equalsIgnoreCase("2")   ||DocType.equalsIgnoreCase("3") ) {
+            Bundle bundle = new Bundle();
+            bundle.putString("Scr", "po");
+            bundle.putString("DocNo", DocNo);
+            bundle.putString("Amt", Amt);
+            FragmentManager Manager = getFragmentManager();
+            PopShowInvoiceDtl obj = new PopShowInvoiceDtl();
+            obj.setArguments(bundle);
+            obj.show(Manager, null);
+
+        }
     }
     public void btnPrint(View view) {
 
@@ -311,7 +344,7 @@ public class Acc_ReportActivity extends FragmentActivity {
 
 
         final List<String> items_ls = new ArrayList<String>();
-        items_Lsit=(ListView)findViewById(R.id.lst_acc);
+
         items_Lsit.setAdapter(null);
 
 
@@ -469,6 +502,7 @@ public class Acc_ReportActivity extends FragmentActivity {
                         cls_acc_report.setCur_no(js_cur_no.get(i).toString());
                         cls_acc_report.setDate(js_date.get(i).toString());
                         cls_acc_report.setDes(js_des.get(i).toString());
+
                         if(i==0)
                              cls_acc_report.setBb( nf_out.format(Double.parseDouble( js_bb.get(i).toString()))+"");
                         else

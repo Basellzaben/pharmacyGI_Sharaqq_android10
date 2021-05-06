@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     TextView et_Notes;
     MyTextView_Digital TrDate, tv_Duration, et_StartTime, et_EndTime, et_ServerTime  ;
     CheckBox V1, V2, V3, V4;
-    TextView tv_AlloweDistance,tv_x, tv_y,tv_CustAddress, tv_Cust_Y,tv_Cust_X,tv_Distance;
+    TextView tv_AlloweDistance,tv_x, tv_y,tv_Loc,tv_CustAddress, tv_Cust_Y,tv_Cust_X,tv_Distance;
     Methdes.MyTextView et_Day, tv_y1, tv_location,lblCurrentDist;
     ImageView imageButton4;
     int Isopen = 0;
@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     String Unix_time ;
     String[] split;
     Intent BackInt;
-    String  Gpsflag="0",CheckGps="1";
+    String  Gpsflag="0",CheckGps="1",GPSAccurent="0";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         try {
@@ -177,6 +177,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
             tv_AlloweDistance = (TextView) findViewById(R.id.tv_AlloweDistance);
+            GPSAccurent = DB.GetValue(MainActivity.this, "ComanyInfo", "GPSAccurent", "1=1");
+            tv_AlloweDistance.setText(GPSAccurent);
+
+
+
             lblCurrentDist = (MyTextView) findViewById(R.id.lblCurrentDist);
 
             tv_CustAddress = (TextView) findViewById(R.id.tv_CustAddress);
@@ -216,7 +221,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
             tv_location = (Methdes.MyTextView) findViewById(R.id.tv_location);
-            final TextView tv_Loc = (TextView) findViewById(R.id.tv_Loc);
+             tv_Loc = (TextView) findViewById(R.id.tv_Loc);
 
             sqlHandler = new SqlHandler(this);
            /* if (ComInfo.ComNo == 1) {
@@ -264,6 +269,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
             String u =  sharedPreferences.getString("UserID", "");
+
+
 
             CheckGps = DB.GetValue(MainActivity.this, "manf", "SupNo", "man='"+u+"'");
             if(CheckGps.equalsIgnoreCase("1")){
@@ -361,14 +368,19 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         ManLoc= new LatLng(Lat, Long);
         mMap.addMarker(new MarkerOptions().position(ManLoc).title(CustNm.getText().toString())).setIcon(BitmapDescriptorFactory.fromResource(R.drawable.gps_phar));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(ManLoc));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(18));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
+        mMap.getUiSettings().setZoomControlsEnabled(true);
+        mMap.setMyLocationEnabled(true);
+        mMap.setTrafficEnabled(true);
+        mMap.setBuildingsEnabled(true);
 
+        mMap.setOnMyLocationChangeListener(myLocationChangeListener);
         polylineOpt.add(ManLoc);
 
 //////////////////////////////ManLocation/////////////
           Lat = Double.parseDouble(tv_x.getText().toString());
           Long = Double.parseDouble(tv_y.getText().toString());;
-        ManLoc= new LatLng(Lat, Long);
+          ManLoc= new LatLng(Lat, Long);
         // create marker
 
 
@@ -376,7 +388,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.addMarker(new MarkerOptions().position(ManLoc).title(tv_UserNm)).setIcon(BitmapDescriptorFactory.fromResource(R.drawable.gps_mngr));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(ManLoc));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(18));
-
         polylineOpt.add(ManLoc);
 
 
@@ -407,7 +418,19 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
     }
+    private GoogleMap.OnMyLocationChangeListener myLocationChangeListener = new GoogleMap.OnMyLocationChangeListener() {
 
+        @Override
+        public void onMyLocationChange(Location location) {
+            tv_x.setText(String.valueOf(location.getLatitude()));
+            tv_y.setText(String.valueOf(location.getLongitude()));
+            tv_Loc.setText(GetStreetName(tv_x.getText().toString(),tv_y.getText().toString()));
+            ShowMapWithTitle();
+            CalcDist();
+            // Toast.makeText(ManAttenActivity.this,location.getProvider()+" ",Toast.LENGTH_SHORT).show();
+
+        }
+    };
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -548,7 +571,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                                 String S = split[2];
                                 CalnederServerTime.set(Integer.parseInt(js_MYEAR), Integer.parseInt(js_MMONTH), Integer.parseInt(js_MDAY), Integer.parseInt(H), Integer.parseInt(M), Integer.parseInt(S));
                                 // TrDate.setText(js_SERVERDATE);
-                                Toast.makeText(MainActivity.this, "الوقت في عمّان - الاردن :"+Unix_time,Toast.LENGTH_SHORT).show();
+                               // Toast.makeText(MainActivity.this, "الوقت في عمّان - الاردن :"+Unix_time,Toast.LENGTH_SHORT).show();
 
 
                                 if ( f==1){
@@ -657,7 +680,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         String   Lat ,Long,address;
         final TextView tv_y = (TextView) findViewById(R.id.tv_y);
         final TextView tv_x = (TextView) findViewById(R.id.tv_x);
-        address=  GetStreetName();
+        address=  GetStreetName(tv_x.getText().toString() ,tv_y.getText().toString());
         String q = " Select * From SaleManRounds Where   ifnull(X,'')=''  and  Closed='0' ";
         Cursor c=sqlHandler.selectQuery(q);
         if(c!=null && c.getCount()>0) {
@@ -674,7 +697,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     double longitude = l.getLongitude();
                     Lat = String.valueOf(latitude);
                     Long = String.valueOf(longitude);
-                    address=  GetStreetName();
+                    address=  GetStreetName(Lat+"" ,Long+"");
                     if (!Lat.equalsIgnoreCase("")) {
                         q = "Update SaleManRounds set X='" + Lat + "' , Y ='" + Long + "' , Locat='"+address+"' Where    Closed='0'  and ifnull(X,'')=''";
                         sqlHandler.executeQuery(q);
@@ -733,10 +756,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         final TextView tv_y = (TextView) findViewById(R.id.tv_y);
         final TextView tv_Loc = (TextView) findViewById(R.id.tv_Loc);
 
-
+        tv_x.setText("0.000");
+        tv_y.setText("0.000");
+        tv_Loc.setText("");
         try {
             GetLocation mGPSService = new GetLocation();
-            Location l =   mGPSService.CurrentLocation(MainActivity.this);
+            Location l =   mGPSService.CurrentDeviceLocation(MainActivity.this);
             double latitude = l.getLatitude();
             double longitude = l.getLongitude();
 
@@ -750,22 +775,26 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             if(tv_Loc.getText().toString().equalsIgnoreCase("fail")){
                 Getlocation();
             }*/
-            address=  GetStreetName();
+            address=  GetStreetName(tv_x.getText().toString() ,tv_y.getText().toString());
             tv_Loc.setText(address);
             if(tv_Loc.getText().toString().equalsIgnoreCase("fail") ||address.equalsIgnoreCase("") ){
                 Getlocation();
+                address=  GetStreetName(tv_x.getText().toString() ,tv_y.getText().toString());
             }
         } catch (Exception ex) {
             Getlocation();
+            address=  GetStreetName(tv_x.getText().toString() ,tv_y.getText().toString());
            /* if(!GpsStatus.equalsIgnoreCase("")) {
                 tv_Loc.setText(GpsStatus);
             }else
                 tv_Loc.setText("الموقع غير معروف.");*/
         }
+        tv_Loc.setText(address);
 
-        GetLocation2();
+
+      //  GetLocation2();
     }
-    public  String GetStreetName() {
+    public  String GetStreetName(String X , String Y) {
         String  StreetName ="";
         try {
 
@@ -773,7 +802,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             Geocoder myLocation = new Geocoder(this, Locale.getDefault());
             List<Address> myList = null;
             try {
-                myList = myLocation.getFromLocation(Double.parseDouble(tv_x.getText().toString()), Double.parseDouble(tv_y.getText().toString()), 1);
+                myList = myLocation.getFromLocation(Double.parseDouble(X), Double.parseDouble(Y), 1);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -789,6 +818,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
         return   StreetName;
     }
+
 
     public void Getlocation() {
 
@@ -1444,7 +1474,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 tv_Cust_Y.setText(c1.getString(c1.getColumnIndex("Longitude")));
 
             }
+
             c1.close();
+            tv_CustAddress.setText( tv_CustAddress.getText()+ "  -- " + GetStreetName(tv_Cust_X.getText().toString(),tv_Cust_Y.getText().toString()));
             CalcDist();
         }
         else  {
@@ -1493,15 +1525,18 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         String Meter="";
         try {
-            Meter = Math.sqrt(distance)+"";
+            Meter = distance+"";
         }catch (Exception es){
-            Meter = (distance + "");
+
         }
+
         lblCurrentDist.setTextColor(Color.BLACK);
 
-        tv_Distance.setText(Meter+"");
+        tv_Distance.setText(Meter.substring(0,5)+"");
 
-        if (Integer.parseInt(Meter)<=Integer.parseInt(tv_AlloweDistance.getText()+"")){
+
+
+        if (SToD(Meter)<=SToD(tv_AlloweDistance.getText()+"")){
             lblCurrentDist.setTextColor(Color.GREEN);
             Gpsflag="1";
         }else
@@ -1581,9 +1616,15 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
 
 
-        Haversine_distanceBetween(Double.parseDouble(   tv_Cust_X.getText().toString()),Double.parseDouble(   tv_x.getText().toString())
-        ,Double.parseDouble(   tv_Cust_Y.getText().toString()),Double.parseDouble(   tv_y.getText().toString()),0,0);
+        //    Haversine_distanceBetween(Double.parseDouble(   tv_Cust_X.getText().toString()),Double.parseDouble(   tv_x.getText().toString())
+        //   ,Double.parseDouble(   tv_Cust_Y.getText().toString()),Double.parseDouble(   tv_y.getText().toString()),0,0);
+
+      DistaneBetweenPoints();
+
+
+
     }
+
     public  void GetCustomer() {
 
         final TextView tv_x = (TextView)findViewById(R.id.tv_x);
@@ -1745,7 +1786,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
     public void btn_GetLocation(View view) {
         try {
-            Toast.makeText(this,"تحديث الموقع",Toast.LENGTH_SHORT).show();
+          //  Toast.makeText(this,"تحديث الموقع",Toast.LENGTH_SHORT).show();
             GetlocationNew();
             CalcDist();
             ShowMapWithTitle();

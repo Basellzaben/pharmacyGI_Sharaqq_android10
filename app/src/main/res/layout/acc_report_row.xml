@@ -15,70 +15,71 @@
         android:layoutDirection="locale">
 
         <Methdes.MyTextView
-            android:layout_width="0dp"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Small Text"
             android:id="@+id/tv_doc_num"
-            android:gravity="center"
-            android:textColor="#000"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:textSize="18sp"
-            android:layout_height="wrap_content" />
+            android:gravity="center"
+            android:text="Small Text"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#000"
+            android:textSize="18sp" />
 
         <Methdes.MyTextView
-            android:layout_width="0dp"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Small Text"
             android:id="@+id/tv_doctype"
-            android:gravity="center"
-            android:textColor="#000"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:textSize="18sp"
-            android:layout_height="wrap_content" />
+            android:gravity="center"
+            android:text="Small Text"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#000"
+            android:textSize="18sp" />
 
         <Methdes.MyTextView
-            android:layout_width="0dp"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Small Text"
             android:id="@+id/tv_cur_no"
-            android:gravity="center"
-            android:textColor="#000"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center"
+            android:text="Small Text"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#000"
             android:textSize="18sp"
-            android:layout_height="wrap_content" />
+            android:visibility="gone" />
 
         <Methdes.MyTextView
-            android:layout_width="0dp"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Small Text"
             android:id="@+id/tv_date"
-            android:gravity="center"
-            android:textColor="#000"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:textSize="18sp"
-            android:layout_height="wrap_content" />
+            android:gravity="center"
+            android:text="Small Text"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#000"
+            android:textSize="18sp" />
 
         <Methdes.MyTextView
-            android:layout_width="0dp"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Small Text"
             android:id="@+id/tv_des"
-            android:gravity="center"
-            android:textColor="#000"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1.8"
-            android:textSize="18sp"
-            android:layout_height="wrap_content" />
+            android:gravity="center"
+            android:text="Small Text"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#000"
+            android:textSize="18sp" />
 
         <Methdes.MyTextView
-            android:layout_width="0dp"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Small Text"
             android:id="@+id/tv_bb"
-            android:gravity="center"
-            android:textColor="#000"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:textSize="18sp"
-            android:layout_height="wrap_content" />
+            android:gravity="center"
+            android:text="Small Text"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#000"
+            android:textSize="18sp" />
 
         <Methdes.MyTextView
             android:layout_width="0dp"
