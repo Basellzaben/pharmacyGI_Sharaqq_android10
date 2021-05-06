@@ -205,9 +205,9 @@ public class Acc_ReportActivity extends FragmentActivity {
             bundle.putString("DocNo", DocNo);
             bundle.putString("Amt", Amt);
             FragmentManager Manager = getFragmentManager();
-            PopShowInvoiceDtl obj = new PopShowInvoiceDtl();
+           /* PopShowInvoiceDtl obj = new PopShowInvoiceDtl();
             obj.setArguments(bundle);
-            obj.show(Manager, null);
+            obj.show(Manager, null);*/
 
         }
     }
