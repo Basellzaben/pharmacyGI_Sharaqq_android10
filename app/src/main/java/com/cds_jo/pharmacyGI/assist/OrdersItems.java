@@ -1,10 +1,9 @@
 package com.cds_jo.pharmacyGI.assist;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,9 +14,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -29,19 +25,20 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import com.cds_jo.pharmacyGI.ComInfo;
 import com.cds_jo.pharmacyGI.ContactListAdapter;
 import com.cds_jo.pharmacyGI.ContactListItems;
 import com.cds_jo.pharmacyGI.DB;
 import com.cds_jo.pharmacyGI.GalaxyMainActivity;
-
 import com.cds_jo.pharmacyGI.MainActivity;
-
 import com.cds_jo.pharmacyGI.Pop_Po_Select_Items_New_Activity;
 import com.cds_jo.pharmacyGI.R;
 import com.cds_jo.pharmacyGI.SearchPoActivity;
@@ -188,7 +185,7 @@ public class OrdersItems extends FragmentActivity {
         FillLocation();
 
         Fragment frag = new Header_Frag();
-        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.Frag1, frag).commit();
 
 
@@ -208,7 +205,8 @@ public class OrdersItems extends FragmentActivity {
                 Bundle bundle = new Bundle();
                 bundle.putString("Scr", "po");
                 bundle.putString("OrdeNo", OrdeNo.getText().toString());
-                FragmentManager Manager = getFragmentManager();
+                android.app.FragmentManager Manager = getFragmentManager();
+
                 PopOrderSelesDetails obj = new PopOrderSelesDetails();
                 obj.setArguments(bundle);
                 obj.show(Manager, null);
@@ -989,7 +987,8 @@ public class OrdersItems extends FragmentActivity {
 
     public void btn_Search_Cust(View view) {
 
-        FragmentManager Manager = getFragmentManager();
+        android.app.FragmentManager Manager = getFragmentManager();
+
         Select_Customer obj = new Select_Customer();
         obj.show(Manager, null);
     }
@@ -1034,6 +1033,7 @@ public class OrdersItems extends FragmentActivity {
         }
     }
 
+    @SuppressLint("Range")
     public void Set_Order(String No, String Nm, String acc) { // FillList
 
         // Radio_cash.setChecked(false);
@@ -1173,7 +1173,8 @@ public class OrdersItems extends FragmentActivity {
         if (chk_MobileOrder.isChecked()) {
             Bundle bundle = new Bundle();
             bundle.putString("Scr", "po");
-            FragmentManager Manager = getFragmentManager();
+            android.app.FragmentManager Manager = getFragmentManager();
+
             Select_Customer obj = new Select_Customer();
             obj.setArguments(bundle);
             obj.show(Manager, null);
@@ -1502,7 +1503,8 @@ public class OrdersItems extends FragmentActivity {
     public void btn_Search_Orders(View view) {
         Bundle bundle = new Bundle();
         bundle.putString("Scr", "po");
-        FragmentManager Manager = getFragmentManager();
+        android.app.FragmentManager Manager = getFragmentManager();
+
         SearchPoActivity obj = new SearchPoActivity();
         obj.setArguments(bundle);
         obj.show(Manager, null);

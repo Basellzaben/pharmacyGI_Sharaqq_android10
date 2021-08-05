@@ -1,5 +1,6 @@
 package com.cds_jo.pharmacyGI;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -12,12 +13,8 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.Shader;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
 import android.util.DisplayMetrics;
 import android.view.SurfaceView;
 import android.view.View;
@@ -26,6 +23,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.MediaController;
 import android.widget.VideoView;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import com.cds_jo.pharmacyGI.assist.Cls_Cur;
 import com.cds_jo.pharmacyGI.assist.Cls_itms_Info;
@@ -152,6 +153,7 @@ public class ItemGalleryActivity extends FragmentActivity {
        /* progressDialog.show();*/
 
         new Thread(new Runnable() {
+            @SuppressLint("Range")
             @Override
             public void run() {
 

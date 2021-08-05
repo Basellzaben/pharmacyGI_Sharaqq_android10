@@ -1,26 +1,12 @@
 package com.cds_jo.pharmacyGI.assist;
-import android.app.DialogFragment;
-import android.os.Bundle;
-import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.ListView;
 
-import com.cds_jo.GalaxySalesApp.Acc_Report_F.cls_ACC_Report;
-import com.cds_jo.GalaxySalesApp.R;
-import com.cds_jo.GalaxySalesApp.We_Result;
+import android.annotation.SuppressLint;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
+import androidx.fragment.app.DialogFragment;
 
-import java.util.ArrayList;
-
-public class Acc_Report_D extends DialogFragment {
-    cls_ACC_Report cls_acc_report ;
+@SuppressLint("ValidFragment")
+class Acc_Report_D extends DialogFragment {
+   /* cls_ACC_Report cls_acc_report ;
     ArrayList<cls_ACC_Report> list;
     final Handler _handler = new Handler();
     Acc_Report_Adapter adapter;
@@ -124,6 +110,6 @@ public class Acc_Report_D extends DialogFragment {
         };
         thread.start();
 
-    }
+    }*/
 
 }

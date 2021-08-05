@@ -1,5 +1,6 @@
 package com.cds_jo.pharmacyGI;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.content.ContentValues;
@@ -9,7 +10,6 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.CheckBox;
@@ -19,6 +19,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.cds_jo.pharmacyGI.assist.LoginActivity;
 
@@ -311,6 +313,7 @@ public   String json;
         CustNm.setText(Nm);
         CustNm.setError(null);
     }
+    @SuppressLint("Range")
     public void Set_Order(String No, String Nm, String acc) {
         TextView CustNm =(TextView)findViewById(R.id.tv_cusnm);
         TextView Order_no = (TextView)findViewById(R.id.et_OrdeNo);

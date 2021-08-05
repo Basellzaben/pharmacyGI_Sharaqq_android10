@@ -1,7 +1,7 @@
 package com.cds_jo.pharmacyGI;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;
@@ -11,8 +11,6 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,6 +18,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import com.cds_jo.pharmacyGI.assist.Cls_Man_Qty_Adapter;
 import com.cds_jo.pharmacyGI.assist.Convert_Man_Balance_Qty_To_Img;
@@ -63,10 +65,11 @@ public class ManBalanceQtyActivity extends FragmentActivity {
 
 */
         Fragment frag=new Header_Frag();
-        android.support.v4.app.FragmentManager fragmentManager=getSupportFragmentManager();
+       FragmentManager fragmentManager=getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.Frag1,frag).commit();
 
     }
+    @SuppressLint("Range")
     public  void GetMaxPONo(){
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String u =  sharedPreferences.getString("UserID", "");
@@ -196,7 +199,7 @@ public class ManBalanceQtyActivity extends FragmentActivity {
         Bundle bundle = new Bundle();
         bundle.putString("Qty", cls_trans_qty.getQty());
         bundle.putString("ItemName", cls_trans_qty.getItem_Name());
-        FragmentManager Manager =  getFragmentManager();
+        android.app.FragmentManager Manager = getFragmentManager();
         PopEnterActQty obj = new PopEnterActQty();
         obj.setArguments(bundle);
         obj.show(Manager, null);
@@ -283,6 +286,7 @@ public class ManBalanceQtyActivity extends FragmentActivity {
         Calendar cc = Calendar.getInstance();
         final int dayOfWeek = cc.get(Calendar.DAY_OF_WEEK);
         new Thread(new Runnable() {
+            @SuppressLint("Range")
             @Override
             public void run() {
 
@@ -420,6 +424,7 @@ public class ManBalanceQtyActivity extends FragmentActivity {
     }
 
 
+    @SuppressLint("Range")
     private Double GetSaledQtyNotPosted(String ItemNo ){
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String u =  sharedPreferences.getString("UserID", "");
@@ -593,7 +598,8 @@ public class ManBalanceQtyActivity extends FragmentActivity {
     public void btn_Search_Orders(View view) {
         Bundle bundle = new Bundle();
         bundle.putString("Scr", "ManBalance");
-        FragmentManager Manager =  getFragmentManager();
+        android.app.FragmentManager Manager = getFragmentManager();
+
         SearchManBalanceQty obj = new SearchManBalanceQty();
         obj.setArguments(bundle);
         obj.show(Manager, null);
@@ -603,6 +609,7 @@ public class ManBalanceQtyActivity extends FragmentActivity {
         Maxpo.setText(No);
         GetRecord();
     }
+    @SuppressLint("Range")
     private void GetRecord(){
         cls_trans_qties.clear();
         lst_Items.invalidateViews();

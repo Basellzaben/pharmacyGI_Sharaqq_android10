@@ -1,7 +1,7 @@
 package com.cds_jo.pharmacyGI.assist;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;
@@ -11,8 +11,6 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.ContextMenu;
@@ -26,9 +24,12 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
 import com.cds_jo.pharmacyGI.ContactListAdapter;
 import com.cds_jo.pharmacyGI.ContactListItems;
-
 import com.cds_jo.pharmacyGI.GalaxyMainActivity;
 import com.cds_jo.pharmacyGI.PopInvoicInfo;
 import com.cds_jo.pharmacyGI.PopMenuItems;
@@ -109,7 +110,7 @@ public class CustomerReturnQtyActivity extends AppCompatActivity {
 
 
         Fragment frag=new Header_Frag();
-        android.support.v4.app.FragmentManager fragmentManager=getSupportFragmentManager();
+       FragmentManager fragmentManager=getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.Frag1,frag).commit();
         lvCustomList = (ListView) findViewById(R.id.LstvItems);
         sqlHandler = new SqlHandler(this);
@@ -317,6 +318,7 @@ public class CustomerReturnQtyActivity extends AppCompatActivity {
         lvCustomList.setAdapter(contactListAdapter);
         //  json = new Gson().toJson(contactList);
     }
+    @SuppressLint("Range")
     private void FillAdapter(   ) {
         contactList.clear();
         float Total = 0 ;
@@ -799,7 +801,8 @@ public class CustomerReturnQtyActivity extends AppCompatActivity {
     public  void showPop(){
         Bundle bundle = new Bundle();
         bundle.putString("Scr", "RetnQty");
-        FragmentManager Manager =  getFragmentManager();
+        android.app.FragmentManager Manager = getFragmentManager();
+
         PopMenuItems obj = new PopMenuItems();
         obj.setArguments(bundle);
         obj.show(Manager, null);
@@ -1107,11 +1110,13 @@ public class CustomerReturnQtyActivity extends AppCompatActivity {
     public void btn_Search_Orders(View view) {
         Bundle bundle = new Bundle();
         bundle.putString("Scr", "RetQty");
-        FragmentManager Manager =  getFragmentManager();
+        android.app.FragmentManager Manager = getFragmentManager();
+
         SearchRetnQtyOrder obj = new SearchRetnQtyOrder();
         obj.setArguments(bundle);
         obj.show(Manager, null);
     }
+    @SuppressLint("Range")
     public void Set_Order(String No) {
         TextView CustNm =(TextView)findViewById(R.id.tv_cusnm);
         TextView no = (TextView)findViewById(R.id.et_OrdeNo);
@@ -1237,7 +1242,8 @@ public class CustomerReturnQtyActivity extends AppCompatActivity {
                 Bundle bundle = new Bundle();
                 bundle.putString("Scr", "RetnQty");
                 bundle.putSerializable("List", Itemlist);
-                FragmentManager Manager =  getFragmentManager();
+                android.app.FragmentManager Manager = getFragmentManager();
+
                 PopMenuItems obj = new PopMenuItems();
                 obj.setArguments(bundle);
                 obj.show(Manager, null);
@@ -1272,6 +1278,7 @@ public class CustomerReturnQtyActivity extends AppCompatActivity {
 
         return super.onContextItemSelected(item);
     }
+    @SuppressLint("Range")
     public void btn_share(View view) {
         final  SqlHandler sql_Handler = new SqlHandler(this);
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -1445,12 +1452,14 @@ public class CustomerReturnQtyActivity extends AppCompatActivity {
     public void btn_Search_Invoice(View view) {
         Bundle bundle = new Bundle();
         bundle.putString("Scr", "RetnQty");
-        FragmentManager Manager =  getFragmentManager();
+        android.app.FragmentManager Manager = getFragmentManager();
+
         Sal_Inv_SearchActivity obj = new Sal_Inv_SearchActivity();
         obj.setArguments(bundle);
         obj.show(Manager, null);
 
     }
+    @SuppressLint("Range")
     public void Set_Order_From_invoice(String No) {
         // TextView CustNm =(TextView)findViewById(R.id.tv_cusnm);
         TextView no = (TextView)findViewById(R.id.et_InvoiceNo);
@@ -1502,6 +1511,7 @@ public class CustomerReturnQtyActivity extends AppCompatActivity {
         }
 
     }
+    @SuppressLint("Range")
     private void FillAdapterFrom_Invoice(   ) {
         contactList.clear();
         float Total = 0 ;
@@ -1615,7 +1625,8 @@ public class CustomerReturnQtyActivity extends AppCompatActivity {
         EditText InvoiceNo = (EditText)findViewById(R.id.et_InvoiceNo);
         Bundle bundle = new Bundle();
         bundle.putString("No", InvoiceNo.getText().toString());
-        FragmentManager Manager =  getFragmentManager();
+        android.app.FragmentManager Manager = getFragmentManager();
+
         PopInvoicInfo obj = new PopInvoicInfo();
         obj.setArguments(bundle);
         obj.show(Manager, null);

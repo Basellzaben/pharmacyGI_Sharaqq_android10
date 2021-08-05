@@ -1,18 +1,14 @@
 
 package com.cds_jo.pharmacyGI;
 
+import android.annotation.SuppressLint;
 import android.app.DialogFragment;
-
 import android.content.DialogInterface;
-
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
-
 import android.preference.PreferenceManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -22,15 +18,16 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
-
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
-
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.cds_jo.pharmacyGI.assist.Cls_Deptf;
 import com.cds_jo.pharmacyGI.assist.Cls_Deptf_adapter;
@@ -38,10 +35,8 @@ import com.cds_jo.pharmacyGI.assist.Cls_Invf;
 import com.cds_jo.pharmacyGI.assist.Cls_UnitItems;
 import com.cds_jo.pharmacyGI.assist.Cls_UnitItems_Adapter;
 import com.cds_jo.pharmacyGI.assist.OrdersItems;
-
 import com.cds_jo.pharmacyGI.assist.Po_ListItemAdapter;
 import com.cds_jo.pharmacyGI.assist.Sale_InvoiceActivity;
-
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -83,7 +78,7 @@ public class Pop_Po_Select_Items_New extends DialogFragment implements View.OnCl
 
     TextView tv_PageNumer;
 
-    RecyclerView  rv ;
+    RecyclerView rv ;
     MyTextView tv_ExpDate,tv_Batch;
     private Double SToD(String str) {
         String f = "";
@@ -538,6 +533,7 @@ public class Pop_Po_Select_Items_New extends DialogFragment implements View.OnCl
         sp_items_cat.setAdapter(cls_unitItems_adapter);
     }
 
+    @SuppressLint("Range")
     private void FillItems() {
         filter = (EditText) form.findViewById(R.id.et_Search_filter);
         String query = "";
@@ -700,6 +696,7 @@ public class Pop_Po_Select_Items_New extends DialogFragment implements View.OnCl
 
         rv.setAdapter(po_listItemAdapter);
     }
+    @SuppressLint("Range")
     public void fillUnit(String item_no) {
 
 

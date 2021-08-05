@@ -1,4 +1,6 @@
 package com.cds_jo.pharmacyGI;
+
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -8,14 +10,15 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.cds_jo.pharmacyGI.assist.CallWebServices;
 
@@ -95,6 +98,7 @@ public class Tab_Visits_Summery extends Fragment {
         tv_DeleteTime.setText(SERVERDATE);
         editor.commit();
     }
+    @SuppressLint("Range")
     private  void ShareVisitNew(){
 
         String query = "  select  Po_Hdr.orderno as Po_Order ,s.Notes  , s.no as no ,s.ManNo as ManNo, s.CusNo as CusNo , s.DayNum as DayNum,s.Tr_Data as Tr_Data ," +

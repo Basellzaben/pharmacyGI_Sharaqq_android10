@@ -36,7 +36,7 @@ public class CallWebServices  {
           URL = "http://"+IPAddress+"/CV.asmx";//
           URL = "http://79.173.249.130:92/CV.asmx";// Sharaq
         //URL  = "http://192.168.8.102:3550/CV.asmx";// Sharaq
-          URL = "http://10.0.1.104:3550/CV.asmx";// Sharaq
+        //  URL = "http://10.0.1.104:3550/CV.asmx";// Sharaq
     }
         //SOAP Action URI again Namespace + Web method w333
         public void GET_ACC_Report_D(int bill , int doctype,int my) {
@@ -1668,6 +1668,53 @@ private  static String SOAP_ACTION = "http://tempuri.org/WithJson";
 
 //
     }
+
+
+    public void GetTime() {
+        We_Result.Msg ="";
+        We_Result.ID = -2;
+
+        String resTxt = null;
+        try {
+            SoapObject request = new SoapObject("https://api.ipgeolocation.io/", "timezone?apiKey=a8c0020bd9484d4497542a22515ff30f&lat=32.01931692665541&long=35.92699122528424");
+            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
+                    SoapEnvelope.VER11);
+            envelope.dotNet=true;
+            envelope.setOutputSoapObject(request);
+
+            HttpTransportSE androidHttpTransport = new HttpTransportSE(URL);
+            Object  response =null;
+
+
+            androidHttpTransport.call("https://api.ipgeolocation.io/timezone?apiKey=a8c0020bd9484d4497542a22515ff30f&lat=32.01931692665541&long=35.92699122528424", envelope);
+            SoapObject result  = (SoapObject) envelope.getResponse();
+            We_Result.Msg =  result.getProperty("Msg").toString();
+            We_Result.ID = Long.parseLong(result.getProperty("ID").toString());
+
+
+
+        } catch (NullPointerException   en){
+            We_Result.Msg =  "عملية الاتصال بالسيرفر لم تتم بنجاح"       ;
+            We_Result.ID = Long.parseLong("-404");
+            en.printStackTrace();
+            resTxt = "Error occured";
+
+        } catch (EOFException eof ){
+            We_Result.Msg =  "عملية الاتصال بالسيرفر لم تتم بنجاح"         ;
+            We_Result.ID = Long.parseLong("-404");
+            eof.printStackTrace();
+            resTxt = "Error occured";
+        }
+        catch (Exception e) {
+            We_Result.Msg =  "عملية الاتصال بالسيرفر لم تتم بنجاح"    ;//+ String.valueOf( e.getMessage().toString());
+            We_Result.ID = Long.parseLong("-404");
+            e.printStackTrace();
+            resTxt = "Error occured";
+        }
+
+//
+    }
+
     public void GetSaleManPath(String No,String DayNum ,String Tr_Date) {
         We_Result.Msg =  ""     ;
         We_Result.ID = -2;

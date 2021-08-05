@@ -1,9 +1,9 @@
 package com.cds_jo.pharmacyGI;
 
- import android.app.AlertDialog;
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.ContentValues;
@@ -11,15 +11,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
- import android.content.pm.PackageManager;
- import android.content.pm.ResolveInfo;
- import android.database.Cursor;
- import android.net.Uri;
- import android.os.Bundle;
+import android.database.Cursor;
+import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
@@ -28,46 +23,40 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
- import android.widget.ImageView;
- import android.widget.LinearLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.cds_jo.pharmacyGI.assist.CallWebServices;
 import com.cds_jo.pharmacyGI.assist.CheckAdapter;
 import com.cds_jo.pharmacyGI.assist.Cls_Check;
 import com.cds_jo.pharmacyGI.assist.Cls_Cur;
 import com.cds_jo.pharmacyGI.assist.Cls_Cur_Adapter;
- import com.cds_jo.pharmacyGI.assist.Convert_RecVouch_To_Img;
- import com.cds_jo.pharmacyGI.assist.LoginActivity;
- import com.cds_jo.pharmacyGI.assist.PopVoucherSing;
- import com.google.gson.Gson;
- import com.itextpdf.text.BadElementException;
- import com.itextpdf.text.DocumentException;
- import com.itextpdf.text.pdf.PdfWriter;
+import com.cds_jo.pharmacyGI.assist.Convert_RecVouch_To_Img;
+import com.cds_jo.pharmacyGI.assist.LoginActivity;
+import com.cds_jo.pharmacyGI.assist.PopVoucherSing;
+import com.google.gson.Gson;
 
- import org.json.JSONException;
+import org.json.JSONException;
 import org.json.JSONObject;
 
- import java.io.File;
- import java.io.FileNotFoundException;
- import java.io.FileOutputStream;
- import java.io.IOException;
- import java.text.DecimalFormat;
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
- import java.util.List;
- import java.util.Locale;
+import java.util.Locale;
 
 import Methdes.MethodToUse;
 import hearder.main.Header_Frag;
-
- import static com.itextpdf.text.PageSize.A4;
 
 public class RecvVoucherActivity extends AppCompatActivity {
     ImageButton CustSearch;
@@ -147,7 +136,7 @@ public class RecvVoucherActivity extends AppCompatActivity {
                 Toast.makeText(this, ex.getMessage().toString(), Toast.LENGTH_SHORT).show();
             }
             Fragment frag=new Header_Frag();
-            android.support.v4.app.FragmentManager fragmentManager=getSupportFragmentManager();
+           FragmentManager fragmentManager=getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.Frag1,frag).commit();
 
 
@@ -361,6 +350,7 @@ public class RecvVoucherActivity extends AppCompatActivity {
     }
 
 
+    @SuppressLint("Range")
     private void FillCur() {
         final Spinner sp_cur = (Spinner) findViewById(R.id.sp_cur);
         SqlHandler sqlHandler = new SqlHandler(this);
@@ -439,8 +429,9 @@ public class RecvVoucherActivity extends AppCompatActivity {
 
             Bundle bundle = new Bundle();
             bundle.putString("Scr", "RecVoch");
-            FragmentManager Manager = getFragmentManager();
-            Select_Customer obj = new Select_Customer();
+        android.app.FragmentManager Manager = getFragmentManager();
+
+        Select_Customer obj = new Select_Customer();
             obj.setArguments(bundle);
            obj.show(Manager, null);
 
@@ -648,6 +639,7 @@ public class RecvVoucherActivity extends AppCompatActivity {
 
 
     }
+    @SuppressLint("Range")
     private  void  UpDateMaxOrderNo() {
         SqlHandler sqlHandler;
         sqlHandler = new SqlHandler(this);
@@ -925,6 +917,7 @@ public class RecvVoucherActivity extends AppCompatActivity {
 
 
     }
+    @SuppressLint("Range")
     public void ShowRecord() {
         EditText OrderNo = (EditText) findViewById(R.id.et_OrdeNo);
         TextView amt = (TextView) findViewById(R.id.et_Amt);
@@ -1033,6 +1026,7 @@ public class RecvVoucherActivity extends AppCompatActivity {
         OrdeNo.setText(No);
         ShowRecord();
     }
+    @SuppressLint("Range")
     private void showList() {
         ListView listCheck = (ListView) findViewById(R.id.lstCheck);
         ChecklList.clear();
@@ -1088,6 +1082,7 @@ public class RecvVoucherActivity extends AppCompatActivity {
 
         //  json = new Gson().toJson(contactList);
     }
+    @SuppressLint("Range")
     public void UpdateCheck() {
 
         ListView listCheck = (ListView) findViewById(R.id.lstCheck);
@@ -1383,7 +1378,8 @@ public class RecvVoucherActivity extends AppCompatActivity {
     public void btn_search_Recv(View view) {
         Bundle bundle = new Bundle();
         bundle.putString("Scr", "Rec");
-        FragmentManager Manager = getFragmentManager();
+        android.app.FragmentManager Manager = getFragmentManager();
+
         RecVoucherSearchActivity obj = new RecVoucherSearchActivity();
         obj.setArguments(bundle);
         obj.show(Manager, null);
@@ -1394,6 +1390,7 @@ public class RecvVoucherActivity extends AppCompatActivity {
         showList();
         DoNew();
     }
+    @SuppressLint("Range")
     public void btn_share(View view) {
 
         if(IsNew==true){
@@ -1603,7 +1600,8 @@ public class RecvVoucherActivity extends AppCompatActivity {
         Bundle bundle = new Bundle();
         bundle.putString("Scr", "po");
 
-        FragmentManager Manager =  getFragmentManager();
+        android.app.FragmentManager Manager = getFragmentManager();
+
         PopAddCheck obj = new PopAddCheck();
         obj.setArguments(bundle);
         obj.show(Manager, null);
@@ -1672,7 +1670,8 @@ public class RecvVoucherActivity extends AppCompatActivity {
         Bundle bundle = new Bundle();
         bundle.putString("Scr", "po");
         bundle.putString("OrdeNo", DocNo.getText().toString());
-        FragmentManager Manager = getFragmentManager();
+        android.app.FragmentManager Manager = getFragmentManager();
+
         PopVoucherSing obj = new PopVoucherSing();
         obj.setArguments(bundle);
         obj.show(Manager, null);

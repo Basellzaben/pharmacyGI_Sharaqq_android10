@@ -2,15 +2,14 @@ package com.cds_jo.pharmacyGI;
 
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -26,9 +25,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -43,9 +39,18 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.IOException;
-import java.net.URL;
-import java.text.SimpleDateFormat;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.cds_jo.pharmacyGI.assist.Acc_ReportActivity;
 import com.cds_jo.pharmacyGI.assist.CallWebServices;
 import com.cds_jo.pharmacyGI.assist.ESCPSample3;
@@ -66,16 +71,18 @@ import com.google.zxing.integration.android.IntentResult;
 import com.sewoo.jpos.printer.ESCPOSPrinter;
 import com.zebra.zq110.ZQ110;
 
-
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
+import java.io.IOException;
+import java.net.URL;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -83,13 +90,16 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Timer;
 
-
 import Methdes.MyTextView;
 import Methdes.MyTextView_Digital;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import hearder.main.Header_Frag;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
+
+    final String urltime = "https://api.ipgeolocation.io/timezone?apiKey=a8c0020bd9484d4497542a22515ff30f&lat=32.01931692665541&long=35.92699122528424";
+    List<Time> alist;
+    RequestQueue requestQueue;
     TextView tv;
     Drawable greenProgressbar;
     RelativeLayout.LayoutParams lp;
@@ -102,8 +112,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     ESCPSample3 obj_print = new ESCPSample3();
     String dayOfWeek;
     SqlHandler sqlHandler;
-    String DeviceDate,js_SERVERDATE, js_SERVERTIME, js_MYEAR, js_MMONTH, js_MDAY, js_MHOUR, js_MMINUTE, js_MSECOND, js_DAYWEEK;
-    SweetAlertDialog pDialog ;
+
+    String DeviceDate, js_SERVERDATE, js_SERVERTIME, js_MYEAR, js_MMONTH, js_MDAY, js_MHOUR, js_MMINUTE, js_MSECOND, js_DAYWEEK;
+    SweetAlertDialog pDialog;
     Date ServrTime;
     int GetTime = 0;
     int Week_Num = 1;
@@ -118,37 +129,47 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     // Minimum distance fluctuation for next update (in meters)
     private static final long DISTANCE = 20;
     TextView et_Notes;
-    MyTextView_Digital TrDate, tv_Duration, et_StartTime, et_EndTime, et_ServerTime  ;
+    MyTextView_Digital TrDate, tv_Duration, et_StartTime, et_EndTime, et_ServerTime;
     CheckBox V1, V2, V3, V4;
-    TextView tv_AlloweDistance,tv_x, tv_y,tv_Loc,tv_CustAddress, tv_Cust_Y,tv_Cust_X,tv_Distance;
-    Methdes.MyTextView et_Day, tv_y1, tv_location,lblCurrentDist;
+    TextView tv_AlloweDistance, tv_x, tv_y, tv_Loc, tv_CustAddress, tv_Cust_Y, tv_Cust_X, tv_Distance;
+    Methdes.MyTextView et_Day, tv_y1, tv_location, lblCurrentDist;
     ImageView imageButton4;
     int Isopen = 0;
     // Declaring a Location Manager
     Calendar CalnederServerTime;
-    Calendar CalnederVisitStartTime ;
+    Calendar CalnederVisitStartTime;
     SimpleDateFormat ServerFormat;
     String GpsStatus = "";
     String TabDate;
-    String url,tv_UserNm;
+    String url, tv_UserNm;
     Document doc;
     String[] tags;
     Elements elements;
-    String Unix_time ;
+    String Unix_time;
     String[] split;
     Intent BackInt;
-    String  Gpsflag="0",CheckGps="1",GPSAccurent="0";
+    String Gpsflag = "0", CheckGps = "1", GPSAccurent = "0";
+
+
+
+    String time="";
+    String week="";
+    String month="";
+    String year="";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+       // requestQueue = Volley.newRequestQueue(this);
+
         try {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main_new);
-            Gpsflag="0";
+            Gpsflag = "0";
             this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
             et_EndTime = (MyTextView_Digital) findViewById(R.id.et_EndTime);
             et_EndTime.setText("00:00:00");
-            CalnederServerTime  = Calendar.getInstance();
-            CalnederVisitStartTime  = Calendar.getInstance();
+            CalnederServerTime = Calendar.getInstance();
+            CalnederVisitStartTime = Calendar.getInstance();
             SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                     .findFragmentById(R.id.map);
             mapFragment.getMapAsync(this);
@@ -171,7 +192,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             RoundList.clear();
 
 
-
             LytMenu = (LinearLayout) findViewById(R.id.LytMenu);
             LytGps = (LinearLayout) findViewById(R.id.LytGps);
 
@@ -181,14 +201,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             tv_AlloweDistance.setText(GPSAccurent);
 
 
-
             lblCurrentDist = (MyTextView) findViewById(R.id.lblCurrentDist);
 
             tv_CustAddress = (TextView) findViewById(R.id.tv_CustAddress);
             tv_Cust_Y = (TextView) findViewById(R.id.tv_Cust_Y);
             tv_Cust_X = (TextView) findViewById(R.id.tv_Cust_X);
             tv_Distance = (TextView) findViewById(R.id.tv_Distance);
-              tv_Distance.setText("0");
+            tv_Distance.setText("0");
             contentTxt = (TextView) findViewById(R.id.scan_content);
             RelativeLayout scanBtn = (RelativeLayout) findViewById(R.id.scan_button);
 
@@ -221,7 +240,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
             tv_location = (Methdes.MyTextView) findViewById(R.id.tv_location);
-             tv_Loc = (TextView) findViewById(R.id.tv_Loc);
+            tv_Loc = (TextView) findViewById(R.id.tv_Loc);
 
             sqlHandler = new SqlHandler(this);
            /* if (ComInfo.ComNo == 1) {
@@ -243,13 +262,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 btn_Save_Location.setVisibility(View.VISIBLE);
                 button10.setVisibility(View.VISIBLE);
             }*/
-            js_SERVERDATE="";
+            js_SERVERDATE = "";
             Get_ServerDateTime();
             sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.ENGLISH);
             DeviceDate = sdf.format(new Date());
             String msg = "تاريخ التابلت غير مطابق لتاريخ السيرفر ، الرجاء تحديث البيانات" + "\r\n";
             msg = msg + "تاريخ التابلت  : " + DeviceDate + "\r\n" + "تاريخ السيرفر : " + js_SERVERDATE;
-            if ((!js_SERVERDATE.equalsIgnoreCase(DeviceDate))   || js_SERVERDATE.equalsIgnoreCase("") ) {
+            if ((!js_SERVERDATE.equalsIgnoreCase(DeviceDate)) || js_SERVERDATE.equalsIgnoreCase("")) {
                 AlertDialog alertDialog = new AlertDialog.Builder(this).create();
                 alertDialog = new AlertDialog.Builder(this).create();
                 alertDialog.setTitle("فتح زيارة");
@@ -268,13 +287,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-            String u =  sharedPreferences.getString("UserID", "");
+            String u = sharedPreferences.getString("UserID", "");
 
 
-
-            CheckGps = DB.GetValue(MainActivity.this, "manf", "SupNo", "man='"+u+"'");
-            if(CheckGps.equalsIgnoreCase("1")){
-                Toast.makeText(MainActivity.this,"تم تفعيل الإحداثيات",Toast.LENGTH_LONG).show();
+            CheckGps = DB.GetValue(MainActivity.this, "manf", "SupNo", "man='" + u + "'");
+            if (CheckGps.equalsIgnoreCase("1")) {
+                Toast.makeText(MainActivity.this, "تم تفعيل الإحداثيات", Toast.LENGTH_LONG).show();
             }
 
             getUnixTime(-1);
@@ -289,16 +307,16 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             UpdateVisitLocation();
             ShowRecord();
 
-            tv_UserNm=sharedPreferences.getString("UserName", "");
+            tv_UserNm = sharedPreferences.getString("UserName", "");
 
             Fragment frag = new Header_Frag();
-            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.Frag1, frag).commit();
             this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         } catch (Exception ex) {
             new SweetAlertDialog(MainActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
-                     .setTitleText(ex.getMessage().toString())
+                    .setTitleText(ex.getMessage().toString())
                     .setContentText(ex.getMessage().toString())
                     .setCustomImage(R.drawable.error_new)
                     .setConfirmText("رجــــوع")
@@ -308,8 +326,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     public void btn_HideGps(View view) {
-            LytMenu.setVisibility(View.VISIBLE);
-            LytGps.setVisibility(View.GONE);
+        LytMenu.setVisibility(View.VISIBLE);
+        LytGps.setVisibility(View.GONE);
     }
 
     public void btn_ShowGps(View view) {
@@ -318,7 +336,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         TextView CustNm = (TextView) findViewById(R.id.tv_CustName);
 
 
-        if(CustNm.getText().toString().equalsIgnoreCase("") ){
+        if (CustNm.getText().toString().equalsIgnoreCase("")) {
             new SweetAlertDialog(MainActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
                     .setContentText("يجب تحديد الصيدلية اولا")
                     .setCustomImage(R.drawable.error_new)
@@ -328,7 +346,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
 
 
-        if(tv_Cust_X.getText().toString().equalsIgnoreCase("")||tv_Cust_Y.getText().toString().equalsIgnoreCase("")||tv_Cust_X.getText().toString().equalsIgnoreCase("0.000") ||tv_Cust_Y.getText().toString().equalsIgnoreCase("0.000") ){
+        if (tv_Cust_X.getText().toString().equalsIgnoreCase("") || tv_Cust_Y.getText().toString().equalsIgnoreCase("") || tv_Cust_X.getText().toString().equalsIgnoreCase("0.000") || tv_Cust_Y.getText().toString().equalsIgnoreCase("0.000")) {
             new SweetAlertDialog(MainActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
                     .setContentText("موقع الصيدلية غير مدخل")
                     .setCustomImage(R.drawable.error_new)
@@ -338,7 +356,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
 
 
-        if(tv_x.getText().toString().equalsIgnoreCase("")||tv_y.getText().toString().equalsIgnoreCase("")  ){
+        if (tv_x.getText().toString().equalsIgnoreCase("") || tv_y.getText().toString().equalsIgnoreCase("")) {
             new SweetAlertDialog(MainActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
                     .setContentText("موقع المندوب غير معرف")
                     .setCustomImage(R.drawable.error_new)
@@ -351,10 +369,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         LytGps.setVisibility(View.VISIBLE);
         ShowMapWithTitle();
     }
-    LatLng ManLoc ;
+
+    LatLng ManLoc;
     private GoogleMap mMap;
     private Polyline mPolyline = null;
-    private  void ShowMapWithTitle(){
+
+    @SuppressLint("MissingPermission")
+    private void ShowMapWithTitle() {
 
 
         mMap.clear();
@@ -362,14 +383,44 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         TextView CustNm = (TextView) findViewById(R.id.tv_CustName);
 
 
-
-        Double  Lat = Double.parseDouble(tv_Cust_X.getText().toString());
-        Double Long = Double.parseDouble(tv_Cust_Y.getText().toString());;
-        ManLoc= new LatLng(Lat, Long);
+        Double Lat = Double.parseDouble(tv_Cust_X.getText().toString());
+        Double Long = Double.parseDouble(tv_Cust_Y.getText().toString());
+        ;
+        ManLoc = new LatLng(Lat, Long);
         mMap.addMarker(new MarkerOptions().position(ManLoc).title(CustNm.getText().toString())).setIcon(BitmapDescriptorFactory.fromResource(R.drawable.gps_phar));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(ManLoc));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
         mMap.getUiSettings().setZoomControlsEnabled(true);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
         mMap.setMyLocationEnabled(true);
         mMap.setTrafficEnabled(true);
         mMap.setBuildingsEnabled(true);
@@ -446,11 +497,16 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         final ProgressDialog custDialog = new ProgressDialog(MainActivity.this);
         @Override
         protected void onPreExecute() {
+
+
+
             pDialog = new SweetAlertDialog(MainActivity.this, SweetAlertDialog.PROGRESS_TYPE);
             pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
             pDialog.setTitleText("العمل جاري على تحديث الوقت ، الرجاء الانتظار");
             pDialog.setCancelable(false);
             pDialog.show();
+
+
 
         }
         @Override
@@ -542,15 +598,17 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     }
 
-    private String getUnixTime( final int f)   {
+    private String getUnixTime1( final int f)
+    {
+
+
+
         final Handler _handler = new Handler();
         try {
             Unix_time="00:00:00";
 
-            tags = new String[]{
-                    "span[id=smalltime]"
-            };
-            url = "https://time.is/Unix_time_now";
+            tags = new String[]{"span[id=smalltime]"};
+            url = "https://api.ipgeolocation.io/timezone?apiKey=a8c0020bd9484d4497542a22515ff30f&lat=32.01931692665541&long=35.92699122528424";
             new   Thread(new Runnable() {
                 @Override
                 public void run () {
@@ -607,6 +665,631 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         return  (    Unix_time );
     }
 
+    private String openround(int f) {
+        requestQueue = Volley.newRequestQueue(MainActivity.this);
+
+        JsonObjectRequest obreq = new JsonObjectRequest(Request.Method.GET, urltime, null, new Response.Listener<JSONObject>() {
+            // Takes the response from the JSON request
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    Unix_time = response.getString("time_12");
+                    js_MDAY = response.getString("week");
+                    js_MMONTH = response.getString("month");
+                    js_MYEAR = response.getString("year");
+
+                    split = Unix_time.split(":");
+                    String H = split[0];
+                    String M = split[1];
+                    String S = split[2].substring(0,2);
+                    CalnederServerTime.set(Integer.parseInt(js_MYEAR), Integer.parseInt(js_MMONTH), Integer.parseInt(js_MDAY), Integer.parseInt(H), Integer.parseInt(M), Integer.parseInt(S));
+
+                    et_ServerTime.setText(Unix_time);
+                    if (f == 1) {
+                        StartRound();
+                    } else if (f == 2) {
+                        EndRound();
+                    }
+                }
+                // Try and catch are included to handle any errors due to JSON
+                catch (JSONException e) {
+                    // If an error occurs, this prints the error to the log
+                    new SweetAlertDialog(MainActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+                            .setContentText("خطأ في استرجاع الوقت")
+                            .setCustomImage(R.drawable.error_new)
+                            .setConfirmText("رجــــوع")
+                            .show();
+
+                }
+            }
+        },
+                // The final parameter overrides the method onErrorResponse() and passes VolleyError
+                //as a parameter
+                new Response.ErrorListener() {
+                    @Override
+                    // Handles errors that occur due to Volley
+                    public void onErrorResponse(VolleyError error) {
+                        new SweetAlertDialog(MainActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+
+                                .setContentText("خطأ في استرجاع الوقت")
+                                .setCustomImage(R.drawable.error_new)
+                                .setConfirmText("رجــــوع")
+                                .show();
+
+                    }
+                }
+        );
+        // Adds the JSON object request "obreq" to the request queue
+        requestQueue.add(obreq);
+
+
+
+
+        return  Unix_time;
+    }
+
+
+    private String getUnixTime(int f) {
+        requestQueue = Volley.newRequestQueue(MainActivity.this);
+
+        JsonObjectRequest obreq = new JsonObjectRequest(Request.Method.GET, urltime, null, new Response.Listener<JSONObject>() {
+            // Takes the response from the JSON request
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    Unix_time = response.getString("time_12");
+                    js_MDAY = response.getString("week");
+                    js_MMONTH = response.getString("month");
+                    js_MYEAR = response.getString("year");
+
+                    split = Unix_time.split(":");
+                    String H = split[0];
+                    String M = split[1];
+                    String S = split[2].substring(0,2);
+                    CalnederServerTime.set(Integer.parseInt(js_MYEAR), Integer.parseInt(js_MMONTH), Integer.parseInt(js_MDAY), Integer.parseInt(H), Integer.parseInt(M), Integer.parseInt(S));
+                    GetTime=1;
+                    if (f == 1) {
+                        StartRound();
+                    } else if (f == 2) {
+                        EndRound();
+                    }else{
+                        et_ServerTime.setText(Unix_time);
+                    }
+                }
+                // Try and catch are included to handle any errors due to JSON
+                catch (JSONException e) {
+                    // If an error occurs, this prints the error to the log
+                    new SweetAlertDialog(MainActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+                            .setContentText("خطأ في استرجاع الوقت")
+                            .setCustomImage(R.drawable.error_new)
+                            .setConfirmText("رجــــوع")
+                            .show();
+                    et_ServerTime.setText("00:00:00");
+
+                }
+            }
+        },
+                // The final parameter overrides the method onErrorResponse() and passes VolleyError
+                //as a parameter
+                new Response.ErrorListener() {
+                    @Override
+                    // Handles errors that occur due to Volley
+                    public void onErrorResponse(VolleyError error) {
+                        new SweetAlertDialog(MainActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+
+                                .setContentText("خطأ في استرجاع الوقت")
+                                .setCustomImage(R.drawable.error_new)
+                                .setConfirmText("رجــــوع")
+                                .show();
+                        et_ServerTime.setText("00:00:00");
+
+                    }
+                }
+        );
+        // Adds the JSON object request "obreq" to the request queue
+        requestQueue.add(obreq);
+
+
+
+
+return  Unix_time;
+    }
+
+
+
+
+
+
+
+      //  JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, urltime, null, new Response.Listener<JSONObject>() {
+/*
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    // Server responded successfully
+
+
+              Unix_time  = response.getString("time_12");
+                    week  =response.getString("week");
+                   month = response.getString("month");
+                   year  = response.getString("year");
+
+                    split = Unix_time.split(":");
+                    String H = split[0];
+                    String M = split[1];
+                    String S = split[2];
+                    CalnederServerTime.set(Integer.parseInt(js_MYEAR), Integer.parseInt(js_MMONTH), Integer.parseInt(js_MDAY), Integer.parseInt(H), Integer.parseInt(M), Integer.parseInt(S));
+
+
+                    if ( f==1){
+                        StartRound();
+                    }else if (f==2){
+                        EndRound();
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    GetTime=0;
+                    new SweetAlertDialog(MainActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+
+                            .setContentText("خطأ في استرجاع الوقت"+e.getMessage())
+                            .setCustomImage(R.drawable.error_new)
+                            .setConfirmText("رجــــوع")
+                            .show();
+                }
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError e) {
+                // Server did not respond. Got 5 chances before stop trying.
+                GetTime=0;
+                new SweetAlertDialog(MainActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+
+                        .setContentText("خطأ في استرجاع الوقت"+e.getMessage())
+                        .setCustomImage(R.drawable.error_new)
+                        .setConfirmText("رجــــوع")
+                        .show();
+            }
+        });
+      //  jsonObjectRequest.setTag(TAG);
+        requestQueue.add(jsonObjectRequest);*/
+/*        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET,
+                urltime,  null,  new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            // Server responded successfully
+
+
+                            Unix_time  = response.getString("time_12");
+                            js_MDAY  =response.getString("week");
+                            js_MMONTH = response.getString("month");
+                            js_MYEAR  = response.getString("year");
+
+
+                            split = Unix_time.split(":");
+                            String H = split[0];
+                            String M = split[1];
+                            String S = split[2];
+                            CalnederServerTime.set(Integer.parseInt(js_MYEAR), Integer.parseInt(js_MMONTH), Integer.parseInt(js_MDAY), Integer.parseInt(H), Integer.parseInt(M), Integer.parseInt(S));
+
+
+                            if ( f==1){
+                                StartRound();
+                            }else if (f==2){
+                                EndRound();
+                            }
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            GetTime=0;
+                            new SweetAlertDialog(MainActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+
+                                    .setContentText("خطأ في استرجاع الوقت"+e.getMessage())
+                                    .setCustomImage(R.drawable.error_new)
+                                    .setConfirmText("رجــــوع")
+                                    .show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                        new SweetAlertDialog(MainActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+                                .setContentText("خطأ في استرجاع الوقت"+error.getMessage())
+                                .setCustomImage(R.drawable.error_new)
+                                .setConfirmText("رجــــوع")
+                                .show();
+
+                    }
+                });
+    //    requestQueue.add(request);
+
+
+
+
+        return  Unix_time;
+    }*/
+
+
+/*
+        final Handler _handler = new Handler();
+        try {
+            Unix_time="00:00:00";
+
+           // tags = new String[]{"span[id=smalltime]"};
+            url = "https://api.ipgeolocation.io/timezone?apiKey=a8c0020bd9484d4497542a22515ff30f&lat=32.01931692665541&long=35.92699122528424";
+            new   Thread(new Runnable() {
+                @Override
+                public void run () {
+                    try {
+                        doc = Jsoup.parse(new URL(url).openStream(), "UTF-8", url);
+                        elements = doc.select(tags[0]);
+                        for (int i = 0; i < tags.length; i++) {
+                            elements = elements.select(tags[i]);
+                        }
+                        Unix_time = elements.text().substring(0, 8);
+                        _handler.post(new Runnable() {
+                            public void run() {
+                                GetTime=1;
+                                et_ServerTime.setText(Unix_time);
+                                split = Unix_time.split(":");
+                                String H = split[0];
+                                String M = split[1];
+                                String S = split[2];
+                                CalnederServerTime.set(Integer.parseInt(js_MYEAR), Integer.parseInt(js_MMONTH), Integer.parseInt(js_MDAY), Integer.parseInt(H), Integer.parseInt(M), Integer.parseInt(S));
+                                // TrDate.setText(js_SERVERDATE);
+                                // Toast.makeText(MainActivity.this, "الوقت في عمّان - الاردن :"+Unix_time,Toast.LENGTH_SHORT).show();
+
+
+                                if ( f==1){
+                                    StartRound();
+                                }else if (f==2){
+                                    EndRound();
+                                }
+                            }
+                        });
+
+                    } catch (final Exception e) { }
+                }
+            }).start();
+
+
+        }catch ( Exception ex){
+            GetTime=0;
+            new SweetAlertDialog(MainActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+
+                    .setContentText(ex.getMessage().toString())
+                    .setCustomImage(R.drawable.error_new)
+                    .setConfirmText("رجــــوع")
+                    .show();
+        }
+
+
+        if(Unix_time.equalsIgnoreCase("00:00:00")){
+            GetTime=0;
+            //TrDate.setText("");
+            CalnederServerTime.set(Integer.parseInt(js_MYEAR), Integer.parseInt(js_MMONTH), Integer.parseInt(js_MDAY), 0, 0, 0);
+        }
+
+        return  (    Unix_time );*/
+
+
+
+
+
+   /* {
+
+        final Handler _handler = new Handler();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                CallWebServices ws = new CallWebServices(MainActivity.this);
+                ws.GetTime();
+                try {
+                    JSONObject js = new JSONObject(We_Result.Msg);
+
+                    //String Time = js.getString("");
+
+                    Unix_time  = js.getString("time_12");
+                    week  =js.getString("week");
+                    month = js.getString("month");
+                    year  = js.getString("year");
+
+                    split = Unix_time.split(":");
+                    String H = split[0];
+                    String M = split[1];
+                    String S = split[2];
+                    CalnederServerTime.set(Integer.parseInt(js_MYEAR), Integer.parseInt(js_MMONTH), Integer.parseInt(js_MDAY), Integer.parseInt(H), Integer.parseInt(M), Integer.parseInt(S));
+
+
+                    if ( f==1){
+                        StartRound();
+                    }else if (f==2){
+                        EndRound();
+                    }
+
+
+                } catch (JSONException jsonException) {
+                    jsonException.printStackTrace();
+
+                   *//* new SweetAlertDialog(MainActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+
+                            .setContentText("خطأ في استرجاع الوقت")
+                            .setCustomImage(R.drawable.error_new)
+                            .setConfirmText("رجــــوع")
+                            .show();*/
+    /*
+
+                }
+
+            }
+        }).start();
+
+
+       return Unix_time;
+      //  RequestQueue mRequestQueue = null;
+   */
+    /*     JsonObjectRequest jsonArrayRequest = new JsonObjectRequest(Request.Method.GET, urltime, (String) null, new com.android.volley.Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                try {
+                    JSONArray jsonArray = response;
+
+                    JSONObject jsonObject = jsonArray.getJSONObject(0);
+
+                    Unix_time  = jsonObject.getString("time_12");
+                    week  =jsonObject.getString("week");
+                    month = jsonObject.getString("month");
+                    year  = jsonObject.getString("year");
+
+                    split = Unix_time.split(":");
+                    String H = split[0];
+                    String M = split[1];
+                    String S = split[2];
+                    CalnederServerTime.set(Integer.parseInt(js_MYEAR), Integer.parseInt(js_MMONTH), Integer.parseInt(js_MDAY), Integer.parseInt(H), Integer.parseInt(M), Integer.parseInt(S));
+
+
+                    if ( f==1){
+                        StartRound();
+                    }else if (f==2){
+                        EndRound();
+                    }
+
+
+                }
+                catch (Exception w)
+                {
+                    GetTime=0;
+                    new SweetAlertDialog(MainActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+
+                            .setContentText("خطأ في استرجاع الوقت")
+                            .setCustomImage(R.drawable.error_new)
+                            .setConfirmText("رجــــوع")
+                            .show();
+                  //  Toast.makeText(MainActivity.this,w.getMessage(),Toast.LENGTH_LONG).show();
+                }
+            }
+        }, new com.android.volley.Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(MainActivity.this,error.getMessage(),Toast.LENGTH_LONG).show();
+            }
+        });
+        if(Unix_time.equalsIgnoreCase("00:00:00")){
+            GetTime=0;
+            //TrDate.setText("");
+            CalnederServerTime.set(Integer.parseInt(js_MYEAR), Integer.parseInt(js_MMONTH), Integer.parseInt(js_MDAY), 0, 0, 0);
+        }
+        requestQueue.add(jsonArrayRequest);*//*
+
+        *//*JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, urltime, (String) null, new Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    // Server responded successfully
+
+                 *//**//*   final double latParameter = Double.parseDouble(response.getString("time_12"));
+                    final double lngParameter = Double.parseDouble(response.getString("week"));
+                    final double lngParameter = Double.parseDouble(response.getString("month"));
+                    final double lngParameter = Double.parseDouble(response.getString("year"));
+*//**//*
+              Unix_time  = response.getString("time_12");
+                    week  =response.getString("week");
+                   month = response.getString("month");
+                   year  = response.getString("year");
+
+                    split = Unix_time.split(":");
+                    String H = split[0];
+                    String M = split[1];
+                    String S = split[2];
+                    CalnederServerTime.set(Integer.parseInt(js_MYEAR), Integer.parseInt(js_MMONTH), Integer.parseInt(js_MDAY), Integer.parseInt(H), Integer.parseInt(M), Integer.parseInt(S));
+
+
+                    if ( f==1){
+                        StartRound();
+                    }else if (f==2){
+                        EndRound();
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    GetTime=0;
+                    new SweetAlertDialog(MainActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+
+                            .setContentText("خطأ في استرجاع الوقت")
+                            .setCustomImage(R.drawable.error_new)
+                            .setConfirmText("رجــــوع")
+                            .show();
+                }
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError e) {
+                // Server did not respond. Got 5 chances before stop trying.
+                GetTime=0;
+                new SweetAlertDialog(MainActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+
+                        .setContentText("خطأ في استرجاع الوقت")
+                        .setCustomImage(R.drawable.error_new)
+                        .setConfirmText("رجــــوع")
+                        .show();
+            }
+        });
+      //  jsonObjectRequest.setTag(TAG);
+        requestQueue.add(jsonObjectRequest);
+        return  Unix_time;*//*
+    }*/
+
+  /*  private String getUnixTime(int f) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(ApiTime.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+
+        ApiTime api = retrofit.create(ApiTime.class);
+
+        Call<List<Time>> call = api.getUnixTime();
+
+
+        call.enqueue(new Callback<List<Time>>() {
+            @Override
+            public void onResponse(Call<List<Time>> call, Response<List<Time>> response) {
+                List<Time> adslist = response.body();
+
+                Unix_time  = adslist.get(0).getTime();
+                js_MYEAR  =adslist.get(0).getTime();
+                js_MMONTH = adslist.get(0).getTime();
+                js_MDAY  = adslist.get(0).getTime();
+
+                split = Unix_time.split(":");
+                String H = split[0];
+                String M = split[1];
+                String S = split[2];
+                CalnederServerTime.set(Integer.parseInt(js_MYEAR), Integer.parseInt(js_MMONTH), Integer.parseInt(js_MDAY), Integer.parseInt(H), Integer.parseInt(M), Integer.parseInt(S));
+
+
+                if ( f==1){
+                    StartRound();
+                }else if (f==2){
+                    EndRound();
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Time>> call, Throwable t) {
+
+                GetTime=0;
+                new SweetAlertDialog(MainActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+
+                        .setContentText("خطأ في استرجاع الوقت")
+                        .setCustomImage(R.drawable.error_new)
+                        .setConfirmText("رجــــوع")
+                        .show();
+
+            }
+        });
+        if(Unix_time.equalsIgnoreCase("00:00:00")){
+            GetTime=0;
+            //TrDate.setText("");
+            CalnederServerTime.set(Integer.parseInt(js_MYEAR), Integer.parseInt(js_MMONTH), Integer.parseInt(js_MDAY), 0, 0, 0);
+        }
+
+        return  Unix_time;
+
+    }
+
+*/
+
+
+
+
+/*    private String getUnixTime( final int f) {
+
+        Unix_time="00:00:00";
+
+
+        Call<List<Time>> call = RetrofitClient.getInstance().getMyApi().getUnixTime();
+        call.enqueue(new Callback<List<Time>>() {
+            @Override
+            public void onResponse(Call<List<Time>> call, Response<List<Time>> response) {
+                List<Time> myheroList = response.body();
+                String[] oneHeroes = new String[myheroList.size()];
+
+                Unix_time  = response.body().get(0).getTime();
+                js_MYEAR  =response.body().get(0).getTime();
+                js_MMONTH = response.body().get(0).getTime();
+                js_MDAY  = response.body().get(0).getTime();
+
+                split = Unix_time.split(":");
+                String H = split[0];
+                String M = split[1];
+                String S = split[2];
+                CalnederServerTime.set(Integer.parseInt(js_MYEAR), Integer.parseInt(js_MMONTH), Integer.parseInt(js_MDAY), Integer.parseInt(H), Integer.parseInt(M), Integer.parseInt(S));
+
+
+                if ( f==1){
+                    StartRound();
+                }else if (f==2){
+                    EndRound();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Time>> call, Throwable t) {
+
+                GetTime=0;
+                new SweetAlertDialog(MainActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+
+                        .setContentText("خطأ في استرجاع الوقت")
+                        .setCustomImage(R.drawable.error_new)
+                        .setConfirmText("رجــــوع")
+                        .show();
+
+            }
+
+        });
+
+
+           *//* @Override
+            public void onResponse(Call<List<Results>> call, Response<List<Results>> response) {
+                List<Results> myheroList = response.body();
+                String[] oneHeroes = new String[myheroList.size()];
+
+                for (int i = 0; i < myheroList.size(); i++) {
+                    oneHeroes[i] = myheroList.get(i).getName();
+                }
+
+                superListView.setAdapter(new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, oneHeroes));
+            }
+
+            @Override
+            public void onFailure(Call<List<Results>> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "An error has occured", Toast.LENGTH_LONG).show();
+            }*//*
+
+
+
+        if(Unix_time.equalsIgnoreCase("00:00:00")){
+            GetTime=0;
+            //TrDate.setText("");
+            CalnederServerTime.set(Integer.parseInt(js_MYEAR), Integer.parseInt(js_MMONTH), Integer.parseInt(js_MDAY), 0, 0, 0);
+        }
+
+        return  Unix_time;
+    }*/
+
+
+
+
     private void   UpdateTimeEverySecond(){
         Thread t = new Thread() {
 
@@ -631,13 +1314,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
     private void updateTextView() {
         if (GetTime==0){
-            et_ServerTime.setText("00:00:00");
+           // et_ServerTime.setText("00:00:00");
+            getUnixTime(-1);
             return;
         }
 
         java.util.Date date=null;
-
-
         try {
             CalnederServerTime.add(Calendar.SECOND,1);
             String StringTime = ServerFormat.format(CalnederServerTime.getTime());
@@ -647,6 +1329,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         }
     }
+    @SuppressLint("Range")
     private void Get_ServerDateTime() {
         String q = " SELECT SERVERDATE ,SERVERTIME , MYEAR ,MMONTH ,MDAY,MDAY,MHOUR,MMINUTE ,MSECOND,DAYWEEK FROM SERVER_DATETIME " ;
         Cursor c = sqlHandler.selectQuery(q);
@@ -691,7 +1374,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     sqlHandler.executeQuery(q);
                 }else {
 
-                    GetLocation mGPSService = new GetLocation();
+                    GetLocation mGPSService = new GetLocation(getApplicationContext());
                     Location l = mGPSService.CurrentLocation(MainActivity.this);
                     double latitude = l.getLatitude();
                     double longitude = l.getLongitude();
@@ -760,7 +1443,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         tv_y.setText("0.000");
         tv_Loc.setText("");
         try {
-            GetLocation mGPSService = new GetLocation();
+            GetLocation mGPSService = new GetLocation(getApplicationContext());
             Location l =   mGPSService.CurrentDeviceLocation(MainActivity.this);
             double latitude = l.getLatitude();
             double longitude = l.getLongitude();
@@ -901,7 +1584,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         Bundle bundle = new Bundle();
         bundle.putString("Scr", "Gps");
-        FragmentManager Manager = getFragmentManager();
+        android.app.FragmentManager Manager = getFragmentManager();
         Select_Customer_Dis obj = new Select_Customer_Dis();
         obj.setArguments(bundle);
         obj.show(Manager, null);
@@ -1063,7 +1746,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private void ShowPharmcy(){
         Bundle bundle = new Bundle();
         bundle.putString("Scr", "Gps");
-        FragmentManager Manager = getFragmentManager();
+        android.app.FragmentManager Manager = getFragmentManager();
         Select_Customer obj = new Select_Customer();
         obj.setArguments(bundle);
         obj.show(Manager, null);
@@ -1289,8 +1972,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         //alertDialog.show();
     }
     public void btn_StartRound(View view) {
-        // getUnixTime(1);
-        new UpdateClock().execute("1");
+         getUnixTime(1);
+      //  new UpdateClock().execute("1");
     }
     private  void FillTempCustQty(String OrderNo){
         sqlHandler.executeQuery(" Update   invf  Set Pack = '0' ");
@@ -1440,8 +2123,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     }
     public void btn_EndRound(View view) {
-        //getUnixTime(2);
-        new UpdateClock().execute("2");
+        getUnixTime(2);
+       // new UpdateClock().execute("2");
 
     }
     public void Set_Cust(String No, String Nm) {
@@ -1455,6 +2138,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         acc.setError(null);
         GetCustLocation(No);
     }
+    @SuppressLint("Range")
     private  void GetCustLocation(String CustNo){
 
         tv_CustAddress.setText("");
@@ -1625,6 +2309,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     }
 
+    @SuppressLint("Range")
     public  void GetCustomer() {
 
         final TextView tv_x = (TextView)findViewById(R.id.tv_x);
@@ -1834,6 +2519,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         GetMaxPONo();
 
     }
+    @SuppressLint("Range")
     public  void ShowRecord(){
         TextView CustNo =(TextView)findViewById(R.id.tv_Acc);
         TextView CustNm =(TextView)findViewById(R.id.tv_CustName);
@@ -1933,6 +2619,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
     }
+    @SuppressLint("Range")
     public void btn_Share(View view) {
 
 
@@ -2177,6 +2864,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             alertDialog.show();
         }
     }
+    @SuppressLint("Range")
     public  String GetMaxPONo(){
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -2216,6 +2904,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
         return max;
     }
+    @SuppressLint("Range")
     private  void  UpDateMaxOrderNo() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String u =  sharedPreferences.getString("UserID", "");
@@ -2333,6 +3022,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         getUnixTime(-1);
     }
 
+    @SuppressLint("Range")
     private  void ShareVisitNew(){
 
         String query = "  select  Po_Hdr.orderno as Po_Order ,s.Notes  , s.no as no ,s.ManNo as ManNo, s.CusNo as CusNo , s.DayNum as DayNum,s.Tr_Data as Tr_Data ," +

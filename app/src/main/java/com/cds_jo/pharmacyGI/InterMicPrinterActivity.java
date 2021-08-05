@@ -1,36 +1,39 @@
 package com.cds_jo.pharmacyGI;
 
-        import com.intermec.print.lp.LinePrinter;
-        import com.intermec.print.lp.LinePrinterException;
-        import com.intermec.print.lp.PrintProgressEvent;
-        import com.intermec.print.lp.PrintProgressListener;
+import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.os.Environment;
+import android.util.Base64;
+import android.view.Menu;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.TextView;
 
-        import android.graphics.Color;
-        import android.os.AsyncTask;
-        import android.os.Bundle;
-        import android.content.Intent;
-        import android.content.res.AssetManager;
-        import android.graphics.Bitmap;
-        import android.graphics.BitmapFactory;
-        import android.os.Environment;
-        import android.support.v7.app.AppCompatActivity;
-        import android.util.Base64;
-        import android.view.Menu;
-        import android.view.View;
-        import android.view.View.OnClickListener;
-        import android.widget.Button;
-        import android.widget.EditText;
-        import android.widget.RadioButton;
-        import android.widget.TextView;
-        import android.widget.ImageView;
+import androidx.appcompat.app.AppCompatActivity;
 
-        import com.zebra.sdk.comm.BluetoothConnection;
-        import com.zebra.sdk.comm.Connection;
-        import com.zebra.sdk.comm.ConnectionException;
-        import com.zebra.sdk.printer.ZebraPrinter;
+import com.intermec.print.lp.LinePrinter;
+import com.intermec.print.lp.LinePrinterException;
+import com.intermec.print.lp.PrintProgressEvent;
+import com.intermec.print.lp.PrintProgressListener;
+import com.zebra.sdk.comm.BluetoothConnection;
+import com.zebra.sdk.comm.Connection;
+import com.zebra.sdk.comm.ConnectionException;
+import com.zebra.sdk.printer.ZebraPrinter;
 
-
-        import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 
 /**

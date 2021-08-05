@@ -1,5 +1,6 @@
 package com.cds_jo.pharmacyGI;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
@@ -14,17 +15,18 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.cds_jo.pharmacyGI.assist.CallWebServices;
 import com.cds_jo.pharmacyGI.assist.Cls_Check;
@@ -49,7 +51,7 @@ import hearder.main.Header_Frag;
 public class UpdateDataToMobileActivity2 extends AppCompatActivity {
 
     String str = "";
-    private static final int PHRLASTUPDATE =16;
+    private static final int PHRLASTUPDATE =20;
     private Handler progressBarHandler = new Handler();
     SqlHandler sqlHandler ;
 
@@ -139,12 +141,12 @@ public class UpdateDataToMobileActivity2 extends AppCompatActivity {
         }catch ( SQLException e){ }
 
         try{
-        sqlHandler.executeQuery("CREATE TABLE IF NOT EXISTS  QuesHdr ( no integer primary key autoincrement,Orderno text null, Nm text null , acc text null ,date text null ,posted text null ,userid text null) ");
+            sqlHandler.executeQuery("CREATE TABLE IF NOT EXISTS  QuesHdr ( no integer primary key autoincrement,Orderno text null, Nm text null , acc text null ,date text null ,posted text null ,userid text null) ");
         }catch ( SQLException e){ }
 
         try{
-        sqlHandler.executeQuery(" CREATE TABLE IF NOT EXISTS QuesDtl ( no integer primary key autoincrement,Orderno text null, QuesTxt text null" +
-                ",   Ans1 text null ,Ans2 text null ,Ans3 text null,Ans4 text null  ) ");
+            sqlHandler.executeQuery(" CREATE TABLE IF NOT EXISTS QuesDtl ( no integer primary key autoincrement,Orderno text null, QuesTxt text null" +
+                    ",   Ans1 text null ,Ans2 text null ,Ans3 text null,Ans4 text null  ) ");
         }catch ( SQLException e){ }
 
 
@@ -237,7 +239,7 @@ public class UpdateDataToMobileActivity2 extends AppCompatActivity {
         List_Result   = new ArrayList<Cls_UpdateData>();
         setContentView(R.layout.view_update_data_to_mobile2);
         Fragment frag=new Header_Frag();
-        android.support.v4.app.FragmentManager fragmentManager=getSupportFragmentManager();
+        FragmentManager fragmentManager=getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.Frag1,frag).commit();
 
 
@@ -512,7 +514,6 @@ public class UpdateDataToMobileActivity2 extends AppCompatActivity {
         editor.putString("TaxAcc1", "123456");
         editor.putString("Address","عمان  - الاردن");
         editor.putString("Notes", "");
-
         editor.commit();
 */
 
@@ -591,7 +592,7 @@ public class UpdateDataToMobileActivity2 extends AppCompatActivity {
 
 
 
-          if (chk_Spec.isChecked()) {
+        if (chk_Spec.isChecked()) {
             final String UserID = sharedPreferences.getString("UserID", "");
             final Handler _handler = new Handler();
             tv = new TextView(getApplicationContext());
@@ -676,33 +677,33 @@ public class UpdateDataToMobileActivity2 extends AppCompatActivity {
         }
         else if (Chk_TransQty.isChecked()) {
 
-              tv = new TextView(getApplicationContext());
-              lp = new RelativeLayout.LayoutParams(
-                      LayoutParams.WRAP_CONTENT,
-                      LayoutParams.WRAP_CONTENT);
-              tv.setLayoutParams(lp);
-              tv.setLayoutParams(lp);
-              tv.setPadding(10, 15, 10, 15);
-              tv.setGravity(Gravity.CENTER);
-              tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
-              tv.setTextColor(Color.WHITE);
-              tv.setBackgroundColor(Color.BLUE);
-              tv.setTypeface(tv.getTypeface(), Typeface.BOLD);
+            tv = new TextView(getApplicationContext());
+            lp = new RelativeLayout.LayoutParams(
+                    LayoutParams.WRAP_CONTENT,
+                    LayoutParams.WRAP_CONTENT);
+            tv.setLayoutParams(lp);
+            tv.setLayoutParams(lp);
+            tv.setPadding(10, 15, 10, 15);
+            tv.setGravity(Gravity.CENTER);
+            tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
+            tv.setTextColor(Color.WHITE);
+            tv.setBackgroundColor(Color.BLUE);
+            tv.setTypeface(tv.getTypeface(), Typeface.BOLD);
 
-              final Handler _handler = new Handler();
+            final Handler _handler = new Handler();
 
-              final String UserID = sharedPreferences.getString("UserID", "");
-              final ProgressDialog custDialog = new ProgressDialog(UpdateDataToMobileActivity2.this);
-              custDialog.setProgressStyle(custDialog.STYLE_HORIZONTAL);
-              custDialog.setCanceledOnTouchOutside(false);
-              custDialog.setProgress(0);
-              custDialog.setMax(100);
-              custDialog.setMessage("  الرجاء الانتظار ..." + "  العمل جاري على نسخ البيانات  ");
-              tv.setText("سنـــد التزويــــد");
-              custDialog.setCustomTitle(tv);
-              custDialog.setProgressDrawable(greenProgressbar);
-              custDialog.show();
-              String MaxSeer = "1";
+            final String UserID = sharedPreferences.getString("UserID", "");
+            final ProgressDialog custDialog = new ProgressDialog(UpdateDataToMobileActivity2.this);
+            custDialog.setProgressStyle(custDialog.STYLE_HORIZONTAL);
+            custDialog.setCanceledOnTouchOutside(false);
+            custDialog.setProgress(0);
+            custDialog.setMax(100);
+            custDialog.setMessage("  الرجاء الانتظار ..." + "  العمل جاري على نسخ البيانات  ");
+            tv.setText("سنـــد التزويــــد");
+            custDialog.setCustomTitle(tv);
+            custDialog.setProgressDrawable(greenProgressbar);
+            custDialog.show();
+            String MaxSeer = "1";
            /* query = "SELECT  COALESCE(MAX(ser), 0) +1 AS no from ManStore";
              Cursor c1 = sqlHandler.selectQuery(query);
             String Operand = "0";
@@ -716,87 +717,87 @@ public class UpdateDataToMobileActivity2 extends AppCompatActivity {
             }*/
 
 
-              final String Ser = "1";
-              q = "Delete from ManStore";
-              sqlHandler.executeQuery(q);
-              q = "delete from sqlite_sequence where name='ManStore'";
-              sqlHandler.executeQuery(q);
+            final String Ser = "1";
+            q = "Delete from ManStore";
+            sqlHandler.executeQuery(q);
+            q = "delete from sqlite_sequence where name='ManStore'";
+            sqlHandler.executeQuery(q);
 
-              new Thread(new Runnable() {
-                  @Override
-                  public void run() {
-                      CallWebServices ws = new CallWebServices(UpdateDataToMobileActivity2.this);
-                      ws.TrnsferQtyFromMobile(UserID, "0", "");
-                      try {
-                          Integer i;
-                          String q = "";
-                          JSONObject js = new JSONObject(We_Result.Msg);
-                          JSONArray js_date = js.getJSONArray("date");
-                          JSONArray js_fromstore = js.getJSONArray("fromstore");
-                          JSONArray js_tostore = js.getJSONArray("tostore");
-                          JSONArray js_des = js.getJSONArray("des");
-                          JSONArray js_docno = js.getJSONArray("docno");
-                          JSONArray js_itemno = js.getJSONArray("itemno");
-                          JSONArray js_qty = js.getJSONArray("qty");
-                          JSONArray js_UnitNo = js.getJSONArray("UnitNo");
-                          JSONArray js_UnitRate = js.getJSONArray("UnitRate");
-                          JSONArray js_myear = js.getJSONArray("myear");
-                          JSONArray js_StoreName = js.getJSONArray("StoreName");
-                          JSONArray js_RetailPrice = js.getJSONArray("RetailPrice");
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    CallWebServices ws = new CallWebServices(UpdateDataToMobileActivity2.this);
+                    ws.TrnsferQtyFromMobile(UserID, "0", "");
+                    try {
+                        Integer i;
+                        String q = "";
+                        JSONObject js = new JSONObject(We_Result.Msg);
+                        JSONArray js_date = js.getJSONArray("date");
+                        JSONArray js_fromstore = js.getJSONArray("fromstore");
+                        JSONArray js_tostore = js.getJSONArray("tostore");
+                        JSONArray js_des = js.getJSONArray("des");
+                        JSONArray js_docno = js.getJSONArray("docno");
+                        JSONArray js_itemno = js.getJSONArray("itemno");
+                        JSONArray js_qty = js.getJSONArray("qty");
+                        JSONArray js_UnitNo = js.getJSONArray("UnitNo");
+                        JSONArray js_UnitRate = js.getJSONArray("UnitRate");
+                        JSONArray js_myear = js.getJSONArray("myear");
+                        JSONArray js_StoreName = js.getJSONArray("StoreName");
+                        JSONArray js_RetailPrice = js.getJSONArray("RetailPrice");
 
 
 
-                          for (i = 0; i < js_docno.length(); i++) {
-                              q = "Insert INTO ManStore(SManNo,date,fromstore,tostore,des,docno,itemno,qty,UnitNo,UnitRate,myear,RetailPrice ,StoreName ,ser) values ("
-                                      + UserID.toString()
-                                      + ",'" + js_date.get(i).toString()
-                                      + "','" + js_fromstore.get(i).toString()
-                                      + "','" + js_tostore.get(i).toString()
-                                      + "','" + js_des.get(i).toString()
-                                      + "','" + js_docno.get(i).toString()
-                                      + "','" + js_itemno.get(i).toString()
-                                      + "','" + js_qty.get(i).toString()
-                                      + "','" + js_UnitNo.get(i).toString()
-                                      + "','" + js_UnitRate.get(i).toString()
-                                      + "','" + js_myear.get(i).toString()
-                                      + "','" + js_RetailPrice.get(i).toString()
-                                      + "','" + js_StoreName.get(i).toString()
-                                      + "'," + Ser.toString()
-                                      + " )";
-                              sqlHandler.executeQuery(q);
-                              custDialog.setMax(js_docno.length());
-                              custDialog.incrementProgressBy(1);
-                              if (custDialog.getProgress() == custDialog.getMax()) {
-                                  custDialog.dismiss();
-                              }
-                          }
-                          final int total = i;
-                          _handler.post(new Runnable() {
+                        for (i = 0; i < js_docno.length(); i++) {
+                            q = "Insert INTO ManStore(SManNo,date,fromstore,tostore,des,docno,itemno,qty,UnitNo,UnitRate,myear,RetailPrice ,StoreName ,ser) values ("
+                                    + UserID.toString()
+                                    + ",'" + js_date.get(i).toString()
+                                    + "','" + js_fromstore.get(i).toString()
+                                    + "','" + js_tostore.get(i).toString()
+                                    + "','" + js_des.get(i).toString()
+                                    + "','" + js_docno.get(i).toString()
+                                    + "','" + js_itemno.get(i).toString()
+                                    + "','" + js_qty.get(i).toString()
+                                    + "','" + js_UnitNo.get(i).toString()
+                                    + "','" + js_UnitRate.get(i).toString()
+                                    + "','" + js_myear.get(i).toString()
+                                    + "','" + js_RetailPrice.get(i).toString()
+                                    + "','" + js_StoreName.get(i).toString()
+                                    + "'," + Ser.toString()
+                                    + " )";
+                            sqlHandler.executeQuery(q);
+                            custDialog.setMax(js_docno.length());
+                            custDialog.incrementProgressBy(1);
+                            if (custDialog.getProgress() == custDialog.getMax()) {
+                                custDialog.dismiss();
+                            }
+                        }
+                        final int total = i;
+                        _handler.post(new Runnable() {
 
-                              public void run() {
+                            public void run() {
 
-                                  filllist("كميات المستودع ", 1 ,total );
-                                  Chk_TransQty.setChecked(false);
-                                  custDialog.dismiss();
-                                  Do_Trans_From_Server();
-                              }
-                          });
+                                filllist("كميات المستودع ", 1 ,total );
+                                Chk_TransQty.setChecked(false);
+                                custDialog.dismiss();
+                                Do_Trans_From_Server();
+                            }
+                        });
 
-                      } catch (final Exception e) {
-                          custDialog.dismiss();
-                          _handler.post(new Runnable() {
+                    } catch (final Exception e) {
+                        custDialog.dismiss();
+                        _handler.post(new Runnable() {
 
-                              public void run() {
-                                  custDialog.dismiss();
-                                  filllist("كميات المستودع ", 0, 0);
-                                  Chk_TransQty.setChecked(false);
-                                  Do_Trans_From_Server();
-                              }
-                          });
-                      }
-                  }
-              }).start();
-          }
+                            public void run() {
+                                custDialog.dismiss();
+                                filllist("كميات المستودع ", 0, 0);
+                                Chk_TransQty.setChecked(false);
+                                Do_Trans_From_Server();
+                            }
+                        });
+                    }
+                }
+            }).start();
+        }
 
 
         else if (Chk_Doctors.isChecked()) {
@@ -1728,136 +1729,136 @@ public class UpdateDataToMobileActivity2 extends AppCompatActivity {
 
 
 
-    }
+        }
         else if (chkCompany.isChecked()) {
-        tv = new TextView(getApplicationContext());
-        lp = new LayoutParams(
-                LayoutParams.WRAP_CONTENT,
-                LayoutParams.WRAP_CONTENT);
-        tv.setLayoutParams(lp);
-        tv.setLayoutParams(lp);
-        tv.setPadding(10, 15, 10, 15);
-        tv.setGravity(Gravity.CENTER);
-        tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
-        tv.setTextColor(Color.WHITE);
-        tv.setBackgroundColor(Color.BLUE);
-        tv.setTypeface(tv.getTypeface(), Typeface.BOLD);
+            tv = new TextView(getApplicationContext());
+            lp = new LayoutParams(
+                    LayoutParams.WRAP_CONTENT,
+                    LayoutParams.WRAP_CONTENT);
+            tv.setLayoutParams(lp);
+            tv.setLayoutParams(lp);
+            tv.setPadding(10, 15, 10, 15);
+            tv.setGravity(Gravity.CENTER);
+            tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
+            tv.setTextColor(Color.WHITE);
+            tv.setBackgroundColor(Color.BLUE);
+            tv.setTypeface(tv.getTypeface(), Typeface.BOLD);
 
-        final Handler _handler = new Handler();
-        final ProgressDialog custDialog = new ProgressDialog(UpdateDataToMobileActivity2.this);
+            final Handler _handler = new Handler();
+            final ProgressDialog custDialog = new ProgressDialog(UpdateDataToMobileActivity2.this);
 
 
-        custDialog.setProgressStyle(custDialog.STYLE_HORIZONTAL);
-        custDialog.setCanceledOnTouchOutside(false);
-        custDialog.setIndeterminate(false);
-        custDialog.setProgress(0);
-        custDialog.setMax(100);
-        custDialog.setMessage("  الرجاء الانتظار ..." + "  العمل جاري على نسخ البيانات  ");
-        tv.setText("معلــومــات الـمؤسـسة");
-        custDialog.setCustomTitle(tv);
-        custDialog.setProgressDrawable(greenProgressbar);
-        custDialog.show();
+            custDialog.setProgressStyle(custDialog.STYLE_HORIZONTAL);
+            custDialog.setCanceledOnTouchOutside(false);
+            custDialog.setIndeterminate(false);
+            custDialog.setProgress(0);
+            custDialog.setMax(100);
+            custDialog.setMessage("  الرجاء الانتظار ..." + "  العمل جاري على نسخ البيانات  ");
+            tv.setText("معلــومــات الـمؤسـسة");
+            custDialog.setCustomTitle(tv);
+            custDialog.setProgressDrawable(greenProgressbar);
+            custDialog.show();
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                CallWebServices ws = new CallWebServices(UpdateDataToMobileActivity2.this);
-                ws.GetcompanyInfo();
-                try {
-                    Integer i;
-                    String q = "";
-                    JSONObject js = new JSONObject(We_Result.Msg);
-                    JSONArray js_ID = js.getJSONArray("ID");
-                    JSONArray js_CompanyID = js.getJSONArray("CompanyID");
-                    JSONArray js_CompanyNm = js.getJSONArray("CompanyNm");
-                    JSONArray js_UserNm = js.getJSONArray("UserNm");
-                    JSONArray js_TaxAcc1 = js.getJSONArray("TaxAcc1");
-                    JSONArray js_TaxAcc2 = js.getJSONArray("TaxAcc2");
-                    JSONArray js_Notes = js.getJSONArray("Notes");
-                    JSONArray js_Address = js.getJSONArray("Address");
-                    JSONArray js_Permession = js.getJSONArray("Permession");
-                    JSONArray js_CompanyMobile = js.getJSONArray("CompanyMobile");
-                    JSONArray js_CompanyMobile2 = js.getJSONArray("CompanyMobile2");
-                    JSONArray js_SuperVisorMobile = js.getJSONArray("SuperVisorMobile");
-                    JSONArray js_SalInvoiceUnit = js.getJSONArray("SalInvoiceUnit");
-                    JSONArray js_PoUnit = js.getJSONArray("PoUnit");
-                    JSONArray js_AllowSalInvMinus = js.getJSONArray("AllowSalInvMinus");
-                    JSONArray js_GPSAccurent = js.getJSONArray("GPSAccurent");
-                    JSONArray js_NumOfInvPerVisit = js.getJSONArray("NumOfInvPerVisit");
-                    JSONArray js_NumOfPayPerVisit = js.getJSONArray("NumOfPayPerVisit");
-                    q = "Delete from ComanyInfo";
-                    sqlHandler.executeQuery(q);
-                    q = " delete from sqlite_sequence where name='ComanyInfo'";
-                    sqlHandler.executeQuery(q);
-                    for (i = 0; i < js_ID.length(); i++) {
-                        q = "INSERT INTO ComanyInfo(ID,CompanyID,CompanyNm,UserNm,TaxAcc1,TaxAcc2,Notes,Address,Permession ,CompanyMobile,CompanyMobile2,SuperVisorMobile" +
-                                ",SalInvoiceUnit,PoUnit,AllowSalInvMinus,GPSAccurent,NumOfInvPerVisit,NumOfPayPerVisit) values ('"
-                                + js_ID.get(i).toString()
-                                + "','" + js_CompanyID.get(i).toString()
-                                + "','" + js_CompanyNm.get(i).toString()
-                                + "','" + js_UserNm.get(i).toString()
-                                + "','" + js_TaxAcc1.get(i).toString()
-                                + "','" + js_TaxAcc2.get(i).toString()
-                                + "','" + js_Notes.get(i).toString()
-                                + "','" + js_Address.get(i).toString()
-                                + "','" + js_Permession.get(i).toString()
-                                + "','" + js_CompanyMobile.get(i).toString()
-                                + "','" + js_CompanyMobile2.get(i).toString()
-                                + "','" + js_SuperVisorMobile.get(i).toString()
-                                + "','" + js_SalInvoiceUnit.get(i).toString()
-                                + "','" + js_PoUnit.get(i).toString()
-                                + "','" + js_AllowSalInvMinus.get(i).toString()
-                                + "','" + js_GPSAccurent.get(i).toString()
-                                + "','" + js_NumOfInvPerVisit.get(i).toString()
-                                + "','" + js_NumOfPayPerVisit.get(i).toString()
-                                + "')";
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    CallWebServices ws = new CallWebServices(UpdateDataToMobileActivity2.this);
+                    ws.GetcompanyInfo();
+                    try {
+                        Integer i;
+                        String q = "";
+                        JSONObject js = new JSONObject(We_Result.Msg);
+                        JSONArray js_ID = js.getJSONArray("ID");
+                        JSONArray js_CompanyID = js.getJSONArray("CompanyID");
+                        JSONArray js_CompanyNm = js.getJSONArray("CompanyNm");
+                        JSONArray js_UserNm = js.getJSONArray("UserNm");
+                        JSONArray js_TaxAcc1 = js.getJSONArray("TaxAcc1");
+                        JSONArray js_TaxAcc2 = js.getJSONArray("TaxAcc2");
+                        JSONArray js_Notes = js.getJSONArray("Notes");
+                        JSONArray js_Address = js.getJSONArray("Address");
+                        JSONArray js_Permession = js.getJSONArray("Permession");
+                        JSONArray js_CompanyMobile = js.getJSONArray("CompanyMobile");
+                        JSONArray js_CompanyMobile2 = js.getJSONArray("CompanyMobile2");
+                        JSONArray js_SuperVisorMobile = js.getJSONArray("SuperVisorMobile");
+                        JSONArray js_SalInvoiceUnit = js.getJSONArray("SalInvoiceUnit");
+                        JSONArray js_PoUnit = js.getJSONArray("PoUnit");
+                        JSONArray js_AllowSalInvMinus = js.getJSONArray("AllowSalInvMinus");
+                        JSONArray js_GPSAccurent = js.getJSONArray("GPSAccurent");
+                        JSONArray js_NumOfInvPerVisit = js.getJSONArray("NumOfInvPerVisit");
+                        JSONArray js_NumOfPayPerVisit = js.getJSONArray("NumOfPayPerVisit");
+                        q = "Delete from ComanyInfo";
                         sqlHandler.executeQuery(q);
-                        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(UpdateDataToMobileActivity2.this);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("CompanyID", js_CompanyID.get(i).toString());
-                        editor.putString("CompanyNm", js_CompanyNm.get(i).toString());
-                        editor.putString("TaxAcc1", js_TaxAcc1.get(i).toString());
-                        editor.putString("Address", js_Address.get(i).toString());
-                        editor.putString("Notes", js_Notes.get(i).toString());
-                        editor.putString("Permession", js_Permession.get(i).toString());
-                        editor.putString("CompanyMobile", js_CompanyMobile.get(i).toString());
-                        editor.putString("CompanyMobile2", js_CompanyMobile2.get(i).toString());
-                        editor.putString("SuperVisorMobile", js_SuperVisorMobile.get(i).toString());
+                        q = " delete from sqlite_sequence where name='ComanyInfo'";
+                        sqlHandler.executeQuery(q);
+                        for (i = 0; i < js_ID.length(); i++) {
+                            q = "INSERT INTO ComanyInfo(ID,CompanyID,CompanyNm,UserNm,TaxAcc1,TaxAcc2,Notes,Address,Permession ,CompanyMobile,CompanyMobile2,SuperVisorMobile" +
+                                    ",SalInvoiceUnit,PoUnit,AllowSalInvMinus,GPSAccurent,NumOfInvPerVisit,NumOfPayPerVisit) values ('"
+                                    + js_ID.get(i).toString()
+                                    + "','" + js_CompanyID.get(i).toString()
+                                    + "','" + js_CompanyNm.get(i).toString()
+                                    + "','" + js_UserNm.get(i).toString()
+                                    + "','" + js_TaxAcc1.get(i).toString()
+                                    + "','" + js_TaxAcc2.get(i).toString()
+                                    + "','" + js_Notes.get(i).toString()
+                                    + "','" + js_Address.get(i).toString()
+                                    + "','" + js_Permession.get(i).toString()
+                                    + "','" + js_CompanyMobile.get(i).toString()
+                                    + "','" + js_CompanyMobile2.get(i).toString()
+                                    + "','" + js_SuperVisorMobile.get(i).toString()
+                                    + "','" + js_SalInvoiceUnit.get(i).toString()
+                                    + "','" + js_PoUnit.get(i).toString()
+                                    + "','" + js_AllowSalInvMinus.get(i).toString()
+                                    + "','" + js_GPSAccurent.get(i).toString()
+                                    + "','" + js_NumOfInvPerVisit.get(i).toString()
+                                    + "','" + js_NumOfPayPerVisit.get(i).toString()
+                                    + "')";
+                            sqlHandler.executeQuery(q);
+                            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(UpdateDataToMobileActivity2.this);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString("CompanyID", js_CompanyID.get(i).toString());
+                            editor.putString("CompanyNm", js_CompanyNm.get(i).toString());
+                            editor.putString("TaxAcc1", js_TaxAcc1.get(i).toString());
+                            editor.putString("Address", js_Address.get(i).toString());
+                            editor.putString("Notes", js_Notes.get(i).toString());
+                            editor.putString("Permession", js_Permession.get(i).toString());
+                            editor.putString("CompanyMobile", js_CompanyMobile.get(i).toString());
+                            editor.putString("CompanyMobile2", js_CompanyMobile2.get(i).toString());
+                            editor.putString("SuperVisorMobile", js_SuperVisorMobile.get(i).toString());
 
-                        editor.commit();
-                        custDialog.setMax(js_ID.length());
-                        custDialog.incrementProgressBy(1);
+                            editor.commit();
+                            custDialog.setMax(js_ID.length());
+                            custDialog.incrementProgressBy(1);
 
-                        if (custDialog.getProgress() == custDialog.getMax()) {
-                            custDialog.dismiss();
+                            if (custDialog.getProgress() == custDialog.getMax()) {
+                                custDialog.dismiss();
+                            }
                         }
+                        final int total = i;
+                        _handler.post(new Runnable() {
+
+                            public void run() {
+                                filllist("معلومات المؤسسة", 1 , total );
+                                chkCompany.setChecked(false);
+                                custDialog.dismiss();
+                                Do_Trans_From_Server();
+                            }
+                        });
+
+                    } catch (final Exception e) {
+                        custDialog.dismiss();
+                        _handler.post(new Runnable() {
+
+                            public void run() {
+                                filllist("معلومات المؤسسة", 0 , 0 );
+                                chkCompany.setChecked(false);
+                                custDialog.dismiss();
+                                Do_Trans_From_Server();
+                            }
+                        });
                     }
-                    final int total = i;
-                    _handler.post(new Runnable() {
-
-                        public void run() {
-                            filllist("معلومات المؤسسة", 1 , total );
-                            chkCompany.setChecked(false);
-                            custDialog.dismiss();
-                            Do_Trans_From_Server();
-                        }
-                    });
-
-                } catch (final Exception e) {
-                    custDialog.dismiss();
-                    _handler.post(new Runnable() {
-
-                        public void run() {
-                            filllist("معلومات المؤسسة", 0 , 0 );
-                            chkCompany.setChecked(false);
-                            custDialog.dismiss();
-                            Do_Trans_From_Server();
-                        }
-                    });
                 }
-            }
-        }).start();
-    }
+            }).start();
+        }
 
 
 
@@ -1868,21 +1869,21 @@ public class UpdateDataToMobileActivity2 extends AppCompatActivity {
 
 
 
-    q = " DELETE FROM UnitItems WHERE no NOT IN   (SELECT MAX(no) FROM UnitItems GROUP BY item_no,unitno )";
+        q = " DELETE FROM UnitItems WHERE no NOT IN   (SELECT MAX(no) FROM UnitItems GROUP BY item_no,unitno )";
         sqlHandler.executeQuery(q);
 
-    q = "DELETE FROM invf       WHERE no NOT IN   (SELECT MAX(no) FROM invf GROUP BY Item_No )";
+        q = "DELETE FROM invf       WHERE no NOT IN   (SELECT MAX(no) FROM invf GROUP BY Item_No )";
         sqlHandler.executeQuery(q);
 
-    q = "DELETE  FROM Unites WHERE no NOT IN (SELECT MAX(no) FROM Unites GROUP BY Unitno )";
+        q = "DELETE  FROM Unites WHERE no NOT IN (SELECT MAX(no) FROM Unites GROUP BY Unitno )";
         sqlHandler.executeQuery(q);
 
-    q = "DELETE  FROM Customers WHERE no NOT IN (SELECT MAX(no) FROM Customers GROUP BY no )";
-         sqlHandler.executeQuery(q);
+        q = "DELETE  FROM Customers WHERE no NOT IN (SELECT MAX(no) FROM Customers GROUP BY no )";
+        sqlHandler.executeQuery(q);
 
-    q = " DELETE FROM VoucherSerial WHERE no NOT IN   (SELECT MAX(no) FROM VoucherSerial GROUP BY no )";
-    sqlHandler.executeQuery(q);
-}
+        q = " DELETE FROM VoucherSerial WHERE no NOT IN   (SELECT MAX(no) FROM VoucherSerial GROUP BY no )";
+        sqlHandler.executeQuery(q);
+    }
     private void Get_Offers_Groups() {
 
         final Handler _handler = new Handler();
@@ -2009,7 +2010,8 @@ public class UpdateDataToMobileActivity2 extends AppCompatActivity {
         }).start();
 
     }
-    private void FillSal_InvAdapter( String OrderNo) {
+    @SuppressLint("Range")
+    private void FillSal_InvAdapter(String OrderNo) {
         String query ="";
         contactList = new ArrayList<Cls_Sal_InvItems>();
         contactList.clear();
@@ -2080,7 +2082,8 @@ public class UpdateDataToMobileActivity2 extends AppCompatActivity {
         }
 
     }
-    private void FillPayMents_Check_Adapter( String OrderNo) {
+    @SuppressLint("Range")
+    private void FillPayMents_Check_Adapter(String OrderNo) {
         String query ="";
         ChecklList.clear();
         query = "Select  distinct rc.CheckNo,rc.CheckDate,rc.BankNo, IFNULL(rc.Amnt,0)as  Amnt , b.Bank from  RecCheck rc  left join banks b on b.bank_num = rc.BankNo" +
@@ -2111,7 +2114,8 @@ public class UpdateDataToMobileActivity2 extends AppCompatActivity {
         }
 
     }
-    private void Fill_Po_Adapter( String OrderNo) {
+    @SuppressLint("Range")
+    private void Fill_Po_Adapter(String OrderNo) {
         String query ="";
         PoList = new ArrayList<ContactListItems>();
         PoList.clear();
@@ -2184,6 +2188,7 @@ public class UpdateDataToMobileActivity2 extends AppCompatActivity {
         }
 
     }
+    @SuppressLint("Range")
     private void Post_Sal_Inv(String OrderNo) {
         final String  pno  = OrderNo ;
         final   ProgressDialog loading_dialog;
@@ -2294,6 +2299,7 @@ public class UpdateDataToMobileActivity2 extends AppCompatActivity {
             }
         }).start();
     }
+    @SuppressLint("Range")
     private void Post_Payments(String OrderNo) {
 
         final String  pno  = OrderNo ;
@@ -2405,6 +2411,7 @@ public class UpdateDataToMobileActivity2 extends AppCompatActivity {
         }).start();
 
     }
+    @SuppressLint("Range")
     private void Post_Purch_Order(String OrderNo) {
         final String  pno  = OrderNo ;
         final   ProgressDialog loading_dialog;
@@ -2516,6 +2523,7 @@ public class UpdateDataToMobileActivity2 extends AppCompatActivity {
         }).start();
 
     }
+    @SuppressLint("Range")
     public void btn_Post_Trans(View view) {
         final CheckBox Chk_Post_Inv = (CheckBox) findViewById(R.id.Chk_Post_Inv);
         final CheckBox Chk_Post_Payments = (CheckBox) findViewById(R.id.Chk_Post_Payments);
@@ -2746,6 +2754,7 @@ public class UpdateDataToMobileActivity2 extends AppCompatActivity {
         }
 
     }
+    @SuppressLint("Range")
     public void SharcustLocation() {
 
         //sqlHandler=new SqlHandler(this);
@@ -2811,6 +2820,7 @@ public class UpdateDataToMobileActivity2 extends AppCompatActivity {
             }
         }).start();
     }
+    @SuppressLint("Range")
     public void SharManVisits() {
 
         //sqlHandler=new SqlHandler(this);
@@ -2899,6 +2909,7 @@ public class UpdateDataToMobileActivity2 extends AppCompatActivity {
             }
         }).start();
     }
+    @SuppressLint("Range")
     public void SharUseCode() {
 
         //sqlHandler=new SqlHandler(this);
@@ -3004,7 +3015,7 @@ public class UpdateDataToMobileActivity2 extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         Intent intent ;
-                           intent = new Intent(getApplicationContext(), GalaxyMainActivity2.class);
+        intent = new Intent(getApplicationContext(), GalaxyMainActivity2.class);
 
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);

@@ -1,7 +1,7 @@
 package com.cds_jo.pharmacyGI;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;
@@ -11,8 +11,6 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.text.method.PasswordTransformationMethod;
 import android.view.ContextMenu;
@@ -26,6 +24,10 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.cds_jo.pharmacyGI.assist.CallWebServices;
 import com.cds_jo.pharmacyGI.assist.Convert_Layout_Img;
@@ -124,6 +126,7 @@ public class PreapareManQty extends AppCompatActivity {
 
     }
 
+    @SuppressLint("Range")
     private  void  UpDateMaxOrderNo() {
 
         String query = " SELECT Distinct COALESCE(MAX(orderno), 0)  AS no FROM PrepManQtyhdr where userid ='"+UserID+"'";
@@ -155,7 +158,7 @@ public class PreapareManQty extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.n_activity_preaparemanqty);
         Fragment frag=new Header_Frag();
-        android.support.v4.app.FragmentManager fragmentManager=getSupportFragmentManager();
+       FragmentManager fragmentManager=getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.Frag1,frag).commit();
         lv_Items = (ListView) findViewById(R.id.LstvItems);
         sqlHandler = new SqlHandler(this);
@@ -247,7 +250,8 @@ public class PreapareManQty extends AppCompatActivity {
         Bundle bundle = new Bundle();
         bundle.putString("Scr","PrePareQty");
         IsChange = true;
-        FragmentManager Manager =  getFragmentManager();
+        android.app.FragmentManager Manager = getFragmentManager();
+
         PopCus_Qty_Items obj = new PopCus_Qty_Items();
         obj.setArguments(bundle);
         obj.show(Manager, null);
@@ -354,8 +358,9 @@ public class PreapareManQty extends AppCompatActivity {
 
     }
     public void btn_Search_Cust(View view) {
+        android.app.FragmentManager Manager = getFragmentManager();
 
-        FragmentManager Manager =  getFragmentManager();
+       // FragmentManager Manager =  getFragmentManager();
         Select_Customer obj = new Select_Customer();
         obj.show(Manager, null);
     }
@@ -366,6 +371,7 @@ public class PreapareManQty extends AppCompatActivity {
         CustNm.setText(Nm);
         CustNm.setError(null);
     }
+    @SuppressLint("Range")
     public void Set_Order(String No, String Nm) {
         TextView CustNm =(TextView)findViewById(R.id.tv_cusnm);
         TextView Order_no = (TextView)findViewById(R.id.et_OrdeNo);
@@ -429,7 +435,8 @@ public class PreapareManQty extends AppCompatActivity {
 
         Bundle bundle = new Bundle();
         bundle.putString("Scr", "CustQty");
-        FragmentManager Manager =  getFragmentManager();
+        android.app.FragmentManager Manager = getFragmentManager();
+
         Select_Customer obj = new Select_Customer();
         obj.setArguments(bundle);
         obj.show(Manager, null);
@@ -685,11 +692,13 @@ public class PreapareManQty extends AppCompatActivity {
     public void btn_Search_Orders(View view) {
         Bundle bundle = new Bundle();
         bundle.putString("Scr", "po");
-        FragmentManager Manager =  getFragmentManager();
+        android.app.FragmentManager Manager = getFragmentManager();
+
         SearchPreaperQty obj = new SearchPreaperQty();
         obj.setArguments(bundle);
         obj.show(Manager, null);
     }
+    @SuppressLint("Range")
     public void btn_share(View view) {
 
         if(IsNew==true){
@@ -903,7 +912,8 @@ public class PreapareManQty extends AppCompatActivity {
                 bundle.putString("Scr", "PrePareQty");
                 bundle.putString("OrderNo", pono.getText().toString());
                 bundle.putSerializable("List", Itemlist);
-                FragmentManager Manager = getFragmentManager();
+                android.app.FragmentManager Manager = getFragmentManager();
+
                 PopCus_Qty_Items obj = new PopCus_Qty_Items();
                 obj.setArguments(bundle);
                 obj.show(Manager, null);

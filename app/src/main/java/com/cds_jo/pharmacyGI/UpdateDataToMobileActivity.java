@@ -1,5 +1,6 @@
 package com.cds_jo.pharmacyGI;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
@@ -11,14 +12,10 @@ import android.database.SQLException;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -26,9 +23,12 @@ import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.RelativeLayout.LayoutParams;
-import android.widget.Toast;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.cds_jo.pharmacyGI.assist.CallWebServices;
 import com.cds_jo.pharmacyGI.assist.Cls_Check;
@@ -42,7 +42,6 @@ import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -402,7 +401,7 @@ public class UpdateDataToMobileActivity extends AppCompatActivity {
         List_Result   = new ArrayList<Cls_UpdateData>();
         setContentView(R.layout.n_view_update_data_to_mobile);
         Fragment frag=new Header_Frag();
-        android.support.v4.app.FragmentManager fragmentManager=getSupportFragmentManager();
+        FragmentManager fragmentManager=getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.Frag1,frag).commit();
 
 
@@ -2663,7 +2662,8 @@ public class UpdateDataToMobileActivity extends AppCompatActivity {
         }).start();
 
     }
-    private void FillSal_InvAdapter( String OrderNo) {
+    @SuppressLint("Range")
+    private void FillSal_InvAdapter(String OrderNo) {
         String query ="";
         contactList = new ArrayList<Cls_Sal_InvItems>();
         contactList.clear();

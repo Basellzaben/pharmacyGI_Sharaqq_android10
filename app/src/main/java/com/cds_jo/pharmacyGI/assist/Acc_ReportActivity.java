@@ -3,18 +3,14 @@ package com.cds_jo.pharmacyGI.assist;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -22,6 +18,10 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import com.cds_jo.pharmacyGI.ComInfo;
 import com.cds_jo.pharmacyGI.GalaxyMainActivity;
@@ -41,7 +41,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
@@ -111,7 +110,7 @@ public class Acc_ReportActivity extends FragmentActivity {
         setContentView(R.layout.n_ee);
 
         Fragment frag=new Header_Frag();
-        android.support.v4.app.FragmentManager fragmentManager=getSupportFragmentManager();
+      FragmentManager fragmentManager=getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.Frag1,frag).commit();
 
         items_Lsit=(ListView)findViewById(R.id.lst_acc);
@@ -204,7 +203,7 @@ public class Acc_ReportActivity extends FragmentActivity {
             bundle.putString("Scr", "po");
             bundle.putString("DocNo", DocNo);
             bundle.putString("Amt", Amt);
-            FragmentManager Manager = getFragmentManager();
+           // FragmentManager Manager = getFragmentManager();
            /* PopShowInvoiceDtl obj = new PopShowInvoiceDtl();
             obj.setArguments(bundle);
             obj.show(Manager, null);*/
@@ -660,9 +659,11 @@ public class Acc_ReportActivity extends FragmentActivity {
 
         Bundle bundle = new Bundle();
         bundle.putString("Scr", "AccReport");
-        FragmentManager Manager =  getFragmentManager();
+        android.app.FragmentManager Manager = getFragmentManager();
+
         Select_Customer obj = new Select_Customer();
         obj.setArguments(bundle);
+       // obj.show();
         obj.show(Manager, null);
     }
 
@@ -757,7 +758,9 @@ public class Acc_ReportActivity extends FragmentActivity {
 
         Bundle bundle = new Bundle();
         bundle.putString("Scr", "AccReport");
-        FragmentManager Manager =  getFragmentManager();
+        android.app.FragmentManager Manager = getFragmentManager();
+
+
         Select_Customer obj = new Select_Customer();
         obj.setArguments(bundle);
         obj.show(Manager, null);

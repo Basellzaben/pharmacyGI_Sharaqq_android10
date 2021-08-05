@@ -1,46 +1,46 @@
 package com.cds_jo.pharmacyGI;
 
 
-import android.app.Activity;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.database.Cursor;
 import android.database.SQLException;
-import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
-
-
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
+import java.util.Locale;
 
 import Methdes.MethodToUse;
 import port.bluetooth.BluetoothConnectMenu;
 
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
+import static android.Manifest.permission.MANAGE_EXTERNAL_STORAGE;
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+import static android.os.Build.VERSION.SDK_INT;
 
-import java.util.Locale;
 
 public class GalaxyLoginActivity extends AppCompatActivity {
     private Context context;
     private EditText UserName, Password;
     private ImageView Login_Img;
-    int PHRLASTUPDATE =18;
-
-
+    int PHRLASTUPDATE=19;
     Locale locale ;
     String q ;
-
-    SqlHandler  sqlHandler ;
+    SqlHandler sqlHandler ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +48,11 @@ public class GalaxyLoginActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         setContentView(R.layout.activity_galaxy_login);
 
+
+       // requestPermission();
+
          Initi();
-        sqlHandler = new SqlHandler(this);
+            sqlHandler = new SqlHandler(this);
 
         try {
             sqlHandler.executeQuery("CREATE TABLE IF NOT EXISTS  DB_VERVSION    " +
@@ -58,7 +61,7 @@ public class GalaxyLoginActivity extends AppCompatActivity {
 
             final int DB_VERVSION = Integer.parseInt(DB.GetValue(GalaxyLoginActivity.this, "DB_VERVSION", "No", "5=5"));
 
-            q = "DELETE  FROM  DB_VERVSION  ";
+            q = "DELETE FROM  DB_VERVSION  ";
             sqlHandler.executeQuery(q);
 
             q = "INSERT INTO DB_VERVSION(No) values ('"+PHRLASTUPDATE+"')";
@@ -80,9 +83,8 @@ public class GalaxyLoginActivity extends AppCompatActivity {
         Password.setText(sharedPreferences.getString("password", ""));
 
 
-
-
         Login_Img.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("Range")
             @Override
             public void onClick(View view) {
                 SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
@@ -111,11 +113,14 @@ public class GalaxyLoginActivity extends AppCompatActivity {
 
                else  if (UserName.getText().toString().equals("") && (!Password.getText().toString().equals(""))) {
                     UserName.setError(getResources().getText(R.string.EnterUserName));
+                      Toast.makeText(getApplicationContext(),getResources().getText(R.string.EnterUserName),Toast.LENGTH_SHORT).show();
                 } else if (!(UserName.getText().toString().equals("")) && Password.getText().toString().equals("")) {
-                    Password.setError(getResources().getText(R.string.EnterPassword));
+                      Toast.makeText(getApplicationContext(),getResources().getText(R.string.EnterPassword),Toast.LENGTH_SHORT).show();
+                      Password.setError(getResources().getText(R.string.EnterPassword));
                 } else if (UserName.getText().toString().equals("") && Password.getText().toString().equals("")) {
                     UserName.setError(getResources().getText(R.string.EnterUserName));
-                    Password.setError(getResources().getText(R.string.EnterPassword));
+                      Toast.makeText(getApplicationContext(),getResources().getText(R.string.EnterUserName),Toast.LENGTH_SHORT).show();
+                      Password.setError(getResources().getText(R.string.EnterPassword));
                 } else {
                         SqlHandler sqlHandler = new SqlHandler(context);
                         String query = "SELECT  name ,man,username ,password ,TypeDesc, ifnull(MANTYPE,0) as MANTYPE      from  manf   where man = '"+ UserName.getText().toString()+"' And password='"+Password.getText().toString()+"'";
@@ -147,7 +152,9 @@ public class GalaxyLoginActivity extends AppCompatActivity {
                             c1.close();
                              startActivity(k);
 
-                        }
+                        }else{
+       Toast.makeText(getApplicationContext(),"يوجد خطأ في بيانات الدخول",Toast.LENGTH_SHORT).show();
+                             }
                     }
 
 
@@ -158,7 +165,6 @@ public class GalaxyLoginActivity extends AppCompatActivity {
         });
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
-
 
         getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
@@ -171,37 +177,25 @@ public class GalaxyLoginActivity extends AppCompatActivity {
             sqlHandler.executeQuery("Alter Table CustStoreQtydetl  Add  COLUMN  Cust_No  text null" );
         }catch ( SQLException e){ }
 
-
-
         try{
             sqlHandler.executeQuery("Alter Table CustStoreQtydetl  Add  COLUMN  Order_Date  text null" );
         }catch ( SQLException e){ }
-
-
 
         try{
             sqlHandler.executeQuery("Alter Table CustStoreQtydetl  Add  COLUMN  OrderNo  text null" );
         }catch ( SQLException e){ }
 
-
         try{
             sqlHandler.executeQuery("Alter Table CustStoreQtydetl  Add  COLUMN  UserID   text null" );
         }catch ( SQLException e){ }
-
-
-
-
 
         try{
             sqlHandler.executeQuery("Alter Table Customers  Add  COLUMN  Cust_type  text null" );
         }catch ( SQLException e){ }
 
-
         try{
             sqlHandler.executeQuery("Alter Table manf  Add  COLUMN  MANTYPE  text null" );
         }catch ( SQLException e){ }
-
-
 
         try{
             sqlHandler.executeQuery("Alter Table manf  Add  COLUMN  TypeDesc  text null" );
@@ -236,8 +230,6 @@ public class GalaxyLoginActivity extends AppCompatActivity {
             sqlHandler.executeQuery("Alter Table SaleManRounds  Add  COLUMN  VisitType4  text null" );
         }catch ( SQLException e){ }
 
-
-
         try{
             sqlHandler.executeQuery("Alter Table SaleManRounds  Add  COLUMN  Notes  text null" );
         }catch ( SQLException e){ }
@@ -257,8 +249,6 @@ public class GalaxyLoginActivity extends AppCompatActivity {
             sqlHandler.executeQuery(" CREATE TABLE IF NOT EXISTS QuesTbl ( no integer primary key autoincrement,QuesNo text null, Questxt text null ,date text null ) ");
         }catch ( SQLException e){ }
 
-
-
         try{
             sqlHandler.executeQuery("Alter Table QuesHdr  Add  COLUMN  Notes  text null" );
         }catch ( SQLException e){ }
@@ -266,7 +256,6 @@ public class GalaxyLoginActivity extends AppCompatActivity {
         try{
             sqlHandler.executeQuery("Alter Table Po_Hdr  Add  COLUMN  MobileOrder  text null" );
         }catch ( SQLException e){ }
-
 
         try{
             sqlHandler.executeQuery("Alter Table SaleManRounds  Add  COLUMN  X  text null" );
@@ -336,14 +325,80 @@ public class GalaxyLoginActivity extends AppCompatActivity {
     }
     private void Initi() {
         context = GalaxyLoginActivity.this;
-        UserName = (EditText) findViewById(R.id.editText);
-        Password = (EditText) findViewById(R.id.editText2);
-
+        UserName = (EditText)findViewById(R.id.editText);
+        Password = (EditText)findViewById(R.id.editText2);
         UserName.setTypeface(MethodToUse.SetTFace(context));
         Password.setTypeface(MethodToUse.SetTFace(context));
+        Login_Img = (ImageView)findViewById(R.id.imageView4);
 
-        Login_Img = (ImageView) findViewById(R.id.imageView4);
     }
 
+
+
+    private void requestPermission() {
+      if (SDK_INT >= Build.VERSION_CODES.R) {
+            try {
+                Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+                intent.addCategory("android.intent.category.DEFAULT");
+                intent.setData(Uri.parse(String.format("package:%s",getApplicationContext().getPackageName())));
+                startActivityForResult(intent, 2296);
+            } catch (Exception e) {
+                Intent intent = new Intent();
+                intent.setAction(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
+                startActivityForResult(intent, 2296);
+            }
+        } else {
+            //below android 11
+          ActivityCompat.requestPermissions(GalaxyLoginActivity.this, new String[]{WRITE_EXTERNAL_STORAGE}, 1);
+          ActivityCompat.requestPermissions(GalaxyLoginActivity.this, new String[]{READ_EXTERNAL_STORAGE}, 1);
+
+              ActivityCompat.requestPermissions(GalaxyLoginActivity.this, new String[]{MANAGE_EXTERNAL_STORAGE}, 1);
+
+      }
+
+/*
+
+        if(SDK_INT >= 30){
+
+
+            if (Environment.isExternalStorageManager()){
+
+// If you don't have access, launch a new activity to show the user the system's dialog
+// to allow access to the external storage
+            }else{
+                Intent intent = new Intent();
+                intent.setAction(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+                Uri uri = Uri.fromParts("package", this.getPackageName(), null);
+                intent.setData(uri);
+                startActivity(intent);
+            }
+
+            if(!Environment.isExternalStorageManager()){
+                Snackbar.make(findViewById(android.R.id.content), "Permission needed!", Snackbar.LENGTH_INDEFINITE)
+                        .setAction("Settings", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                                try {
+                                    Uri uri = Uri.parse("package:" + BuildConfig.APPLICATION_ID);
+                                    Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION, uri);
+                                    startActivity(intent);
+                                } catch (Exception ex){
+                                    Intent intent = new Intent();
+                                    intent.setAction(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
+                                    startActivity(intent);
+                                }
+                            }
+                        })
+                        .show();
+            }
+
+    }
+
+
+*/
+
+
+}
 
 }

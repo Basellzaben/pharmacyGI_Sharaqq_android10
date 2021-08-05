@@ -1,21 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--<manifest xmlns:android="http://schemas.android.com/apk/res/android"-->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.cds_jo.pharmacyGI">
 
-    <uses-sdk
-        android:minSdkVersion="7"
-        android:targetSdkVersion="23" />
+
+    <!-- START - Storage Permission -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <uses-permission
+        android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <!-- END - Storage Permission -->
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+
+  <!--  <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28"
+        tools:ignore="ScopedStorage" />-->
+
+
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the 'MyLocation' functionality.
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- To auto-complete the email text field in the login form with the user's emails -->
+<!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -25,16 +51,23 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/app_icon3"
+        android:usesCleartextTraffic="true"
+        android:requestLegacyExternalStorage="true"
         android:label="Galaxy Pharmacy"
         android:largeHeap="true"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".assist.Convert_ccReportTo_ImgActivity"></activity>
-        <activity android:name=".assist.OrderDetailsReports" />
+        android:theme="@style/AppTheme"
+            tools:ignore="UnusedAttribute">
+        <activity
+            android:name=".assist.Convert_ccReportTo_ImgActivity"
+            android:exported="true"
+            tools:ignore="Instantiatable" />
+        <activity android:name=".assist.OrderDetailsReports"
+            tools:ignore="Instantiatable" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -49,119 +82,163 @@
 
         <activity
             android:name=".assist.Test"
-            android:label="@string/title_activity_test" />
+            android:label="@string/title_activity_test"
+            tools:ignore="Instantiatable" />
         <activity
             android:name=".StartUpActivity"
-            android:screenOrientation="landscape">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:screenOrientation="landscape"
+            android:exported="true"
 
-                <category android:name="android.intent.category.LAUNCHER" />
+            tools:ignore="Instantiatable">
+            <intent-filter>
+              <action android:name="android.intent.action.MAIN" />
+
+              <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name="port.bluetooth.BluetoothConnectMenu"
             android:screenOrientation="landscape"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
+            android:windowSoftInputMode="stateHidden|adjustPan"
+            tools:ignore="Instantiatable" />
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="landscape" />
-        <activity android:name=".assist.MenuActivity" />
-        <activity android:name=".assist.layout_to_imgActivity" />
+            android:screenOrientation="landscape"
+            tools:ignore="Instantiatable" />
+        <activity android:name=".assist.MenuActivity"
+            tools:ignore="Instantiatable" />
+        <activity android:name=".assist.layout_to_imgActivity"
+            tools:ignore="Instantiatable" />
         <activity
             android:name=".assist.Convert_Layout_Img"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"
+            tools:ignore="Instantiatable" />
         <activity
             android:name=".assist.Convert_RecVouch_To_Img"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"
+            tools:ignore="Instantiatable" />
         <activity
             android:name=".CustLocations.CustomerLocation"
             android:screenOrientation="landscape"
+            tools:ignore="Instantiatable"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".assist.Convert_Prapre_Qty_To_Img"
+            tools:ignore="Instantiatable"
             android:screenOrientation="landscape" />
         <activity
             android:name=".assist.Convert_Man_Balance_Qty_To_Img"
+            tools:ignore="Instantiatable"
             android:screenOrientation="landscape" />
         <activity
             android:name=".assist.Convert_TransQty_To_Img"
+            tools:ignore="Instantiatable"
             android:screenOrientation="landscape" />
         <activity
             android:name=".ScheduleManActivity"
+            tools:ignore="Instantiatable"
             android:screenOrientation="landscape" />
         <activity
             android:name=".RecvVoucherActivity"
+            tools:ignore="Instantiatable"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".Main2Activity"
+            tools:ignore="Instantiatable"
             android:label="@string/title_activity_main2"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".assist.CustomerReturnQtyActivity"
+            tools:ignore="Instantiatable"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".CustomerQty"
+            tools:ignore="Instantiatable"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".assist.OrdersItems"
+            tools:ignore="Instantiatable"
+            android:exported="true"
+
             android:screenOrientation="landscape"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden" >
 
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
-
+        </activity>
         <activity
             android:name=".assist.Acc_ReportActivity"
+            tools:ignore="Instantiatable"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".ManBalanceQtyActivity"
+            tools:ignore="Instantiatable"
             android:screenOrientation="landscape" />
         <activity
             android:name=".TransQtyReportActivity"
+            tools:ignore="Instantiatable"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".PreapareManQty"
+            tools:ignore="Instantiatable"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".ItemGalleryActivity"
+            tools:ignore="Instantiatable"
+
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".UpdateDataToMobileActivity"
+            tools:ignore="Instantiatable"
+
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".EditeTransActivity"
+            tools:ignore="Instantiatable"
+
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".assist.Sale_InvoiceActivity"
+            tools:ignore="Instantiatable"
+
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".assist.Convert_Sal_Invoice_To_ImgActivity"
+            tools:ignore="Instantiatable"
+
             android:screenOrientation="landscape" />
-        <activity android:name=".PrintImageActivity" />
-        <activity android:name=".ItemCostActivity" />
-        <activity android:name=".SaleManRoundsActivity" />
+        <activity android:name=".PrintImageActivity"            tools:ignore="Instantiatable"
+            />
+        <activity android:name=".ItemCostActivity"             tools:ignore="Instantiatable"
+            />
+        <activity android:name=".SaleManRoundsActivity"             tools:ignore="Instantiatable"
+            />
         <activity android:name=".assist.SimpleListViewActivity" />
-        <activity android:name=".QuestneerActivity" />
-        <activity android:name=".InterMicPrinterActivity" />
+        <activity android:name=".QuestneerActivity"             tools:ignore="Instantiatable"
+            />
+        <activity android:name=".InterMicPrinterActivity"             tools:ignore="Instantiatable"
+            />
         <activity android:name=".CaptureSignatureActivity" />
-        <activity android:name=".ZepraActivity" />
-        <activity android:name=".NotificationActivity" />
-        <activity android:name=".NotifationResultActivity" />
+        <activity android:name=".ZepraActivity"             tools:ignore="Instantiatable"
+            />
+        <activity android:name=".NotificationActivity"             tools:ignore="Instantiatable"
+            />
+        <activity android:name=".NotifationResultActivity"             tools:ignore="Instantiatable"
+            />
 
         <service
             android:name=".GetManMessage"
@@ -169,64 +246,82 @@
             android:exported="true" />
 
         <activity
-            android:name=".NewLoginActivity"
+            android:name=".NewLoginActivity"            tools:ignore="Instantiatable"
+
             android:screenOrientation="landscape" />
         <activity
-            android:name=".ManSummeryActivity"
+            android:name=".ManSummeryActivity"            tools:ignore="Instantiatable"
+
             android:screenOrientation="landscape" />
         <activity
-            android:name=".BeeHiveActivity"
+            android:name=".BeeHiveActivity"            tools:ignore="Instantiatable"
+
             android:screenOrientation="landscape" />
         <activity
-            android:name=".DoctorReportActivity"
+            android:name=".DoctorReportActivity"            tools:ignore="Instantiatable"
+
             android:screenOrientation="landscape" />
         <activity
-            android:name=".PhrMasterActivity"
+            android:name=".PhrMasterActivity"            tools:ignore="Instantiatable"
+
             android:screenOrientation="landscape" />
         <activity
-            android:name=".assist.DoctorVisitNew"
+            android:name=".assist.DoctorVisitNew"            tools:ignore="Instantiatable"
+
             android:screenOrientation="landscape" />
         <activity
-            android:name=".GalaxyLoginActivity"
+            android:name=".GalaxyLoginActivity"            tools:ignore="Instantiatable"
+
             android:configChanges="keyboardHidden"
             android:label="@string/title_activity_galaxy_login"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".GalaxyMainActivity"
+            android:name=".GalaxyMainActivity"            tools:ignore="Instantiatable"
+
             android:screenOrientation="landscape" />
         <activity
-            android:name=".GalaxyMainActivity2"
+            android:name=".GalaxyMainActivity2"            tools:ignore="Instantiatable"
+
             android:screenOrientation="landscape" />
         <activity
-            android:name=".CountrySales"
+            android:name=".CountrySales"            tools:ignore="Instantiatable"
+
             android:screenOrientation="landscape" />
         <activity
-            android:name=".ManVisitReport"
+            android:name=".ManVisitReport"            tools:ignore="Instantiatable"
+
             android:screenOrientation="landscape" />
         <activity
-            android:name=".Sitting_New_Activity"
+            android:name=".Sitting_New_Activity"            tools:ignore="Instantiatable"
+
             android:screenOrientation="landscape" />
         <activity
-            android:name=".Sitting_New_Activity2"
+            android:name=".Sitting_New_Activity2"            tools:ignore="Instantiatable"
+
             android:screenOrientation="landscape" />
         <activity
-            android:name=".UpdateDataToMobileActivity2"
+            android:name=".UpdateDataToMobileActivity2"            tools:ignore="Instantiatable"
+
             android:screenOrientation="landscape" />
 
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".MPChartActivity" />
+        <activity android:name=".MPChartActivity"            tools:ignore="Instantiatable"
+            />
         <activity
-            android:name=".assist.Sales_Order_Select_Item"
+            android:name=".assist.Sales_Order_Select_Item"            tools:ignore="Instantiatable"
+
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".assist.MonthlySalesManSchedule"
+            android:name=".assist.MonthlySalesManSchedule"            tools:ignore="Instantiatable"
+
             android:screenOrientation="landscape" />
         <activity
-            android:name=".Pop_Po_Select_Items_New_Activity"
+            android:name=".Pop_Po_Select_Items_New_Activity"            tools:ignore="Instantiatable"
+
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
     </application>

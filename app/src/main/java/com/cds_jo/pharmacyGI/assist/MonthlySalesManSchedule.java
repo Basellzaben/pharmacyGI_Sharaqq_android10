@@ -1,7 +1,7 @@
 package com.cds_jo.pharmacyGI.assist;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;
@@ -14,8 +14,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -27,18 +25,18 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+
 import com.cds_jo.pharmacyGI.DB;
 import com.cds_jo.pharmacyGI.GalaxyMainActivity;
-
 import com.cds_jo.pharmacyGI.Pop_Update_Month;
 import com.cds_jo.pharmacyGI.Pop_Update_Year;
 import com.cds_jo.pharmacyGI.PostTransActions.PostMonthlyScedule;
 import com.cds_jo.pharmacyGI.R;
 import com.cds_jo.pharmacyGI.SqlHandler;
 import com.cds_jo.pharmacyGI.We_Result;
-import com.cds_jo.pharmacyGI.assist.Cls_WeekDays;
-import com.cds_jo.pharmacyGI.assist.Cls_Week_Days_adapter;
-import com.cds_jo.pharmacyGI.assist.Cls_Week_No_adapter;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -288,7 +286,7 @@ public class MonthlySalesManSchedule extends FragmentActivity {
         AddDays.clear();
 
         Fragment frag = new Header_Frag();
-        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+      FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.Frag1, frag).commit();
 
         WeekNo = "-1";
@@ -498,6 +496,7 @@ public class MonthlySalesManSchedule extends FragmentActivity {
 
     }
 
+    @SuppressLint("Range")
     private void FillAllDays() {
 
         Lst_Country_Day.setAdapter(null);
@@ -553,6 +552,7 @@ public class MonthlySalesManSchedule extends FragmentActivity {
         AllDays_Lst.setAdapter(cls_monthly_sechedule_adapter);
     }
 
+    @SuppressLint("Range")
     private String GetTodayAllArea(String Date, String PeriodNo) {
         String All_Area = "";
         q = " Select  Area_No, Area.Name from   Monthly_Schedule  left join Area on  Area.No=Monthly_Schedule.Area_No   where Today_Date='" + Date + "' and Period_No='" + PeriodNo + "' and User_No='" + UserID + "'";
@@ -572,6 +572,7 @@ public class MonthlySalesManSchedule extends FragmentActivity {
         return All_Area;
     }
 
+    @SuppressLint("Range")
     private void FillAllCountryOfDay() {
 
         CountryOfDay.clear();
@@ -616,6 +617,7 @@ public class MonthlySalesManSchedule extends FragmentActivity {
         Lst_Country_Day.setAdapter(cls_monthly_sechedule_adapter);
     }
 
+    @SuppressLint("Range")
     private void FillAllCountry() {
 
         AllCountry.clear();
@@ -1011,7 +1013,8 @@ public class MonthlySalesManSchedule extends FragmentActivity {
         bundle.putString("Nm", "اختيار الشهر");
         bundle.putString("Month", tv_Month.getText().toString());
 
-        FragmentManager Manager = getFragmentManager();
+        android.app.FragmentManager Manager = getFragmentManager();
+
         Pop_Update_Month obj = new Pop_Update_Month();
         obj.setArguments(bundle);
         obj.show(Manager, null);
@@ -1025,7 +1028,8 @@ public class MonthlySalesManSchedule extends FragmentActivity {
         bundle.putString("Scr", "SalesOrder");
         bundle.putString("Nm", "اختيار السنة");
         bundle.putString("Year", ed_Year.getText().toString());
-        FragmentManager Manager = getFragmentManager();
+        android.app.FragmentManager Manager = getFragmentManager();
+
         Pop_Update_Year obj = new Pop_Update_Year();
         obj.setArguments(bundle);
         obj.show(Manager, null);

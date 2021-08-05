@@ -5,20 +5,15 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Environment;
 import android.os.Looper;
 import android.provider.MediaStore;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
 import android.provider.MediaStore.Images.Media;
+import android.view.View;
 import android.widget.EditText;
 
-/*import   com.cds_jo.printimage.ConnectionScreen;
-import   com.cds_jo.printimage.R;
-
-import   com.cds_jo.printimage.SettingsHelper;
-import   com.cds_jo.printimage.UIHelper;*/
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.zebra.sdk.comm.BluetoothConnection;
 import com.zebra.sdk.comm.Connection;

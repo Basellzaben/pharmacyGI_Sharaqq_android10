@@ -1,7 +1,7 @@
 package com.cds_jo.pharmacyGI;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;
@@ -11,25 +11,21 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+
 import com.cds_jo.pharmacyGI.assist.CallWebServices;
-import com.cds_jo.pharmacyGI.assist.Convert_Layout_Img;
 import com.cds_jo.pharmacyGI.assist.OrdersItems;
 import com.google.gson.Gson;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -124,7 +120,7 @@ public class CustomerQty extends FragmentActivity {
         CustNm.setText(sharedPreferences.getString("CustNm", ""));
 
         Fragment frag=new Header_Frag();
-        android.support.v4.app.FragmentManager fragmentManager=getSupportFragmentManager();
+        FragmentManager fragmentManager=getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.Frag1,frag).commit();
     }
     private void showList( Integer f  ) {
@@ -148,7 +144,7 @@ public class CustomerQty extends FragmentActivity {
         Bundle bundle = new Bundle();
         bundle.putString("Scr", "CustQty");
 
-        FragmentManager Manager =  getFragmentManager();
+        android.app.FragmentManager Manager = getFragmentManager();
         PopCus_Qty_Items obj = new PopCus_Qty_Items();
         obj.setArguments(bundle);
         obj.show(Manager, null);
@@ -207,6 +203,7 @@ public class CustomerQty extends FragmentActivity {
         CustNm.setText(Nm);
         CustNm.setError(null);
     }
+    @SuppressLint("Range")
     public void Set_Order(String No, String Nm, String acc) {
         TextView CustNm =(TextView)findViewById(R.id.tv_cusnm);
 
@@ -569,7 +566,7 @@ public class CustomerQty extends FragmentActivity {
     public void btn_Search_Orders(View view) {
         Bundle bundle = new Bundle();
         bundle.putString("Scr", "po");
-        FragmentManager Manager =  getFragmentManager();
+        android.app.FragmentManager Manager = getFragmentManager();
         SearchCustStoreQtyActivity obj = new SearchCustStoreQtyActivity();
         obj.setArguments(bundle);
         obj.show(Manager, null);

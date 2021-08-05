@@ -1,26 +1,16 @@
 package com.cds_jo.pharmacyGI.assist;
 
 import android.content.Context;
-
 import android.content.DialogInterface;
-import android.content.res.Configuration;
-import android.support.v7.widget.RecyclerView;
-
 import android.text.Editable;
-import android.text.InputFilter;
-import android.text.InputType;
 import android.text.TextWatcher;
-import android.text.method.DigitsKeyListener;
 import android.view.View;
-
 import android.widget.EditText;
-import android.widget.ExpandableListView;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.cds_jo.pharmacyGI.OnChildClickListener;
-import com.cds_jo.pharmacyGI.Pop_Po_Select_Items_New;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.cds_jo.pharmacyGI.Pop_Po_Select_Items_New_Activity;
 import com.cds_jo.pharmacyGI.R;
 import com.cds_jo.pharmacyGI.SqlHandler;

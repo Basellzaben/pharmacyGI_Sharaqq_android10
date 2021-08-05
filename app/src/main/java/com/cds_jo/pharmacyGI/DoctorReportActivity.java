@@ -1,7 +1,7 @@
 package com.cds_jo.pharmacyGI;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,11 +9,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -22,6 +20,10 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.cds_jo.pharmacyGI.assist.CallWebServices;
 import com.cds_jo.pharmacyGI.assist.Cls_Cur;
@@ -41,8 +43,8 @@ import hearder.main.Header_Frag;
 
 public class DoctorReportActivity extends AppCompatActivity {
     SqlHandler sql_Handler;
-     Spinner VisitType,Location;
-    EditText    tv_No,spi,SampleType,VNotes,SNotes  ;
+    Spinner VisitType,Location;
+    EditText tv_No,spi,SampleType,VNotes,SNotes  ;
     TextView TrDate,CustNm,CustNo,tv_Time;
     MyTextView tv_CustNm ;
     ImageButton CustSearch;
@@ -56,7 +58,7 @@ public class DoctorReportActivity extends AppCompatActivity {
             setContentView(R.layout.n_activity_doctor_report_new);
 
             Fragment frag = new Header_Frag();
-            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+           FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.Frag1, frag).commit();
 
 
@@ -115,9 +117,10 @@ public class DoctorReportActivity extends AppCompatActivity {
         Intent k = new Intent(this, GalaxyMainActivity2.class);
         startActivity(k);
     }
+    @SuppressLint("Range")
     public void btn_share(View view) {
 
-        if(IsNew==true){
+        if(IsNew){
             AlertDialog alertDialog = new AlertDialog.Builder(
                     this).create();
             alertDialog.setTitle("زيارة طبية");
@@ -136,9 +139,6 @@ public class DoctorReportActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         sql_Handler = new SqlHandler(this);
-
-
-
 
 
         ArrayList<Cls_DoctorReport> objlist    ;
@@ -271,6 +271,7 @@ public class DoctorReportActivity extends AppCompatActivity {
             }
         }).start();
     }
+    @SuppressLint("Range")
     public void ShowRecord() {
 
         Cls_Cur_Adapter Location_adapter = (Cls_Cur_Adapter) Location.getAdapter();
@@ -352,7 +353,7 @@ public class DoctorReportActivity extends AppCompatActivity {
     public void btn_search_Recv(View view) {
         Bundle bundle = new Bundle();
         bundle.putString("Scr", "DoctorReport");
-       FragmentManager Manager = getFragmentManager();
+        android.app.FragmentManager Manager = getFragmentManager();
         DoctorReportSearchActivity obj = new DoctorReportSearchActivity();
         obj.setArguments(bundle);
         obj.show(Manager, null);
@@ -571,7 +572,7 @@ public class DoctorReportActivity extends AppCompatActivity {
                 Bundle bundle = new Bundle();
                 bundle.putString("Scr", "DoctorReprot");
                 bundle.putString("PrvVisitType", PrvVisitType + "");
-                FragmentManager Manager = getFragmentManager();
+                android.app.FragmentManager Manager = getFragmentManager();
                 Select_Customer obj = new Select_Customer();
                 obj.setArguments(bundle);
                 obj.show(Manager, null);
@@ -579,7 +580,7 @@ public class DoctorReportActivity extends AppCompatActivity {
             {
                 Bundle bundle = new Bundle();
                 bundle.putString("Scr", "DoctorReprot");
-                FragmentManager Manager = getFragmentManager();
+                android.app.FragmentManager Manager = getFragmentManager();
                 Select_Doctor obj = new Select_Doctor();
                 obj.setArguments(bundle);
                 obj.show(Manager, null);
@@ -593,7 +594,7 @@ public class DoctorReportActivity extends AppCompatActivity {
         CustNm.setError(null);
     }
     private void FillVisitType() {
-
+          VisitType = (Spinner) findViewById(R.id.sp_VisitType);
 
 
         ArrayList<Cls_Cur> VouchTypeList = new ArrayList<Cls_Cur>();
@@ -615,7 +616,11 @@ public class DoctorReportActivity extends AppCompatActivity {
                 this, VouchTypeList);
         VisitType.setAdapter(cls_cur_adapter);
     }
+    @SuppressLint("Range")
     private void FillLocation() {
+          Location = (Spinner) findViewById(R.id.sp_Location);
+
+
         ArrayList<Cls_Cur> Locations = new ArrayList<Cls_Cur>();
         Locations.clear();
         SqlHandler sqlHandler = new SqlHandler(this);
@@ -649,6 +654,7 @@ public class DoctorReportActivity extends AppCompatActivity {
                 this, Locations);
         Location.setAdapter(cls_cur_adapter);
     }
+    @SuppressLint("Range")
     public void GetMaxRecNo() {
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);

@@ -1,7 +1,7 @@
 package com.cds_jo.pharmacyGI;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.FragmentManager;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,26 +9,22 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
-import com.cds_jo.pharmacyGI.assist.OrdersItems;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-import Methdes.MethodToUse;
-import Methdes.MyTextView_Digital;
 import hearder.main.Header_Frag;
 
 public class QuestneerActivity extends FragmentActivity {
@@ -83,11 +79,12 @@ public class QuestneerActivity extends FragmentActivity {
 */
         IsNew = true ;
         Fragment frag=new Header_Frag();
-        android.support.v4.app.FragmentManager fragmentManager=getSupportFragmentManager();
+        FragmentManager fragmentManager=getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.Frag1,frag).commit();
         GetMaxPONo();
         showList();
     }
+    @SuppressLint("Range")
     private void showList(   ) {
         contactList.clear();
 
@@ -260,12 +257,14 @@ public class QuestneerActivity extends FragmentActivity {
     public void btn_Search_Orders(View view) {
         Bundle bundle = new Bundle();
         bundle.putString("Scr", "po");
-        FragmentManager Manager =  getFragmentManager();
+        android.app.FragmentManager Manager = getFragmentManager();
+
         SearchQuesActivity obj = new SearchQuesActivity();
         obj.setArguments(bundle);
         obj.show(Manager, null);
     }
 
+    @SuppressLint("Range")
     public void Set_Order(String No, String Nm, String acc) { // FillList
 
 

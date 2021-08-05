@@ -1,10 +1,12 @@
 package com.cds_jo.pharmacyGI;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -15,21 +17,29 @@ import java.util.Locale;
 
 public class SqlHandler {
 
-    public static final String DATABASE_NAME = "/mnt/sdcard/Android/data/Galaxy/PhDB.db";
-    public static final int DATABASE_VERSION =1;
+    @SuppressLint("SdCardPath")
+    public static final String DATABASE_NAME = "PhDB.db";
+   // public static final String DATABASE_NAME = "/mnt/sdcard/PhDB.db";
+    public static final int DATABASE_VERSION =2;
     Context context;
     SQLiteDatabase sqlDatabase;
     SqlDbHelper dbHelper;
 
     public SqlHandler(Context context) {
 
-        dbHelper = new SqlDbHelper(context, DATABASE_NAME, null,
-                DATABASE_VERSION);
+        dbHelper = new SqlDbHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
+
+        //getApplicationContext().getExternalFilesDir("")
+
+        try{
         sqlDatabase = dbHelper.getWritableDatabase();
+        }
+        catch (SQLException e){
+        Toast.makeText(context.getApplicationContext(),"يرجى تفعيل الصلاحيات قبل تسجيل الدخول" + e.getMessage().toString(),Toast.LENGTH_SHORT ).show();
+        }
     }
 
     public void executeQuery(String query) {
-
         try {
 
           /*  if (sqlDatabase.isOpen()) {
@@ -42,6 +52,7 @@ public class SqlHandler {
 
             } catch (SQLException e) {
                 System.out.println("DATABASE ERROR " + query + "  Error   " + e.getMessage().toString());
+//            Toast.makeText(context.getApplicationContext(),"DATABASE ERROR " + query + "  Error   " + e.getMessage().toString(),Toast.LENGTH_SHORT ).show();
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.ENGLISH);
             String currentDateandTime = sdf.format(new Date());
 

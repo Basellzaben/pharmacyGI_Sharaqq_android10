@@ -4,16 +4,17 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageButton;
 
-import java.util.ArrayList;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.cds_jo.pharmacyGI.assist.LoginActivity;
 import com.cds_jo.pharmacyGI.assist.Sale_InvoiceActivity;
+
+import java.util.ArrayList;
 
 public class tActivity extends AppCompatActivity {
     GridView gridView;

@@ -1,12 +1,14 @@
 package com.cds_jo.pharmacyGI;
 
-import android.app.FragmentManager;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.ListView;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import com.cds_jo.pharmacyGI.assist.CallWebServices;
 
@@ -27,7 +29,7 @@ public class ItemCostActivity extends FragmentActivity {
         setContentView(R.layout.n_view_item_cost);
 
         Fragment frag=new Header_Frag();
-        android.support.v4.app.FragmentManager fragmentManager=getSupportFragmentManager();
+        FragmentManager fragmentManager=getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.Frag1,frag).commit();
     }
 
@@ -111,7 +113,7 @@ public class ItemCostActivity extends FragmentActivity {
     public void btn_searchCustomer(View view) {
         Bundle bundle = new Bundle();
         bundle.putString("Scr", "ItemCost");
-        FragmentManager Manager =  getFragmentManager();
+        android.app.FragmentManager Manager = getFragmentManager();
         Select_Items obj = new Select_Items();
         obj.setArguments(bundle);
         obj.show(Manager, null);

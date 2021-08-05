@@ -1,7 +1,7 @@
 package com.cds_jo.pharmacyGI.assist;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Context;
@@ -15,12 +15,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
-import android.text.InputType;
-import android.text.TextWatcher;
-import android.text.method.PasswordTransformationMethod;
 import android.util.TypedValue;
 import android.view.ContextMenu;
 import android.view.Gravity;
@@ -29,43 +23,28 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.cds_jo.pharmacyGI.Cls_Offers_Dtl_Gifts;
-import com.cds_jo.pharmacyGI.Cls_Offers_Groups;
-import com.cds_jo.pharmacyGI.Cls_Offers_Hdr;
-import com.cds_jo.pharmacyGI.Cls_Sal_InvItems;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
 import com.cds_jo.pharmacyGI.Cls_SampleItam_Adapter;
 import com.cds_jo.pharmacyGI.Cls_SampleItem;
-import com.cds_jo.pharmacyGI.Cls_Sal_Inv_Adapter;
-import com.cds_jo.pharmacyGI.Cls_SampleItem;
 import com.cds_jo.pharmacyGI.DB;
-import com.cds_jo.pharmacyGI.Doctor;
 import com.cds_jo.pharmacyGI.GalaxyMainActivity;
 import com.cds_jo.pharmacyGI.GalaxyMainActivity2;
-import com.cds_jo.pharmacyGI.PopSal_Inv_Select_Items;
 import com.cds_jo.pharmacyGI.PopSampleItem_Select_Items;
 import com.cds_jo.pharmacyGI.R;
-import com.cds_jo.pharmacyGI.Sal_Inv_SearchActivity;
 import com.cds_jo.pharmacyGI.Sample_Item_SearchActivity;
 import com.cds_jo.pharmacyGI.SearchManBalanceQty;
-import com.cds_jo.pharmacyGI.Select_Cash_Customer;
-import com.cds_jo.pharmacyGI.Select_Customer;
 import com.cds_jo.pharmacyGI.Select_Serial;
 import com.cds_jo.pharmacyGI.SqlHandler;
-import com.cds_jo.pharmacyGI.UpdateDataToMobileActivity2;
 import com.cds_jo.pharmacyGI.We_Result;
 import com.google.gson.Gson;
 
@@ -79,10 +58,8 @@ import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
-import Methdes.MethodToUse;
 import Methdes.MyTextView;
 import Methdes.MyTextView_Digital;
 import hearder.main.Header_Frag;
@@ -136,6 +113,7 @@ public class DoctorVisitNew extends AppCompatActivity {
         return d;
     }
 
+    @SuppressLint("Range")
     public void GetMaxPONo() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String u = sharedPreferences.getString("UserID", "");
@@ -181,8 +159,6 @@ public class DoctorVisitNew extends AppCompatActivity {
         Maxpo.setCursorVisible(false);
 
         contactList.clear();
-
-
     }
 
     public static String intToString(int num, int digits) {
@@ -190,6 +166,8 @@ public class DoctorVisitNew extends AppCompatActivity {
         while (output.length() < digits) output = "0" + output;
         return output;
     }
+
+
 
     public static void trimCache(Context context) {
         try {
@@ -224,7 +202,7 @@ public class DoctorVisitNew extends AppCompatActivity {
 
 
         Fragment frag = new Header_Frag();
-        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.Frag1, frag).commit();
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
@@ -500,6 +478,7 @@ public class DoctorVisitNew extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("Range")
     private void FillAdapter() {
 
 
@@ -786,6 +765,7 @@ public class DoctorVisitNew extends AppCompatActivity {
 
     }
 
+    @SuppressLint("Range")
     private void UpDateMaxOrderNo() {
 
         String query = "SELECT  ifnull(MAX (OrderNo), 0)AS no FROM SampleItem_Hdr";
@@ -820,7 +800,7 @@ public class DoctorVisitNew extends AppCompatActivity {
         bundle.putString("CustomerNo", accno.getText().toString());
 
 
-        FragmentManager Manager = getFragmentManager();
+        android.app.FragmentManager Manager = getFragmentManager();
         PopSampleItem_Select_Items obj = new PopSampleItem_Select_Items();
         obj.setArguments(bundle);
         obj.show(Manager, null);
@@ -1056,7 +1036,8 @@ public class DoctorVisitNew extends AppCompatActivity {
         bundle.putString("Scr", "Sample");
         bundle.putString("typ", "0");
 
-        FragmentManager Manager = getFragmentManager();
+        android.app.FragmentManager Manager = getFragmentManager();
+
         Sample_Item_SearchActivity obj = new Sample_Item_SearchActivity();
         obj.setArguments(bundle);
         obj.show(Manager, null);
@@ -1069,7 +1050,8 @@ public class DoctorVisitNew extends AppCompatActivity {
         bundle.putString("Scr", "VisitNo");
         bundle.putString("typ", "0");
 
-        FragmentManager Manager = getFragmentManager();
+        android.app.FragmentManager Manager = getFragmentManager();
+
         Select_Serial obj = new Select_Serial();
         obj.setArguments(bundle);
         obj.show(Manager, null);
@@ -1086,6 +1068,7 @@ public class DoctorVisitNew extends AppCompatActivity {
 
     }
 
+    @SuppressLint("Range")
     public void Set_Order(String No) {
         TextView CustNm = (TextView) findViewById(R.id.tv_cusnm);
         TextView no = (TextView) findViewById(R.id.et_OrdeNo);
@@ -1288,6 +1271,7 @@ public class DoctorVisitNew extends AppCompatActivity {
         return super.onContextItemSelected(item);
     }
 
+    @SuppressLint("Range")
     public void btn_share(View view) {
 
         final SqlHandler sql_Handler = new SqlHandler(this);
@@ -1484,7 +1468,8 @@ public class DoctorVisitNew extends AppCompatActivity {
             case R.id.BalanceQty:
                 Bundle bundle = new Bundle();
                 bundle.putString("Scr", "SalInvoice");
-                FragmentManager Manager = getFragmentManager();
+                android.app.FragmentManager Manager = getFragmentManager();
+
                 SearchManBalanceQty obj = new SearchManBalanceQty();
                 obj.setArguments(bundle);
                 obj.show(Manager, null);

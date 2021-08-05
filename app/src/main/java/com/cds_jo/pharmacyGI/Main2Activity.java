@@ -2,20 +2,21 @@ package com.cds_jo.pharmacyGI;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.cds_jo.pharmacyGI.assist.Acc_ReportActivity;
 import com.cds_jo.pharmacyGI.assist.CustomerReturnQtyActivity;
 import com.cds_jo.pharmacyGI.assist.OrdersItems;
 import com.cds_jo.pharmacyGI.assist.Sale_InvoiceActivity;
+import com.google.android.material.navigation.NavigationView;
 
 import port.bluetooth.BluetoothConnectMenu;
 

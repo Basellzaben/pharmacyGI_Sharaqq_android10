@@ -7,13 +7,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Spinner;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import com.cds_jo.pharmacyGI.assist.Cls_Cur;
 import com.cds_jo.pharmacyGI.assist.Cls_Cur_Adapter;
@@ -38,7 +39,7 @@ public class Sitting_New_Activity2 extends FragmentActivity
 
 		this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 		Fragment frag = new Header_Frag();
-		android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+	FragmentManager fragmentManager = getSupportFragmentManager();
 		fragmentManager.beginTransaction().replace(R.id.Frag1, frag).commit();
 
 

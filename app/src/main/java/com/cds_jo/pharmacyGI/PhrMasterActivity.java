@@ -8,7 +8,6 @@
  import android.graphics.BitmapFactory;
  import android.os.Bundle;
  import android.preference.PreferenceManager;
- import android.support.v7.app.AppCompatActivity;
  import android.text.InputType;
  import android.text.method.PasswordTransformationMethod;
  import android.view.KeyEvent;
@@ -19,6 +18,8 @@
  import android.widget.LinearLayout;
  import android.widget.TextView;
  import android.widget.Toast;
+
+ import androidx.appcompat.app.AppCompatActivity;
 
  import com.cds_jo.pharmacyGI.assist.Acc_ReportActivity;
  import com.cds_jo.pharmacyGI.assist.CustomerReturnQtyActivity;

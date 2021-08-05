@@ -1,7 +1,7 @@
 package com.cds_jo.pharmacyGI;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.FragmentManager;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,13 +11,15 @@ import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -68,7 +70,7 @@ public class ScheduleManActivity extends FragmentActivity {
         setContentView(R.layout.n_activity_schedule_man);
 
         Fragment frag=new Header_Frag();
-        android.support.v4.app.FragmentManager fragmentManager=getSupportFragmentManager();
+        FragmentManager fragmentManager=getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.Frag1,frag).commit();
 
         Cust_Visits =(ListView)findViewById(R.id.lst_Cust_Visits);
@@ -359,6 +361,7 @@ private  void checkCust(String BarCodeNo){
 
         return result;
     }
+    @SuppressLint("Range")
     public  String GetMaxPONo(){
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String u =  sharedPreferences.getString("UserID", "");
@@ -436,7 +439,8 @@ private  void checkCust(String BarCodeNo){
 
 
             Bundle bundle = new Bundle();
-            FragmentManager Manager =  getFragmentManager();
+            android.app.FragmentManager Manager = getFragmentManager();
+
             PopSmallMenue obj = new PopSmallMenue();
             bundle.putString("Msg",  CustNo + "   " +CustNm );
             obj.setArguments(bundle);
@@ -590,6 +594,7 @@ private  void checkCust(String BarCodeNo){
         return d;
     }
 
+    @SuppressLint("Range")
     public void btn_GetData() {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.ENGLISH);

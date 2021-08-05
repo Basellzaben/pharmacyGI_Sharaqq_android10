@@ -3,30 +3,25 @@ package com.cds_jo.pharmacyGI;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutCompat;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
-import com.cds_jo.pharmacyGI.assist.Acc_ReportActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+
 import com.cds_jo.pharmacyGI.assist.CallWebServices;
-import com.cds_jo.pharmacyGI.assist.Cls_Acc_Report;
-import com.cds_jo.pharmacyGI.assist.Cls_Acc_Report_Adapter;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -80,7 +75,7 @@ String CurrentYear="";
         tv_Total.setText("0.000");
 
         Fragment frag=new Header_Frag();
-        android.support.v4.app.FragmentManager fragmentManager=getSupportFragmentManager();
+       FragmentManager fragmentManager=getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.Frag1,frag).commit();
 
         Row1 = (LinearLayout)findViewById(R.id.LinearRow1);
@@ -224,7 +219,7 @@ String CurrentYear="";
 
         Bundle bundle = new Bundle();
         bundle.putString("Scr", "CountrySales");
-        FragmentManager Manager =  getFragmentManager();
+        android.app.FragmentManager Manager = getFragmentManager();
         Select_Location obj = new Select_Location();
         obj.setArguments(bundle);
         obj.show(Manager, null);
@@ -256,7 +251,7 @@ String CurrentYear="";
         bundle.putString("ToDate",  ToDate.getText().toString());
 
 
-        FragmentManager Manager =  getFragmentManager();
+        android.app.FragmentManager Manager = getFragmentManager();
         Pop_Po_CompareSales obj = new Pop_Po_CompareSales();
         obj.setArguments(bundle);
         obj.show(Manager, null);

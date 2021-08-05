@@ -1,5 +1,6 @@
 package com.cds_jo.pharmacyGI.assist;
 
+import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.Intent;
@@ -16,7 +17,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Looper;
 import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -24,6 +24,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.cds_jo.pharmacyGI.ContactListItems;
 import com.cds_jo.pharmacyGI.R;
@@ -99,6 +101,7 @@ public class Convert_Layout_Img extends AppCompatActivity {
         mBluetoothAdapter.enable();
     }
 
+   @SuppressLint("Range")
    private void showList() {
         //Intent i = getIntent();
         float Total = 0;
@@ -213,7 +216,8 @@ public class Convert_Layout_Img extends AppCompatActivity {
         startActivity(k);
     }
 
-    public  void ShowRecord( String OrdNo){
+    @SuppressLint("Range")
+    public  void ShowRecord(String OrdNo){
 
         ShapeDrawable shape = new ShapeDrawable(new RectShape());
         shape.getPaint().setColor(Color.BLACK);

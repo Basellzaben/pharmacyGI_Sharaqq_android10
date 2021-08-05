@@ -4,9 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.view.View;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import Methdes.MyTextView;
 import hearder.main.Header_Frag;
@@ -16,7 +18,7 @@ public class ManSummeryActivity extends FragmentActivity {
     private Context context=ManSummeryActivity.this;
     private MyTextView T1,T2,T3,T4,T5;
     private Fragment frag;
-    private android.support.v4.app.FragmentManager fragmentManager;
+    private FragmentManager fragmentManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

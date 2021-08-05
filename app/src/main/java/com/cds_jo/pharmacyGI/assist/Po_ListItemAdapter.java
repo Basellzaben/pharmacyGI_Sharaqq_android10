@@ -1,14 +1,12 @@
 package com.cds_jo.pharmacyGI.assist;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.cds_jo.pharmacyGI.Pop_Po_Select_Items;
 import com.cds_jo.pharmacyGI.R;
 
 import java.util.ArrayList;

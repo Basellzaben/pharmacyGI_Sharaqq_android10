@@ -1,7 +1,7 @@
 package com.cds_jo.pharmacyGI.assist;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Context;
@@ -12,8 +12,6 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -36,14 +34,17 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
 import com.cds_jo.pharmacyGI.Cls_Offers_Dtl_Gifts;
 import com.cds_jo.pharmacyGI.Cls_Offers_Groups;
 import com.cds_jo.pharmacyGI.Cls_Offers_Hdr;
-import com.cds_jo.pharmacyGI.Cls_Sal_Inv_Adapter;
 import com.cds_jo.pharmacyGI.Cls_Sal_InvItems;
+import com.cds_jo.pharmacyGI.Cls_Sal_Inv_Adapter;
 import com.cds_jo.pharmacyGI.DB;
 import com.cds_jo.pharmacyGI.GalaxyMainActivity;
-
 import com.cds_jo.pharmacyGI.PopSal_Inv_Select_Items;
 import com.cds_jo.pharmacyGI.R;
 import com.cds_jo.pharmacyGI.Sal_Inv_SearchActivity;
@@ -122,6 +123,7 @@ public class Sale_InvoiceActivity extends AppCompatActivity {
 
         return d;
     }
+    @SuppressLint("Range")
     public  void GetMaxPONo(){
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String u =  sharedPreferences.getString("UserID", "");
@@ -213,7 +215,7 @@ public class Sale_InvoiceActivity extends AppCompatActivity {
 
 
         Fragment frag=new Header_Frag();
-        android.support.v4.app.FragmentManager fragmentManager=getSupportFragmentManager();
+       FragmentManager fragmentManager=getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.Frag1,frag).commit();
 
         chk_Type = (CheckBox)findViewById(R.id.chk_Type);
@@ -592,6 +594,7 @@ public class Sale_InvoiceActivity extends AppCompatActivity {
       lvCustomList.setAdapter(contactListAdapter);
       //  json = new Gson().toJson(contactList);
   }
+    @SuppressLint("Range")
     private void FillAdapter() {
 
         float Total = 0 ;
@@ -712,7 +715,9 @@ public class Sale_InvoiceActivity extends AppCompatActivity {
         if(chk_Type.isChecked()){
             Bundle bundle = new Bundle();
             bundle.putString("Scr", "Sale_Inv");
-            FragmentManager Manager = getFragmentManager();
+                   android.app.FragmentManager Manager = getFragmentManager();
+
+
             Select_Cash_Customer obj = new Select_Cash_Customer();
             obj.setArguments(bundle);
             obj.show(Manager, null);
@@ -721,7 +726,7 @@ public class Sale_InvoiceActivity extends AppCompatActivity {
              if (u=="-1") {
                  Bundle bundle = new Bundle();
                  bundle.putString("Scr", "Sale_Inv");
-                 FragmentManager Manager = getFragmentManager();
+                  android.app.FragmentManager Manager = getFragmentManager();
                  Select_Customer obj = new Select_Customer();
                  obj.setArguments(bundle);
                  obj.show(Manager, null);
@@ -1321,7 +1326,7 @@ public class Sale_InvoiceActivity extends AppCompatActivity {
         bundle.putString("CustomerNo", accno.getText().toString());
 
 
-        FragmentManager Manager =  getFragmentManager();
+        android.app.FragmentManager Manager = getFragmentManager();
         PopSal_Inv_Select_Items obj = new PopSal_Inv_Select_Items();
         obj.setArguments(bundle);
         obj.show(Manager, null);
@@ -1775,7 +1780,7 @@ public class Sale_InvoiceActivity extends AppCompatActivity {
         {
         bundle.putString("typ", "-1");
         }
-        FragmentManager Manager =  getFragmentManager();
+        android.app.FragmentManager Manager = getFragmentManager();
         Sal_Inv_SearchActivity obj = new Sal_Inv_SearchActivity();
         obj.setArguments(bundle);
         obj.show(Manager, null);
@@ -1987,7 +1992,7 @@ else {
                     bundle.putString("CustomerNo", accno.getText().toString());
 
                 bundle.putSerializable("List", Itemlist);
-                    FragmentManager Manager = getFragmentManager();
+                android.app.FragmentManager Manager = getFragmentManager();
                     PopSal_Inv_Select_Items obj = new PopSal_Inv_Select_Items();
                     obj.setArguments(bundle);
                     obj.show(Manager, null);
@@ -2096,6 +2101,7 @@ else {
 
         return  0;
     }
+    @SuppressLint("Range")
     private void InsertItemsOffersType3(String GroupNo , int f) {
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
 
@@ -2505,6 +2511,7 @@ else {
     public void btn_Calc_Promotion( View view ) {
     Gf_Calc_Promotion();
     }
+    @SuppressLint("Range")
     private int Check_All_Promotion_Items(String groupNo){
     //   groupNo = "2";
     int result = 0 ;
@@ -2591,6 +2598,7 @@ else {
     }
     return result;
     }
+    @SuppressLint("Range")
     public void btn_share(View view) {
     //RemoveAnmation();
 //    ImageButton imageButton9= (ImageButton)findViewById(R.id.imageButton9);
@@ -2798,7 +2806,7 @@ else {
     case R.id.BalanceQty:
     Bundle bundle = new Bundle();
     bundle.putString("Scr", "SalInvoice");
-    FragmentManager Manager =  getFragmentManager();
+        android.app.FragmentManager Manager = getFragmentManager();
     SearchManBalanceQty obj = new SearchManBalanceQty();
     obj.setArguments(bundle);
     obj.show(Manager, null);
@@ -2817,6 +2825,7 @@ else {
     showList();
     BalanceQtyTrans = true;
     }
+    @SuppressLint("Range")
     private void FillAdapterFromBalanceQty(String OrderNo) {
     contactList.clear();
 

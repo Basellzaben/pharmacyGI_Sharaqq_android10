@@ -1,5 +1,6 @@
 package com.cds_jo.pharmacyGI;
 
+import android.annotation.SuppressLint;
 import android.app.DialogFragment;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -186,6 +187,7 @@ public class Select_Customer_Dis extends DialogFragment implements View.OnClickL
         }
         return false;
     }
+    @SuppressLint("Range")
     public void onProgressUpdate(String t ){
 
 
@@ -262,7 +264,6 @@ public class Select_Customer_Dis extends DialogFragment implements View.OnClickL
                  {
                      selected_location.setLatitude(Double.parseDouble(c1.getString(c1.getColumnIndex("Latitude"))));
                  }
-
                  if (c1.getString(c1.getColumnIndex("Longitude")).equals("")){
                      selected_location.setLongitude(0.0);
                  }
@@ -315,7 +316,7 @@ public class Select_Customer_Dis extends DialogFragment implements View.OnClickL
                 // double distance=selected_location.distanceTo(near_locations);
                 // distance=distance/1000;
 
-                 GetLocation v = new GetLocation();
+                 GetLocation v = new GetLocation(getActivity());
 
                  float NewDis = 0 ;
                  double distance=selected_location.distanceTo(near_locations);

@@ -1,20 +1,17 @@
 package com.cds_jo.pharmacyGI;
 
 import android.app.AlertDialog;
-import android.app.FragmentManager;
 import android.content.ContentValues;
 import android.content.DialogInterface;
-
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.preference.PreferenceManager;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import hearder.main.Header_Frag;
 
@@ -28,7 +25,7 @@ public class EditeTransActivity extends FragmentActivity {
         setContentView(R.layout.n_activity_edite_trans);
 
         Fragment frag=new Header_Frag();
-        android.support.v4.app.FragmentManager fragmentManager=getSupportFragmentManager();
+        FragmentManager fragmentManager=getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.Frag1,frag).commit();
 
 
@@ -150,7 +147,7 @@ public class EditeTransActivity extends FragmentActivity {
     public void btn_search_Recv(View view) {
         Bundle bundle = new Bundle();
         bundle.putString("Scr", "EditeRec");
-        FragmentManager Manager = getFragmentManager();
+        android.app.FragmentManager Manager = getFragmentManager();
         RecVoucherSearchActivity obj = new RecVoucherSearchActivity();
         obj.setArguments(bundle);
         obj.show(Manager, null);
@@ -159,7 +156,7 @@ public class EditeTransActivity extends FragmentActivity {
     public void btn_search_Po(View view) {
         Bundle bundle = new Bundle();
         bundle.putString("Scr", "EditeRec");
-        FragmentManager Manager = getFragmentManager();
+        android.app.FragmentManager Manager = getFragmentManager();
         SearchPoActivity obj = new SearchPoActivity();
         obj.setArguments(bundle);
         obj.show(Manager, null);
@@ -314,7 +311,7 @@ public class EditeTransActivity extends FragmentActivity {
         Bundle bundle = new Bundle();
         bundle.putString("Scr", "Edite_inv");
         bundle.putString("typ", "0");
-        FragmentManager Manager =  getFragmentManager();
+        android.app.FragmentManager Manager = getFragmentManager();
         Sal_Inv_SearchActivity obj = new Sal_Inv_SearchActivity();
         obj.setArguments(bundle);
         obj.show(Manager, null);

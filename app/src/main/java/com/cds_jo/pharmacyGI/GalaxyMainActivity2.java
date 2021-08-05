@@ -1,25 +1,14 @@
 package com.cds_jo.pharmacyGI;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.cds_jo.pharmacyGI.assist.Acc_ReportActivity;
-import com.cds_jo.pharmacyGI.assist.CustomerReturnQtyActivity;
-import com.cds_jo.pharmacyGI.assist.OrdersItems;
-import com.cds_jo.pharmacyGI.assist.Sale_InvoiceActivity;
-import com.oguzdev.circularfloatingactionmenu.library.FloatingActionMenu;
-import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import hearder.main.Header_Frag;
 

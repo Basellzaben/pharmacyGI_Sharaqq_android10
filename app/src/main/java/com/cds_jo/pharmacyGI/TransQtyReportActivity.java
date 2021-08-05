@@ -1,5 +1,6 @@
 package com.cds_jo.pharmacyGI;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -9,12 +10,14 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import com.cds_jo.pharmacyGI.assist.Cls_Trans_Qty;
 import com.cds_jo.pharmacyGI.assist.Cls_Trans_Qty_Adapter;
@@ -54,7 +57,7 @@ public class TransQtyReportActivity extends FragmentActivity {
         tv_msg.setText("");
 
         Fragment frag=new Header_Frag();
-        android.support.v4.app.FragmentManager fragmentManager=getSupportFragmentManager();
+        FragmentManager fragmentManager=getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.Frag1,frag).commit();
     }
     private void  GetStoreQtySer(){
@@ -147,6 +150,7 @@ public class TransQtyReportActivity extends FragmentActivity {
         Calendar cc = Calendar.getInstance();
         final int dayOfWeek = cc.get(Calendar.DAY_OF_WEEK);
         new Thread(new Runnable() {
+            @SuppressLint("Range")
             @Override
             public void run() {
 
@@ -288,6 +292,7 @@ public class TransQtyReportActivity extends FragmentActivity {
     }
 
 
+    @SuppressLint("Range")
     private Double GetSaledQtyNotPosted(String ItemNo ){
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 

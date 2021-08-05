@@ -16,13 +16,10 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -30,18 +27,18 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.cds_jo.pharmacyGI.ComInfo;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+
 import com.cds_jo.pharmacyGI.DB;
 import com.cds_jo.pharmacyGI.GalaxyLoginActivity;
-import com.cds_jo.pharmacyGI.GalaxyMainActivity;
-import com.cds_jo.pharmacyGI.GalaxyMainActivity2;
 import com.cds_jo.pharmacyGI.R;
 import com.cds_jo.pharmacyGI.SqlHandler;
 import com.cds_jo.pharmacyGI.We_Result;
 import com.cds_jo.pharmacyGI.assist.CallWebServices;
 import com.cds_jo.pharmacyGI.assist.Cls_Cur;
 import com.cds_jo.pharmacyGI.assist.Cls_Cur_Adapter;
-import com.cds_jo.pharmacyGI.assist.OrdersItems;
 import com.sewoo.port.android.BluetoothPort;
 
 import org.json.JSONArray;
@@ -263,7 +260,7 @@ public class BluetoothConnectMenu extends FragmentActivity
 
 		sqlHandler = new SqlHandler(this);
 		Fragment frag = new Header_Frag();
-		android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+		FragmentManager fragmentManager = getSupportFragmentManager();
 		fragmentManager.beginTransaction().replace(R.id.Frag1, frag).commit();
 
 		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);

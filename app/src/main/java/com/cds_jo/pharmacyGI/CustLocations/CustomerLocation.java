@@ -2,9 +2,7 @@ package com.cds_jo.pharmacyGI.CustLocations;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Context;
@@ -13,29 +11,17 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.provider.MediaStore;
 import android.provider.Settings;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.content.ContextCompat;
-import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -46,11 +32,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+
 import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
-
 import com.cds_jo.pharmacyGI.GPSService;
 import com.cds_jo.pharmacyGI.GalaxyMainActivity;
 import com.cds_jo.pharmacyGI.R;
@@ -66,16 +56,12 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.io.File;
 import java.io.IOException;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-
 
 import hearder.main.Header_Frag;
 
@@ -249,7 +235,7 @@ public class CustomerLocation extends FragmentActivity implements OnMapReadyCall
         });
 
         Fragment frag = new Header_Frag();
-        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.Frag1, frag).commit();
 
 
@@ -448,6 +434,7 @@ public class CustomerLocation extends FragmentActivity implements OnMapReadyCall
    public void Set_Stutes(  String Desc) {
        ed_States.setText(Desc);
     }
+    @SuppressLint("Range")
     public void ShowList() {
 
         Records.clear();
@@ -494,7 +481,7 @@ public class CustomerLocation extends FragmentActivity implements OnMapReadyCall
     public void btn_Customer(View view) {
         Bundle bundle = new Bundle();
         bundle.putString("Scr", "CusfCard");
-        FragmentManager Manager = getFragmentManager();
+        android.app.FragmentManager Manager = getFragmentManager();
         Select_Customer obj = new Select_Customer();
         obj.setArguments(bundle);
         obj.show(Manager, null);
@@ -784,6 +771,7 @@ public class CustomerLocation extends FragmentActivity implements OnMapReadyCall
 
 
 
+    @SuppressLint("Range")
     private  void ShareLocationNew(){
 
         String query = "  select no, CustNo ,ManNo  , Lat_X ,Lat_Y, Locat , Note ,Tr_Date, PersonNm ,MobileNo,Stutes " +
@@ -864,7 +852,7 @@ public class CustomerLocation extends FragmentActivity implements OnMapReadyCall
 
     public void btn_Show_Stutes(View view) {
         Bundle bundle = new Bundle();
-        FragmentManager Manager = getFragmentManager();
+        android.app.FragmentManager Manager = getFragmentManager();
         Pop_Select_Stutes obj = new Pop_Select_Stutes();
         obj.setArguments(bundle);
         obj.show(Manager, null);

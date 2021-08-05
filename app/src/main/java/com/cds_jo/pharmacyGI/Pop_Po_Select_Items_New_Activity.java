@@ -1,26 +1,18 @@
 package com.cds_jo.pharmacyGI;
 
-import android.app.Activity;
+import android.annotation.SuppressLint;
 import android.app.FragmentManager;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Color;
-import android.location.LocationManager;
-import android.preference.PreferenceManager;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.preference.PreferenceManager;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -28,9 +20,12 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.cds_jo.pharmacyGI.assist.Cls_Deptf;
 import com.cds_jo.pharmacyGI.assist.Cls_Deptf_adapter;
@@ -39,7 +34,6 @@ import com.cds_jo.pharmacyGI.assist.Cls_UnitItems;
 import com.cds_jo.pharmacyGI.assist.Cls_UnitItems_Adapter;
 import com.cds_jo.pharmacyGI.assist.OrdersItems;
 import com.cds_jo.pharmacyGI.assist.Po_ListItemAdapter;
-import com.cds_jo.pharmacyGI.assist.Sale_InvoiceActivity;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -404,6 +398,7 @@ public class Pop_Po_Select_Items_New_Activity extends FragmentActivity {
         sqlHandler.executeQuery(q);
     }
 
+    @SuppressLint("Range")
     private void get_min_price() {
         min_price = 0.0;
         String CatNo = "";
@@ -425,6 +420,7 @@ public class Pop_Po_Select_Items_New_Activity extends FragmentActivity {
 
     }
 
+    @SuppressLint("Range")
     public Double checkStoreQty(String No, String qq) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         Double Order_qty = SToD(qq);
@@ -475,6 +471,7 @@ public class Pop_Po_Select_Items_New_Activity extends FragmentActivity {
         return Res;
     }
 
+    @SuppressLint("Range")
     public int GetAvQty(String No, String Qty) {
 
 
@@ -539,6 +536,7 @@ public class Pop_Po_Select_Items_New_Activity extends FragmentActivity {
         return Res;
     }
 
+    @SuppressLint("Range")
     private void FillDeptf() {
         try {
             final Spinner sp_items_cat = (Spinner) findViewById(R.id.sp_item_cat);
@@ -575,10 +573,12 @@ public class Pop_Po_Select_Items_New_Activity extends FragmentActivity {
         }
     }
 
+    @SuppressLint("Range")
     private void FillItems() {
         try {
             filter = (EditText) findViewById(R.id.et_Search_filter);
             String query = "";
+
             rv.setAdapter(null);
 
             if (filter.getText().toString().equals("")) {
@@ -812,6 +812,7 @@ public class Pop_Po_Select_Items_New_Activity extends FragmentActivity {
 
 
     }*/
+    @SuppressLint("Range")
     public void fillUnit(String item_no) {
 
 
@@ -871,6 +872,7 @@ public class Pop_Po_Select_Items_New_Activity extends FragmentActivity {
 
     }
 
+    @SuppressLint("Range")
     public double Calc_Total(String ItemNo, String Qty) {
         //   Toast.makeText(this,ItemNo,Toast.LENGTH_SHORT).show();
        /* Double R =  checkStoreQty(ItemNo,Qty);
@@ -1034,6 +1036,7 @@ public class Pop_Po_Select_Items_New_Activity extends FragmentActivity {
        // btn_All_Items.setChecked(false);
 
     }
+    @SuppressLint("Range")
     public void onProgressUpdate( ){
         Lstitems_Filter.setAdapter(null);
         String query ;

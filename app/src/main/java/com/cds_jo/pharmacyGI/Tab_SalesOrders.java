@@ -1,12 +1,10 @@
 package com.cds_jo.pharmacyGI;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+
+import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +14,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.cds_jo.pharmacyGI.assist.OrdersItems;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import com.cds_jo.pharmacyGI.assist.PoSummeryListAdapter;
 
 import java.text.DecimalFormat;
@@ -26,7 +26,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-import Methdes.MyTextView;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class Tab_SalesOrders extends Fragment {
@@ -144,6 +143,7 @@ public class Tab_SalesOrders extends Fragment {
 
         return d;
     }
+    @SuppressLint("Range")
     private void FillList(){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd",Locale.ENGLISH);
         String currentDateandTime = sdf.format(new Date());

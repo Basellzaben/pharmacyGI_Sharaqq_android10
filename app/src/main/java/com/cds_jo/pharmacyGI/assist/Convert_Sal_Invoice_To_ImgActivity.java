@@ -1,5 +1,6 @@
 package com.cds_jo.pharmacyGI.assist;
 
+import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.Intent;
@@ -13,7 +14,8 @@ import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RectShape;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -199,7 +201,8 @@ public class Convert_Sal_Invoice_To_ImgActivity extends AppCompatActivity {
         mBluetoothAdapter.enable();
  }
 
-    public  void ShowRecord( String OrdNo){
+    @SuppressLint("Range")
+    public  void ShowRecord(String OrdNo){
 
 
         ShapeDrawable shape = new ShapeDrawable(new RectShape());
@@ -371,6 +374,7 @@ public class Convert_Sal_Invoice_To_ImgActivity extends AppCompatActivity {
 
         return d;
     }
+    @SuppressLint("Range")
     private void showList(String OrderNo) {
         Intent i = getIntent();
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);

@@ -1,45 +1,39 @@
 package com.cds_jo.pharmacyGI.assist;
-import android.app.AlertDialog;
-import android.app.FragmentManager;
+
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
-import com.cds_jo.pharmacyGI.ComInfo;
-import com.cds_jo.pharmacyGI.ContactListAdapter;
 import com.cds_jo.pharmacyGI.ContactListItems;
 import com.cds_jo.pharmacyGI.GalaxyMainActivity;
-import com.cds_jo.pharmacyGI.MainActivity;
 import com.cds_jo.pharmacyGI.PostTransActions.PopOrderItems;
 import com.cds_jo.pharmacyGI.R;
 import com.cds_jo.pharmacyGI.SqlHandler;
-import com.cds_jo.pharmacyGI.UpdateDataToMobileActivity;
 import com.cds_jo.pharmacyGI.We_Result;
 import com.cds_jo.pharmacyGI.cls_Order_Sales_details;
-
-import com.cds_jo.pharmacyGI.cls_Tab__Order_Sales_adapter;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -53,7 +47,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-import Methdes.MyTextView;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import hearder.main.Header_Frag;
 
@@ -159,7 +152,7 @@ String UserID;
         GetServer_Date();
     FillOrder();
     Fragment frag = new Header_Frag();
-    android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+    FragmentManager fragmentManager = getSupportFragmentManager();
     fragmentManager.beginTransaction().replace(R.id.Frag1, frag).commit();
 
 
@@ -171,7 +164,8 @@ String UserID;
             Bundle bundle = new Bundle();
             bundle.putString("Order_No", Order_No);
             bundle.putString("CustName", obj.getCustNm().toString());
-            FragmentManager Manager = getFragmentManager();
+            android.app.FragmentManager Manager = getFragmentManager();
+
             PopOrderItems _obj = new PopOrderItems();
             _obj.setArguments(bundle);
             _obj.show(Manager, null);
@@ -182,6 +176,7 @@ String UserID;
     }
     private void RelatedTrans(final int position){}
 
+    @SuppressLint("Range")
     private void FillOrder() {
           SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.ENGLISH);
           String currentDateandTime = sdf.format(new Date());
@@ -400,7 +395,8 @@ String UserID;
 
         }
     ArrayList<ContactListItems> PoList ;
-    private void Fill_Po_Adapter( String OrderNo) {
+    @SuppressLint("Range")
+    private void Fill_Po_Adapter(String OrderNo) {
         String query ="";
         PoList = new ArrayList<ContactListItems>();
         PoList.clear();

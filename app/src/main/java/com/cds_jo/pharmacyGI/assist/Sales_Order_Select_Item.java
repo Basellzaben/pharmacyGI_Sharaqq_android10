@@ -1,12 +1,13 @@
 package com.cds_jo.pharmacyGI.assist;
 
+import android.annotation.SuppressLint;
 import android.database.Cursor;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+
+import androidx.fragment.app.FragmentActivity;
 
 import com.cds_jo.pharmacyGI.Cls_Sal_InvItems;
 import com.cds_jo.pharmacyGI.R;
@@ -36,6 +37,7 @@ public class Sales_Order_Select_Item extends FragmentActivity {
         /*fillUnit("-1");
 */
     }
+    @SuppressLint("Range")
     private void FillDeptf() {
         final Spinner sp_items_cat = (Spinner) findViewById(R.id.sp_item_cat);
         sqlHandler = new SqlHandler(this);
@@ -68,6 +70,7 @@ public class Sales_Order_Select_Item extends FragmentActivity {
 
         sp_items_cat.setAdapter(cls_unitItems_adapter);
     }
+    @SuppressLint("Range")
     private void FillItems() {
         filter = (EditText) findViewById(R.id.et_Search_filter);
         String query = "";
@@ -145,6 +148,7 @@ public class Sales_Order_Select_Item extends FragmentActivity {
 
 
     }
+    @SuppressLint("Range")
     public void fillUnit(String item_no) {
 
 

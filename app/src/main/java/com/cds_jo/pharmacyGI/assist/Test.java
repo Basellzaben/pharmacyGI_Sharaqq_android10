@@ -1,7 +1,8 @@
 package com.cds_jo.pharmacyGI.assist;
 
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+
+import androidx.fragment.app.FragmentActivity;
 
 import com.cds_jo.pharmacyGI.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
