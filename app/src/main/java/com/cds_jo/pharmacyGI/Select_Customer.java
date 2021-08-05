@@ -1,5 +1,6 @@
 package com.cds_jo.pharmacyGI;
 
+import android.annotation.SuppressLint;
 import android.app.DialogFragment;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -15,7 +16,6 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -169,6 +169,7 @@ public class Select_Customer extends DialogFragment implements View.OnClickListe
 
                 }  else if (getArguments().getString("Scr") == "CusfCard") {
                     ((CustomerLocation) getActivity()).Set_Cust(customers.getAcc(), customers.getNm());
+                    ((CustomerLocation) getActivity()).setdataofCust(customers.getAcc(), customers.getNm());
 
                 }
                 else if (getArguments().getString("Scr") == "DoctorReprot") {
@@ -202,6 +203,7 @@ public class Select_Customer extends DialogFragment implements View.OnClickListe
     }
 
 
+    @SuppressLint("Range")
     public void onProgressUpdate(String t ){
 
         final List<String> items_ls = new ArrayList<String>();

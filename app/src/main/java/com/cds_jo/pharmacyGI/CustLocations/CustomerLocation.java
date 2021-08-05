@@ -340,19 +340,19 @@ public class CustomerLocation extends FragmentActivity implements OnMapReadyCall
         alertDialog.setPositiveButton("موافق", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
 
-
+                Save_Recod_Po();
             }
-        });
+        }).show();
 
 
         alertDialog.setNegativeButton("لا", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 return;
             }
-        });
+        }).show();
        // alertDialog.show();
 
-        Save_Recod_Po();
+
     }
 
     public void Save_Recod_Po() {
@@ -491,7 +491,29 @@ public class CustomerLocation extends FragmentActivity implements OnMapReadyCall
         ed_Acc.setText(No);
         ed_CusName.setText(Nm);
         ed_CusName.setError(null);
+
+
+
     }
+
+
+    @SuppressLint("Range")
+    public void setdataofCust(String No, String Nm){
+        String q = "Select distinct  Tr_Date, CustLocaltions.no as no,  ifnull(name,'') as  name ,Locat, CustNo,Lat_X,Lat_Y  ,  ifnull(Post,'-1') as Post,Note,Tr_Date,PersonNm,MobileNo,Stutes  ,Locat from CustLocaltions  " +
+                "  Left join Customers on Customers.no= CustNo ";
+        Cursor c1 = sqlHandler.selectQuery(q);
+        if (c1 != null && c1.getCount() != 0) {
+            c1.moveToFirst();
+            do {
+                obj.setCustNo(c1.getString(c1.getColumnIndex("CustNo")));
+
+
+            } while (c1.moveToNext());
+            c1.close();
+        }
+    }
+
+
 
     public void btn_share(View view) {
         ShareLocationNew();

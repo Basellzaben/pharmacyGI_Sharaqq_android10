@@ -43,6 +43,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-appindexing:20.0.0'
     //noinspection GradleCompatible
     implementation 'com.android.support:cardview-v7:24.2.0'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
     testImplementation 'junit:junit:4.12'
     implementation 'org.jsoup:jsoup:1.10.2'
     implementation 'com.github.f0ris.sweetalert:library:1.5.6'

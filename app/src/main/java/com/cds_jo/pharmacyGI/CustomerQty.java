@@ -23,6 +23,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
+import com.cds_jo.pharmacyGI.CustLocations.CustLocaltions;
 import com.cds_jo.pharmacyGI.assist.CallWebServices;
 import com.cds_jo.pharmacyGI.assist.OrdersItems;
 import com.google.gson.Gson;
@@ -196,6 +197,8 @@ public class CustomerQty extends FragmentActivity {
 
 
     }
+
+
     public void Set_Cust(String No, String Nm) {
         TextView CustNm =(TextView)findViewById(R.id.tv_cusnm);
         TextView acc = (TextView)findViewById(R.id.tv_acc);
