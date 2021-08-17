@@ -204,10 +204,9 @@ public class Tab_Visits_Summery extends Fragment {
                     _handler.post(new Runnable() {
                         public void run() {
                             AlertDialog alertDialog = new AlertDialog.Builder(
-                                    getActivity()).create();
+                            getActivity()).create();
                             alertDialog.setTitle("إعتماد الزيارات");
                             alertDialog.setMessage("عملية اعتماد الزيارات لم تتم بنجاح، الرجاء المحاولة لاحقا");            // Setting Icon to Dialog
-
                             alertDialog.setIcon(R.drawable.error_new);
                             alertDialog.setButton("رجـــوع", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
@@ -248,6 +247,7 @@ public class Tab_Visits_Summery extends Fragment {
 
         return d;
     }
+    @SuppressLint("Range")
     private void FillList(){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd",Locale.ENGLISH);
         String currentDateandTime = sdf.format(new Date());

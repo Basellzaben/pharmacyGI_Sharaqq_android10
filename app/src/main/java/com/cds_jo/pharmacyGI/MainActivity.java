@@ -673,10 +673,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    Unix_time = response.getString("time_12");
-                    js_MDAY = response.getString("week");
-                    js_MMONTH = response.getString("month");
-                    js_MYEAR = response.getString("year");
+                    Unix_time =response.getString("time_24");
+                    js_MDAY   =response.getString("week");
+                    js_MMONTH =response.getString("month");
+                    js_MYEAR  =response.getString("year");
 
                     split = Unix_time.split(":");
                     String H = split[0];
@@ -737,7 +737,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    Unix_time = response.getString("time_12");
+                    Unix_time = response.getString("time_24");
                     js_MDAY = response.getString("week");
                     js_MMONTH = response.getString("month");
                     js_MYEAR = response.getString("year");
@@ -1523,6 +1523,9 @@ return  Unix_time;
                 double latitude = mGPSService.getLatitude();
                 double longitude = mGPSService.getLongitude();
                 address = mGPSService.getLocationAddress();
+
+
+
                 try {
                     tv_x.setText(String.valueOf(latitude));
                     tv_y.setText(String.valueOf(longitude));
@@ -1531,12 +1534,17 @@ return  Unix_time;
                             tv_Loc.setText(GpsStatus);
                         }else
                             tv_Loc.setText("الموقع غير معروف  .");
+                      //  Toast.makeText(MainActivity.this,"خطأ في استرجاع موقع المندوب , يجب تشغيل GPS و التاكد من اتصال الانترنت",Toast.LENGTH_SHORT).show();
 
                     } else {
                         tv_Loc.setText(address);
                     }
 
                 } catch (Exception ex) {
+
+
+                   Toast.makeText(MainActivity.this,"خطأ في استرجاع موقع المندوب , يجب تشغيل GPS و التاكد من اتصال الانترنت",Toast.LENGTH_SHORT).show();
+
           /*  tv_x.setText("0.0");
             tv_y.setText("0.0");*/
                 }
@@ -1760,213 +1768,222 @@ return  Unix_time;
     static  int id = 1;
     MsgNotification noti = new MsgNotification();
     public void StartRound( ) {
-        CalcDist();
-        if (CheckGps.equalsIgnoreCase("1")) {
-            if (Gpsflag.equalsIgnoreCase("0")) {
-                new SweetAlertDialog(MainActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
-                        .setContentText("الرجاء التأكد من معلومات الموقع")
+        boolean pas=true;
+
+        if(Double.parseDouble(tv_x.getText().toString())<1){
+           // Toast.makeText(MainActivity.this,"خطأ في استرجاع موقع المندوب , يجب تشغيل GPS و التاكد من اتصال الانترنت",Toast.LENGTH_SHORT).show();
+
+            AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+            alertDialog = new AlertDialog.Builder(this).create();
+            alertDialog.setTitle("فتح زيارة");
+            alertDialog.setCancelable(false);
+            alertDialog.setMessage("خطأ في استرجاع موقع المندوب , يجب تشغيل GPS و التاكد من اتصال الانترنت و اعطاء التطبيق صلاحية الوصول الى الموقع");
+            alertDialog.setIcon(R.drawable.error_new);
+            alertDialog.setButton("موافق", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    return;
+                }
+            });
+            alertDialog.show();
+
+
+        }else {
+            CalcDist();
+            if (CheckGps.equalsIgnoreCase("1")) {
+                if (Gpsflag.equalsIgnoreCase("0")) {
+                    new SweetAlertDialog(MainActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+                            .setContentText("الرجاء التأكد من معلومات الموقع")
+                            .setCustomImage(R.drawable.error_new)
+                            .setConfirmText("رجــــوع")
+                            .show();
+                    return;
+                }
+            }
+
+            if (GetTime == 0) {
+                new SweetAlertDialog(this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+                        .setTitleText("")
+                        .setContentText("الرجاء عمل تحديث للساعة")
                         .setCustomImage(R.drawable.error_new)
                         .setConfirmText("رجــــوع")
                         .show();
                 return;
             }
-        }
+            String q1 = "Select * From SaleManRounds Where Closed='0'";
+            Cursor c1;
+            c1 = sqlHandler.selectQuery(q1);
 
-        if (GetTime==0){
-            new SweetAlertDialog(this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
-                    .setTitleText("")
-                    .setContentText("الرجاء عمل تحديث للساعة")
-                    .setCustomImage(R.drawable.error_new)
-                    .setConfirmText("رجــــوع")
-                    .show();
-            return;
-        }
-        String q1 = "Select * From SaleManRounds Where Closed='0'";
-        Cursor c1 ;
-        c1 =sqlHandler.selectQuery(q1);
+            if (c1 != null && c1.getCount() != 0) {
+                new SweetAlertDialog(MainActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
 
-        if(c1!=null && c1.getCount()!=0){
-            new SweetAlertDialog(MainActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
-
-                    .setContentText("يوجد زيارة مفتوحة")
-                    .setCustomImage(R.drawable.error_new)
-                    .setConfirmText("رجــــوع")
-                    .show();
-            Isopen =1;
-            c1.close();
-            ShowRecord();
-            return;
-        }else
-        {
-            Isopen =0;
-        }
-
-
-
-
-
-        if(  Isopen ==1) {
-
-            new SweetAlertDialog(MainActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
-
-                    .setContentText("يوجد زيارة مفتوحة")
-                    .setCustomImage(R.drawable.error_new)
-                    .setConfirmText("رجــــوع")
-                    .show();
-            return;
-        }
-
-        Methdes.MyTextView_Digital et_Date =(Methdes.MyTextView_Digital)findViewById(R.id.et_Date);
-
-        if (et_Day.getText().toString().length() == 0) {
-            et_Day.setError("required!");
-            et_Day.requestFocus();
-            return;
-        }
-
-
-        if (et_Date.getText().toString().length() == 0) {
-            et_Date.setError("required!");
-            et_Date.requestFocus();
-            return;
-        }
-
-        TextView CustNo =(TextView)findViewById(R.id.tv_Acc);
-        if (CustNo.getText().toString().length() == 0) {
-            CustNo.setError("required!");
-            CustNo.requestFocus();
-            return;
-        }
-        //GetlocationNew();
-
-        OrderNo = GetMaxPONo();
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        sqlHandler=new SqlHandler(this);
-
-
-        TextView tv_Loc =(TextView)findViewById(R.id.tv_Loc);
-        TextView tv_x =(TextView)findViewById(R.id.tv_x);
-        TextView tv_y =(TextView)findViewById(R.id.tv_y);
-
-
-        TextView CustNm =(TextView)findViewById(R.id.tv_CustName);
-        TextView Custadd =(TextView)findViewById(R.id.tv_Loc);
-
-
-        et_StartTime.setText( et_ServerTime.getText());
-
-        ContentValues cv = new ContentValues();
-        cv.put("CusNo",CustNo.getText().toString());
-        cv.put("ManNo",sharedPreferences.getString("UserID", ""));
-        cv.put("DayNum", String.valueOf(dayOfWeek));
-        cv.put("Tr_Data", TrDate.getText().toString());
-        cv.put("Start_Time", et_StartTime.getText().toString());
-        cv.put("Closed","0");
-        cv.put("Posted", "-1");
-        cv.put("OrderNo", OrderNo);
-        cv.put("Notes", et_Notes.getText().toString());
-        cv.put("X", tv_x.getText().toString());
-        cv.put("Y", tv_y.getText().toString());
-        cv.put("Locat", tv_Loc.getText().toString());
-
-        if(V1.isChecked()) {
-            cv.put("VisitType1", "1");
-        }else{
-            cv.put("VisitType1", "0");
-        }
-        if(V2.isChecked()) {
-            cv.put("VisitType2", "1");
-        }else{
-            cv.put("VisitType2", "0");
-        }
-        if(V3.isChecked() ) {
-            cv.put("VisitType3", "1");
-        }else{
-            cv.put("VisitType3", "0");
-        }
-        if(V4.isChecked() ) {
-            cv.put("VisitType4", "1");
-        }else{
-            cv.put("VisitType4", "0");
-        }
-
-
-        final  String CusNm =  CustNm.getText().toString();
-        long i;
-        i = sqlHandler.Insert("SaleManRounds", null, cv);
-
-
-
-        if (i>0) {
-            CaculateTimeVist();
-            SharedPreferences.Editor editor    = sharedPreferences.edit();
-            editor.putString("CustNo", CustNo.getText().toString());
-            editor.putString("CustNm", CustNm.getText().toString());
-            editor.putString("CustAdd", Custadd.getText().toString());
-            editor.putString("PayCount", "0");
-            editor.putString("InvCount", "0");
-            editor.putString("V_OrderNo", OrderNo);
-            editor.putString("Notes", et_Notes.getText().toString());
-            if(V1.isChecked()) {
-                editor.putString("VisitType1", "1");
-            } else{
-                editor.putString("VisitType1", "0");
+                        .setContentText("يوجد زيارة مفتوحة")
+                        .setCustomImage(R.drawable.error_new)
+                        .setConfirmText("رجــــوع")
+                        .show();
+                Isopen = 1;
+                c1.close();
+                ShowRecord();
+                return;
+            } else {
+                Isopen = 0;
             }
 
-            if(V2.isChecked()) {
-                editor.putString("VisitType2", "1");
-            } else{
-                editor.putString("VisitType2", "0");
-            }
-            if(V3.isChecked()) {
-                editor.putString("VisitType3", "1");
-            } else{
-                editor.putString("VisitType3", "0");
-            }
-            if(V4.isChecked()) {
-                editor.putString("VisitType4", "1");
-            } else{
-                editor.putString("VisitType4", "0");
+
+            if (Isopen == 1) {
+
+                new SweetAlertDialog(MainActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+
+                        .setContentText("يوجد زيارة مفتوحة")
+                        .setCustomImage(R.drawable.error_new)
+                        .setConfirmText("رجــــوع")
+                        .show();
+                return;
             }
 
-            editor.commit();
-            Isopen=1;
+            Methdes.MyTextView_Digital et_Date = (Methdes.MyTextView_Digital) findViewById(R.id.et_Date);
+
+            if (et_Day.getText().toString().length() == 0) {
+                et_Day.setError("required!");
+                et_Day.requestFocus();
+                return;
+            }
 
 
+            if (et_Date.getText().toString().length() == 0) {
+                et_Date.setError("required!");
+                et_Date.requestFocus();
+                return;
+            }
 
-            new SweetAlertDialog(MainActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
-                    .setTitleText( "عملية فتح الجولة تمت بنجاح")
-                    .setContentText(OrderNo)
-                    .setCustomImage(R.drawable.tick)
-                    .setConfirmText("رجــــوع")
-                    .show();
-            imageButton4.setVisibility(View.INVISIBLE);
+            TextView CustNo = (TextView) findViewById(R.id.tv_Acc);
+            if (CustNo.getText().toString().length() == 0) {
+                CustNo.setError("required!");
+                CustNo.requestFocus();
+                return;
+            }
+            //GetlocationNew();
+
+            OrderNo = GetMaxPONo();
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+            sqlHandler = new SqlHandler(this);
+
+
+            TextView tv_Loc = (TextView) findViewById(R.id.tv_Loc);
+            TextView tv_x = (TextView) findViewById(R.id.tv_x);
+            TextView tv_y = (TextView) findViewById(R.id.tv_y);
+
+
+            TextView CustNm = (TextView) findViewById(R.id.tv_CustName);
+            TextView Custadd = (TextView) findViewById(R.id.tv_Loc);
+
+
+            et_StartTime.setText(et_ServerTime.getText());
+
+            ContentValues cv = new ContentValues();
+            cv.put("CusNo", CustNo.getText().toString());
+            cv.put("ManNo", sharedPreferences.getString("UserID", ""));
+            cv.put("DayNum", String.valueOf(dayOfWeek));
+            cv.put("Tr_Data", TrDate.getText().toString());
+            cv.put("Start_Time", et_StartTime.getText().toString());
+            cv.put("Closed", "0");
+            cv.put("Posted", "-1");
+            cv.put("OrderNo", OrderNo);
+            cv.put("Notes", et_Notes.getText().toString());
+            cv.put("X", tv_x.getText().toString());
+            cv.put("Y", tv_y.getText().toString());
+            cv.put("Locat", tv_Loc.getText().toString());
+
+            if (V1.isChecked()) {
+                cv.put("VisitType1", "1");
+            } else {
+                cv.put("VisitType1", "0");
+            }
+            if (V2.isChecked()) {
+                cv.put("VisitType2", "1");
+            } else {
+                cv.put("VisitType2", "0");
+            }
+            if (V3.isChecked()) {
+                cv.put("VisitType3", "1");
+            } else {
+                cv.put("VisitType3", "0");
+            }
+            if (V4.isChecked()) {
+                cv.put("VisitType4", "1");
+            } else {
+                cv.put("VisitType4", "0");
+            }
+
+
+            final String CusNm = CustNm.getText().toString();
+            long i;
+            i = sqlHandler.Insert("SaleManRounds", null, cv);
+
+
+            if (i > 0) {
+                CaculateTimeVist();
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("CustNo", CustNo.getText().toString());
+                editor.putString("CustNm", CustNm.getText().toString());
+                editor.putString("CustAdd", Custadd.getText().toString());
+                editor.putString("PayCount", "0");
+                editor.putString("InvCount", "0");
+                editor.putString("V_OrderNo", OrderNo);
+                editor.putString("Notes", et_Notes.getText().toString());
+                if (V1.isChecked()) {
+                    editor.putString("VisitType1", "1");
+                } else {
+                    editor.putString("VisitType1", "0");
+                }
+
+                if (V2.isChecked()) {
+                    editor.putString("VisitType2", "1");
+                } else {
+                    editor.putString("VisitType2", "0");
+                }
+                if (V3.isChecked()) {
+                    editor.putString("VisitType3", "1");
+                } else {
+                    editor.putString("VisitType3", "0");
+                }
+                if (V4.isChecked()) {
+                    editor.putString("VisitType4", "1");
+                } else {
+                    editor.putString("VisitType4", "0");
+                }
+
+                editor.commit();
+                Isopen = 1;
+
+
+                new SweetAlertDialog(MainActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+                        .setTitleText("عملية فتح الجولة تمت بنجاح")
+                        .setContentText(OrderNo)
+                        .setCustomImage(R.drawable.tick)
+                        .setConfirmText("رجــــوع")
+                        .show();
+                imageButton4.setVisibility(View.INVISIBLE);
 
             /*StartRound = (RelativeLayout )findViewById(R.id.btnStartRound);
             StartRound.setVisibility(View.INVISIBLE);*/
-            UpDateMaxOrderNo();
-            if(ComInfo.ComNo==1) {
-                Save_Cust_Location( );
+                UpDateMaxOrderNo();
+                if (ComInfo.ComNo == 1) {
+                    Save_Cust_Location();
+                }
+                FillTempCustQty("");
+            } else {
+                Isopen = 0;
+
+                new SweetAlertDialog(MainActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+                        .setTitleText(getResources().getText(R.string.StartVisitNotSucc).toString())
+
+                        .setCustomImage(R.drawable.error_new)
+                        .setConfirmText("رجــــوع")
+                        .show();
             }
-            FillTempCustQty("");
+
+
         }
-        else
-        {
-            Isopen=0;
-
-            new SweetAlertDialog(MainActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
-                    .setTitleText( getResources().getText(R.string.StartVisitNotSucc).toString())
-
-                    .setCustomImage(R.drawable.error_new)
-                    .setConfirmText("رجــــوع")
-                    .show();
-        }
-
-
-
-
-
-
 
 
         //alertDialog.show();
@@ -1979,147 +1996,164 @@ return  Unix_time;
         sqlHandler.executeQuery(" Update   invf  Set Pack = '0' ");
     }
     public void  EndRound( ) {
-    CalcDist();
-        if (CheckGps.equalsIgnoreCase("1")) {
-            if (Gpsflag.equalsIgnoreCase("0")) {
-                new SweetAlertDialog(MainActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
-                        .setContentText("الرجاء التأكد من معلومات الموقع")
+
+        if(Double.parseDouble(tv_x.getText().toString())<1){
+            // Toast.makeText(MainActivity.this,"خطأ في استرجاع موقع المندوب , يجب تشغيل GPS و التاكد من اتصال الانترنت",Toast.LENGTH_SHORT).show();
+
+            AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+            alertDialog = new AlertDialog.Builder(this).create();
+            alertDialog.setTitle("فتح زيارة");
+            alertDialog.setCancelable(false);
+            alertDialog.setMessage("خطأ في استرجاع موقع المندوب , يجب تشغيل GPS و التاكد من اتصال الانترنت و اعطاء التطبيق صلاحية الوصول الى الموقع");
+            alertDialog.setIcon(R.drawable.error_new);
+            alertDialog.setButton("موافق", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    return;
+                }
+            });
+            alertDialog.show();
+
+
+        }else {
+
+
+            CalcDist();
+            if (CheckGps.equalsIgnoreCase("1")) {
+                if (Gpsflag.equalsIgnoreCase("0")) {
+                    new SweetAlertDialog(MainActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+                            .setContentText("الرجاء التأكد من معلومات الموقع")
+                            .setCustomImage(R.drawable.error_new)
+                            .setConfirmText("رجــــوع")
+                            .show();
+                    return;
+                }
+            }
+            if (GetTime == 0) {
+                new SweetAlertDialog(this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+                        .setTitleText("")
+                        .setContentText("الرجاء عمل تحديث للساعة")
                         .setCustomImage(R.drawable.error_new)
                         .setConfirmText("رجــــوع")
                         .show();
+                // Toast.makeText(this,"الرجاء عمل تحديث للساعة",Toast.LENGTH_SHORT).show();
                 return;
             }
-        }
-        if (GetTime==0){
-            new SweetAlertDialog(this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
-                    .setTitleText("")
-                    .setContentText("الرجاء عمل تحديث للساعة")
-                    .setCustomImage(R.drawable.error_new)
-                    .setConfirmText("رجــــوع")
-                    .show();
-            // Toast.makeText(this,"الرجاء عمل تحديث للساعة",Toast.LENGTH_SHORT).show();
-            return;
-        }
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        sqlHandler=new SqlHandler(this);
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+            sqlHandler = new SqlHandler(this);
 
-        EditText tv_Notes =(EditText)findViewById(R.id.tv_Notes);
+            EditText tv_Notes = (EditText) findViewById(R.id.tv_Notes);
 
 
-        OrderNo = GetMaxPONo();
+            OrderNo = GetMaxPONo();
 
-        UpdateVisitLocation();
-        String q1 = "Select * From SaleManRounds Where Closed ='0' ";
-        Cursor c1 ;
-        c1 =sqlHandler.selectQuery(q1);
+            UpdateVisitLocation();
+            String q1 = "Select * From SaleManRounds Where Closed ='0' ";
+            Cursor c1;
+            c1 = sqlHandler.selectQuery(q1);
 
-        if(c1!=null && c1.getCount()!=0){
-            Isopen =1;
-            c1.close();
+            if (c1 != null && c1.getCount() != 0) {
+                Isopen = 1;
+                c1.close();
 
-        }else
-        {
-            Isopen =0;
+            } else {
+                Isopen = 0;
 
-            new SweetAlertDialog(this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
-                    .setTitleText("نهاية الجولة")
-                    .setContentText(getResources().getText(R.string.EndVisitNotSucc).toString())
-                    .setCustomImage(R.drawable.error_new)
-                    .setConfirmText("رجــــوع")
-                    .show();
+                new SweetAlertDialog(this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+                        .setTitleText("نهاية الجولة")
+                        .setContentText(getResources().getText(R.string.EndVisitNotSucc).toString())
+                        .setCustomImage(R.drawable.error_new)
+                        .setConfirmText("رجــــوع")
+                        .show();
 
-            return;
+                return;
 
-        }
+            }
 
-        if (et_Day.getText().toString().length() == 0) {
-            et_Day.setError("required!");
-            et_Day.requestFocus();
-            return;
-        }
+            if (et_Day.getText().toString().length() == 0) {
+                et_Day.setError("required!");
+                et_Day.requestFocus();
+                return;
+            }
 
-        Methdes.MyTextView_Digital et_Date =(Methdes.MyTextView_Digital)findViewById(R.id.et_Date);
+            Methdes.MyTextView_Digital et_Date = (Methdes.MyTextView_Digital) findViewById(R.id.et_Date);
 
-        if (et_Date.getText().toString().length() == 0) {
-            et_Date.setError("required!");
-            et_Date.requestFocus();
-            return;
-        }
-        ContentValues cv = new ContentValues();
-        cv.put("Notes", et_Notes.getText().toString());
-        cv.put("Tr_Data", TrDate.getText().toString());
-        cv.put("End_Time", et_ServerTime.getText().toString());
-        cv.put("Closed", "1");
-        if(V1.isChecked()) {
-            cv.put( "VisitType1", "1");
-        } else{
-            cv.put("VisitType1", "0");
-        }
+            if (et_Date.getText().toString().length() == 0) {
+                et_Date.setError("required!");
+                et_Date.requestFocus();
+                return;
+            }
+            ContentValues cv = new ContentValues();
+            cv.put("Notes", et_Notes.getText().toString());
+            cv.put("Tr_Data", TrDate.getText().toString());
+            cv.put("End_Time", et_ServerTime.getText().toString());
+            cv.put("Closed", "1");
+            if (V1.isChecked()) {
+                cv.put("VisitType1", "1");
+            } else {
+                cv.put("VisitType1", "0");
+            }
 
-        if(V2.isChecked()) {
-            cv.put("VisitType2", "1");
-        } else{
-            cv.put("VisitType2", "0");
-        }
-        if(V3.isChecked()) {
-            cv.put("VisitType3", "1");
-        } else{
-            cv.put("VisitType3", "0");
-        }
-        if(V4.isChecked()) {
-            cv.put("VisitType4", "1");
-        } else{
-            cv.put("VisitType4", "0");
-        }
-        long i;
-        i = sqlHandler.Update("SaleManRounds", cv, "Closed ='0'");
-
-
-        if (i>0) {
-            et_EndTime.setText(et_ServerTime.getText());
-            SharedPreferences.Editor editor    = sharedPreferences.edit();
-            editor.putString("CustNo", "");
-            editor.putString("CustNm", "");
-            editor.putString("CustAdd", "");
-            editor.putString("V_OrderNo", "-1");
-            editor.putString("Notes", et_Notes.getText().toString());
-            editor.commit();
-            tv_Notes.setText("");
-
-            new SweetAlertDialog(this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
-                    .setTitleText("نهاية الجولة")
-                    .setContentText(getResources().getText(R.string.EndVisitSucc).toString())
-                    .setCustomImage(R.drawable.tick)
-                    .setConfirmText("رجــــوع")
-                    .show();
+            if (V2.isChecked()) {
+                cv.put("VisitType2", "1");
+            } else {
+                cv.put("VisitType2", "0");
+            }
+            if (V3.isChecked()) {
+                cv.put("VisitType3", "1");
+            } else {
+                cv.put("VisitType3", "0");
+            }
+            if (V4.isChecked()) {
+                cv.put("VisitType4", "1");
+            } else {
+                cv.put("VisitType4", "0");
+            }
+            long i;
+            i = sqlHandler.Update("SaleManRounds", cv, "Closed ='0'");
 
 
-            Isopen=0;
-            DoNew();
-            imageButton4.setVisibility(View.VISIBLE);
-            CaculateTimeVist();
+            if (i > 0) {
+                et_EndTime.setText(et_ServerTime.getText());
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("CustNo", "");
+                editor.putString("CustNm", "");
+                editor.putString("CustAdd", "");
+                editor.putString("V_OrderNo", "-1");
+                editor.putString("Notes", et_Notes.getText().toString());
+                editor.commit();
+                tv_Notes.setText("");
 
-            sqlHandler.executeQuery(" Update   invf  Set Pack = '0' ");
-            ShareVisitNew();
+                new SweetAlertDialog(this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+                        .setTitleText("نهاية الجولة")
+                        .setContentText(getResources().getText(R.string.EndVisitSucc).toString())
+                        .setCustomImage(R.drawable.tick)
+                        .setConfirmText("رجــــوع")
+                        .show();
 
-        }
-        else
-        {
-            Isopen=0;
-            new SweetAlertDialog(this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
-                    .setTitleText("نهاية الجولة")
-                    .setContentText(getResources().getText(R.string.EndVisitNotSucc).toString())
-                    .setCustomImage(R.drawable.error_new)
-                    .setConfirmText("رجــــوع")
-                    .show();
+
+                Isopen = 0;
+                DoNew();
+                imageButton4.setVisibility(View.VISIBLE);
+                CaculateTimeVist();
+
+                sqlHandler.executeQuery(" Update   invf  Set Pack = '0' ");
+                ShareVisitNew();
+
+            } else {
+                Isopen = 0;
+                new SweetAlertDialog(this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+                        .setTitleText("نهاية الجولة")
+                        .setContentText(getResources().getText(R.string.EndVisitNotSucc).toString())
+                        .setCustomImage(R.drawable.error_new)
+                        .setConfirmText("رجــــوع")
+                        .show();
+
+
+            }
 
 
         }
-
-
-
-
 
     }
     public void btn_EndRound(View view) {
@@ -3046,7 +3080,7 @@ return  Unix_time;
             cls_saleManDailyRound.setDayNum(c1.getString(c1.getColumnIndex("DayNum")));
             cls_saleManDailyRound.setTr_Data(c1.getString(c1.getColumnIndex("Tr_Data")));
             cls_saleManDailyRound.setStart_Time(c1.getString(c1.getColumnIndex("Start_Time")));
-            cls_saleManDailyRound.setEnd_Time(c1.getString(c1.getColumnIndex("End_Time")));
+           cls_saleManDailyRound.setEnd_Time(c1.getString(c1.getColumnIndex("End_Time")));
             cls_saleManDailyRound.setDuration(c1.getString(c1.getColumnIndex("Duration")));
             cls_saleManDailyRound.setOrderNo(c1.getString(c1.getColumnIndex("OrderNo")));
             cls_saleManDailyRound.setVisitType1(c1.getString(c1.getColumnIndex("VisitType1")));
@@ -3091,7 +3125,7 @@ return  Unix_time;
                             public void run() {
 
 
-
+Toast.makeText(MainActivity.this,"لم يتم اعتماد الزيارة , يوجد مشكلة في اعتماد الزيارات ",Toast.LENGTH_LONG).show();
 
 
                             }

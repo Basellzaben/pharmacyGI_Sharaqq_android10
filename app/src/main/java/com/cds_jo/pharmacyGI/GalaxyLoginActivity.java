@@ -55,6 +55,7 @@ public class GalaxyLoginActivity extends AppCompatActivity {
             sqlHandler = new SqlHandler(this);
 
         try {
+
             sqlHandler.executeQuery("CREATE TABLE IF NOT EXISTS  DB_VERVSION    " +
                     "( ID integer primary key autoincrement,No text null)");
 
@@ -242,8 +243,6 @@ public class GalaxyLoginActivity extends AppCompatActivity {
             sqlHandler.executeQuery(" CREATE TABLE IF NOT EXISTS QuesDtl ( no integer primary key autoincrement,Orderno text null, QuesTxt text null" +
                     ",   Ans1 text null ,Ans2 text null ,Ans3 text null,Ans4 text null  ) ");
         }catch ( SQLException e){ }
-
-
 
         try{
             sqlHandler.executeQuery(" CREATE TABLE IF NOT EXISTS QuesTbl ( no integer primary key autoincrement,QuesNo text null, Questxt text null ,date text null ) ");

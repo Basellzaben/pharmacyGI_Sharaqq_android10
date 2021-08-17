@@ -95,12 +95,6 @@ public class CustomerLocation extends FragmentActivity implements OnMapReadyCall
     public ProgressDialog loadingdialog;
     SharedPreferences sharedPreferences;
 
-
-
-
-
-
-
     SwipeMenuCreator creator;
 
     SimpleDateFormat sdf;
@@ -121,15 +115,15 @@ public class CustomerLocation extends FragmentActivity implements OnMapReadyCall
         ed_CusName = (EditText) findViewById(R.id.ed_CusName);
         IsNew = true;
 
-        ed_Area = (EditText) findViewById(R.id.ed_Area);
+          ed_Area = (EditText) findViewById(R.id.ed_Area);
         ed_Person = (EditText) findViewById(R.id.ed_Person);
         ed_Mobile = (EditText) findViewById(R.id.ed_Mobile);
-        ed_GpsLocation = (EditText) findViewById(R.id.ed_GpsLocation);
-        ed_Lat = (EditText) findViewById(R.id.ed_Lat);
-        ed_Long = (EditText) findViewById(R.id.ed_Long);
+   ed_GpsLocation = (EditText) findViewById(R.id.ed_GpsLocation);
+           ed_Lat = (EditText) findViewById(R.id.ed_Lat);
+          ed_Long = (EditText) findViewById(R.id.ed_Long);
         ed_States = (EditText) findViewById(R.id.ed_States);
-        ed_Notes = (EditText) findViewById(R.id.ed_Notes);
-        MapWeb = (WebView) findViewById(R.id.MapWeb);
+         ed_Notes = (EditText) findViewById(R.id.ed_Notes);
+           MapWeb = (WebView) findViewById(R.id.MapWeb);
 
         ed_Lat.setEnabled(false);
         ed_Long.setEnabled(false);
@@ -530,7 +524,7 @@ public class CustomerLocation extends FragmentActivity implements OnMapReadyCall
 
 
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-            alertDialog.setTitle("موقع الصدلية");
+            alertDialog.setTitle("موقع الصيدلية");
             alertDialog.setMessage("هل انت متاكد من عملية الحذف");
             alertDialog.setIcon(R.drawable.delete);
             alertDialog.setPositiveButton("نعم", new DialogInterface.OnClickListener() {

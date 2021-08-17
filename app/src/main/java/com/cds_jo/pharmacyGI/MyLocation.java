@@ -1,6 +1,8 @@
 package com.cds_jo.pharmacyGI;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.location.Location;
 import android.location.LocationListener;
@@ -14,6 +16,7 @@ public class MyLocation {
     boolean gps_enabled=false;
     boolean network_enabled=false;
 
+    @SuppressLint("MissingPermission")
     public boolean getLocation(Context context, LocationResult result)
     {
         //I use LocationResult callback class to pass location value from MyLocation to user code.

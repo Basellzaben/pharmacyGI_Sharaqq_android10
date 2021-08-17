@@ -567,6 +567,10 @@ public class UpdateDataToMobileActivity2 extends AppCompatActivity {
 
     }
     public  void Do_Trans_From_Server (){
+
+
+
+
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         String query;
