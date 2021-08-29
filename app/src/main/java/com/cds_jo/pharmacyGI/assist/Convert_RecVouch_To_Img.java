@@ -1,5 +1,6 @@
 package com.cds_jo.pharmacyGI.assist;
 
+import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.Intent;
@@ -111,7 +112,8 @@ public class Convert_RecVouch_To_Img extends AppCompatActivity {
         mBluetoothAdapter.enable();
     }
 
-    public  void ShowRecord( String OrdNo){
+    @SuppressLint("Range")
+    public  void ShowRecord(String OrdNo){
          TextView OrderNo = (TextView)findViewById(R.id.et_OrdeNo);
         TextView amt =(TextView)findViewById(R.id.et_Amt);
         TextView etNote =(TextView)findViewById(R.id.et_notes);
@@ -349,15 +351,18 @@ public class Convert_RecVouch_To_Img extends AppCompatActivity {
 
         PrintReport_Zepra520 obj = new PrintReport_Zepra520(Convert_RecVouch_To_Img.this,
                 Convert_RecVouch_To_Img.this, lay, 550, 1);
-        obj.StoreImage();
-
+        try {
+            obj.StoreImage();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
         PackageManager pm = this.getPackageManager();
         try {
             ByteArrayOutputStream bytes = new ByteArrayOutputStream();
 
-            File imageFileToShare = new File("//sdcard/z1.jpg");
+            File imageFileToShare = new File("//sdcard/gg.jpg");
             Uri uri2 = Uri.fromFile(imageFileToShare);
             @SuppressWarnings("unused")
             PackageInfo info = pm.getPackageInfo(this.getPackageName(), PackageManager.GET_META_DATA);

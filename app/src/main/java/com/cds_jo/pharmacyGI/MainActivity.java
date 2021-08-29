@@ -159,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-       // requestQueue = Volley.newRequestQueue(this);
+       // requestQueue = Volley.fnewRequestQueue(this);
 
         try {
             super.onCreate(savedInstanceState);
@@ -173,6 +173,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                     .findFragmentById(R.id.map);
             mapFragment.getMapAsync(this);
+
+            getUnixTime(-1);
 
             ServerFormat = new SimpleDateFormat("HH:mm:ss", Locale.ENGLISH);
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.ENGLISH);
@@ -545,6 +547,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         @Override
         protected void onPostExecute(Void result) {
+            getUnixTime(-1);
             try {
                 pDialog.dismiss();
                 elements = doc.select(tags[0]);
@@ -1996,7 +1999,7 @@ return  Unix_time;
         sqlHandler.executeQuery(" Update   invf  Set Pack = '0' ");
     }
     public void  EndRound( ) {
-
+        getUnixTime(-1);
         if(Double.parseDouble(tv_x.getText().toString())<1){
             // Toast.makeText(MainActivity.this,"خطأ في استرجاع موقع المندوب , يجب تشغيل GPS و التاكد من اتصال الانترنت",Toast.LENGTH_SHORT).show();
 

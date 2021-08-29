@@ -1,27 +1,24 @@
 package com.cds_jo.pharmacyGI.assist;
 
 import android.app.Activity;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
-import android.os.Looper;
 import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.view.View;
 
-import com.zebra.sdk.comm.BluetoothConnection;
-import com.zebra.sdk.comm.Connection;
-import com.zebra.sdk.comm.ConnectionException;
-import com.zebra.sdk.graphics.internal.ZebraImageAndroid;
-import com.zebra.sdk.printer.PrinterLanguage;
-import com.zebra.sdk.printer.ZebraPrinter;
-import com.zebra.sdk.printer.ZebraPrinterFactory;
-
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.Random;
 
 
 /**
@@ -46,12 +43,67 @@ public class PrintReport_Zepra520 {
     }
 
     public  void DoPrint(){
-        StoreImage();
+        try {
+            StoreImage();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
     }
+    public static String random() {
+        Random generator = new Random();
+        StringBuilder randomStringBuilder = new StringBuilder();
+        int randomLength = generator.nextInt(8);
+        char tempChar;
+        for (int i = 0; i < 5; i++){
+            tempChar = (char) (generator.nextInt(96) + 75);
+            randomStringBuilder.append(tempChar);
+        }
+        return randomStringBuilder.toString();
+    }
+    public void StoreImage() throws IOException {
+        boolean saved;
 
-    public  void StoreImage(){
+        String name =random();
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("NameImage",name);
+        editor.apply();
+
+
+        OutputStream fos;
+        Bitmap bitmap = loadBitmapFromView(ReportView);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            ContentResolver resolver = context.getContentResolver();
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, name);
+            contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "image/png");
+            contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, "DCIM/" + "sharq");
+            Uri imageUri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
+            fos = resolver.openOutputStream(imageUri);
+        } else {
+            String imagesDir = Environment.getExternalStoragePublicDirectory(
+                    Environment.DIRECTORY_DCIM).toString() + File.separator + "sharq";
+
+            File file = new File(imagesDir);
+
+            if (!file.exists()) {
+                file.mkdir();
+            }
+
+            File image = new File(imagesDir, name + ".png");
+            fos = new FileOutputStream(image);
+
+        }
+
+        saved = bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
+        fos.flush();
+        fos.close();
+    }
+   /* public  void StoreImage(){
        // LinearLayout lay = (LinearLayout) findViewById(R.id.Mainlayout);
 
         Bitmap b = loadBitmapFromView(ReportView);
@@ -70,7 +122,7 @@ public class PrintReport_Zepra520 {
             e.printStackTrace();
         }
 
-    }
+    }*/
     public static Bitmap loadBitmapFromView(View v) {
 
         v.measure(View.MeasureSpec.makeMeasureSpec(v.getLayoutParams().width,

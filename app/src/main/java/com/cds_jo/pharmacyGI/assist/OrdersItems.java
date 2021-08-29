@@ -1707,20 +1707,26 @@ public class OrdersItems extends FragmentActivity {
         FillTempDate();
     }
 
-    public void btn_Delete_Item(final View view) {
-        int position = lv_Items.getPositionForView(view);
+    public void btn_Delete_Item(String itemno,int  p) {
+      //  int position = lv_Items.getPositionForView(view);
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
         alertDialog.setTitle(getResources().getText(R.string.Ordersales));
         alertDialog.setMessage(getResources().getText(R.string.DoYouWantContinDelete));
         alertDialog.setIcon(R.drawable.delete);
         alertDialog.setPositiveButton(getResources().getText(R.string.Ok), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                int position = lv_Items.getPositionForView(view);
-                contactList.remove(position);
-                sqlHandler.executeQuery("update   TempOrderItems  set Qty ='0',Bounce ='0'  where ItemNo='" + contactList.get(position - 1).getno() + "'");
 
+             //   int position = lv_Items.getPositionForView(view);
+                if(p==1)
+                contactList.remove(p-1);
+                else
+                    contactList.remove(p);
+
+                sqlHandler.executeQuery("update TempOrderItems  set Qty ='0',Bounce ='0'  where ItemNo='" +/* contactList.get(position - 1).getno()*/itemno + "'");
                 CalcTotal();
                 showList(0);
+
+               // TempOrderItems
             }
         });
 

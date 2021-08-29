@@ -1,12 +1,12 @@
 package com.cds_jo.pharmacyGI.assist;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.database.Cursor;
@@ -14,10 +14,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.StrictMode;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -26,7 +27,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.cds_jo.pharmacyGI.DB;
 import com.cds_jo.pharmacyGI.R;
@@ -42,6 +45,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
@@ -65,6 +69,7 @@ public class Convert_ccReportTo_ImgActivity extends AppCompatActivity {
     private static final DecimalFormat oneDecimal = new DecimalFormat("#,##0.0");
     ImageView img_Logo;
 
+    @RequiresApi(api = Build.VERSION_CODES.R)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,6 +87,34 @@ public class Convert_ccReportTo_ImgActivity extends AppCompatActivity {
         } catch (Exception ex) {
         }
 
+
+        ActivityCompat.requestPermissions(
+                this,
+                new String[]{
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.MANAGE_EXTERNAL_STORAGE
+                },
+                1
+        );
+
+
+         /*   if (Environment.isExternalStorageManager()){
+
+    // If you don't have access, launch a new activity to show the user the system's dialog
+    // to allow access to the external storage
+            }else{
+                Intent intent = new Intent();
+                intent.setAction(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+                Uri uri = Uri.fromParts("package", this.getPackageName(), null);
+                intent.setData(uri);
+                startActivity(intent);
+           // }*/
+        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Environment.isExternalStorageManager()*//*ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED*//*) {
+            Intent i = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION, Uri.parse("package:" + getPackageName()));
+            finish();
+            startActivity(i);
+            return;
+        }*/
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm ", Locale.ENGLISH);
          TextView tv_PrintTime =(TextView)findViewById(R.id.tv_PrintTime);
@@ -288,16 +321,77 @@ public class Convert_ccReportTo_ImgActivity extends AppCompatActivity {
 
     }
 
-    public void btn_share(View view) {
 
+    private void btn_shares() throws UnsupportedEncodingException {
 
         LinearLayout lay = (LinearLayout) findViewById(R.id.Mainlayout);
 
 
         PrintReport_Zepra520 obj = new PrintReport_Zepra520(Convert_ccReportTo_ImgActivity.this,
                 Convert_ccReportTo_ImgActivity.this, lay, 550, 1);
-        obj.StoreImage();
+        try {
+            obj.StoreImage();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String name = preferences.getString("NameImage", "");
+
+
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
+
+        if(whatsappInstalledOrNot()){
+            String PLACEHOLDER = "//sdcard/DCIM/sharq/" + name+".png";
+            File f = new File(PLACEHOLDER);
+            Uri uri = Uri.fromFile(f);
+
+     Intent share = new Intent("android.intent.action.MAIN");
+
+            share.setAction(Intent.ACTION_SEND);
+            //share.putExtra(Intent.EXTRA_TEXT, "");
+            //share.setComponent(new ComponentName("com.whatsapp","com.whatsapp.Conversation"));
+
+            share.setPackage("com.whatsapp");
+            https://api.whatsapp.com/send?phone=" + number
+
+          //  share.putExtra("jid", "962779176141"+ "@s.whatsapp.net");
+            share.putExtra(Intent.EXTRA_STREAM, uri);
+            String substring = name.substring(Math.max(name.length() - 2, 0));
+
+            share.setType("image/png");
+
+            //share.setType("application/pdf");
+
+            startActivity(share);}else{
+            Uri uri = Uri.parse("market://details?id=com.whatsapp");
+            Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+            Toast.makeText(Convert_ccReportTo_ImgActivity.this, "تطبيق الواتساب غير موجود",
+                    Toast.LENGTH_SHORT).show();
+            startActivity(goToMarket);
+        }
+    }
+
+
+    public void btn_share(View view) {
+        try {
+            btn_shares();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+    }
+/*
+        LinearLayout lay = (LinearLayout) findViewById(R.id.Mainlayout);
+
+
+        PrintReport_Zepra520 obj = new PrintReport_Zepra520(Convert_ccReportTo_ImgActivity.this,
+                Convert_ccReportTo_ImgActivity.this, lay, 550, 1);
+        try {
+            obj.StoreImage();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
         PackageManager pm = this.getPackageManager();
@@ -321,7 +415,7 @@ public class Convert_ccReportTo_ImgActivity extends AppCompatActivity {
             Log.e("Error on sharing", e + " ");
             Toast.makeText(this, "الرجاء تثبيت الواتس اب من المتجر", Toast.LENGTH_SHORT).show();
         }
-    }
+    }*/
 
     public void btn_back(View view) {
         Intent i =  new Intent(this,Acc_ReportActivity.class);
@@ -441,17 +535,32 @@ public class Convert_ccReportTo_ImgActivity extends AppCompatActivity {
 
     }
     public void Send_Email(View view) {
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String name = preferences.getString("NameImage", "");
+
+
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
+
+       /* if(whatsappInstalledOrNot()){
+            File f = new File(PLACEHOLDER);
+        */
         try {
             LinearLayout lay = (LinearLayout) findViewById(R.id.Mainlayout);
 
 
             PrintReport_Zepra520 obj = new PrintReport_Zepra520(Convert_ccReportTo_ImgActivity.this,
-                    Convert_ccReportTo_ImgActivity.this, lay, 550, 1);
+            Convert_ccReportTo_ImgActivity.this, lay, 550, 1);
             obj.StoreImage();
-            pdf1();
-            String targetPdf = "/sdcard/Statement_of_Account.pdf";
+         //   pdf1();
+
+            String PLACEHOLDER = "//sdcard/DCIM/sharq/" + name+".png";
+
+
+          //  String targetPdf = "/sdcard/Statement_of_Account.pdf";
             ArrayList<Uri> uris = new ArrayList<Uri>();
-            File fileIn = new File(targetPdf);
+            File fileIn = new File(PLACEHOLDER);
             Uri u = Uri.fromFile(fileIn);
             uris.add(u);
             String email, subject, message, attachmentFile;
@@ -486,5 +595,16 @@ public class Convert_ccReportTo_ImgActivity extends AppCompatActivity {
                     "Request failed try again: " + t.toString(),
                     Toast.LENGTH_LONG).show();
         }
+    }
+    private boolean whatsappInstalledOrNot() {
+        PackageManager pm = Convert_ccReportTo_ImgActivity.this.getPackageManager();
+        boolean app_installed = false;
+        try {
+            pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES);
+            app_installed = true;
+        } catch (PackageManager.NameNotFoundException e) {
+            app_installed = false;
+        }
+        return app_installed;
     }
 }

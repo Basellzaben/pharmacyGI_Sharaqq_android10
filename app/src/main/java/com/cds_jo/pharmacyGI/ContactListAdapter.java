@@ -6,7 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.TextView;
+
+import com.cds_jo.pharmacyGI.assist.OrdersItems;
 
 import java.util.ArrayList;
 
@@ -91,6 +94,18 @@ try {
         Tax_Amt.setText(contactListItems.getTax_Amt());
         Tax_Amt.setVisibility(View.INVISIBLE);
         Tax_Amt.setWidth(0);
+
+
+        ImageButton imageButton14=(ImageButton)convertView.findViewById(R.id.imageButton14);
+        imageButton14.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+
+                ((OrdersItems)context).btn_Delete_Item(contactListItems.no,position);
+            }
+        });
     }
 }catch ( Exception ex){}
         return convertView;
