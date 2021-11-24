@@ -20,6 +20,8 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -65,6 +67,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.android.gms.security.ProviderInstaller;
 import com.google.gson.Gson;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -96,8 +99,8 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 import hearder.main.Header_Frag;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
-
-    final String urltime = "https://api.ipgeolocation.io/timezone?apiKey=a8c0020bd9484d4497542a22515ff30f&lat=32.01931692665541&long=35.92699122528424";
+    //df8fec67e8274796b4692ba576c3fbe5
+    final String urltime = "https://api.ipgeolocation.io/timezone?apiKey=df8fec67e8274796b4692ba576c3fbe5&lat=32.01931692665541&long=35.92699122528424";
     List<Time> alist;
     RequestQueue requestQueue;
     TextView tv;
@@ -107,6 +110,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     Button btn_print, scanBtn;
     RelativeLayout button10;
     LocationManager locationmanager;
+    MyTextView_Digital  et_ServerTime;
+
     private TextView contentTxt;
     private ESCPOSPrinter posPtr;
     ESCPSample3 obj_print = new ESCPSample3();
@@ -129,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     // Minimum distance fluctuation for next update (in meters)
     private static final long DISTANCE = 20;
     TextView et_Notes;
-    MyTextView_Digital TrDate, tv_Duration, et_StartTime, et_EndTime, et_ServerTime;
+    MyTextView_Digital TrDate, tv_Duration, et_StartTime, et_EndTime;
     CheckBox V1, V2, V3, V4;
     TextView tv_AlloweDistance, tv_x, tv_y, tv_Loc, tv_CustAddress, tv_Cust_Y, tv_Cust_X, tv_Distance;
     Methdes.MyTextView et_Day, tv_y1, tv_location, lblCurrentDist;
@@ -160,10 +165,19 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     protected void onCreate(Bundle savedInstanceState) {
        // requestQueue = Volley.fnewRequestQueue(this);
+        try {
+            getUnixTime(-1);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         try {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main_new);
+
+
+       getUnixTime(-1);
+
             Gpsflag = "0";
             this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
             et_EndTime = (MyTextView_Digital) findViewById(R.id.et_EndTime);
@@ -192,6 +206,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             button10 = (RelativeLayout) findViewById(R.id.button10);
             RoundList = new ArrayList<Cls_SaleManDailyRound>();
             RoundList.clear();
+            getUnixTime(-1);
 
 
             LytMenu = (LinearLayout) findViewById(R.id.LytMenu);
@@ -212,6 +227,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             tv_Distance.setText("0");
             contentTxt = (TextView) findViewById(R.id.scan_content);
             RelativeLayout scanBtn = (RelativeLayout) findViewById(R.id.scan_button);
+            getUnixTime(-1);
 
 
             et_StartTime = (MyTextView_Digital) findViewById(R.id.et_StartTime);
@@ -236,6 +252,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             RelativeLayout btn_Save_Location = (RelativeLayout) findViewById(R.id.btn_Save_Location);
             tv_x = (TextView) findViewById(R.id.tv_x);
             tv_y = (TextView) findViewById(R.id.tv_y);
+            getUnixTime(-1);
 
 
             tv_y1 = (Methdes.MyTextView) findViewById(R.id.tv_y1);
@@ -295,15 +312,20 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             CheckGps = DB.GetValue(MainActivity.this, "manf", "SupNo", "man='" + u + "'");
             if (CheckGps.equalsIgnoreCase("1")) {
                 Toast.makeText(MainActivity.this, "تم تفعيل الإحداثيات", Toast.LENGTH_LONG).show();
+                getUnixTime(-1);
+
             }
 
             getUnixTime(-1);
 
             try {
+                getUnixTime(-1);
 
                 //  Getlocation ();
                 GetlocationNew();
             } catch (Exception ex) {
+                getUnixTime(-1);
+
             }
 
             UpdateVisitLocation();
@@ -330,11 +352,21 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void btn_HideGps(View view) {
         LytMenu.setVisibility(View.VISIBLE);
         LytGps.setVisibility(View.GONE);
+        try {
+            getUnixTime(-1);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void btn_ShowGps(View view) {
 
-
+        try {
+            getUnixTime(-1);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         TextView CustNm = (TextView) findViewById(R.id.tv_CustName);
 
 
@@ -490,6 +522,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.setMapType(1);
 
 
+        try {
+            getUnixTime(-1);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -516,6 +553,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             flag = params[0];
 
             Unix_time="00:00:00";
+            try {
+                getUnixTime(-1);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
             elements=null;
             doc = null;
             tags = new String[]{
@@ -547,8 +590,14 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         @Override
         protected void onPostExecute(Void result) {
-            getUnixTime(-1);
             try {
+                getUnixTime(-1);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            try {
+                getUnixTime(-1);
+
                 pDialog.dismiss();
                 elements = doc.select(tags[0]);
 
@@ -578,8 +627,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
                     if (flag == "1") {
+                        getUnixTime(-1);
+
                         StartRound();
                     } else if (flag == "2") {
+                        getUnixTime(-1);
+
                         EndRound();
                     }
 
@@ -643,7 +696,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                             }
                         });
 
-                    } catch (final Exception e) { }
+                    } catch (final Exception e) {
+                        try {
+                            getUnixTime(-1);
+                        } catch (JSONException jsonException) {
+                            jsonException.printStackTrace();
+                        }
+                    }
                 }
             }).start();
 
@@ -669,6 +728,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     private String openround(int f) {
+
+        try {
+            getUnixTime(-1);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         requestQueue = Volley.newRequestQueue(MainActivity.this);
 
         JsonObjectRequest obreq = new JsonObjectRequest(Request.Method.GET, urltime, null, new Response.Listener<JSONObject>() {
@@ -731,71 +797,236 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         return  Unix_time;
     }
 
+    private String getUnixTime2( final int f)   {
+        final Handler _handler = new Handler();
+        try {
+            Unix_time="00:00:00";
 
-    private String getUnixTime(int f) {
-        requestQueue = Volley.newRequestQueue(MainActivity.this);
+            tags = new String[]{
+                    "SERVERDATE"
+            };
+            url = "http://79.173.249.130:92/CV.asmx/GetServerDateTime";
+            new   Thread(new Runnable() {
+                @Override
+                public void run () {
+                    CallWebServices ws = new CallWebServices(MainActivity.this);
+                    ws.GetUnitItems();
+                    try {
 
-        JsonObjectRequest obreq = new JsonObjectRequest(Request.Method.GET, urltime, null, new Response.Listener<JSONObject>() {
-            // Takes the response from the JSON request
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    Unix_time = response.getString("time_24");
-                    js_MDAY = response.getString("week");
-                    js_MMONTH = response.getString("month");
-                    js_MYEAR = response.getString("year");
+                        JSONObject js = new JSONObject(We_Result.Msg);
+                      JSONArray item_no = js.getJSONArray("SERVERTIME");
+                        String Unix_time = item_no.get(0).toString();
+                      //  Unix_time=s.getString(0).toString();
 
-                    split = Unix_time.split(":");
-                    String H = split[0];
-                    String M = split[1];
-                    String S = split[2].substring(0,2);
-                    CalnederServerTime.set(Integer.parseInt(js_MYEAR), Integer.parseInt(js_MMONTH), Integer.parseInt(js_MDAY), Integer.parseInt(H), Integer.parseInt(M), Integer.parseInt(S));
-                    GetTime=1;
-                    if (f == 1) {
-                        StartRound();
-                    } else if (f == 2) {
-                        EndRound();
-                    }else{
-                        et_ServerTime.setText(Unix_time);
-                    }
-                }
-                // Try and catch are included to handle any errors due to JSON
-                catch (JSONException e) {
-                    // If an error occurs, this prints the error to the log
-                    new SweetAlertDialog(MainActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
-                            .setContentText("خطأ في استرجاع الوقت")
-                            .setCustomImage(R.drawable.error_new)
-                            .setConfirmText("رجــــوع")
-                            .show();
-                    et_ServerTime.setText("00:00:00");
+                        //  Unix_time = elements.text().substring(0, 8);
+                        _handler.post(new Runnable() {
+                            public void run() {
+                                GetTime=1;
+                                et_ServerTime.setText(Unix_time);
 
-                }
-            }
-        },
-                // The final parameter overrides the method onErrorResponse() and passes VolleyError
-                //as a parameter
-                new Response.ErrorListener() {
-                    @Override
-                    // Handles errors that occur due to Volley
-                    public void onErrorResponse(VolleyError error) {
-                        new SweetAlertDialog(MainActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+                                split = Unix_time.split(":");
+                                String H = split[0];
+                                String M =split[1];
+                                String S = split[2];
+                                CalnederServerTime.set(Integer.parseInt(js_MYEAR), Integer.parseInt(js_MMONTH), Integer.parseInt(js_MDAY), Integer.parseInt(H), Integer.parseInt(M), Integer.parseInt(S));
+                                // TrDate.setText(js_SERVERDATE);
+                                // Toast.makeText(MainActivity.this, "الوقت في عمّان - الاردن :"+Unix_time,Toast.LENGTH_SHORT).show();
 
+
+                                if ( f==1){
+                                    StartRound();
+                                }else if (f==2){
+                                    EndRound();
+                                }else {
+                                    Toast.makeText(MainActivity.this, Unix_time, Toast.LENGTH_LONG).show();
+                                    et_ServerTime.setText(Unix_time);
+                                }
+                            }
+                        });
+
+                    } catch (final Exception e) {
+                      /*  new SweetAlertDialog(MainActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
                                 .setContentText("خطأ في استرجاع الوقت")
                                 .setCustomImage(R.drawable.error_new)
                                 .setConfirmText("رجــــوع")
                                 .show();
-                        et_ServerTime.setText("00:00:00");
-
+*/
                     }
                 }
-        );
-        // Adds the JSON object request "obreq" to the request queue
-        requestQueue.add(obreq);
+            }).start();
+
+
+        }catch ( Exception ex){
+            GetTime=0;
+            new SweetAlertDialog(MainActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+
+                    .setContentText(ex.getMessage().toString())
+                    .setCustomImage(R.drawable.error_new)
+                    .setConfirmText("رجــــوع")
+                    .show();
+        }
+
+
+        if(Unix_time.equalsIgnoreCase("00:00:00")){
+            GetTime=0;
+            //TrDate.setText("");
+           // CalnederServerTime.set(Integer.parseInt(js_MYEAR), Integer.parseInt(js_MMONTH), Integer.parseInt(js_MDAY), 0, 0, 0);
+        }
+
+        return  (    Unix_time );
+    }
+
+    private void updateAndroidSecurityProvider() {
+        try {
+            ProviderInstaller.installIfNeeded(this);
+        } catch (Exception e) {
+            e.getMessage();
+        }
+    }
+    private String getUnixTime(int f) throws JSONException {
+     /*   updateAndroidSecurityProvider();
+            requestQueue = Volley.newRequestQueue(MainActivity.this);  //     requestQueue = Volley.newRequestQueue(Application.getContext(), new HurlStack(null, ClientSSLSocketFactory.getSocketFactory()));
+      //  requestQueue.set(new DefaultRetryPolicy(10 * 1000, 0, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        // urltime
+
+             JsonObjectRequest obreq = new JsonObjectRequest(Request.Method.GET, "https://79.173.249.130:92/CV.asmx/GetServerDateTime", null, new Response.Listener<JSONObject>() {
+                 // Takes the response from the JSON request
+                 @Override
+                 public void onResponse(JSONObject response) {
+                    // System.out.println(response.toString()+"bb");
+*//*
+                    CallWebServices ws = new CallWebServices(MainActivity.this);
+                     ws.GetUnitItems();*//*
+                     try {
+                         JSONArray d=response.getJSONArray(We_Result.Msg);
+                          Unix_time=d.getJSONObject(0).getString("SERVERTIME");
+                       //  Unix_time=a.get(0).toString();
+                         } catch (JSONException e) {
+                         e.printStackTrace();
+                         }
+
+
+                     //  CallWebServices c= new CallWebServices(MainActivity.this);
+                     //   JSONObject js = new JSONObject(We_Result.Msg);
+                  //   String Unix_time =c.Get_ServerDateTimeget();//response.getJSONArray("SERVERTIME").toString();//.getJSONArray("SERVERTIME");
+                     // String Unix_time = item_no.get(0).toString();
+                     //  Unix_time=response.getJSONObject("Msg").getString("SERVERTIME");
+                     //  Unix_time = response.getJSONArray("Msg").getString(0);//getString("SERVERDATE");
+                   *//* js_MDAY = response.getString("week");
+                    js_MMONTH = response.getString("month");
+                    js_MYEAR = response.getString("year");*//*
+
+                     split = Unix_time.split(":");
+                     String H = split[0];
+                     String M = split[1];
+                     String S = split[2].substring(0, 2);
+                     CalnederServerTime.set(Integer.parseInt(js_MYEAR), Integer.parseInt(js_MMONTH), Integer.parseInt(js_MDAY), Integer.parseInt(H), Integer.parseInt(M), Integer.parseInt(S));
+                     GetTime = 1;
+                     if (f == 1) {
+                         StartRound();
+                     } else if (f == 2) {
+                         EndRound();
+                     } else {
+                         Toast.makeText(MainActivity.this, Unix_time, Toast.LENGTH_LONG).show();
+                         et_ServerTime.setText(Unix_time);
+                     }
+                 }
+             },
+                     // The final parameter overrides the method onErrorResponse() and passes VolleyError
+                     //as a parameter
+                     new Response.ErrorListener() {
+                         @Override
+                         // Handles errors that occur due to Volley
+                         public void onErrorResponse(VolleyError error) {
+                             new SweetAlertDialog(MainActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+
+                                     .setContentText(error.getMessage()+"خطأ في استرجاع الوقت")
+                                     .setCustomImage(R.drawable.error_new)
+                                     .setConfirmText("رجــــوع" )
+                                     .show();
+                             et_ServerTime.setText("00:00:00");
+
+                         }
+                     }
+             );
+             // Adds the JSON object request "obreq" to the request queue
+             requestQueue.add(obreq);
+*/
+
+        final Handler _handler = new Handler();
+
+/*        try {
+        CallWebServices ws = new CallWebServices(MainActivity.this);
+        ws.GetUnites();
+        JSONObject js = null;
+
+            js = new JSONObject(We_Result.Msg); JSONArray Unitno= js.getJSONArray("SERVERTIME");
+            Toast.makeText(MainActivity.this,Unitno.get(0).toString(),Toast.LENGTH_LONG).show();
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }*/
+
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                CallWebServices ws = new CallWebServices(MainActivity.this);
+                ws.Get_ServerDateTime();
+                try {
+                    JSONObject js = new JSONObject(We_Result.Msg);
+                    Unix_time = js.getString("SERVERTIME");
+                    split = Unix_time.split(":");
+                    String M = split[1];
+                    String S =  split[2];
+
+                  //  week  =js.getString("week");
+                    month = js.getString("MMONTH");
+                    year  = js.getString("MYEAR");
+
+                    String H = js.getString("MHOUR");
+                  //  String M = js.getString("MMINUTE");
+                   // String S =  js.getString("MSECOND");
+                    Unix_time=H+":"+M+":"+S;
+
+                    _handler.post(new Runnable() {
+                        public void run() {
+
+                           /* split = Unix_time.split(":");
+                            String H = split[0];
+                            String M = split[1];
+                            String S =  split[2];*/
 
 
 
+                            CalnederServerTime.set(Integer.parseInt(js_MYEAR), Integer.parseInt(js_MMONTH), Integer.parseInt(js_MDAY), Integer.parseInt(H), Integer.parseInt(M), Integer.parseInt(S));
 
-return  Unix_time;
+
+                            if ( f==1){
+                                StartRound();
+                            }else if (f==2){
+                                EndRound();
+                            }else{
+                                et_ServerTime = (MyTextView_Digital) findViewById(R.id.et_ServerTime);
+
+                                et_ServerTime.setText(Unix_time);
+                            }
+                        }
+                    });
+                } catch (final JSONException e) {
+
+                    _handler.post(new Runnable() {
+                        public void run() {
+
+
+                        }
+                    });
+                }
+            }
+        }).start();
+//Toast.makeText(MainActivity.this,Unix_time,Toast.LENGTH_LONG).show();
+        return  Unix_time;
     }
 
 
@@ -1318,7 +1549,11 @@ return  Unix_time;
     private void updateTextView() {
         if (GetTime==0){
            // et_ServerTime.setText("00:00:00");
-            getUnixTime(-1);
+            try {
+                getUnixTime(-1);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
             return;
         }
 
@@ -1502,6 +1737,9 @@ return  Unix_time;
             StreetName="";
             //   Toast.makeText(this, ex.getMessage().toString() + "  GetStreetName", Toast.LENGTH_SHORT).show();
         }
+//fgfgfg
+        StreetName=StreetName.replace("'","");
+
         return   StreetName;
     }
 
@@ -1586,6 +1824,11 @@ return  Unix_time;
         GpsStatus = "";
     }
     public void btn_SearchCust_dis(View v) {
+        try {
+            getUnixTime(-1);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         final TextView tv_x = (TextView) findViewById(R.id.tv_x);
 
@@ -1771,7 +2014,32 @@ return  Unix_time;
     static  int id = 1;
     MsgNotification noti = new MsgNotification();
     public void StartRound( ) {
+/*
+        if(!haveNetworkConnection(MainActivity.this)){
+
+            AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+            alertDialog = new AlertDialog.Builder(this).create();
+            alertDialog.setTitle("لا يوجد اتصال انترنت");
+            alertDialog.setCancelable(false);
+            alertDialog.setMessage("يجب التاكد من اتصال شبكة الانترنت");
+            alertDialog.setIcon(R.drawable.error_new);
+            alertDialog.setButton("موافق", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    return;
+                }
+            });
+            alertDialog.show();
+
+return;
+        }*/
+
+
         boolean pas=true;
+        try {
+            getUnixTime(-1);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         if(Double.parseDouble(tv_x.getText().toString())<1){
            // Toast.makeText(MainActivity.this,"خطأ في استرجاع موقع المندوب , يجب تشغيل GPS و التاكد من اتصال الانترنت",Toast.LENGTH_SHORT).show();
@@ -1802,8 +2070,10 @@ return  Unix_time;
                     return;
                 }
             }
+            et_ServerTime = (MyTextView_Digital) findViewById(R.id.et_ServerTime);
 
-            if (GetTime == 0) {
+          //  et_ServerTime.setText(Unix_time);
+            if (et_ServerTime.getText().equals("")) {
                 new SweetAlertDialog(this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
                         .setTitleText("")
                         .setContentText("الرجاء عمل تحديث للساعة")
@@ -1897,23 +2167,71 @@ return  Unix_time;
             cv.put("Locat", tv_Loc.getText().toString());
 
             if (V1.isChecked()) {
+                try {
+                    getUnixTime(-1);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
                 cv.put("VisitType1", "1");
             } else {
+                try {
+                    getUnixTime(-1);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
                 cv.put("VisitType1", "0");
             }
             if (V2.isChecked()) {
+                try {
+                    getUnixTime(-1);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
                 cv.put("VisitType2", "1");
             } else {
+                try {
+                    getUnixTime(-1);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
                 cv.put("VisitType2", "0");
             }
             if (V3.isChecked()) {
+                try {
+                    getUnixTime(-1);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
                 cv.put("VisitType3", "1");
             } else {
+                try {
+                    getUnixTime(-1);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
                 cv.put("VisitType3", "0");
             }
             if (V4.isChecked()) {
+                try {
+                    getUnixTime(-1);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
                 cv.put("VisitType4", "1");
             } else {
+                try {
+                    getUnixTime(-1);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
                 cv.put("VisitType4", "0");
             }
 
@@ -1934,24 +2252,72 @@ return  Unix_time;
                 editor.putString("V_OrderNo", OrderNo);
                 editor.putString("Notes", et_Notes.getText().toString());
                 if (V1.isChecked()) {
+                    try {
+                        getUnixTime(-1);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
                     editor.putString("VisitType1", "1");
                 } else {
+                    try {
+                        getUnixTime(-1);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
                     editor.putString("VisitType1", "0");
                 }
 
                 if (V2.isChecked()) {
+                    try {
+                        getUnixTime(-1);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
                     editor.putString("VisitType2", "1");
                 } else {
+                    try {
+                        getUnixTime(-1);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
                     editor.putString("VisitType2", "0");
                 }
                 if (V3.isChecked()) {
+                    try {
+                        getUnixTime(-1);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
                     editor.putString("VisitType3", "1");
                 } else {
+                    try {
+                        getUnixTime(-1);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
                     editor.putString("VisitType3", "0");
                 }
                 if (V4.isChecked()) {
+                    try {
+                        getUnixTime(-1);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
                     editor.putString("VisitType4", "1");
                 } else {
+                    try {
+                        getUnixTime(-1);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
                     editor.putString("VisitType4", "0");
                 }
 
@@ -1992,14 +2358,34 @@ return  Unix_time;
         //alertDialog.show();
     }
     public void btn_StartRound(View view) {
-         getUnixTime(1);
-      //  new UpdateClock().execute("1");
+        try {
+            getUnixTime(-1);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            getUnixTime(1);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        //  new UpdateClock().execute("1");
     }
     private  void FillTempCustQty(String OrderNo){
+        try {
+            getUnixTime(-1);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         sqlHandler.executeQuery(" Update   invf  Set Pack = '0' ");
     }
     public void  EndRound( ) {
-        getUnixTime(-1);
+        try {
+            getUnixTime(-1);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         if(Double.parseDouble(tv_x.getText().toString())<1){
             // Toast.makeText(MainActivity.this,"خطأ في استرجاع موقع المندوب , يجب تشغيل GPS و التاكد من اتصال الانترنت",Toast.LENGTH_SHORT).show();
 
@@ -2019,6 +2405,11 @@ return  Unix_time;
 
         }else {
 
+            try {
+                getUnixTime(-1);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
             CalcDist();
             if (CheckGps.equalsIgnoreCase("1")) {
@@ -2031,7 +2422,24 @@ return  Unix_time;
                     return;
                 }
             }
-            if (GetTime == 0) {
+            et_ServerTime = (MyTextView_Digital) findViewById(R.id.et_ServerTime);
+
+            //  et_ServerTime.setText(Unix_time);
+            if (et_ServerTime.getText().equals("")) {
+           // if (GetTime == 0) {
+                try {
+                    getUnixTime(-1);
+                } catch (JSONException e) {
+                    new SweetAlertDialog(this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+                            .setTitleText("")
+                            .setContentText("الرجاء عمل تحديث للساعة")
+                            .setCustomImage(R.drawable.error_new)
+                            .setConfirmText("رجــــوع")
+                            .show();
+                    // Toast.makeText(this,"الرجاء عمل تحديث للساعة",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 new SweetAlertDialog(this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
                         .setTitleText("")
                         .setContentText("الرجاء عمل تحديث للساعة")
@@ -2160,11 +2568,20 @@ return  Unix_time;
 
     }
     public void btn_EndRound(View view) {
-        getUnixTime(2);
-       // new UpdateClock().execute("2");
+        try {
+            getUnixTime(2);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        // new UpdateClock().execute("2");
 
     }
     public void Set_Cust(String No, String Nm) {
+        try {
+            getUnixTime(-1);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         TextView CustNm =(TextView)findViewById(R.id.tv_CustName);
         TextView acc = (TextView)findViewById(R.id.tv_Acc);
         acc.setText(No);
@@ -2177,6 +2594,11 @@ return  Unix_time;
     }
     @SuppressLint("Range")
     private  void GetCustLocation(String CustNo){
+        try {
+            getUnixTime(-1);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         tv_CustAddress.setText("");
         tv_Cust_X.setText("0.000");
@@ -2272,6 +2694,12 @@ return  Unix_time;
 
 
     private  void DistaneBetweenPoints(){
+        try {
+            getUnixTime(-1);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         Location locationA = new Location("point A");
 
         if (tv_Cust_X.getText().toString().equalsIgnoreCase("")){
@@ -2320,6 +2748,12 @@ return  Unix_time;
     }
 
     private  void CalcDist(){
+        try {
+            getUnixTime(-1);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
 
         if (tv_Cust_X.getText().toString().equalsIgnoreCase("")){
             tv_Cust_X.setText("0.000");
@@ -2507,6 +2941,12 @@ return  Unix_time;
         // GetCustomer();
     }
     public void btn_GetLocation(View view) {
+        try {
+            getUnixTime(-1);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         try {
           //  Toast.makeText(this,"تحديث الموقع",Toast.LENGTH_SHORT).show();
             GetlocationNew();
@@ -3056,7 +3496,11 @@ return  Unix_time;
 
     public void btn_RefreshTime(View view) {
 
-        getUnixTime(-1);
+        try {
+            getUnixTime(-1);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     @SuppressLint("Range")
@@ -3145,4 +3589,39 @@ Toast.makeText(MainActivity.this,"لم يتم اعتماد الزيارة , يو
             }
         }).start();
     }
+
+
+    private boolean haveNetworkConnection(Context context)
+    {
+        boolean haveConnectedWifi = false;
+        boolean haveConnectedMobile = false;
+
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo[] netInfo = cm.getAllNetworkInfo();
+        for (NetworkInfo ni : netInfo)
+        {
+            if (ni.getTypeName().equalsIgnoreCase("WIFI"))
+            {
+                if (ni.isConnected())
+                {
+                    haveConnectedWifi = true;
+                } else
+                {
+                }
+            }
+            if (ni.getTypeName().equalsIgnoreCase("MOBILE"))
+            {
+                if (ni.isConnected())
+                {
+                    haveConnectedMobile = true;
+
+                } else
+                {
+
+                }
+            }
+        }
+        return haveConnectedWifi || haveConnectedMobile;
+    }
+
 }

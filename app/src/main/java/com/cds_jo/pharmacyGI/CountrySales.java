@@ -387,7 +387,12 @@ String CurrentYear="";
 
                         for (i = 0; i < js_item_no.length(); i++) {
                             cls_acc_report = new Cls_Country_Sales();
+                 /*          String gg = DB.GetValue(CountrySales.this, "invf", "Type_No", "Item_No='" + js_item_no.get(i).toString() + "' and Type_No='1'");
 
+                           gg=js_Type_no.get(i).toString();
+                           if (!(gg.equals("1"))) {
+                                continue;
+                            }else{*/
                             cls_acc_report.setItemNo(js_item_no.get(i).toString());
                             cls_acc_report.setQty(js_qty.get(i).toString());
                             cls_acc_report.setItemNm(js_Item_Name.get(i).toString());
@@ -395,8 +400,6 @@ String CurrentYear="";
                             cls_acc_report.setDate(js_BillDate.get(i).toString());
                             cls_acc_report.setCusNm(js_cusname.get(i).toString());
                             cls_acc_report.setPrice(js_price.get(i).toString());
-
-
                             cls_acc_report.setManNm(js_ManName.get(i).toString());
                             cls_acc_report.setUnitNm(js_UnitName.get(i).toString());
 
@@ -412,8 +415,8 @@ String CurrentYear="";
 
                             if (custDialog.getProgress() == custDialog.getMax()) {
                                 custDialog.dismiss();
-                            }
-
+                          //  }
+                       }
                         }
 
                         _handler.post(new Runnable() {

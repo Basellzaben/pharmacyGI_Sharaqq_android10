@@ -33,7 +33,7 @@ public class SqlHandler {
 
         try{
         sqlDatabase = dbHelper.getWritableDatabase();
-        }
+         }
         catch (SQLException e){
         Toast.makeText(context.getApplicationContext(),"يرجى تفعيل الصلاحيات قبل تسجيل الدخول" + e.getMessage().toString(),Toast.LENGTH_SHORT ).show();
         }

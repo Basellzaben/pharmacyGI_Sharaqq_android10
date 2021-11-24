@@ -1,5 +1,6 @@
 package com.cds_jo.pharmacyGI;
 
+import android.annotation.SuppressLint;
 import android.app.DialogFragment;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -21,8 +22,6 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.cds_jo.pharmacyGI.assist.Customers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,12 +48,10 @@ public class Select_Location extends DialogFragment implements View.OnClickListe
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
             }
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
             }
-
             @Override
             public void afterTextChanged(Editable s) {
                 // Toast.makeText(getActivity(),s.toString(),Toast.LENGTH_SHORT).show();
@@ -71,6 +68,7 @@ public class Select_Location extends DialogFragment implements View.OnClickListe
 
 
                 onProgressUpdate(filter.getText().toString());
+
             }
         });
 
@@ -109,9 +107,8 @@ public class Select_Location extends DialogFragment implements View.OnClickListe
 
 
             }
-
-
         });
+
         this.getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         return  form;
     }
@@ -125,6 +122,7 @@ public class Select_Location extends DialogFragment implements View.OnClickListe
     }
 
 
+    @SuppressLint("Range")
     public void onProgressUpdate(String t ){
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -163,15 +161,19 @@ public class Select_Location extends DialogFragment implements View.OnClickListe
             }
         }
 
-
+       /*  Mans   mans = new Mans();
+       mans.setNo("-1");
+        mans.setAcc("-1");
+        mans.setNm("الكل");*/
 
 
         Cursor c = sqlHandler.selectQuery(query);
         ArrayList<Mans> customersesList = new ArrayList<Mans>();
+       // customersesList.add(mans);
         if (c!=null && c.getCount()!=0 ){
             if(c.moveToFirst()){
              do{
-                 Mans     mans = new Mans();
+                 Mans  mans = new Mans();
 
                  mans.setNo(c.getString(c.getColumnIndex("No")));
                  mans.setAcc(c.getString(c.getColumnIndex("No")));

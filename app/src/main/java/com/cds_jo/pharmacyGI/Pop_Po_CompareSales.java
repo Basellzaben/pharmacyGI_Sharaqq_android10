@@ -1,4 +1,3 @@
-
 package com.cds_jo.pharmacyGI;
 
 import android.app.AlertDialog;
@@ -6,37 +5,18 @@ import android.app.DialogFragment;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.text.Editable;
-import android.text.InputType;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.cds_jo.pharmacyGI.assist.CallWebServices;
-import com.cds_jo.pharmacyGI.assist.Cls_Deptf;
-import com.cds_jo.pharmacyGI.assist.Cls_Deptf_adapter;
-import com.cds_jo.pharmacyGI.assist.Cls_Invf;
-import com.cds_jo.pharmacyGI.assist.Cls_UnitItems;
-import com.cds_jo.pharmacyGI.assist.Cls_UnitItems_Adapter;
-import com.cds_jo.pharmacyGI.assist.OrdersItems;
-import com.cds_jo.pharmacyGI.assist.Po_ListItemAdapter;
-import com.cds_jo.pharmacyGI.assist.Sale_InvoiceActivity;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -47,7 +27,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import Methdes.MethodToUse;
 import Methdes.MyTextView;
 
 
@@ -55,14 +34,14 @@ public class Pop_Po_CompareSales extends DialogFragment implements View.OnClickL
 
     View form;
     Button add, cancel,prevBtn,nextBtn;
-   MyTextView tv_Sales,   tv_Returns,tv_Total;
+    MyTextView tv_Sales,   tv_Returns,tv_Total;
     public String ItemNo = "";
     SqlHandler sqlHandler;
-     String Area ,ManNo, FromDate ,ToDate;
+    String Area ,ManNo, FromDate ,ToDate;
     double Total_Sales,Total_Return,Toral_Diff;
     Button btn_Back;
-      ArrayList<Cls_CompareSalesReport> SalesLists ;
-      ArrayList<Cls_CompareSalesReport> Returns ;
+    ArrayList<Cls_CompareSalesReport> SalesLists ;
+    ArrayList<Cls_CompareSalesReport> Returns ;
 
     ListView Lst_Retrns , Lst_Sales;
 
@@ -145,8 +124,8 @@ public class Pop_Po_CompareSales extends DialogFragment implements View.OnClickL
     public void onClick(View v) {
 
         if (v == btn_Back) {
-           this.dismiss();
-       }
+            this.dismiss();
+        }
 
 
     }
@@ -312,7 +291,7 @@ public class Pop_Po_CompareSales extends DialogFragment implements View.OnClickL
                                     getActivity(), SalesLists);
 
 
-                               Cls_Sales_Compare_Adapter Return_Adapter = new Cls_Sales_Compare_Adapter(
+                            Cls_Sales_Compare_Adapter Return_Adapter = new Cls_Sales_Compare_Adapter(
                                     getActivity(), Returns);
 
 
@@ -372,9 +351,4 @@ public class Pop_Po_CompareSales extends DialogFragment implements View.OnClickL
 
     }
 
-    }
-
-
-
-
-
+}

@@ -101,13 +101,14 @@
         android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-            tools:ignore="UnusedAttribute">
+        tools:ignore="UnusedAttribute">
         <activity
             android:name=".assist.Convert_ccReportTo_ImgActivity"
             android:exported="true"
             tools:ignore="Instantiatable" />
         <activity android:name=".assist.OrderDetailsReports"
             tools:ignore="Instantiatable" />
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -116,6 +117,8 @@
              sign the APK for publishing.
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
+
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />

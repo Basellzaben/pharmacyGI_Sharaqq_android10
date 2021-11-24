@@ -24,6 +24,7 @@ android {
 }
 
 dependencies {
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation files('libs/Sewoo_Android_1070.jar')
     implementation files('libs/ZQ110.jar')
@@ -61,5 +62,4 @@ dependencies {
    implementation 'com.android.volley:volley:1.1.0'
    //implementation ('com.android.volley:volley:1.2.0'){ exclude group : 'com.google.code.gson'}
    // implementation  'com.android.support:multidex:1.0.3'
-
 }
